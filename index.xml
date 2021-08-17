@@ -7,18 +7,11 @@
             <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Tue, 17 Aug 2021 14:50:15 &#43;0800</lastBuildDate>
             <atom:link href="http://www.wangyudong.love/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title> 个人网站搭建</title>
-    <link>http://www.wangyudong.love/website/</link>
+    <title>个人网站搭建</title>
+    <link>http://www.wangyudong.love/firstsum/</link>
     <pubDate>Tue, 17 Aug 2021 14:50:15 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://www.wangyudong.love/website/</guid>
-    <description><![CDATA[111]]></description>
-</item><item>
-    <title>Markdown语法</title>
-    <link>http://www.wangyudong.love/markdown/</link>
-    <pubDate>Tue, 17 Aug 2021 14:50:15 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://www.wangyudong.love/markdown/</guid>
-    <description><![CDATA[标题 1 # 标题名字（井号的个数代表标题的级数） 一级标题使用1个# 二级标题使用2个# 三级标题使用3个# 四级标题使4用个# 五级标题使用5个# 六级标]]></description>
+    <guid>http://www.wangyudong.love/firstsum/</guid>
+    <description><![CDATA[网站搭建笔记 使用HUGO搭建网站 &hellip; 使用Netlify运行网站 &hellip; 使用Apache2运行网站 &hellip; 使用git调试和同步 &hellip; loveIt主题模板配置 &hellip; 鼠]]></description>
 </item></channel>
 </rss>

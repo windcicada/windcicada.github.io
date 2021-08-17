@@ -3,14 +3,15 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>http://www.wangyudong.love/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><priority>1</priority></url><url>
-            <loc>http://www.wangyudong.love/website/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://www.wangyudong.love/tags/apache/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://www.wangyudong.love/categories/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.wangyudong.love/categories/mark/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.wangyudong.love/tags/markdown/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.wangyudong.love/markdown/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://www.wangyudong.love/tags/git/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://www.wangyudong.love/tags/hugo/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://www.wangyudong.love/tags/loveit/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://www.wangyudong.love/tags/netlify/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://www.wangyudong.love/posts/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://www.wangyudong.love/tags/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.wangyudong.love/tags/website/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://www.wangyudong.love/categories/website/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://www.wangyudong.love/firstsum/</loc><lastmod>2021-08-17T14:50:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://www.wangyudong.love/personal/about/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://www.wangyudong.love/personal/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
