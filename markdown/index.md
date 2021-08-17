@@ -1,8 +1,7 @@
-# markdown note 1
-
-![image-20200210154710148](image-20200210154710148.png)
+# Markdown语法
 
 
+![avatar](/images/avatar.png)
 
 
 ## 标题
@@ -205,7 +204,7 @@ cola|5
 ### 代码块
 
 ```markdown
-​```语言名称
+```语言名称
 ```
 
 ```java
@@ -522,6 +521,5 @@ graph TB
     IsRemaining --没有--> sad["伤心"]--> goBack(回家)
     IsRemaining -->|有|happy[买完炸鸡开心]--> goBack
 ```
-
 
 

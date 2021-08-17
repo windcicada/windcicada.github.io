@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>website - Category - Dong</title>
+        <link>http://www.wangyudong.love/categories/website/</link>
+        <description>website - Category - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Tue, 17 Aug 2021 14:50:15 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/categories/website/" rel="self" type="application/rss+xml" /><item>
+    <title> 个人网站搭建</title>
+    <link>http://www.wangyudong.love/website/</link>
+    <pubDate>Tue, 17 Aug 2021 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://www.wangyudong.love/website/</guid>
+    <description><![CDATA[111]]></description>
+</item></channel>
+</rss>
