@@ -1,14 +1,21 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>All Posts - Dong</title>
-        <link>https://windcicada.github.io/posts/</link>
+        <link>http://www.wangyudong.love/posts/</link>
         <description>All Posts | Dong</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 13 Aug 2021 23:46:58 &#43;0800</lastBuildDate><atom:link href="https://windcicada.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>First_post</title>
-    <link>https://windcicada.github.io/first_post/</link>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Fri, 13 Aug 2021 23:46:58 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>markdown note 1</title>
+    <link>http://www.wangyudong.love/markdown/</link>
     <pubDate>Fri, 13 Aug 2021 23:46:58 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>https://windcicada.github.io/first_post/</guid>
-    <description><![CDATA[test post ]]></description>
+    <guid>http://www.wangyudong.love/markdown/</guid>
+    <description><![CDATA[标题 1  # 标题名字（井号的个数代表标题的级数）   一级标题使用1个# 二级标题使用2个# 三级标题使用3个# 四级标题使4用个# 五级标题使用5个# 六级标题使用6个# ####### 最多支持六级标题#
+文字 删除线 1  这就是 ~~删除线~~ (使用波浪号)   这就是 删除线 (使用波浪号)
+斜体 1  这是用来 *斜体* 的 _文本_   这是用来 斜体 的 文本
+加粗 1  这是用来 **加粗** 的 __文本__   这是用来 加粗 的 文本
+斜体+加粗 1  这是用来 ***斜体+加粗*** 的 ___文本___   这是用来 斜体+加粗 的 文本
+下划线 下划线是HTML语法
+下划线 下划线(快捷键command+u，视频中所有的快捷键都是针对Mac系统，其他系统可自行查找)]]></description>
 </item></channel>
 </rss>
