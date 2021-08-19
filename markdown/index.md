@@ -1,7 +1,7 @@
 # Markdown语法
 
 
-![avatar](/images/avatar.png)
+![avatar](../images/avatar.png)
 
 
 ## 标题
