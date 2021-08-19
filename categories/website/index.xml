@@ -4,7 +4,14 @@
         <link>http://www.wangyudong.love/categories/website/</link>
         <description>website - Category - Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Tue, 17 Aug 2021 14:50:15 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/categories/website/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 19 Aug 2021 18:57:36 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/categories/website/" rel="self" type="application/rss+xml" /><item>
+    <title>markdown语法笔记</title>
+    <link>http://www.wangyudong.love/markdownnotes/</link>
+    <pubDate>Thu, 19 Aug 2021 18:57:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://www.wangyudong.love/markdownnotes/</guid>
+    <description><![CDATA[基于markdown的网页构建 前缀模板 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 --- title: &#34;TITLE&#34; date: 2021-08-19T00:00:00+08:00 draft: true authorLink: &#34;&#34; description: &#34;&#34; images: [] tags: [] categories: [] hiddenFromHomePage: false hiddenFromSearch: false twemoji: false lightgallery: true ruby: true fraction: true fontawesome: true --- 图像]]></description>
+</item><item>
     <title>个人网站搭建</title>
     <link>http://www.wangyudong.love/firstsum/</link>
     <pubDate>Tue, 17 Aug 2021 14:50:15 &#43;0800</pubDate>

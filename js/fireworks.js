@@ -115,7 +115,7 @@ var fireworks = (function() {
     render.play();
     updateCoords(e);
     animateParticules(pointerX, pointerY);
-    ga('send', 'event', 'Fireworks', 'Click');
+    //ga('send', 'event', 'Fireworks', 'Click');
   }, false);
 
   window.addEventListener('resize', setCanvasSize, false);
