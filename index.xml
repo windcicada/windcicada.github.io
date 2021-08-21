@@ -4,15 +4,15 @@
         <link>http://www.wangyudong.love/</link>
         <description>Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 21 Aug 2021 15:51:00 &#43;0800</lastBuildDate>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 21 Aug 2021 18:54:00 &#43;0800</lastBuildDate>
             <atom:link href="http://www.wangyudong.love/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>浸没边界方法文献综述</title>
-    <link>http://www.wangyudong.love/ibm_litraturereview/</link>
-    <pubDate>Sat, 21 Aug 2021 15:51:00 &#43;0800</pubDate>
+    <title>KaTeX笔记</title>
+    <link>http://www.wangyudong.love/katex/</link>
+    <pubDate>Sat, 21 Aug 2021 18:54:00 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://www.wangyudong.love/ibm_litraturereview/</guid>
-    <description><![CDATA[浸没边界方法 math test $$ c = \pm\sqrt{a^2 + b^2} $$ \[ f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \]]]></description>
+    <guid>http://www.wangyudong.love/katex/</guid>
+    <description><![CDATA[$ \KaTeX $ 矩阵 Code Result \begin{**matrix**}a&amp;b\\\ c&amp;d\end{**matrix**} $\begin{matrix}a&amp;b\\ c&amp;d\end{matrix}$ \begin{**pmatrix**}a&amp;b\\\ c&amp;d\end{**pmatrix**} $\begin{pmatrix}a&amp;b\\ c&amp;d\end{pmatrix}$ \begin{**bmatrix**}a&amp;b\\\ c&amp;d\end{**bmatrix**} $\begin{bmatrix}a&amp;b\\ c&amp;d\end{bmatrix}$ \begin{**vmatrix**}a&amp;b\\\ c&amp;d\end{**vmatrix**} $\begin{vmatrix}a&amp;b\\ c&amp;d\end{vmatrix}$ \begin{**Vmatrix**}a&amp;b\\\ c&amp;d\end{**Vmatrix**} $\begin{Vmatrix}a&amp;b\\ c&amp;d\end{Vmatrix}$ \begin{**Bmatrix**}a&amp;b\\\\\\ c&amp;d\end{**Bmatrix**} $\begin{Bmatrix}a&amp;b\\ c&amp;d\end{Bmatrix}$ **\binom** {n}{k} $\binom{n}{k}$ n **\brace** k ${n\brace k}$ n **\brack** k ${n\brack k}$ 标记 Code Result Code Result a' $a'$ a'' $a''$ \dot{a} $\dot{a}$ \ddot{a} $\ddot{a}$ \hat{a} $\hat{a}$ \check{a} $\check{a}$ \bar{a} $\bar{a}$ \tide{a} $\tilde{a}$ \widehat{ab} $\widehat{ab}$ \widecheck{ab} $\widecheck{ab}$]]></description>
 </item><item>
     <title>markdown语法笔记</title>
     <link>http://www.wangyudong.love/markdownnotes/</link>
