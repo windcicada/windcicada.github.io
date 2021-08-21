@@ -4,9 +4,16 @@
         <link>http://www.wangyudong.love/</link>
         <description>Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 19 Aug 2021 18:57:36 &#43;0800</lastBuildDate>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 21 Aug 2021 15:51:00 &#43;0800</lastBuildDate>
             <atom:link href="http://www.wangyudong.love/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>浸没边界方法文献综述</title>
+    <link>http://www.wangyudong.love/ibm_litraturereview/</link>
+    <pubDate>Sat, 21 Aug 2021 15:51:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://www.wangyudong.love/ibm_litraturereview/</guid>
+    <description><![CDATA[浸没边界方法 math test $$ c = \pm\sqrt{a^2 + b^2} $$ \[ f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \]]]></description>
+</item><item>
     <title>markdown语法笔记</title>
     <link>http://www.wangyudong.love/markdownnotes/</link>
     <pubDate>Thu, 19 Aug 2021 18:57:36 &#43;0800</pubDate>

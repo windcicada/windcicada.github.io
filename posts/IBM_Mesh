@@ -1,0 +1,24 @@
+---
+title: "浸没边界网格生成与应用"
+date: 2021-08-19T00:00:00+08:00
+draft: true
+authorLink: ""
+description: ""
+images: []
+tags: [AECSC, ImmersedBoundaryMethod, Mesh]
+categories: [湍流燃烧仿真]
+hiddenFromHomePage: true
+hiddenFromSearch: false
+twemoji: false
+lightgallery: true
+ruby: true
+fraction: true
+fontawesome: true
+---
+
+# 一种基于浸没边界流固耦合法的网格生成与应用方法
+
+## 传统浸没边界方法的笛卡尔网格
+
+## 浸没边界方法和网格的改进
+
