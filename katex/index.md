@@ -24,7 +24,7 @@
 | `a'` |  $a'$ | `a''` |  $a''$ |
 | `\dot{a}` | $\dot{a}$ | `\ddot{a}` |$\ddot{a}$ |
 | `\hat{a}` |  $\hat{a}$ |`\check{a}`|$\check{a}$|
-| `\bar{a}` |$\bar{a}$|`\tide{a}`|$\tilde{a}$|
+| `\bar{a}` |$\bar{a}$|`\tilde{a}`|$\tilde{a}$|
 | `\widehat{ab}` |$\widehat{ab}$|`\widecheck{ab}`|$\widecheck{ab}$|
 | `\overline{ab}` |$\overline{ab}$|`\widetilde{ab}`|$\widetilde{ab}$|
 | `\vec{a}` |$\vec{a}$|`\overrightarrow{ab}`|$\overrightarrow{ab}$|
@@ -41,7 +41,7 @@
 | $\iota$    `\iota` |$\kappa$    `\kappa`|$\lambda$    `\lambda`|$\mu$    `\mu`|
 | $\nu$    `\nu` |$\xi$    `\xi`|$\omicron$    `\omicron`|$\pi$    `\pi`|
 | $\rho$   `\rho` |$\sigma$    `\sigma`|$\tau$    `\tau`|$\upsilon$    `\upsilon`|
-| $\phi$    `\\phi` |$\chi$    `\chi`|$\psi$    `\psi`|$\omega$    `\omega`|
+| $\phi$    `\phi` |$\chi$    `\chi`|$\psi$    `\psi`|$\omega$    `\omega`|
 | $\varepsilon$    `\varepsilon` |$\varkappa$    `\varkappa`|$\vartheta$    `\vartheta`|$\varpi$    `\varpi`|
 | $\varrho$  `\varrho` |$\varsigma$  `\varsigma`|$\varphi$  `\varphi`|$\digamma$  `\digamma`|
 | $\imath$  `\imath` |$\jmath$  `\jmath`|$\nabla$  `\nabla`|$\ell$  `\ell`|
@@ -53,7 +53,7 @@
 | $\Rho$  `\Rho` |$\Sigma$    `\Sigma`|$\Tau$    `\Tau`|$\Upsilon$    `\Upsilon`|
 | $\Phi$    `\\Phi` |$\Chi$    `\Chi`|$\Psi$    `\Psi`|$\Omega$    `\Omega`|
 | $\varGamma$   `\varGamma` |$\varDelta$    `\varDelta`|$\varTheta$    `\varTheta`|$\varLambda$    `\varLambda`|
-| $\varXi$  `\varXi` |$\varPi$  `\varPi`|$\varSigma$  `\varSigma`|$\varUpsilon$  \varUpsilon|
+| $\varXi$  `\varXi` |$\varPi$  `\varPi`|$\varSigma$  `\varSigma`|$\varUpsilon$  `\varUpsilon`|
 | $\varPhi$   `\varPhi` |$\varPsi$  `\varPsi`|$\varOmega$  `\varOmega`|∐ `\coprod`|
 | ∑ `\sum`                       | ∏ `\prod`                  | ⋁ `\bigvee`                | ∞ `\infty` |
 | ∫ `\int`                       | ∮  `\oint`                 | ⋀ `\bigwedge`              | ✓ `\checkmark` |
@@ -109,6 +109,12 @@ ABΓΔEZHΘIKΛMNΞOΠPΣTΥΦXΨΩ
 | $\sqrt{a}$ `\sqrt{a}` | $\sqrt[n]{a}$  `\sqrt[n]{a}` |
 |$\textstyle\sum_{i=1}^n$ `\textstyle\sum_{i=1}^n` | $\displaystyle\sum_{i=1}^n$ `\displaystyle\sum_{i=1}^n` |
 | $\lim\limits_x$ `\lim\limits_x` | $\lim\nolimits_x$ `\lim\nolimits_x` |
+
+* 大括号
+
+`\begin{cases} a &\text{if b}\\\ c &\text{else} \end{cases}`
+
+$\begin{cases} a &\text{if b}\\\ c &\text{else} \end{cases}$
 
 ## 其他
 
