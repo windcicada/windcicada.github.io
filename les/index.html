@@ -22,8 +22,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>LES - Dong</title><meta name="Description" content="Dong"><meta property="og:title" content="LES" />
-<meta property="og:description" content="大涡模拟 基础方程 张量 $u_i=u_x\vec{i}&#43;u_y\vec{j}&#43;u_z\vec{k}$ $\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;\tau_{12}&amp;\tau_{13}\\ \tau_{21}&amp;\tau_{22}&amp;\tau_{23}\\ \tau_{31}&amp;\tau_{32}&amp;\tau_{33}\end{bmatrix}$ $u_i x_i=u_1 x_1 &#43; u_2 x_2 &#43;u_3 x_3$ 坐标变换 坐标轴名 原始坐标系 变换后坐标系 $x$ $x_1$ $\xi_1$ $y$ $x_2$ $\xi_2$ $z$ $x_3$ $\xi_3$ 坐标变换 Jacobian 矩阵 $J_{ij}=\dfrac{\partial x_i}{\partial\xi_i}$ 其代数余子式 $A=|J||J|^{-1}$ 根据链式" />
+        <title>大涡模拟 - Dong</title><meta name="Description" content="Dong"><meta property="og:title" content="大涡模拟" />
+<meta property="og:description" content="大涡模拟 控制方程 张量 $u_i=u_x\vec{i}&#43;u_y\vec{j}&#43;u_z\vec{k}$ $\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;\tau_{12}&amp;\tau_{13}\\ \tau_{21}&amp;\tau_{22}&amp;\tau_{23}\\ \tau_{31}&amp;\tau_{32}&amp;\tau_{33}\end{bmatrix}$ $u_i x_i=u_1 x_1 &#43; u_2 x_2 &#43;u_3 x_3$ 质量守恒方程 (连续方程) $\dfrac{\partial \rho}{\partial t}&#43;\dfrac{\partial \rho u_i}{\partial x_i}$ 也可写作： $\dfrac{\partial \rho}{\partial t}&#43;\nabla\cdot(\rho \vec{V})=0$ 算子 汉密尔顿算子$\nabla$： $\nabla\cdot\vec{a}=div(\vec{a})=\dfrac{\partial a_x}{\partial x}&#43;\dfrac{\partial a_y}{\partial" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://www.wangyudong.love/les/" /><meta property="og:image" content="http://www.wangyudong.love/images/avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-22T10:50:51+08:00" />
@@ -32,8 +32,8 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://www.wangyudong.love/images/avatar.png"/>
 
-<meta name="twitter:title" content="LES"/>
-<meta name="twitter:description" content="大涡模拟 基础方程 张量 $u_i=u_x\vec{i}&#43;u_y\vec{j}&#43;u_z\vec{k}$ $\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;\tau_{12}&amp;\tau_{13}\\ \tau_{21}&amp;\tau_{22}&amp;\tau_{23}\\ \tau_{31}&amp;\tau_{32}&amp;\tau_{33}\end{bmatrix}$ $u_i x_i=u_1 x_1 &#43; u_2 x_2 &#43;u_3 x_3$ 坐标变换 坐标轴名 原始坐标系 变换后坐标系 $x$ $x_1$ $\xi_1$ $y$ $x_2$ $\xi_2$ $z$ $x_3$ $\xi_3$ 坐标变换 Jacobian 矩阵 $J_{ij}=\dfrac{\partial x_i}{\partial\xi_i}$ 其代数余子式 $A=|J||J|^{-1}$ 根据链式"/>
+<meta name="twitter:title" content="大涡模拟"/>
+<meta name="twitter:description" content="大涡模拟 控制方程 张量 $u_i=u_x\vec{i}&#43;u_y\vec{j}&#43;u_z\vec{k}$ $\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;\tau_{12}&amp;\tau_{13}\\ \tau_{21}&amp;\tau_{22}&amp;\tau_{23}\\ \tau_{31}&amp;\tau_{32}&amp;\tau_{33}\end{bmatrix}$ $u_i x_i=u_1 x_1 &#43; u_2 x_2 &#43;u_3 x_3$ 质量守恒方程 (连续方程) $\dfrac{\partial \rho}{\partial t}&#43;\dfrac{\partial \rho u_i}{\partial x_i}$ 也可写作： $\dfrac{\partial \rho}{\partial t}&#43;\nabla\cdot(\rho \vec{V})=0$ 算子 汉密尔顿算子$\nabla$： $\nabla\cdot\vec{a}=div(\vec{a})=\dfrac{\partial a_x}{\partial x}&#43;\dfrac{\partial a_y}{\partial"/>
 <meta name="application-name" content="Dong">
 <meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -41,12 +41,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "LES",
+        "headline": "大涡模拟",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/www.wangyudong.love\/les\/"
-        },"genre": "posts","keywords": "AECSC, LES, boffin","wordcount":  2672 ,
+        },"genre": "posts","keywords": "AECSC, LES, boffin","wordcount":  4646 ,
         "url": "http:\/\/www.wangyudong.love\/les\/","datePublished": "2021-08-22T10:50:51+08:00","dateModified": "2021-08-22T10:50:51+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -120,10 +120,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">LES</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">大涡模拟</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-22">2021-08-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2672 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;<span id="/les/" class="leancloud_visitors" data-flag-title="LES">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-22">2021-08-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;4646 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;<span id="/les/" class="leancloud_visitors" data-flag-title="大涡模拟">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
@@ -133,12 +133,19 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#基础方程">基础方程</a></li>
-    <li><a href="#大涡滤波">大涡滤波</a></li>
+    <li><a href="#控制方程">控制方程</a>
+      <ul>
+        <li><a href="#守恒型控制方程">守恒型控制方程</a></li>
+      </ul>
+    </li>
+    <li><a href="#滤波">滤波</a></li>
+    <li><a href="#坐标变换">坐标变换</a></li>
+    <li><a href="#有限体积离散">有限体积离散</a></li>
+    <li><a href="#simple-算法">SIMPLE 算法</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="大涡模拟">大涡模拟</h1>
-<h2 id="基础方程">基础方程</h2>
+<h2 id="控制方程">控制方程</h2>
 <div class="details admonition tip">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-lightbulb fa-fw"></i>张量<i class="details-icon fas fa-angle-right fa-fw"></i>
@@ -149,69 +156,43 @@ $\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;\tau_{12}&amp;\tau_{13}\\ \tau_{21}&amp;
 $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
         </div>
     </div>
-<div class="details admonition note">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>坐标变换<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><table>
-<thead>
-<tr>
-<th style="text-align:center">坐标轴名</th>
-<th style="text-align:center">原始坐标系</th>
-<th style="text-align:center">变换后坐标系</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$x$</td>
-<td style="text-align:center">$x_1$</td>
-<td style="text-align:center">$\xi_1$</td>
-</tr>
-<tr>
-<td style="text-align:center">$y$</td>
-<td style="text-align:center">$x_2$</td>
-<td style="text-align:center">$\xi_2$</td>
-</tr>
-<tr>
-<td style="text-align:center">$z$</td>
-<td style="text-align:center">$x_3$</td>
-<td style="text-align:center">$\xi_3$</td>
-</tr>
-</tbody>
-</table>
-<p>坐标变换 Jacobian 矩阵 $J_{ij}=\dfrac{\partial x_i}{\partial\xi_i}$</p>
-<p>其代数余子式 $A=|J||J|^{-1}$</p>
-<blockquote>
-<p>根据链式法则，有 $\dfrac{\partial \phi}{\partial x_i}=\dfrac{A_{ij}}{|J|}\dfrac{\partial \phi}{\partial\xi_j}$</p>
-</blockquote>
-<p>由于任何坐标变换都不存在 $\dfrac{\partial \frac{A_{ik}}{|J|}}{\partial\xi_k}$</p>
-</div>
-        </div>
-    </div>
 <ul>
 <li>
 <p><strong>质量守恒方程 (连续方程)</strong></p>
 <p>$\dfrac{\partial \rho}{\partial t}+\dfrac{\partial \rho u_i}{\partial x_i}$</p>
+<p>也可写作： $\dfrac{\partial \rho}{\partial t}+\nabla\cdot(\rho \vec{V})=0$</p>
+<div class="details admonition tip">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>算子<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>汉密尔顿算子$\nabla$：</p>
+<p>$\nabla\cdot\vec{a}=div(\vec{a})=\dfrac{\partial a_x}{\partial x}+\dfrac{\partial a_y}{\partial y}+\dfrac{\partial a_z}{\partial z}$表示散度(标量)，</p>
+<p>$\nabla\vec{a}=grad(\vec{a})=(\dfrac{\partial a_x}{\partial x},\dfrac{\partial a_y}{\partial y},\dfrac{\partial a_z}{\partial z})$表示梯度(矢量)，</p>
+<p>拉普拉斯算子$\Delta$：</p>
+<p>$\Delta\vec{a}=\nabla^2\vec{a}=\nabla\cdot\nabla\vec{a}=\dfrac{\partial^2 a_x}{\partial^2 x}+\dfrac{\partial^2 a_y}{\partial^2 y}+\dfrac{\partial^2 a_z}{\partial^2 z}$</p>
+</div>
+        </div>
+    </div>
 <div class="details admonition info">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-info-circle fa-fw"></i>连续方程形式<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"><p>欧拉形式: $\dfrac{\partial \rho}{\partial t}+\nabla(\rho \vec{V})=0$</p>
+            <div class="admonition-content"><p>欧拉形式（即上式）: $\dfrac{\partial \rho}{\partial t}+\nabla\cdot(\rho \vec{V})=0$</p>
 <p>含义: 控制体质量的变化等于流入控制体的质量</p>
 <p>拉格朗日形式: $\dfrac{D\rho}{Dt}+\rho(\nabla\vec{V})=0$</p>
-<p>含义: 体系的密度由变化体系的体积变化引起+</p>
+<p>含义: 体系的密度由变化体系的体积变化引起</p>
 </div>
         </div>
     </div>
 </li>
 <li>
-<p><strong>动量守恒方程</strong></p>
-<p>$\dfrac{\partial\rho u_i}{\partial t}+\dfrac{\partial\rho u_i u_j}{\partial x_j}=-\dfrac{\partial P}{\partial x_i}+\dfrac{\partial \sigma_{ij}}{\partial x_i}+\rho g_i$</p>
+<p><strong>牛顿流体的动量守恒方程 (N-S方程)</strong></p>
+<p>$\dfrac{\partial\rho u_i}{\partial t}+\dfrac{\partial\rho u_i u_j}{\partial x_j}=-\dfrac{\partial P}{\partial x_i}+\dfrac{\partial \sigma_{ij}}{\partial x_i}+F_i$</p>
 <div class="details admonition tip">
         <div class="details-summary admonition-title">
-            <i class="icon fas fa-lightbulb fa-fw"></i>应力张量 $\sigma_{ij}$<i class="details-icon fas fa-angle-right fa-fw"></i>
+            <i class="icon fas fa-lightbulb fa-fw"></i>牛顿流体的应力张量 $\sigma_{ij}$<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
             <div class="admonition-content"><p>$\sigma_{ij}=2\mu S_{ij}-\frac{2}{3}\mu S_{kk}\delta_{ij}$</p>
@@ -225,7 +206,7 @@ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
             <i class="icon fas fa-info-circle fa-fw"></i>动量方程形式<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"><p>拉格朗日形式: $\dfrac{D\vec{V}}{Dt}=-\dfrac{\mu}{\rho}\nabla^2\vec{V}+\dfrac{1}{3}\dfrac{\mu}{\rho}\nabla(\nabla \vec{V})-\dfrac{1}{\rho}\nabla P+\vec{f_b}$</p>
+            <div class="admonition-content"><p>拉格朗日形式: $\dfrac{D\vec{V}}{Dt}=-\dfrac{\mu}{\rho}\nabla^2\vec{V}+\dfrac{1}{3}\dfrac{\mu}{\rho}\nabla\cdot(\nabla \vec{V})-\dfrac{1}{\rho}\nabla P+\vec{f_b}$</p>
 <p>含义: 体系动量变化 = 粘性正应力项+粘性切应力项+压差力项+体积力项</p>
 </div>
         </div>
@@ -249,8 +230,81 @@ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
 <li>
 <p><strong>混合物焓守恒方程</strong></p>
 </li>
+<li>
+<p><strong>控制方程的通用形式</strong></p>
+<p>$\dfrac{\partial(\rho\phi)}{\partial t}+\dfrac{\partial(\rho u_i\phi)}{\partial x_i}=\dfrac{\partial}{\partial x_i}(\Gamma\dfrac{\partial \phi}{\partial x_i})+S$</p>
+<p>式中各项依次为：</p>
+<p>瞬态项(Transient)，对流项(Convective)，扩散项(Diffusive)，源项(Source) (term)</p>
+<p>其中，$\phi$表示通用变量，$\Gamma$ 代表广义扩散系数，$S$ 代表广义源项。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">对应含义</th>
+<th style="text-align:center">$\phi$</th>
+<th style="text-align:center">$\Gamma$</th>
+<th style="text-align:center">$S$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">连续方程</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">动量方程</td>
+<td style="text-align:center">$u_i$</td>
+<td style="text-align:center">$\mu$</td>
+<td style="text-align:center">$-\frac{\partial p}{\partial x_i}+S_i$</td>
+</tr>
+<tr>
+<td style="text-align:center">能量方程</td>
+<td style="text-align:center">T</td>
+<td style="text-align:center">$\frac{k}{c}$</td>
+<td style="text-align:center">$S_T$</td>
+</tr>
+<tr>
+<td style="text-align:center">组分方程</td>
+<td style="text-align:center">c_s</td>
+<td style="text-align:center">$D_s\rho$</td>
+<td style="text-align:center">$S_S$</td>
+</tr>
+</tbody>
+</table>
+</li>
 </ul>
-<h2 id="大涡滤波">大涡滤波</h2>
+<p>所有控制方程都可以经过适当的数学处理，将因变量，时变项，对流项，扩散项写为标准形式，然后将右侧其余各项集中起来定义为源项，从而化为通用微分方程。</p>
+<h3 id="守恒型控制方程">守恒型控制方程</h3>
+<p>将对流项采用散度的形式表示，物理量都在微分号内，这种形式的控制方程为守恒型控制方程(上述均为守恒型)。</p>
+<p>与非守恒型相比，守恒型更能保持物理量守恒的性质，在有限体积法(FVM)中可方便地建立离散方程。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:left">形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">连续方程</td>
+<td style="text-align:left">$\dfrac{\partial \rho}{\partial t}+\nabla\cdot(\rho\vec{u})=0+0$</td>
+</tr>
+<tr>
+<td style="text-align:center">动量方程</td>
+<td style="text-align:left">$\dfrac{\partial (\rho u_i)}{\partial t}+\nabla\cdot(\rho u_i\vec{u})=\nabla\cdot(\mu\nabla\vec{u})+(-\dfrac{\partial p}{\partial x_i}+S_{u_i})$</td>
+</tr>
+<tr>
+<td style="text-align:center">能量方程</td>
+<td style="text-align:left">$\dfrac{\partial (\rho T)}{\partial t}+\nabla\cdot(\rho T\vec{u})=\nabla\cdot(\dfrac{k}{c}\nabla T)+S_T$</td>
+</tr>
+<tr>
+<td style="text-align:center">状态方程</td>
+<td style="text-align:left">$\dfrac{P}{\rho}=\dfrac{R^0T}{W}$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="滤波">滤波</h2>
 <div class="details admonition tip">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-lightbulb fa-fw"></i>大涡滤波概念<i class="details-icon fas fa-angle-right fa-fw"></i>
@@ -265,19 +319,13 @@ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
     </div>
 <p>通用变量 $\phi (\vec{x},t)$ 为在 $\vec{x}=(x_1,x_2,x_3)$ 处的瞬时流场变量。</p>
 <p>经<strong>大涡滤波</strong>过滤后的变量为 $\bar{\phi}(\vec{x},t)$ 。</p>
-<blockquote>
 <p>$\bar{\phi}(\vec{x},t) = \iiint_{-\infty}^{+\infty}G(\vec{x}-\vec{x'},\Delta) \phi(\vec{x},t)d\vec{x'}$</p>
-</blockquote>
 <p>$G(\vec{x}-\vec{x'},\Delta)$ 为与网格尺度 $\Delta=\sqrt[3]{\Delta x_1\Delta x_2\Delta x_3}$ 相关的滤波函数。</p>
 <hr>
 <p>若对 $\phi (\vec{x},t)$ 进行<strong>Fourier变换</strong>, 得:</p>
-<blockquote>
 <p>$\hat{\phi} (\vec{x},t)=\iiint_{-\infty}^{+\infty}\phi(\vec{x},t)e^{-i\kappa_ix_i}d\vec{x}$</p>
-</blockquote>
 <p>再对 $\hat{\phi} (\vec{x},t)$ 进行<strong>大涡滤波</strong>, 得：</p>
-<blockquote>
 <p>$\bar{\hat{\phi}}(\vec{\kappa},t)=\hat{G}(\vec{\kappa},t)*\hat{\phi}(\vec{\kappa},t)$</p>
-</blockquote>
 <p>上式中 $*$ 为卷积符号</p>
 <p>由上式可知，滤波函数功能为去除波数(频率)大于某固定值 $\kappa_c$ 的分量( <em>由Fourier变换得到的</em> )。</p>
 <p>以箱式( <em>box or top-hat</em> )滤波为例</p>
@@ -304,9 +352,7 @@ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
 <p>因此将<strong>Favre滤波函数</strong>(密度加权滤波函数)定义为：</p>
 <p>$\widetilde{\phi}=\dfrac{\overline{\rho\phi}}{\bar{\rho}}$</p>
 <p>滤波后的N-S方程张量形式为：</p>
-<blockquote>
 <p>$\dfrac{\partial \bar{\rho}}{\partial t}+\dfrac{\partial \bar{\rho}\tilde{u_i}}{\partial{x_j}}=0\\ \dfrac{\partial \bar{\rho}\tilde{u_i}}{\partial{t}}+\dfrac{\partial \bar{\rho}\widetilde{u_iu_j}}{\partial x_j}=-\dfrac{\partial \bar{p}}{\partial x_i}+\dfrac{\partial \bar{\sigma_{ij}}}{\partial x_j}$</p>
-</blockquote>
 <p>根据滤波和空间微分算子的可交换性假设，对输运方程中的变量进行来滤波相当于对输运方程滤波。</p>
 <ul>
 <li>
@@ -341,15 +387,14 @@ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
 <p><code>[1] M. Germano. A proposal for redefinition of the turbulent stresses in the filtered navier-stokes equations. Physics of Fluids, 29(7):2323–2324, 1986.</code></p>
 <p><code>[2]  M. Germano. Turbulence: the filtering approach. Journal of Fluid Mechanics, 238:325–336, 1992.</code></p>
 <p>动态过程基本<strong>尺度相似性假设</strong>为：</p>
-<blockquote>
-<p>$C_S(x_i,t)|<em>\Delta=C_S(x_i,t)|</em>{\alpha\Delta}=C_S(x_i,t)\\ \alpha\ge2$</p>
-</blockquote>
+<p>$C_S(x_i,t)|_\Delta$</p>
+<p>$=C_S(x_i,t)|_{\alpha\Delta}$</p>
+<p>$=C_S(x_i,t)$</p>
+<p>$\alpha\ge2$</p>
 <p>上式表明模型参数比例是不变的。</p>
 <p>${\alpha\Delta}$ 为滤波器带宽，其中 $\alpha$ 最佳值为 2，若网格间距一致，$\alpha$ 的值为 3。</p>
 <p>将滤波后的<strong>N-S方程和滤波函数求卷积</strong>，得：</p>
-<blockquote>
 <p>$\dfrac{\partial\widehat{\bar{\rho}\tilde{u_i}}}{\partial t}+\dfrac{\partial\widehat{\bar{\rho}\widetilde{u_iu_j}}}{\partial x_j}=-\dfrac{\partial\hat{\bar{p}}}{\partial x_i}+\dfrac{\partial \hat{\bar{\sigma_{ij}}}}{\partial x_j}$</p>
-</blockquote>
 <p>引入滤波器应力$T_{ij}$表示上式第二项:</p>
 <p>$T_{ij}=\widehat{\bar{\rho}\widetilde{u_iu_j}}=\hat{\bar{\rho}}(\widehat{\widetilde{u_iu_j}}-\hat{\tilde{u_i}} \hat{\tilde{u_j}})$</p>
 <p>$T_{ij}$ 和 $\tau_{ij}$ 都是未知的，但可以通过解析应力张量由**Germano恒等式**联系起来。</p>
@@ -358,24 +403,18 @@ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
 <p>若应用<strong>尺度相似性假设</strong>，$T_{ij}$ 和 $\tau_{ij}$ 为相同的函数形式，因此二者的各向异性分量可以表示为：</p>
 <p>$\tau_{ij}-\frac{1}{3}\tau_{kk}\delta_{ij}=-2\bar{\rho}(C_S\Delta)^2||\tilde{S_{ij}}||\tilde{S_{ij}}\\ T_{ij}-\frac{1}{3}T_{kk}\delta_{ij}=-2\hat{\bar{\rho}}(C_S\Delta)^2||\hat{\tilde{S_{ij}}}||\hat{\tilde{S_{ij}}}$</p>
 <p>将上式代入 $L_{ij}$ 式，得：</p>
-<blockquote>
 <p>$L_{ij}-\frac{1}{3}L_{kk}\delta_{ij}=-2[\hat{\bar{\rho}}(C_S\alpha\Delta)^2||\hat{\tilde{S_{ij}}}||\hat{\tilde{S_{ij}}}+\widehat{\bar{\rho}(C_S\Delta)^2||\tilde{S_{ij}}||\tilde{S_{ij}}}]$</p>
-</blockquote>
 <p>上式对未知量 $C_S$ 求了卷积，这代表了 5个(由于张量对称且迹为0) 独立的标量 C 的积分方程。Germano假设C不是空间的函数，将上式简化为超定代数方程组：</p>
-<blockquote>
 <p>$L_{ij}-\frac{1}{3}L_{kk}\delta_{ij}=-2(C_S\Delta)^2M_{ij}$</p>
 <p>其中，$M_{ij}=\alpha^2\hat{\bar{\rho}}||\hat{\tilde{S_{ij}}}||\hat{\tilde{S_{ij}}}-\widehat{\bar{\rho}||\tilde{S_{ij}}||\tilde{S_{ij}}}$</p>
-</blockquote>
 <div class="details admonition info">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-info-circle fa-fw"></i>Germano求解方法<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
             <div class="admonition-content"><p>将上式与滤波应变张量联系，在未知标量 C 中得到标量方程：</p>
-<blockquote>
 <p>$(C_S\Delta)^2=-\dfrac{1}{2}\dfrac{L_{ij}^a\widetilde{S_{ij}}}{M_{ij}\widetilde{S_{ij}}}$</p>
 <p>其中，$L_{ij}^a$ 的上标 a 表示对于应力的各向异性分量</p>
-</blockquote>
 <p>上式求解得到 $C_S\Delta$ , 以此为亚网格应力项方程$\tau_{ij}=\bar{\rho}(\widetilde{u_iu_j}-\widetilde{u_i}\widetilde{u_j})$ 提供**局部长度尺度**(local length scale)。</p>
 <p>上式分母可以变得很小，导致产生计算的不稳定的 C 值。</p>
 <p><code>M. Germano, U. Piomelli, Moin P., and W. H. Cabot. A dynamic sub-grid-scale eddy viscosity model. Physics of Fluids, 23:1760–1765, 1991</code></p>
@@ -388,10 +427,8 @@ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
         </div>
         <div class="details-content">
             <div class="admonition-content"><p>Lilly 提出通过最小化误差，在最小平方意义上求解上式：</p>
-<blockquote>
 <p>$Q=[L_{ij}-\frac{1}{3}L_{kk}\delta_{ij}+2C_S^*M_{ij}]^2$</p>
 <p>其中 $C_S^*=(C_S\Delta)^2=-\dfrac{1}{2}\dfrac{L_{ij}^aM_{ij}}{M_{ij}}$</p>
-</blockquote>
 <p>与Germano求解方法不同，Lilly求解方法中分母只有在 $M_{ij}$ 的五个分量全部接近0后才接近0。</p>
 <p>如果滤波器应变接近0，两种方法都可以产生一个负的模型参数，从而产生负的涡流黏度，可能使计算不稳定，因此通常将 C 的负值去掉。同样，C 也可能出现错误的过高值，也需要去除。</p>
 <p><code>D. K. Lilly. A proposed modification of the germano subgrid-scale closure method. Physics of Fluids A, 4:633–635, 1992</code></p>
@@ -399,19 +436,154 @@ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
         </div>
     </div>
 <p>Piomelli和Liu提出在</p>
+<blockquote>
 <p>$L_{ij}-\frac{1}{3}L_{kk}\delta_{ij}=-2[\hat{\bar{\rho}}(C_S\alpha\Delta)^2||\hat{\tilde{S_{ij}}}||\hat{\tilde{S_{ij}}}+\widehat{\bar{\rho}(C_S\Delta)^2||\tilde{S_{ij}}||\tilde{S_{ij}}}]$</p>
+</blockquote>
 <p>式中使用前一时间步中已知的Smagorinsky参数。</p>
 <p>若将其表示为 $C_{S}^*$ ，该式可写为:</p>
-<blockquote>
 <p>$L_{ij}-\frac{1}{3}L_{kk}\delta_{ij}=-2[\hat{\bar{\rho}}(C_S\alpha\Delta)^2||\hat{\tilde{S_{ij}}}||\hat{\tilde{S_{ij}}}+\widehat{\bar{\rho}(C_S^*\Delta)^2||\tilde{S_{ij}}||\tilde{S_{ij}}}$</p>
-</blockquote>
 <p>当前时间步参数为：</p>
-<blockquote>
 <p>$(C_S\Delta)^2=-\dfrac{1}{2\alpha^2}\dfrac{\widehat{[L_{ij}^a-\bar{\rho}(C_S^*\Delta)^2||\tilde{S_{ij}}||\tilde{S_{ij}}}]M_{ij}}{M_{kl}M_{kl}}$</p>
-</blockquote>
 <p><code>U. Piomelli and J. Liu. Large eddy simulation of rotating channel flows using a localised dynamic model. Physics of Fluids, 7(4):839–848, 1995.</code></p>
 </li>
 </ul>
+<hr>
+<h2 id="坐标变换">坐标变换</h2>
+<div class="details admonition note">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>坐标变换<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:center">坐标轴名</th>
+<th style="text-align:center">原始坐标系</th>
+<th style="text-align:center">变换后坐标系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$x$</td>
+<td style="text-align:center">$x_1$</td>
+<td style="text-align:center">$\xi_1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$y$</td>
+<td style="text-align:center">$x_2$</td>
+<td style="text-align:center">$\xi_2$</td>
+</tr>
+<tr>
+<td style="text-align:center">$z$</td>
+<td style="text-align:center">$x_3$</td>
+<td style="text-align:center">$\xi_3$</td>
+</tr>
+</tbody>
+</table>
+<p>坐标变换 Jacobian 矩阵 $J_{ij}=\dfrac{\partial x_i}{\partial\xi_i}$</p>
+<p>其代数余子式 $A=|J||J|^{-1}$</p>
+<p>根据链式法则，有 $\dfrac{\partial \phi}{\partial x_i}=\dfrac{A_{ij}}{|J|}\dfrac{\partial \phi}{\partial\xi_j}$</p>
+</div>
+        </div>
+    </div>
+<blockquote>
+<p>原始坐标系中滤波后的N-S方程张量形式为：</p>
+<p>$\dfrac{\partial \bar{\rho}}{\partial t}+\dfrac{\partial \bar{\rho}\tilde{u_i}}{\partial{x_j}}=0\\ \dfrac{\partial \bar{\rho}\tilde{u_i}}{\partial{t}}+\dfrac{\partial \bar{\rho}\widetilde{u_iu_j}}{\partial x_j}=-\dfrac{\partial \bar{p}}{\partial x_i}+\dfrac{\partial \bar{\sigma_{ij}}}{\partial x_j}$</p>
+</blockquote>
+<p>任何 $\vec{x}\rightarrow\vec{\xi}$ 的坐标变换都不存在 $\dfrac{\partial \frac{A_{ik}}{|J|}}{\partial\xi_k}$ 项，</p>
+<p>因此在变换后坐标系中，滤波后的N-S方程张量形式为：</p>
+<ul>
+<li>
+<p>连续方程：</p>
+<p>$\dfrac{\partial \bar{\rho}}{\partial t}+\dfrac{\partial}{\partial\xi_k}(\dfrac{A_{ki}}{|J|}\bar{\rho}\tilde{u_i})=0$</p>
+</li>
+<li>
+<p>动量方程：</p>
+<p>$\dfrac{\partial\bar{\rho}\tilde{u_i}}{\partial t}+\dfrac{\partial}{\partial \xi_k}(\dfrac{A_{kj}}{|J|}\bar{\rho}\tilde{u_i}\tilde{u_j})=-\dfrac{A_{ki}}{|J|}\dfrac{\partial\bar{p}}{\partial\xi_k}+\dfrac{\partial}{\partial\xi_k}(\dfrac{A_{ki}}{|J|})[\mu_t\dfrac{A_{lj}}{|J|}\dfrac{\partial\tilde{u_i}}{\partial\xi_l}+\mu_t\dfrac{A_{li}}{|J|}\dfrac{\partial\tilde{u_j}}{\partial\xi_l}]$</p>
+</li>
+<li>
+<p>标量守恒方程：</p>
+<p>$\dfrac{\partial\bar{\rho}\tilde{\phi}}{\partial t}+\dfrac{\partial}{\partial \xi_k}(\dfrac{A_{ki}}{|J|}\bar{\rho}\tilde{u_i}\tilde{\phi})=\dfrac{\partial}{\partial\xi_k}(\dfrac{A_{ki}}{|J|})[\mu_t\dfrac{A_{li}}{|J|}\dfrac{\partial\tilde{\phi}}{\partial\xi_l}]$</p>
+</li>
+</ul>
+<p>其中，$\mu_t$ 考虑了分子黏度和湍流黏度，扩散项包括粘性应力和亚网格尺度应力，</p>
+<p>将应变张量和湍动能的迹的影响作用加入热力学压强，形成虚拟压强 $p=p_{ther}+\frac{2}{3}\mu_t(\frac{A_{ml}}{|J|}\frac{\partial u_m}{\partial \xi_l}+k)\delta_{ij}$</p>
+<p>用Gauss-Ostrogradskii定理将守恒方程在体积$\partial V$上积分，得守恒方程积分形式：</p>
+<ul>
+<li>
+<p>连续方程：</p>
+<p>$\int_{\partial V}\dfrac{\partial \bar{\rho}}{\partial t}+\int_{\partial S}\underbrace{A_{ik}\bar{\rho}\tilde{u_i}}_{G_k}n_kdS=0$</p>
+</li>
+<li>
+<p>动量方程：</p>
+<p>$\int_{\partial V}\dfrac{\partial\bar{\rho}\tilde{u_i}}{\partial t}dV+\underbrace{\int_{\partial S}G_k\tilde{u_i}n_kdS}_{\text{对流项}}=-\int_{\partial V}A_{ki}\dfrac{\partial\bar{p}}{\partial\xi_k}dV+\underbrace{[\mu_t\dfrac{A_{lj}A_{kj}}{|J|}\dfrac{\partial\tilde{u_i}}{\partial\xi_l}+\mu_t\dfrac{A_{li}A_{kj}}{|J|}\dfrac{\partial\tilde{u_j}}{\partial\xi_l}]n_kdS}_{\text{扩散项}}$</p>
+<p><em>上式中压力项被视为彻体力，按照非保守力处理。</em></p>
+</li>
+<li>
+<p>标量守恒方程：</p>
+<p>$\int_{\partial V}\dfrac{\partial \bar{\rho}\tilde{\phi}}{\partial t}dV+\underbrace{\int_{\partial S}G_k\tilde{\phi}n_kdS}_{\text{对流项}}=\underbrace{\int_{\partial S}[\mu_t\dfrac{A_{li}A_{ki}}{|J|}\dfrac{\partial\tilde{\phi}}{\partial \xi_l}]n_k}_{\text{扩散项}}$</p>
+</li>
+</ul>
+<h2 id="有限体积离散">有限体积离散</h2>
+<p>令坐标变换后的空间中坐标线性变化，以网格中心点为节点，通过中心差分获得网格边界变量值。</p>
+<p>对于不可压缩非定常流动，对流项的动能守恒是必需的。对流项动能守恒是N-S方程的结果，适用于无黏不可压流动。</p>
+<p>但是，离散意义上的能量守恒不是动量守恒和质量守恒导致的，即存在不满足质量、动量、能量守恒的离散求解方法。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/LES/IMG_0181.jpg"
+        data-srcset="../images/LES/IMG_0181.jpg, ../images/LES/IMG_0181.jpg 1.5x, ../images/LES/IMG_0181.jpg 2x"
+        data-sizes="auto"
+        alt="../images/LES/IMG_0181.jpg"
+        title="坐标系方向名定义" /></p>
+<p><em>north等代表网格的北侧面，N代表网格北边相邻网格的中心</em></p>
+<ul>
+<li>
+<p>可使用<strong>对流项</strong>的散度形式(先验保守)</p>
+<p>上文积分形式守恒方程中对流项可以近似为：</p>
+<p>$\int_{\partial S}G_k\tilde{\phi}n_kdS\approx G_1\tilde{u}|_{north}-G_1\tilde{u}|_{south}+G_2\tilde{u}|_{east}-G_2\tilde{u}|_{west}+G_3\tilde{u}|_{right}-G_3\tilde{u}|_{left}$</p>
+<p>上式中，以 $G_1\tilde{u}|_{north}$ 为例</p>
+<p>$G_1 \widetilde{u}|_{north}=$</p>
+<p>​     $\dfrac{\widetilde{u_{N}}+\widetilde{u_{P}}}{2}[\dfrac{A_{11}}{|J|}\bar{\rho}\tilde{u}|_{north}+\dfrac{A_{12}}{|J|}\bar{\rho}\tilde{v}|_{north}+\dfrac{A_{13}}{|J|}\bar{\rho}\tilde{w}|_{north}]$</p>
+<p>其中，$A_{11}=\dfrac{\partial y}{\partial \xi_2}\dfrac{\partial z}{\partial \xi_3}-\dfrac{\partial y}{\partial \xi_3}\dfrac{\partial z}{\partial \xi_2}$</p>
+<p>并且，$\dfrac{\partial y}{\partial \xi_2}|<em>{north}\approx\dfrac{y_E+y</em>{NE}-y_W-y_{NW}}{4}$</p>
+</li>
+<li>
+<p>以相同形式离散<strong>扩散项</strong></p>
+<p>上文积分形式守恒方程中扩散项可以近似为：</p>
+<p>$\mu_t(\dfrac{\partial\tilde{u}}{\partial\xi_1})\dfrac{A_{11}}{|J|}|_{north}\approx\dfrac{\mu_{t,P}+\mu_{t,N}}{2}(\tilde{u}_N-\tilde{u}_P)\dfrac{A_{11}}{|J|}|_{north}$</p>
+</li>
+<li>
+<p>坐标系变换中非正交性产生的<strong>交叉导数项</strong>通过显式方法计算，并加入源项。</p>
+</li>
+<li>
+<p><strong>非线性项</strong>在时间上也是滞后的，通过前一时间步的质量守恒方程解计算。</p>
+<p><code>M. Wille. Large Eddy Simulation of a Plane Jet in a Cross Flow. PhD thesis, Imperial College, University of London, London, (UK), 1997.</code></p>
+</li>
+<li>
+<p>输运方程中的<strong>瞬态项</strong>通过三点向后差分格式离散。</p>
+</li>
+<li>
+<p>考虑到密度的变化，计算过程须使用可变的时间步长。</p>
+<p>可以将标量的时间导数写为：$\bar{\rho}\frac{\partial\tilde{\phi}}{\partial t}$，</p>
+<p><code>W. P. Jones. Turbulence modelling and numerical solution methods for variable density and combusting flows. In P. A. Libby and F. A. Williams, editors, Turbulent Reacting Flows, chapter 6, pages 309–374. Academic Press, London, 1987.</code></p>
+<p>因此变化率项近似为：</p>
+<p>$\bar{\rho}\dfrac{\partial\tilde{\phi}}{\partial t}\approx\rho^*[(R+1)\dfrac{\phi^{n+1}-\phi^n}{\delta t}-(R)\dfrac{\phi^{n}-\phi^{n-1}}{\delta t_o}]$</p>
+<p><em>(省略了滤波符号)</em></p>
+<p>其中，$R=\frac{\delta t}{\delta t + \delta t_o}$ ，</p>
+<p>$\delta t$ 为在 $n+1$ 时间阶数的时间步长，$\delta t_o$ 为在前一时间阶数的时间步长，</p>
+<p>采用一阶近似求密度，$\rho^*=\frac{\rho^{n+1}+\rho^n}{2}$ 。</p>
+</li>
+</ul>
+<p>以上所采用的离散方法产生了对于通用变量 $\tilde{\phi}$ 的准线性方程组：</p>
+<p>$\tilde{\phi}_Pa_P=$</p>
+<p>$\sum_{\substack{S,N,W,E,L,R}} \tilde{\phi}_{\alpha} a_{\alpha}+S_P$</p>
+<p>其中 $S_P$ 代表<strong>源项</strong>，包含所有不能用面通量表示的项，并且依赖于 $\tilde{\phi}$ ，</p>
+<p>$a_{\alpha}$ 代表**对流项和扩散项**。</p>
+<p><del>待续：标量守恒方程</del></p>
+<h2 id="simple-算法">SIMPLE 算法</h2>
+<p><strong>压力耦合方程组的半隐式方法(Semi-ImPlicit Method for Pressure Linked Equations)</strong></p>
+<p><code> S. V. Patankar and D. B. Spalding. A calculation procedure for heat, mass and momentum transfer in three dimensional parabolic flows. International Journal of Heat and Mass Transfer, 15:1787–1806, 1971.</code></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -425,7 +597,7 @@ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$</div>
                             <a class="link-to-markdown" href="/les/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://www.wangyudong.love/les/" data-title="LES" data-hashtags="AECSC,LES,boffin"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://www.wangyudong.love/les/" data-hashtag="AECSC"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="http://www.wangyudong.love/les/" data-title="LES" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://www.wangyudong.love/les/" data-title="LES"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://www.wangyudong.love/les/" data-title="LES" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="http://www.wangyudong.love/les/" data-title="LES" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="http://www.wangyudong.love/les/" data-title="LES" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="http://www.wangyudong.love/les/" data-title="LES"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://www.wangyudong.love/les/" data-title="大涡模拟" data-hashtags="AECSC,LES,boffin"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://www.wangyudong.love/les/" data-hashtag="AECSC"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="http://www.wangyudong.love/les/" data-title="大涡模拟" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://www.wangyudong.love/les/" data-title="大涡模拟"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://www.wangyudong.love/les/" data-title="大涡模拟" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="http://www.wangyudong.love/les/" data-title="大涡模拟" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="http://www.wangyudong.love/les/" data-title="大涡模拟" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="http://www.wangyudong.love/les/" data-title="大涡模拟"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>

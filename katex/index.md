@@ -116,6 +116,12 @@ ABΓΔEZHΘIKΛMNΞOΠPΣTΥΦXΨΩ
 
 $\begin{cases} a &\text{if b}\\\ c &\text{else} \end{cases}$
 
+* 大括号注释
+
+`\underbrace{a+b+c}_{\text{note}}`
+
+$\underbrace{a+b+c}_{\text{note}}$
+
 ## 其他
 
 [$\KaTeX$ supported $\TeX$](https://katex.org/docs/supported.html#html)
