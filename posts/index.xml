@@ -19,11 +19,11 @@
     <guid>http://www.wangyudong.love/katex/</guid>
     <description><![CDATA[$ \KaTeX $ 矩阵 Code Result \begin{**matrix**}a&amp;b\\\ c&amp;d\end{**matrix**} $\begin{matrix}a&amp;b\\ c&amp;d\end{matrix}$ \begin{**pmatrix**}a&amp;b\\\ c&amp;d\end{**pmatrix**} $\begin{pmatrix}a&amp;b\\ c&amp;d\end{pmatrix}$ \begin{**bmatrix**}a&amp;b\\\ c&amp;d\end{**bmatrix**} $\begin{bmatrix}a&amp;b\\ c&amp;d\end{bmatrix}$ \begin{**vmatrix**}a&amp;b\\\ c&amp;d\end{**vmatrix**} $\begin{vmatrix}a&amp;b\\ c&amp;d\end{vmatrix}$ \begin{**Vmatrix**}a&amp;b\\\ c&amp;d\end{**Vmatrix**} $\begin{Vmatrix}a&amp;b\\ c&amp;d\end{Vmatrix}$ \begin{**Bmatrix**}a&amp;b\\\\\\ c&amp;d\end{**Bmatrix**} $\begin{Bmatrix}a&amp;b\\ c&amp;d\end{Bmatrix}$ **\binom** {n}{k} $\binom{n}{k}$ n **\brace** k ${n\brace k}$ n **\brack** k ${n\brack k}$ 标记 Code Result Code Result a' $a'$ a'' $a''$ \dot{a} $\dot{a}$ \ddot{a} $\ddot{a}$ \hat{a} $\hat{a}$ \check{a} $\check{a}$ \bar{a} $\bar{a}$ \tilde{a} $\tilde{a}$ \widehat{ab} $\widehat{ab}$ \widecheck{ab} $\widecheck{ab}$]]></description>
 </item><item>
-    <title>浸没边界方法文献综述</title>
-    <link>http://www.wangyudong.love/ibm_litraturereview/</link>
+    <title>浸没边界方法</title>
+    <link>http://www.wangyudong.love/ibm_method/</link>
     <pubDate>Sat, 21 Aug 2021 15:51:00 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://www.wangyudong.love/ibm_litraturereview/</guid>
+    <guid>http://www.wangyudong.love/ibm_method/</guid>
     <description><![CDATA[浸没边界方法 用途 模拟存在复杂结构的流场 模拟动边界问题 基本思想 将复杂结构的边界模化为N-S方程中的一种彻体力，用笛卡尔网格解决网格生成困难问题]]></description>
 </item><item>
     <title>markdown语法笔记</title>
