@@ -4,7 +4,14 @@
         <link>http://www.wangyudong.love/posts/</link>
         <description>All Posts | Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sun, 22 Aug 2021 10:50:51 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 28 Aug 2021 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>一种浸没边界及网格处理建模方法</title>
+    <link>http://www.wangyudong.love/ibm_mesh/</link>
+    <pubDate>Sat, 28 Aug 2021 00:00:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://www.wangyudong.love/ibm_mesh/</guid>
+    <description><![CDATA[一种浸没边界及网格处理建模方法 技术领域 本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成]]></description>
+</item><item>
     <title>大涡模拟</title>
     <link>http://www.wangyudong.love/les/</link>
     <pubDate>Sun, 22 Aug 2021 10:50:51 &#43;0800</pubDate>
