@@ -3,6 +3,51 @@
 
 # 一种浸没边界及网格处理建模方法
 
+
+{{< mermaid >}}
+graph TB;
+	start(开始) --> mpi[MPI并行初始化]
+	mpi --> init[读取输入文件与存储初始化]
+	init --> random[随机场初始化]
+	random --> geom[计算域背景网格读取与处理]
+	geom --> imbinput[浸没边界网格生成与初始化]
+	imbinput --> other[初始化喷雾,燃烧,湍流进口等]
+	subgraph 主循环
+		other --> bdy[边界条件设置]
+		bdy --> sgs[亚网格黏度计算]
+		sgs --> courant[计算Courant数和时间步长]
+		courant --> ewt[范数计算]
+		ewt --> pdf[TPDF化学反应计算]
+		subgraph 时间步内求解器迭代
+			pdf --> sgs2[亚网格黏度计算]
+			subgraph u,v,w,压力梯度,混合分数计算
+				sgs2 --> vel[速度场计算]
+				vel --> bndry1[设置边界条件标量场]
+				bndry1 --> grad[梯度场计算]
+				grad --> condif[变量集合系数阵计算]
+				condif --> cmod[时间离散中心差分]
+				cmod --> source[速度,混合分数源项计算]
+				source --> bndry2[修正边界条件常数矩阵]
+				bndry2 --> step[时间步推进]
+				step --> cgstab[稳定双共轭梯度法求解器]
+				cgstab --> bndry3[更新壁面边界类型设置]
+			end
+			bndry3 --> pbsrhl[分块边界信息交换]
+			pbsrhl --> densty[密度求解与压强求解]
+			densty --> gvctr[压力平滑处理]
+			gvctr --> bndry11[设置边界条件标量场]
+			bndry11 --> press[压力校正]
+			press --> cgsol[共轭梯度法求解]
+			cgsol --> bndry33[更新壁面边界类型设置]
+			bndry33 --> pbsrhll[分块边界信息交换]
+		end
+		pbsrhll --> vtk[可视化输出]
+		vtk --> mpiend[MPI并行结束]
+	end
+	mpiend --> allend(结束)
+{{< /mermaid >}}
+
+
 ## 技术领域
 
 本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成方法。它涉及到计算流体力学、化学流体力学、航空燃气涡轮发动机燃烧室设计以及网格生成算法，属于航空燃气涡轮发动机燃烧室设计分析和两相湍流燃烧数值模拟领域。
@@ -122,7 +167,7 @@ Roma等`[Roma A M, Peskth C S, Berger M J. An adaptive version of the immersed b
 
 * 动量方程：
 
-  $\int_{\partial V}\dfrac{\partial\bar{\rho}\tilde{u_i}}{\partial t}dV+\underbrace{\int_{\partial S}G_k\tilde{u_i}n_kdS}_{\text{对流项}}=-\int_{\partial V}A_{ki}\dfrac{\partial\bar{p}}{\partial\xi_k}dV+\underbrace{[\mu_t\dfrac{A_{lj}A_{kj}}{|J|}\dfrac{\partial\tilde{u_i}}{\partial\xi_l}+\mu_t\dfrac{A_{li}A_{kj}}{|J|}\dfrac{\partial\tilde{u_j}}{\partial\xi_l}]n_kdS}_{\text{扩散项}}$
+  $\int_{\partial V}\dfrac{\partial\bar{\rho}\tilde{u_i}}{\partial t}dV+\underbrace{\int_{\partial S}G_k\tilde{u_i}n_kdS}_{\text{对流项}}=-\int_{\partial V}A_{ki}\dfrac{\partial\bar{p}}{\partial\xi_k}dV+\underbrace{\int_{\partial V}A_{ki}S_{u_i}dV}_{\text{浸没边界体积力源项}}+\underbrace{[\mu_t\dfrac{A_{lj}A_{kj}}{|J|}\dfrac{\partial\tilde{u_i}}{\partial\xi_l}+\mu_t\dfrac{A_{li}A_{kj}}{|J|}\dfrac{\partial\tilde{u_j}}{\partial\xi_l}]n_kdS}_{\text{扩散项}}$
 
   *上式中压力项被视为彻体力，按照非保守力处理。*
 
@@ -137,5 +182,26 @@ Roma等`[Roma A M, Peskth C S, Berger M J. An adaptive version of the immersed b
 ## 流固耦合边界法向量处理
 
 ...
+
+{{< mermaid >}}
+gantt
+    dateFormat  YYYY-MM-DD
+    title AECSC-IBM V1.0
+    section  开发阶段 1
+    边界处理基本功能实现         :done,    des1, 2021-05-24,2021-06-15
+    浸没边界网格生成             :done,    des2, 2021-05-31,2021-06-06
+    浸没边界法向量计算           :done,    des3, 2021-06-15,2021-06-20
+    两相例子反弹               :done,    des4, 2021-06-15,2021-06-20
+    算例测试                  :active,  des5, 2021-07-01,2021-12-31
+    方法综述&专利申请           :active,  des6, 2021-08-25, 60d
+    边界速度处理               :         des7, 2021-09-03, 60d
+    程序整理                   :         des8, after des7, 7d
+    section  开发阶段 2
+    动边界问题               :         des1, 2021-12-30, 1d
+    弹性边界问题              :         des2, 2021-12-30, 1d
+    并行优化                 :         des3, 2021-12-30, 1d
+    自适应网格                :         des3, 2021-12-30, 1d
+{{< /mermaid >}}
+
 
 

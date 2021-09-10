@@ -459,10 +459,8 @@ $a_{\alpha}$ 代表**对流项和扩散项**。
 
 ## SIMPLE 算法
 
-**压力耦合方程组的半隐式方法(Semi-ImPlicit Method for Pressure Linked Equations)**
+[**压力耦合方程组的半隐式方法(Semi-ImPlicit Method for Pressure Linked Equations)**](./simple)
 
 ` S. V. Patankar and D. B. Spalding. A calculation procedure for heat, mass and momentum transfer in three dimensional parabolic flows. International Journal of Heat and Mass Transfer, 15:1787–1806, 1971.`
-
-
 
 

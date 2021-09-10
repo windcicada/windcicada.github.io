@@ -4,7 +4,14 @@
         <link>http://www.wangyudong.love/tags/aecsc/</link>
         <description>AECSC - Tag - Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 28 Aug 2021 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/tags/aecsc/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sun, 05 Sep 2021 10:50:51 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/tags/aecsc/" rel="self" type="application/rss+xml" /><item>
+    <title>SIMPLE流场计算算法</title>
+    <link>http://www.wangyudong.love/simple/</link>
+    <pubDate>Sun, 05 Sep 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://www.wangyudong.love/simple/</guid>
+    <description><![CDATA[压力耦合方程的半隐式方法 基本思想 对于给定的压力场（可以是假定值或是上一次迭代计算所得到的结果），求解 离散形式的动量方程 ，得到速度场。（因为压]]></description>
+</item><item>
     <title>一种浸没边界及网格处理建模方法</title>
     <link>http://www.wangyudong.love/ibm_mesh/</link>
     <pubDate>Sat, 28 Aug 2021 00:00:00 &#43;0800</pubDate>
@@ -24,6 +31,6 @@
     <pubDate>Sat, 21 Aug 2021 15:51:00 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://www.wangyudong.love/ibm_method/</guid>
-    <description><![CDATA[浸没边界方法 用途 模拟存在复杂结构的流场 模拟动边界问题 基本思想 将复杂结构的边界模化为N-S方程中的一种彻体力，用笛卡尔网格解决网格生成困难问题]]></description>
+    <description><![CDATA[浸没边界方法 用途 模拟存在复杂结构的流场 模拟动边界问题 Peskin 直接力法-柔性边界 浸没边界方法最早由Peskin提出，将复杂结构的边界模化为N-S方程]]></description>
 </item></channel>
 </rss>

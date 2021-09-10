@@ -1,4 +1,4 @@
-# KaTeX笔记
+# KaTeX
 
 
 # $ \KaTeX $

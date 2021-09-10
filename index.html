@@ -55,7 +55,7 @@
             <a href="/" title="Dong"></a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item active" href="/"> Dong <i class='fa fa-heart'></i></a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item active" href="/"> Dong <i class='fa fa-heart'></i></a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <i class="fas fa-search fa-fw"></i>
@@ -98,7 +98,7 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="/" title="">Dong<i class='fa fa-heart'></i></a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                </div><a class="menu-item" href="/" title="">Dong<i class='fa fa-heart'></i></a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -140,27 +140,27 @@
 
 </div>
             </div><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/ibm_mesh/">一种浸没边界及网格处理建模方法</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-28">2021-08-28</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">一种浸没边界及网格处理建模方法 技术领域 本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成</div><div class="post-footer">
-        <a href="/ibm_mesh/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/immersedboundarymethod/">ImmersedBoundaryMethod</a>,&nbsp;<a href="/tags/mesh/">Mesh</a></div></div>
+        <a href="/simple/">SIMPLE流场计算算法</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-09-05">2021-09-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">压力耦合方程的半隐式方法 基本思想 对于给定的压力场（可以是假定值或是上一次迭代计算所得到的结果），求解 离散形式的动量方程 ，得到速度场。（因为压</div><div class="post-footer">
+        <a href="/simple/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/les/">LES</a>,&nbsp;<a href="/tags/boffin/">boffin</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/les/">大涡模拟</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-22">2021-08-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">大涡模拟 控制方程 张量 $u_i=u_x\vec{i}+u_y\vec{j}+u_z\vec{k}$ $\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;\tau_{12}&amp;\tau_{13}\\ \tau_{21}&amp;\tau_{22}&amp;\tau_{23}\\ \tau_{31}&amp;\tau_{32}&amp;\tau_{33}\end{bmatrix}$ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$ 质量守恒方程 (连续方程) $\dfrac{\partial \rho}{\partial t}+\dfrac{\partial \rho u_i}{\partial x_i}$ 也可写作： $\dfrac{\partial \rho}{\partial t}+\nabla\cdot(\rho \vec{V})=0$ 算子 汉密尔顿算子$\nabla$： $\nabla\cdot\vec{a}=div(\vec{a})=\dfrac{\partial a_x}{\partial x}+\dfrac{\partial a_y}{\partial</div><div class="post-footer">
         <a href="/les/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/les/">LES</a>,&nbsp;<a href="/tags/boffin/">boffin</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/katex/">KaTeX笔记</a>
+        <a href="/katex/">KaTeX</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-21">2021-08-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/website/"><i class="far fa-folder fa-fw"></i>website</a></span></div><div class="content">$ \KaTeX $ 矩阵 Code Result \begin{**matrix**}a&amp;b\\\ c&amp;d\end{**matrix**} $\begin{matrix}a&amp;b\\ c&amp;d\end{matrix}$ \begin{**pmatrix**}a&amp;b\\\ c&amp;d\end{**pmatrix**} $\begin{pmatrix}a&amp;b\\ c&amp;d\end{pmatrix}$ \begin{**bmatrix**}a&amp;b\\\ c&amp;d\end{**bmatrix**} $\begin{bmatrix}a&amp;b\\ c&amp;d\end{bmatrix}$ \begin{**vmatrix**}a&amp;b\\\ c&amp;d\end{**vmatrix**} $\begin{vmatrix}a&amp;b\\ c&amp;d\end{vmatrix}$ \begin{**Vmatrix**}a&amp;b\\\ c&amp;d\end{**Vmatrix**} $\begin{Vmatrix}a&amp;b\\ c&amp;d\end{Vmatrix}$ \begin{**Bmatrix**}a&amp;b\\\\\\ c&amp;d\end{**Bmatrix**} $\begin{Bmatrix}a&amp;b\\ c&amp;d\end{Bmatrix}$ **\binom** {n}{k} $\binom{n}{k}$ n **\brace** k ${n\brace k}$ n **\brack** k ${n\brack k}$ 标记 Code Result Code Result a' $a'$ a'' $a''$ \dot{a} $\dot{a}$ \ddot{a} $\ddot{a}$ \hat{a} $\hat{a}$ \check{a} $\check{a}$ \bar{a} $\bar{a}$ \tilde{a} $\tilde{a}$ \widehat{ab} $\widehat{ab}$ \widecheck{ab} $\widecheck{ab}$</div><div class="post-footer">
         <a href="/katex/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/katex/">KaTeX</a>,&nbsp;<a href="/tags/website/">website</a>,&nbsp;<a href="/tags/markdown/">markdown</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ibm_method/">浸没边界方法</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-21">2021-08-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">浸没边界方法 用途 模拟存在复杂结构的流场 模拟动边界问题 基本思想 将复杂结构的边界模化为N-S方程中的一种彻体力，用笛卡尔网格解决网格生成困难问题</div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-21">2021-08-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">浸没边界方法 用途 模拟存在复杂结构的流场 模拟动边界问题 Peskin 直接力法-柔性边界 浸没边界方法最早由Peskin提出，将复杂结构的边界模化为N-S方程</div><div class="post-footer">
         <a href="/ibm_method/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/immersedboundarymethod/">ImmersedBoundaryMethod</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/markdownnotes/">markdown语法笔记</a>
+        <a href="/markdownnotes/">markdown</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-19">2021-08-19</time></span>&nbsp;<span class="post-category">included in <a href="/categories/website/"><i class="far fa-folder fa-fw"></i>website</a></span></div><div class="content">基于markdown的网页构建 前缀模板 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 --- title: &#34;TITLE&#34; date: 2021-08-19T00:00:00+08:00 draft: true authorLink: &#34;&#34; description: &#34;&#34; images: [] tags: [] categories: [] hiddenFromHomePage: false hiddenFromSearch: false twemoji: false lightgallery: true ruby: true fraction: true fontawesome: true --- 图像</div><div class="post-footer">
         <a href="/markdownnotes/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/markdown/">markdown</a>,&nbsp;<a href="/tags/website/">website</a></div></div>
@@ -169,15 +169,7 @@
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-19">2021-08-19</time></span>&nbsp;<span class="post-category">included in <a href="/categories/vim/"><i class="far fa-folder fa-fw"></i>vim</a></span></div><div class="content">VIM 编辑器快速配置 基础插件 安装ctags, vim-scripts, vim-addon-manager, taglist, winmanager, 以Debian类系统为例. 1 2 3 4 5 6 sudo apt-get install vim sudo apt-get install ctags sudo apt-get install vim-scripts sudo apt-get install vim-addon-manager vim-addons install taglist vim-addons install winmanager 若后续安装</div><div class="post-footer">
         <a href="/vimset/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/linux/">linux</a></div></div>
-</article><ul class="pagination"><li class="page-item active">
-                    <span class="page-link">
-                        <a href="/">1</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/2/">2</a>
-                    </span>
-                </li></ul></div></div>
+</article></div></div>
             </main><footer class="footer">
         <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
@@ -203,8 +195,8 @@ console.log('********************');</script><script type="text/javascript" cha
             hHeadPos: 0.5,
             vHeadPos: 0.618,
             
-            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-tororo@1.0.5/assets/tororo.model.json'
             
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json'
             
         },
         display: {
