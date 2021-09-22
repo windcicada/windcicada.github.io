@@ -4,9 +4,23 @@
         <link>http://www.wangyudong.love/</link>
         <description>Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sun, 05 Sep 2021 10:50:51 &#43;0800</lastBuildDate>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Wed, 22 Sep 2021 10:50:51 &#43;0800</lastBuildDate>
             <atom:link href="http://www.wangyudong.love/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>三角钝体测试</title>
+    <link>http://www.wangyudong.love/ibm_tri/</link>
+    <pubDate>Wed, 22 Sep 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://www.wangyudong.love/ibm_tri/</guid>
+    <description><![CDATA[AECSC-IBM 三角钝体测试 对照算例：BOFFIN计算结果 At Time-Step 20000 网格 瞬态速度(Velocity_magnitude) 标尺: (0, 45) m/s 平均流向速度(MEAN_U]]></description>
+</item><item>
+    <title>长固体模型流动测试</title>
+    <link>http://www.wangyudong.love/ibm_flowtest/</link>
+    <pubDate>Sun, 19 Sep 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://www.wangyudong.love/ibm_flowtest/</guid>
+    <description><![CDATA[长固体模型流动测试和修正 对照算例: BOFFIN计算结果 瞬态速度(Velocity_magnitude) At time step 3000 问题算例: AECSC-IBM V1.0 计算结果 At time step 1000]]></description>
+</item><item>
     <title>SIMPLE流场计算算法</title>
     <link>http://www.wangyudong.love/simple/</link>
     <pubDate>Sun, 05 Sep 2021 10:50:51 &#43;0800</pubDate>

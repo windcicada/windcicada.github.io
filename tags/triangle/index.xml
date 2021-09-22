@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>triangle - Tag - Dong</title>
+        <link>http://www.wangyudong.love/tags/triangle/</link>
+        <description>triangle - Tag - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Wed, 22 Sep 2021 10:50:51 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/tags/triangle/" rel="self" type="application/rss+xml" /><item>
+    <title>三角钝体测试</title>
+    <link>http://www.wangyudong.love/ibm_tri/</link>
+    <pubDate>Wed, 22 Sep 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://www.wangyudong.love/ibm_tri/</guid>
+    <description><![CDATA[AECSC-IBM 三角钝体测试 对照算例：BOFFIN计算结果 At Time-Step 20000 网格 瞬态速度(Velocity_magnitude) 标尺: (0, 45) m/s 平均流向速度(MEAN_U]]></description>
+</item></channel>
+</rss>

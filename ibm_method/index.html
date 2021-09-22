@@ -46,7 +46,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/www.wangyudong.love\/ibm_method\/"
-        },"genre": "posts","keywords": "AECSC, ImmersedBoundaryMethod","wordcount":  1502 ,
+        },"genre": "posts","keywords": "AECSC, ImmersedBoundaryMethod","wordcount":  1574 ,
         "url": "http:\/\/www.wangyudong.love\/ibm_method\/","datePublished": "2021-08-21T15:51:00+08:00","dateModified": "2021-08-21T15:51:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -122,8 +122,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">浸没边界方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-21">2021-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1502 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;<span id="/ibm_method/" class="leancloud_visitors" data-flag-title="浸没边界方法">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-21">2021-08-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1574 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;<span id="/ibm_method/" class="leancloud_visitors" data-flag-title="浸没边界方法">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
@@ -138,7 +138,8 @@
     <li><a href="#goldstein-直接力法虚拟边界法-刚体边界">Goldstein 直接力法+虚拟边界法-刚体边界</a></li>
     <li><a href="#yusof-离散力法-可压缩流动">Yusof 离散力法-可压缩流动</a></li>
     <li><a href="#离散边界和流体的链接">离散边界和流体的链接</a></li>
-    <li><a href="#aecsc">AECSC</a>
+    <li><a href="#gcibm">GCIBM</a></li>
+    <li><a href="#aecsc-ibm">AECSC-IBM</a>
       <ul>
         <li><a href="#边界">边界</a>
           <ul>
@@ -237,7 +238,10 @@
 </div>
         </div>
     </div>
-<h2 id="aecsc">AECSC</h2>
+<h2 id="gcibm">GCIBM</h2>
+<p><strong>Ghost-Cell Immersed Boundary Method</strong> 通过Ghost-Cell方法设置边界条件，在采用浸没边界法计算时保持基础求解器的二阶精度。</p>
+<p><code> Yu-Heng Tseng,  Joel H. Ferzige.  A ghost-cell immersed boundary method for flow  in complex geometry[J].  Journal of Computational Physics, 2003, 192: 593-623.</code></p>
+<h2 id="aecsc-ibm">AECSC-IBM</h2>
 <h3 id="边界">边界</h3>
 <blockquote>
 <p>I=1,</p>

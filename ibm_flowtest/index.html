@@ -22,32 +22,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>SIMPLE流场计算算法 - Dong</title><meta name="Description" content="Dong"><meta property="og:title" content="SIMPLE流场计算算法" />
-<meta property="og:description" content="压力耦合方程的半隐式方法 基本思想 对于给定的压力场（可以是假定值或是上一次迭代计算所得到的结果），求解 离散形式的动量方程 ，得到速度场。（因为压" />
+        <title>长固体模型流动测试 - Dong</title><meta name="Description" content="Dong"><meta property="og:title" content="长固体模型流动测试" />
+<meta property="og:description" content="长固体模型流动测试和修正 对照算例: BOFFIN计算结果 瞬态速度(Velocity_magnitude) At time step 3000 问题算例: AECSC-IBM V1.0 计算结果 At time step 1000" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://www.wangyudong.love/simple/" /><meta property="og:image" content="http://www.wangyudong.love/images/avatar.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-05T10:50:51+08:00" />
-<meta property="article:modified_time" content="2021-09-05T10:50:51+08:00" />
+<meta property="og:url" content="http://www.wangyudong.love/ibm_flowtest/" /><meta property="og:image" content="http://www.wangyudong.love/images/avatar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-19T10:50:51+08:00" />
+<meta property="article:modified_time" content="2021-09-19T10:50:51+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://www.wangyudong.love/images/avatar.png"/>
 
-<meta name="twitter:title" content="SIMPLE流场计算算法"/>
-<meta name="twitter:description" content="压力耦合方程的半隐式方法 基本思想 对于给定的压力场（可以是假定值或是上一次迭代计算所得到的结果），求解 离散形式的动量方程 ，得到速度场。（因为压"/>
+<meta name="twitter:title" content="长固体模型流动测试"/>
+<meta name="twitter:description" content="长固体模型流动测试和修正 对照算例: BOFFIN计算结果 瞬态速度(Velocity_magnitude) At time step 3000 问题算例: AECSC-IBM V1.0 计算结果 At time step 1000"/>
 <meta name="application-name" content="Dong">
 <meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.wangyudong.love/simple/" /><link rel="prev" href="http://www.wangyudong.love/ibm_mesh/" /><link rel="next" href="http://www.wangyudong.love/ibm_flowtest/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.wangyudong.love/ibm_flowtest/" /><link rel="prev" href="http://www.wangyudong.love/simple/" /><link rel="next" href="http://www.wangyudong.love/ibm_tri/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "SIMPLE流场计算算法",
+        "headline": "长固体模型流动测试",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/www.wangyudong.love\/simple\/"
-        },"genre": "posts","keywords": "AECSC, LES, boffin","wordcount":  594 ,
-        "url": "http:\/\/www.wangyudong.love\/simple\/","datePublished": "2021-09-05T10:50:51+08:00","dateModified": "2021-09-05T10:50:51+08:00","publisher": {
+            "@id": "http:\/\/www.wangyudong.love\/ibm_flowtest\/"
+        },"genre": "posts","keywords": "AECSC, IBM, test","wordcount":  107 ,
+        "url": "http:\/\/www.wangyudong.love\/ibm_flowtest\/","datePublished": "2021-09-19T10:50:51+08:00","dateModified": "2021-09-19T10:50:51+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -120,10 +120,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">SIMPLE流场计算算法</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">长固体模型流动测试</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-05">2021-09-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;594 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;<span id="/simple/" class="leancloud_visitors" data-flag-title="SIMPLE流场计算算法">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-19">2021-09-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;107 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;<span id="/ibm_flowtest/" class="leancloud_visitors" data-flag-title="长固体模型流动测试">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
@@ -133,78 +133,128 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#基本思想">基本思想</a></li>
-    <li><a href="#离散形式动量方程">离散形式动量方程</a>
+    <li><a href="#对照算例-boffin计算结果">对照算例: BOFFIN计算结果</a>
       <ul>
-        <li><a href="#1-第一阶段">1. 第一阶段</a></li>
-        <li><a href="#2第二阶段">2.第二阶段</a></li>
-        <li><a href="#3压力梯度求解">3.压力梯度求解</a></li>
+        <li><a href="#瞬态速度velocity_magnitude">瞬态速度(Velocity_magnitude)</a></li>
       </ul>
     </li>
+    <li><a href="#问题算例-aecsc-ibm-v10-计算结果">问题算例: AECSC-IBM V1.0 计算结果</a></li>
+    <li><a href="#修正算例1">修正算例1</a></li>
+    <li><a href="#修正算例2">修正算例2</a></li>
+    <li><a href="#修正算例3">修正算例3</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="压力耦合方程的半隐式方法">压力耦合方程的半隐式方法</h1>
-<h2 id="基本思想">基本思想</h2>
-<ol>
-<li>对于给定的压力场（可以是假定值或是上一次迭代计算所得到的结果），求解 <strong>离散形式的动量方程</strong> ，得到速度场。（因为压力场是假定的，可能是不精确的，得到的速度场一般不满足连续方程）</li>
-<li>根据<strong>离散形式的连续方程</strong>所规定的速度与压力的关系得到<strong>压力修正方程</strong>，由压力修正方程得到压力修正值。</li>
-<li>根据修正后的压力场求解得到新的速度场。</li>
-<li>检查速度场是否收敛，若不收敛，则以现压力场为基础继续修正。</li>
-</ol>
-<h2 id="离散形式动量方程">离散形式动量方程</h2>
-<p>$\vec{u}^{n+1}-\frac{4}{3}\vec{u}^n+\frac{1}{3}\vec{u}^{n-1}+\frac{2}{3}\delta t\cdot \vec{T}\cdot \vec{u}=-\frac{2}{3}\delta t\cdot \vec{D}\cdot\vec{p}^{n+1}+\frac{2}{3}\delta t \cdot \vec{S}+\Omicron(\Delta t^3)$</p>
+            </div><div class="content" id="content"><h1 id="长固体模型流动测试和修正">长固体模型流动测试和修正</h1>
+<h2 id="对照算例-boffin计算结果">对照算例: BOFFIN计算结果</h2>
+<h3 id="瞬态速度velocity_magnitude">瞬态速度(Velocity_magnitude)</h3>
 <ul>
-<li>$\vec{T}$ : 对流项和扩散项 (convective and diffusive coef.)</li>
-<li>$\vec{D}$ : 压力梯度相关项 (pressure grad.)</li>
-<li>$\vec{S}$ : 已知项，包括交叉导数项 ( coef. known, including cross derivatives)</li>
+<li>At time step 3000</li>
 </ul>
-<p>为保持二阶精度，上式由两段近似因子分解求解。</p>
-<p>$\vec{u}^{n+1}-\frac{4}{3}\vec{u}^n+\frac{1}{3}\vec{u}^{n-1}+\frac{2}{3}\delta t\cdot \vec{T}\cdot \vec{u}=-\frac{2}{3}\delta t\cdot \vec{D}\cdot\vec{\Delta p}^{m}-\frac{2}{3}\delta t\cdot\delta t\cdot \vec{D}\cdot\vec{p}^{n}+\frac{2}{3}\delta t \cdot \vec{S}+\Omicron(\Delta t^3)$</p>
-<p>其中上标 $m\isin(n,n+1)$，为相邻两个时间步中间的某时间，</p>
-<h3 id="1-第一阶段">1. 第一阶段</h3>
-<p>在求解过程的第一阶段应用近似因子分解，</p>
-<p>$(\vec{I}+\frac{2}{3}\delta t\cdot \vec{T}|<em>n)\underbrace{(\vec{u}^m+\frac{2}{3}\delta t \cdot\vec{D}\cdot\vec{\Delta p}^{m})}</em>{u^*}=-\frac{2}{3}\delta t\cdot \vec{D}\cdot\vec{p}^{n}+\frac{2}{3}\delta t \cdot \vec{S}|_n+\Omicron(\Delta t^3)$</p>
-<p>上式中，$\vec{u}^n$ 被合并到 $\vec{S}$ 中，在时间 $m$ 处求解，</p>
-<p>上式被分为两步求解，</p>
-<p>$\vec{u}^*=(\vec{I}+\frac{2}{3}\delta t\cdot \vec{T}|_n)^{-1}\cdot\frac{2}{3}\delta t\cdot (\vec{D}\cdot\vec{p}^n+\vec{S}|_n)$</p>
-<p>$\vec{u}^m=\vec{u}^*-\frac{2}{3}\delta t \vec{D}\cdot \vec{\Delta p}^m$</p>
-<p>上式中，$\vec{u}^m$ 为假定速度，不一定满足连续方程，具有一阶精度。  $\vec{\Delta p}^m$ 为未知量，需要结合连续方程求解。</p>
-<h3 id="2第二阶段">2.第二阶段</h3>
-<p>在下一时间步($n+1$)处应用近似因子分解，</p>
-<p>$(\vec{I}+\frac{2}{3}\delta t\cdot \vec{T}|<em>m)\underbrace{(\vec{u}^{n+1}+\frac{2}{3}\delta t \cdot\vec{D}\cdot\vec{\Delta p}^{n+1})}</em>{u^{**}}=-\frac{2}{3}\delta t\cdot \vec{D}\cdot\vec{p}^{m}+\frac{2}{3}\delta t \cdot \vec{S}|_m+\Omicron(\Delta t^3)$</p>
-<p>同样的，将上式分为两步分解，</p>
-<p>$\vec{u}^{**}=(\vec{I}+\frac{2}{3}\delta t\cdot \vec{T}|_m)^{-1}\cdot\frac{2}{3}\delta t\cdot (\vec{D}\cdot\vec{p}^m+\vec{S}|_m)$</p>
-<p>$\vec{u}^{n+1}=\vec{u}^{**}-\frac{2}{3}\delta t \vec{D}\cdot \vec{\Delta p}^{n+1}$</p>
-<p>由于$\vec{u}^m$一阶近似于$\vec{u}^{n+1}$，因此求解方法达到二阶精度。</p>
-<h3 id="3压力梯度求解">3.压力梯度求解</h3>
-<p><del>未完待续</del></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_flowtest/image-20210919205839034.png"
+        data-srcset="../images/IBM_flowtest/image-20210919205839034.png, ../images/IBM_flowtest/image-20210919205839034.png 1.5x, ../images/IBM_flowtest/image-20210919205839034.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_flowtest/image-20210919205839034.png"
+        title="image-20210919205839034" /></p>
+<h2 id="问题算例-aecsc-ibm-v10-计算结果">问题算例: AECSC-IBM V1.0 计算结果</h2>
+<ul>
+<li>At time step 1000</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_flowtest/image-20210919210118670.png"
+        data-srcset="../images/IBM_flowtest/image-20210919210118670.png, ../images/IBM_flowtest/image-20210919210118670.png 1.5x, ../images/IBM_flowtest/image-20210919210118670.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_flowtest/image-20210919210118670.png"
+        title="image-20210919210118670" /></p>
+<ul>
+<li>At time step 3000</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_flowtest/image-20210919210158196.png"
+        data-srcset="../images/IBM_flowtest/image-20210919210158196.png, ../images/IBM_flowtest/image-20210919210158196.png 1.5x, ../images/IBM_flowtest/image-20210919210158196.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_flowtest/image-20210919210158196.png"
+        title="image-20210919210158196" /></p>
+<ul>
+<li>叠加并行分块</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_flowtest/image-20210919210303074.png"
+        data-srcset="../images/IBM_flowtest/image-20210919210303074.png, ../images/IBM_flowtest/image-20210919210303074.png 1.5x, ../images/IBM_flowtest/image-20210919210303074.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_flowtest/image-20210919210303074.png"
+        title="image-20210919210303074" /></p>
+<h2 id="修正算例1">修正算例1</h2>
+<ul>
+<li>At time step 3000</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_flowtest/image-20210919210521612.png"
+        data-srcset="../images/IBM_flowtest/image-20210919210521612.png, ../images/IBM_flowtest/image-20210919210521612.png 1.5x, ../images/IBM_flowtest/image-20210919210521612.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_flowtest/image-20210919210521612.png"
+        title="image-20210919210521612" /></p>
+<h2 id="修正算例2">修正算例2</h2>
+<ul>
+<li>At time step 3000</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_flowtest/image-20210919210658378.png"
+        data-srcset="../images/IBM_flowtest/image-20210919210658378.png, ../images/IBM_flowtest/image-20210919210658378.png 1.5x, ../images/IBM_flowtest/image-20210919210658378.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_flowtest/image-20210919210658378.png"
+        title="image-20210919210658378" /></p>
+<h2 id="修正算例3">修正算例3</h2>
+<ul>
+<li>At time step 4000</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_flowtest/image-20210919210937711.png"
+        data-srcset="../images/IBM_flowtest/image-20210919210937711.png, ../images/IBM_flowtest/image-20210919210937711.png 1.5x, ../images/IBM_flowtest/image-20210919210937711.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_flowtest/image-20210919210937711.png"
+        title="image-20210919210937711" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2021-09-05</span>
+                <span>Updated on 2021-09-19</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/simple/index.md" target="_blank">Read Markdown</a>
+                            <a class="link-to-markdown" href="/ibm_flowtest/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://www.wangyudong.love/simple/" data-title="SIMPLE流场计算算法" data-hashtags="AECSC,LES,boffin"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://www.wangyudong.love/simple/" data-hashtag="AECSC"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="http://www.wangyudong.love/simple/" data-title="SIMPLE流场计算算法" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://www.wangyudong.love/simple/" data-title="SIMPLE流场计算算法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://www.wangyudong.love/simple/" data-title="SIMPLE流场计算算法" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="http://www.wangyudong.love/simple/" data-title="SIMPLE流场计算算法" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="http://www.wangyudong.love/simple/" data-title="SIMPLE流场计算算法" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="http://www.wangyudong.love/simple/" data-title="SIMPLE流场计算算法"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://www.wangyudong.love/ibm_flowtest/" data-title="长固体模型流动测试" data-hashtags="AECSC,IBM,test"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://www.wangyudong.love/ibm_flowtest/" data-hashtag="AECSC"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="http://www.wangyudong.love/ibm_flowtest/" data-title="长固体模型流动测试" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://www.wangyudong.love/ibm_flowtest/" data-title="长固体模型流动测试"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://www.wangyudong.love/ibm_flowtest/" data-title="长固体模型流动测试" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="http://www.wangyudong.love/ibm_flowtest/" data-title="长固体模型流动测试" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="http://www.wangyudong.love/ibm_flowtest/" data-title="长固体模型流动测试" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="http://www.wangyudong.love/ibm_flowtest/" data-title="长固体模型流动测试"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/les/">LES</a>,&nbsp;<a href="/tags/boffin/">boffin</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/ibm/">IBM</a>,&nbsp;<a href="/tags/test/">test</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/ibm_mesh/" class="prev" rel="prev" title="一种浸没边界及网格处理建模方法"><i class="fas fa-angle-left fa-fw"></i>一种浸没边界及网格处理建模方法</a>
-            <a href="/ibm_flowtest/" class="next" rel="next" title="长固体模型流动测试">长固体模型流动测试<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/simple/" class="prev" rel="prev" title="SIMPLE流场计算算法"><i class="fas fa-angle-left fa-fw"></i>SIMPLE流场计算算法</a>
+            <a href="/ibm_tri/" class="next" rel="next" title="三角钝体测试">三角钝体测试<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

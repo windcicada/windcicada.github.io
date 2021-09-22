@@ -77,7 +77,13 @@ Roma等`[Roma A M, Peskth C S, Berger M J. An adaptive version of the immersed b
 
 {{< /admonition >}}
 
-## AECSC
+## GCIBM
+
+**Ghost-Cell Immersed Boundary Method** 通过Ghost-Cell方法设置边界条件，在采用浸没边界法计算时保持基础求解器的二阶精度。
+
+ ` Yu-Heng Tseng,  Joel H. Ferzige.  A ghost-cell immersed boundary method for flow  in complex geometry[J].  Journal of Computational Physics, 2003, 192: 593-623.`
+
+## AECSC-IBM
 
 ### 边界
 
