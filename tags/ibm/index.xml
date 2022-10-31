@@ -1,0 +1,36 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>IBM - Tag - Dong</title>
+        <link>https://wangyudong.netlify.app/tags/ibm/</link>
+        <description>IBM - Tag - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 02 Oct 2021 14:43:00 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/ibm/" rel="self" type="application/rss+xml" /><item>
+    <title>AECSC-IBM UserGuide</title>
+    <link>https://wangyudong.netlify.app/aecsc_ibm/</link>
+    <pubDate>Sat, 02 Oct 2021 14:43:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/aecsc_ibm/</guid>
+    <description><![CDATA[AECSC-IBM用户手册 文件结构 源文件夹(./SRC) 可执行文件夹(./EXEC) 背景网格文件夹(./EXEC/Decomp) IBM网格存]]></description>
+</item><item>
+    <title>稳定双共轭梯度法</title>
+    <link>https://wangyudong.netlify.app/cgstab/</link>
+    <pubDate>Wed, 22 Sep 2021 14:13:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/cgstab/</guid>
+    <description><![CDATA[稳定双共轭梯度法 Bi-CGSTAB: A fast and smoothly converging variant of BI-CG for the solution of nonsymetric linear systems[] 双共轭梯度法(Bi-CG)是共轭梯度法(CG-S)(Conjugate Gradients-S]]></description>
+</item><item>
+    <title>三角钝体测试</title>
+    <link>https://wangyudong.netlify.app/ibm_tri/</link>
+    <pubDate>Wed, 22 Sep 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/ibm_tri/</guid>
+    <description><![CDATA[AECSC-IBM 三角钝体测试 对照算例：BOFFIN计算结果 At Time-Step 20000 网格 瞬态速度(Velocity_magnitude) 标尺: (0, 45) m/s 平均流向速度(MEAN_U]]></description>
+</item><item>
+    <title>一种浸没边界及网格处理建模方法</title>
+    <link>https://wangyudong.netlify.app/ibm_mesh/</link>
+    <pubDate>Sat, 28 Aug 2021 00:00:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/ibm_mesh/</guid>
+    <description><![CDATA[一种浸没边界及网格处理建模方法 技术领域 本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成]]></description>
+</item></channel>
+</rss>

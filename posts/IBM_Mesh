@@ -1,0 +1,61 @@
+---
+title: "浸没边界网格生成与应用"
+date: 2021-08-19T00:00:00+08:00
+draft: false
+authorLink: ""
+description: ""
+images: []
+tags: [AECSC, ImmersedBoundaryMethod, Mesh]
+categories: [湍流燃烧仿真]
+hiddenFromHomePage: false
+hiddenFromSearch: false
+twemoji: false
+lightgallery: true
+ruby: true
+fraction: true
+fontawesome: true
+math: true
+---
+
+# 一种用于浸没边界流动仿真的网格生成与应用方法
+
+## 传统浸没边界方法的笛卡尔网格
+
+浸没边界法在计算中经常采用等距的笛卡尔网格，在一定程度上浪费了计算资源`[浸入边界法及其应用_宫兆新]`。如果仅在一些需要加密的地方对网格进行局部加密，将会有效提高模拟效率，节约计算资源。
+
+### 自适应浸没边界法
+
+Roma等`[Roma A M, Peskth C S, Berger M J. An adaptive version of the immersed boundary method[J]. J Comput Phys, 2000, 153:509-534.]`采用自适应浸没边界法，对浸没边界附近的网格进行加密，加密区由逐级嵌套的加密层构成，每层包含一组互不交叠的矩阵网格区。
+
+![image-20210828225107059](../images/IBM_Mesh/image-20210828225107059.png)
+
+在数值求解时使用 Crank-Nicholson 法，即在混合 MAC 网格上应用 二阶投影法求解 N-S 方程。 在每一层的计算中则采用 Gauss-Seidel 法在混合 MAC 网格上求解，而每一层之间的数值传递则采用多层多网格法`[Mthion M L. Two methods for the study of vortex patch evolution on locally refined grids[D]:Ph.D.thesis.Lawrence Berkeley Labo,ratury-University of California,Berkeley,1994][Roma A M. A multilevel self-adaptive version of the immersed boundary method[D]:Ph.D thesis.Courant Institute of Mathematical Science-New York University,1996.]`。
+
+自适应性浸入边界法缺点在于很难获得非线性对流项的高阶离散，因此**不适合模拟高雷诺数运动**。
+
+### 虚拟网格有限差分法
+
+为模拟高雷诺数运动，虚拟网格有限差分法（Ghost-cell FDM）法将虚拟网格定义在浸没边界内部，保证每个虚拟网格至少与流场中的一个网格点相邻，流场计算在遇到虚拟网格就会停止，不需要计算浸入边界内部的网格点，虚拟网格上的各种变量值由周围流体网格点插值得到`[Majumdar S, laccarino G, Durbin P A. RANS solver with adaptive structured boundary non-conforming grids[C]. Annu Res Briefs, 2001, 353－366.]`。
+
+![image-20210828225456459](../images/IBM_Mesh/image-20210828225456459.png)
+
+### 切割网格法
+
+同样是为模拟高雷诺数运动，切割网格法则首先切割浸入边界所在的网格：如果初始网格的中心是流体，则切割后的网格成为一个 新的独立网格；如果不是，则与相邻网格合并。（目的是为了防止生成细微网格导致结果出错）。然后，插值计算每个网格面的质流量、对流项、耗散项和压力梯度。`Ye T, Mittal R, Udatjynar H S, Shyy W. An accurate Cartesian grid method for viscous incompressible flows with complex boundaries[J]. Journal of Computational Physics, 1999, 156: 209-240.`
+
+![image-20210828231325654](../images/IBM_Mesh/image-20210828231325654.png)
+
+切割网格法不需要求解浸入边界内部网格点，又同时保证了边界附近解的精度，目前己成功地应用于二维复杂流动，但对于三维问题模拟尚存在一定的困难，主要是因为切割会产生复杂的网格使流场控制方程的离散变得困难。
+
+## 基网格局部加密与坐标变换
+
+...
+
+## 扫描几何模型生成浸没边界网格
+
+...
+
+## 流固耦合边界法向量处理
+
+...
+

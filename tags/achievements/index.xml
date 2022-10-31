@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>achievements - Tag - Dong</title>
+        <link>https://wangyudong.netlify.app/tags/achievements/</link>
+        <description>achievements - Tag - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Mon, 31 Oct 2022 15:13:00 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/achievements/" rel="self" type="application/rss+xml" /><item>
+    <title>成果统计</title>
+    <link>https://wangyudong.netlify.app/awards/</link>
+    <pubDate>Mon, 31 Oct 2022 15:13:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/awards/</guid>
+    <description><![CDATA[期刊&amp;会议论文 [1] 王煜栋,王方,金捷.多连通域曲线坐标系浸没边界方法及其检验[J/OL].工程力学:1-13[2022-10-31].]]></description>
+</item></channel>
+</rss>

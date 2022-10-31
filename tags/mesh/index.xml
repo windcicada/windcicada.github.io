@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Mesh - Tag - Dong</title>
+        <link>http://www.wangyudong.love/tags/mesh/</link>
+        <description>Mesh - Tag - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 28 Aug 2021 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://www.wangyudong.love/tags/mesh/" rel="self" type="application/rss+xml" /><item>
+    <title>一种浸没边界及网格处理建模方法</title>
+    <link>http://www.wangyudong.love/ibm_mesh/</link>
+    <pubDate>Sat, 28 Aug 2021 00:00:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://www.wangyudong.love/ibm_mesh/</guid>
+    <description><![CDATA[一种浸没边界及网格处理建模方法 技术领域 本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成]]></description>
+</item></channel>
+</rss>
