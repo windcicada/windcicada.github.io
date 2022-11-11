@@ -53,7 +53,7 @@ $(function () {
 		  "/images/background/bk4.jpg",
 		  "/images/background/bk5.jpg",
 	      "/images/background/bk6.jpg"
-	], { duration: 20000, fade: 1500 });
+	], { duration: 60000, fade: 1500 });
 });
 
 /* 拉姆蕾姆回到顶部或底部按钮 */
