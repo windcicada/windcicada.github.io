@@ -4,14 +4,7 @@
         <link>https://wangyudong.netlify.app/tags/les/</link>
         <description>LES - Tag - Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Tue, 01 Nov 2022 20:17:00 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/les/" rel="self" type="application/rss+xml" /><item>
-    <title>二阶矩模型</title>
-    <link>https://wangyudong.netlify.app/som/</link>
-    <pubDate>Tue, 01 Nov 2022 20:17:00 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://wangyudong.netlify.app/som/</guid>
-    <description><![CDATA[综述 在大涡模拟（LES）中，二阶矩（Second-order Moment，SOM）模型直接分析滤波后的阿伦尼乌斯形式反应速率表达式，保留其至]]></description>
-</item><item>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Mon, 10 Oct 2022 10:50:51 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/les/" rel="self" type="application/rss+xml" /><item>
     <title>Tecplot后处理函数式</title>
     <link>https://wangyudong.netlify.app/tecplotana/</link>
     <pubDate>Mon, 10 Oct 2022 10:50:51 &#43;0800</pubDate>
@@ -53,5 +46,12 @@
     <author>Author</author>
     <guid>https://wangyudong.netlify.app/les/</guid>
     <description><![CDATA[大涡模拟 控制方程 张量 $u_i=u_x\vec{i}+u_y\vec{j}+u_z\vec{k}$ $\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;\tau_{12}&amp;\tau_{13}\\ \tau_{21}&amp;\tau_{22}&amp;\tau_{23}\\ \tau_{31}&amp;\tau_{32}&amp;\tau_{33}\end{bmatrix}$ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$ 质量守恒方程 (连续方程) $\dfrac{\partial \rho}{\partial t}+\dfrac{\partial \rho u_i}{\partial x_i}=0$ 也可写作： $\dfrac{\partial \rho}{\partial t}+\nabla\cdot(\rho \vec{V})=0$ 算子 汉密尔顿算子$\nabla$： $\nabla\cdot\vec{a}=div(\vec{a})=\dfrac{\partial a_x}{\partial x}+\dfrac{\partial a_y}{\partial]]></description>
+</item><item>
+    <title>二阶矩模型</title>
+    <link>https://wangyudong.netlify.app/som/</link>
+    <pubDate>Sat, 21 Aug 2021 20:17:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/som/</guid>
+    <description><![CDATA[综述 在大涡模拟（LES）中，二阶矩（Second-order Moment，SOM）模型直接分析滤波后的阿伦尼乌斯形式反应速率表达式，保留其至]]></description>
 </item></channel>
 </rss>

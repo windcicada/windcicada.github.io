@@ -52,6 +52,16 @@
   * `git remote add origin  git@github.com:windcicada/windcicada.github.io.git`
   * `git push -u origin master`
 
+
+
+```Error Fix
+无权限push时，修改项目目录下的.git/config，url改为https格式，相当于把git端口由22改为443
+[remote "origin"]
+	url = https://github.com/windcicada/windcicada.github.io.git
+```
+
+
+
 ## loveIt主题模板配置
 
 ...
