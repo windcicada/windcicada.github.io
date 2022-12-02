@@ -10,7 +10,7 @@
     <pubDate>Mon, 10 Oct 2022 10:50:51 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://wangyudong.netlify.app/tecplotana/</guid>
-    <description><![CDATA[#Plot Equations Tecplot Q准则 1 {Q}=-1/2*((ddx(v4))**2+(ddy(v5))**2+(ddz(v6))**2)-ddy(v4)*ddx(v5)-ddz(v4)*ddx(v6)-ddz(v5)*ddy(v6) Liutex 1 2 3 {B2}=1/2*((ddy(v4)-ddx(v5))**2+(ddz(v4)-ddx(v6))**2+(ddz(v5)-ddy(v6))**2) {A2}=(ddx(v4))**2+1/2*(ddy(v6)+ddz(v5))**2+(ddy(v5))**2+1/2*(ddz(v4)+ddx(v6))**2+(ddz(v6))**2+1/2*(ddx(v5)+ddy(v4))**2 {Liutex}={B2}/({A2}+{B2}) Visit TKE 1 TKE=0.5*(VAR_U-MEAN_U^2+VAR_V-MEAN_V^2+VAR_W-MEAN_W^2) u’u’/Uc^2 1 2 u_var=(VAR_U-MEAN_U^2)/Uc^2(8.390755 for Circular 2.89668) u_var=(VAR_U-MEAN_U^2)/8.390755]]></description>
+    <description><![CDATA[#Plot Equations Tecplot 对于 Visit导出数据 若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I]]></description>
 </item><item>
     <title>AECSC-IBM注释规范</title>
     <link>https://wangyudong.netlify.app/specification/</link>
@@ -24,7 +24,7 @@
     <pubDate>Wed, 01 Dec 2021 10:50:51 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://wangyudong.netlify.app/gw_buaa/</guid>
-    <description><![CDATA[北航自动网络认证 主文件 gw_buaa.py 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 # @file gw_buaa.py # @author Dong # @date 2022-01-25 # @email wangyudong@buaa.edu.cn # @brief This is a python script to login the buaa network. # &#34;pip install selenium&#34;]]></description>
+    <description><![CDATA[北航自动网络认证 WINDOWS 主文件 gw_buaa.py 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 # @file gw_buaa.py # @author Dong # @date 2022-01-25 # @email wangyudong@buaa.edu.cn # @brief This is a python script to login the buaa network. # &#34;pip install]]></description>
 </item><item>
     <title>AECSC-IBM UserGuide</title>
     <link>https://wangyudong.netlify.app/aecsc_ibm/</link>

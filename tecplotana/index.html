@@ -23,7 +23,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Tecplot后处理函数式 - Dong</title><meta name="Description" content="Dong"><meta property="og:title" content="Tecplot后处理函数式" />
-<meta property="og:description" content="#Plot Equations Tecplot Q准则 1 {Q}=-1/2*((ddx(v4))**2&#43;(ddy(v5))**2&#43;(ddz(v6))**2)-ddy(v4)*ddx(v5)-ddz(v4)*ddx(v6)-ddz(v5)*ddy(v6) Liutex 1 2 3 {B2}=1/2*((ddy(v4)-ddx(v5))**2&#43;(ddz(v4)-ddx(v6))**2&#43;(ddz(v5)-ddy(v6))**2) {A2}=(ddx(v4))**2&#43;1/2*(ddy(v6)&#43;ddz(v5))**2&#43;(ddy(v5))**2&#43;1/2*(ddz(v4)&#43;ddx(v6))**2&#43;(ddz(v6))**2&#43;1/2*(ddx(v5)&#43;ddy(v4))**2 {Liutex}={B2}/({A2}&#43;{B2}) Visit TKE 1 TKE=0.5*(VAR_U-MEAN_U^2&#43;VAR_V-MEAN_V^2&#43;VAR_W-MEAN_W^2) u’u’/Uc^2 1 2 u_var=(VAR_U-MEAN_U^2)/Uc^2(8.390755 for Circular 2.89668) u_var=(VAR_U-MEAN_U^2)/8.390755" />
+<meta property="og:description" content="#Plot Equations Tecplot 对于 Visit导出数据 若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wangyudong.netlify.app/tecplotana/" /><meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-10T10:50:51+08:00" />
@@ -33,7 +33,7 @@
 <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png"/>
 
 <meta name="twitter:title" content="Tecplot后处理函数式"/>
-<meta name="twitter:description" content="#Plot Equations Tecplot Q准则 1 {Q}=-1/2*((ddx(v4))**2&#43;(ddy(v5))**2&#43;(ddz(v6))**2)-ddy(v4)*ddx(v5)-ddz(v4)*ddx(v6)-ddz(v5)*ddy(v6) Liutex 1 2 3 {B2}=1/2*((ddy(v4)-ddx(v5))**2&#43;(ddz(v4)-ddx(v6))**2&#43;(ddz(v5)-ddy(v6))**2) {A2}=(ddx(v4))**2&#43;1/2*(ddy(v6)&#43;ddz(v5))**2&#43;(ddy(v5))**2&#43;1/2*(ddz(v4)&#43;ddx(v6))**2&#43;(ddz(v6))**2&#43;1/2*(ddx(v5)&#43;ddy(v4))**2 {Liutex}={B2}/({A2}&#43;{B2}) Visit TKE 1 TKE=0.5*(VAR_U-MEAN_U^2&#43;VAR_V-MEAN_V^2&#43;VAR_W-MEAN_W^2) u’u’/Uc^2 1 2 u_var=(VAR_U-MEAN_U^2)/Uc^2(8.390755 for Circular 2.89668) u_var=(VAR_U-MEAN_U^2)/8.390755"/>
+<meta name="twitter:description" content="#Plot Equations Tecplot 对于 Visit导出数据 若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I"/>
 <meta name="application-name" content="Dong">
 <meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -46,7 +46,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/wangyudong.netlify.app\/tecplotana\/"
-        },"genre": "posts","keywords": "AECSC, LES, boffin","wordcount":  35 ,
+        },"genre": "posts","keywords": "AECSC, LES, boffin","wordcount":  107 ,
         "url": "https:\/\/wangyudong.netlify.app\/tecplotana\/","datePublished": "2022-10-10T10:50:51+08:00","dateModified": "2022-10-10T10:50:51+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -130,7 +130,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Tecplot后处理函数式</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-10">2022-10-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;35 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-10">2022-10-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;107 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;<span id="/tecplotana/" class="leancloud_visitors" data-flag-title="Tecplot后处理函数式">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -157,6 +157,14 @@
 </nav></div>
             </div><div class="content" id="content"><p>#Plot Equations</p>
 <h2 id="tecplot">Tecplot</h2>
+<div class="details admonition tip">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>对于 Visit导出数据<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I,J,K。</div>
+        </div>
+    </div>
 <h3 id="q准则">Q准则</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

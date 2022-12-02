@@ -5,6 +5,10 @@
 
 ## Tecplot
 
+{{< admonition tip "对于 Visit导出数据" false >}}
+若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I,J,K。
+{{< /admonition >}}
+
 ### Q准则
 
 ```tecplot
