@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Vim - Category - Dong</title>
+        <link>https://wangyudong.netlify.app/categories/vim/</link>
+        <description>Vim - Category - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 19 Aug 2021 17:11:00 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/categories/vim/" rel="self" type="application/rss+xml" /><item>
+    <title>VIM快速配置</title>
+    <link>https://wangyudong.netlify.app/vimset/</link>
+    <pubDate>Thu, 19 Aug 2021 17:11:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/vimset/</guid>
+    <description><![CDATA[VIM 编辑器快速配置 基础插件 安装ctags, vim-scripts, vim-addon-manager, taglist, winmanager, 以Debian类系统为例. 1 2 3 4 5 6 sudo apt-get install vim sudo apt-get install ctags sudo apt-get install vim-scripts sudo apt-get install vim-addon-manager vim-addons install taglist vim-addons install winmanager 若后续安装]]></description>
+</item></channel>
+</rss>

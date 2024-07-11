@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+    <style type="text/css">
+    	.fireworks {
+    		position: fixed;
+    		pointer-events: none;
+    		top: 0;
+    		left: 0;
+    		height: 100%;
+    	}
+    </style>
+    <canvas class="fireworks"></canvas>
+    <script src="/js/anime.min.js"></script>
+    <script src="/js/fireworks.js"></script>
+    <script type="text/javascript">
+        fireworks.setCanvasSize();
+    </script>
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>一种浸没边界及网格处理建模方法 - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/ibm_mesh/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="一种浸没边界及网格处理建模方法">
+  <meta property="og:description" content="一种浸没边界及网格处理建模方法 技术领域 本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-08-28T00:00:00+08:00">
+    <meta property="article:modified_time" content="2021-08-28T00:00:00+08:00">
+    <meta property="article:tag" content="IBM">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="一种浸没边界及网格处理建模方法">
+  <meta name="twitter:description" content="一种浸没边界及网格处理建模方法 技术领域 本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/ibm_mesh/" /><link rel="prev" href="https://wangyudong.netlify.app/les/" /><link rel="next" href="https://wangyudong.netlify.app/stl/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "一种浸没边界及网格处理建模方法",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/ibm_mesh\/"
+        },"genre": "posts","keywords": "IBM","wordcount":  3116 ,
+        "url": "https:\/\/wangyudong.netlify.app\/ibm_mesh\/","datePublished": "2021-08-28T00:00:00+08:00","dateModified": "2021-08-28T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Dong"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Dong <i class='fa fa-heart'></i>
+                    </a><a class="menu-item" href="/posts/"> 文章 
+                    </a><a class="menu-item" href="/tags/"> 标签 
+                    </a><a class="menu-item" href="/categories/"> 分类 
+                    </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dong"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/"> Dong <i class='fa fa-heart'></i>
+                </a><a class="menu-item" href="/posts/"> 文章 
+                </a><a class="menu-item" href="/tags/"> 标签 
+                </a><a class="menu-item" href="/categories/"> 分类 
+                </a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">一种浸没边界及网格处理建模方法</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-28">2021-08-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3116 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;<span id="/ibm_mesh/" class="leancloud_visitors" data-flag-title="一种浸没边界及网格处理建模方法">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#技术领域">技术领域</a></li>
+    <li><a href="#背景技术">背景技术</a>
+      <ul>
+        <li><a href="#航空燃气涡轮发动机燃烧室数值模拟">航空燃气涡轮发动机燃烧室数值模拟</a></li>
+        <li><a href="#浸没边界方法">浸没边界方法</a></li>
+        <li><a href="#小结">小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#基网格局部加密与坐标变换">基网格局部加密与坐标变换</a></li>
+    <li><a href="#扫描几何模型生成浸没边界网格">扫描几何模型生成浸没边界网格</a></li>
+    <li><a href="#流固耦合边界法向量处理">流固耦合边界法向量处理</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="一种浸没边界及网格处理建模方法">一种浸没边界及网格处理建模方法</h1>
+<div class="mermaid" id="id-1"></div>
+<h2 id="技术领域">技术领域</h2>
+<p>本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成方法。它涉及到计算流体力学、化学流体力学、航空燃气涡轮发动机燃烧室设计以及网格生成算法，属于航空燃气涡轮发动机燃烧室设计分析和两相湍流燃烧数值模拟领域。</p>
+<h2 id="背景技术">背景技术</h2>
+<h3 id="航空燃气涡轮发动机燃烧室数值模拟">航空燃气涡轮发动机燃烧室数值模拟</h3>
+<p>燃烧室是航空发动机中实现能量转换，影响整机性能的核心部件。燃烧室几何结构复杂，其中的两相湍流燃烧现象存在强烈非线性关系，实验研究难度大、耗时长、风险高，迫切需求高保真高精度数值模拟。拥有先进发动机制造技术的国家在燃烧室数值模拟软件的研发中都投入了大量资金与科研力 量，开发了如美国国家燃烧仿真代码（NCC）等可用于航空发动机燃烧室设计的数值模拟软件。近年来，我国也逐渐重视发展航空发动机数值模拟软件，开发了流场仿真软件如AXX和APXX等。但国内对于航空发动机燃烧室的仿真和设计多采用商用软件，如PHOENICS，ANSYS-Fluent等，受到了严重的技术封锁。</p>
+<p>对于燃气轮机燃烧室的数值模拟，大多局限于简化后的燃烧室模型或是结构简单的小型燃烧室。如对仅有一级旋流器的燃烧室简化模型进行计算等。对此，Yee Chee See指出，在真实燃气轮机燃烧室中充分应用LES的关键难点在于几何复杂度和与几何相关的网格划分的复杂度。高分辨率，高精度的燃烧室数值模拟是燃烧仿真的热点之一。莫妲等采用ANSYS-ICEM划分423万网格对三旋流燃烧室进行计算，得出出口温度分布与实验值符合较好的计算结果。丁勇能等采用ANSYS-ICEM-CFD 19.0绘制1.7亿网格对重型燃气轮机的单筒燃烧室进行数值模拟，得出分辨率较高，准确性较好的燃烧场模拟结果。采用ICEM等软件划分大规模网格难度较高，耗费大量时间，且网格质量难以保证。大规模网格的划分是燃烧室高分辨率仿真的难点之一。</p>
+<h3 id="浸没边界方法">浸没边界方法</h3>
+<p>浸没边界方法最早由Peskin提出，将复杂结构的边界模化为N-S方程中的一种彻体力，用<strong>笛卡尔网格</strong>解决网格生成困难问题并提高计算效率。</p>
+<p><code>Peskin C. S. Flow patterns around heart valves: a numerical method ［J］．J Comput Phys, 1972.2：2252－271．</code></p>
+<p>N-S方程: $\dfrac{\partial (\rho u_i)}{\partial t}+\nabla\cdot(\rho u_i\vec{u})=\nabla\cdot(\mu\nabla\vec{u})+(-\dfrac{\partial p}{\partial x_i}+S_{u_i})$</p>
+<p>令 $F=S_{u_i}$ ，代表单位体积收受到的彻体力。</p>
+<p>一般用于：</p>
+<ul>
+<li>模拟存在复杂结构的流场</li>
+<li>模拟动边界问题</li>
+</ul>
+<p>可以用于解决航空燃气涡轮发动机燃烧室高分辨率仿真的网格划分问题。</p>
+<p>但也存在以下缺点：</p>
+<ul>
+<li>
+<p>浸没边界方法所采用的网格在曲面边界为锯齿状，不能精确地反应实际几何模型的表面形状，在燃烧数值模拟中液相燃料粒子追踪模拟时不能正确地计算<strong>粒子反弹</strong>，影响了对燃气轮机燃烧室喷雾液滴运动的模拟。</p>
+</li>
+<li>
+<p>浸没边界法在计算中经常采用等距的<strong>笛卡尔网格</strong>，在一定程度上浪费了计算资源<code>[浸入边界法及其应用_宫兆新]</code>。如果仅在一些需要加密的地方对网格进行局部加密，将会有效提高模拟效率，节约计算资源。</p>
+</li>
+</ul>
+<div class="details admonition info">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>自适应浸没边界法<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Roma等<code>[Roma A M, Peskth C S, Berger M J. An adaptive version of the immersed boundary method[J]. J Comput Phys, 2000, 153:509-534.]</code>采用自适应浸没边界法，对浸没边界附近的网格进行加密，加密区由逐级嵌套的加密层构成，每层包含一组互不交叠的矩阵网格区。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_Mesh/image-20210828225107059.png"
+        data-srcset="../images/IBM_Mesh/image-20210828225107059.png, ../images/IBM_Mesh/image-20210828225107059.png 1.5x, ../images/IBM_Mesh/image-20210828225107059.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_Mesh/image-20210828225107059.png"
+        title="image-20210828225107059" /></p>
+<p>在数值求解时使用 Crank-Nicholson 法，即在混合 MAC 网格上应用 二阶投影法求解 N-S 方程。 在每一层的计算中则采用 Gauss-Seidel 法在混合 MAC 网格上求解，而每一层之间的数值传递则采用多层多网格法<code>[Mthion M L. Two methods for the study of vortex patch evolution on locally refined grids[D]:Ph.D.thesis.Lawrence Berkeley Labo,ratury-University of California,Berkeley,1994][Roma A M. A multilevel self-adaptive version of the immersed boundary method[D]:Ph.D thesis.Courant Institute of Mathematical Science-New York University,1996.]</code>。</p>
+<p>自适应性浸入边界法缺点在于很难获得非线性对流项的高阶离散，因此<strong>不适合模拟高雷诺数运动</strong>。</p>
+</div>
+        </div>
+    </div>
+<div class="details admonition info">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>虚拟网格有限差分法<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>为模拟高雷诺数运动，虚拟网格有限差分法（Ghost-cell FDM）法将虚拟网格定义在浸没边界内部，保证每个虚拟网格至少与流场中的一个网格点相邻，流场计算在遇到虚拟网格就会停止，不需要计算浸入边界内部的网格点，虚拟网格上的各种变量值由周围流体网格点插值得到<code>[Majumdar S, laccarino G, Durbin P A. RANS solver with adaptive structured boundary non-conforming grids[C]. Annu Res Briefs, 2001, 353－366.]</code>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_Mesh/image-20210828225456459.png"
+        data-srcset="../images/IBM_Mesh/image-20210828225456459.png, ../images/IBM_Mesh/image-20210828225456459.png 1.5x, ../images/IBM_Mesh/image-20210828225456459.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_Mesh/image-20210828225456459.png"
+        title="image-20210828225456459" /></p>
+</div>
+        </div>
+    </div>
+<div class="details admonition info">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>切割网格法<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>同样是为模拟高雷诺数运动，切割网格法则首先切割浸入边界所在的网格：如果初始网格的中心是流体，则切割后的网格成为一个 新的独立网格；如果不是，则与相邻网格合并。（目的是为了防止生成细微网格导致结果出错）。然后，插值计算每个网格面的质流量、对流项、耗散项和压力梯度。<code>Ye T, Mittal R, Udatjynar H S, Shyy W. An accurate Cartesian grid method for viscous incompressible flows with complex boundaries[J]. Journal of Computational Physics, 1999, 156: 209-240.</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../images/IBM_Mesh/image-20210828231325654.png"
+        data-srcset="../images/IBM_Mesh/image-20210828231325654.png, ../images/IBM_Mesh/image-20210828231325654.png 1.5x, ../images/IBM_Mesh/image-20210828231325654.png 2x"
+        data-sizes="auto"
+        alt="../images/IBM_Mesh/image-20210828231325654.png"
+        title="image-20210828231325654" /></p>
+<p>切割网格法不需要求解浸入边界内部网格点，又同时保证了边界附近解的精度，目前己成功地应用于二维复杂流动，但对于三维问题模拟尚存在一定的困难，主要是因为切割会产生复杂的网格使流场控制方程的离散变得困难。</p>
+</div>
+        </div>
+    </div>
+<h3 id="小结">小结</h3>
+<p>综上所述，考虑航空发动机燃烧室等复杂模型中的网格生成困难问题，本发明首先建立基于Möller-Trumbore算法对流场基础网格进行扫描的浸没边界网格生成方法。其次，针对浸没边界方法引起的计算效率下降问题，本发明利用坐标变换建立基于非笛卡尔结构网格的两相湍流燃烧模拟基础网格和相应的Navier-Stokes方程组的大涡模拟（LES）求解方法，结合浸没边界方法形成基于一种浸没边界和非笛卡尔网格的流动模拟方法。最后在网格生成过程中获取壁面网格法向量，增加锯齿网格边界粒子反弹算法，结合输运概率密度函数方程（TPDF）、例子破碎和蒸发模型等算法，实现了对航空燃气涡轮发动机燃烧室等复杂结构内的三维高分辨率两相湍流燃烧数值模拟。本发明提出了一种两相湍流燃烧数值模拟中用于航空发动机燃烧室等复杂模型内的浸没边界网格生成与应用方法，相比传统燃烧数值模拟方法能更快速地生成高质量、高分辨率、易于分块并行的网格，相比其他浸没边界方法能在保证对流项离散精度前提下，通过局部加密提高模拟效率，并且可以正确处理燃料液滴粒子在壁面处的反弹或黏附，适用于航空发动机燃烧室两相湍流燃烧数值模拟。</p>
+<h2 id="基网格局部加密与坐标变换">基网格局部加密与坐标变换</h2>
+<div class="details admonition note">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>坐标变换<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><table>
+<thead>
+<tr>
+<th style="text-align:center">坐标轴名</th>
+<th style="text-align:center">原始坐标系</th>
+<th style="text-align:center">变换后坐标系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$x$</td>
+<td style="text-align:center">$x_1$</td>
+<td style="text-align:center">$\xi_1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$y$</td>
+<td style="text-align:center">$x_2$</td>
+<td style="text-align:center">$\xi_2$</td>
+</tr>
+<tr>
+<td style="text-align:center">$z$</td>
+<td style="text-align:center">$x_3$</td>
+<td style="text-align:center">$\xi_3$</td>
+</tr>
+</tbody>
+</table>
+<p>坐标变换 Jacobian 矩阵 $J_{ij}=\dfrac{\partial x_i}{\partial\xi_i}$</p>
+<p>其代数余子式 $A=|J||J|^{-1}$</p>
+<p>根据链式法则，有 $\dfrac{\partial \phi}{\partial x_i}=\dfrac{A_{ij}}{|J|}\dfrac{\partial \phi}{\partial\xi_j}$</p>
+</div>
+        </div>
+    </div>
+<blockquote>
+<p>原始坐标系中滤波后的N-S方程张量形式为：</p>
+<p>$\dfrac{\partial \bar{\rho}}{\partial t}+\dfrac{\partial \bar{\rho}\tilde{u_i}}{\partial{x_j}}=0\\ \dfrac{\partial \bar{\rho}\tilde{u_i}}{\partial{t}}+\dfrac{\partial \bar{\rho}\widetilde{u_iu_j}}{\partial x_j}=-\dfrac{\partial \bar{p}}{\partial x_i}+\dfrac{\partial \bar{\sigma_{ij}}}{\partial x_j}$</p>
+</blockquote>
+<p>任何 $\vec{x}\rightarrow\vec{\xi}$ 的坐标变换都不存在 $\dfrac{\partial \frac{A_{ik}}{|J|}}{\partial\xi_k}$ 项，</p>
+<p>因此在变换后坐标系中，滤波后的N-S方程张量形式为：</p>
+<ul>
+<li>
+<p>连续方程：</p>
+<p>$\dfrac{\partial \bar{\rho}}{\partial t}+\dfrac{\partial}{\partial\xi_k}(\dfrac{A_{ki}}{|J|}\bar{\rho}\tilde{u_i})=0$</p>
+</li>
+<li>
+<p>动量方程：</p>
+<p>$\dfrac{\partial\bar{\rho}\tilde{u_i}}{\partial t}+\dfrac{\partial}{\partial \xi_k}(\dfrac{A_{kj}}{|J|}\bar{\rho}\tilde{u_i}\tilde{u_j})=-\dfrac{A_{ki}}{|J|}\dfrac{\partial\bar{p}}{\partial\xi_k}+\dfrac{A_{ki}}{|J|}S_{u_i}+\dfrac{\partial}{\partial\xi_k}(\dfrac{A_{ki}}{|J|})[\mu_t\dfrac{A_{lj}}{|J|}\dfrac{\partial\tilde{u_i}}{\partial\xi_l}+\mu_t\dfrac{A_{li}}{|J|}\dfrac{\partial\tilde{u_j}}{\partial\xi_l}]$</p>
+</li>
+<li>
+<p>标量守恒方程：</p>
+<p>$\dfrac{\partial\bar{\rho}\tilde{\phi}}{\partial t}+\dfrac{\partial}{\partial \xi_k}(\dfrac{A_{ki}}{|J|}\bar{\rho}\tilde{u_i}\tilde{\phi})=\dfrac{\partial}{\partial\xi_k}(\dfrac{A_{ki}}{|J|})[\mu_t\dfrac{A_{li}}{|J|}\dfrac{\partial\tilde{\phi}}{\partial\xi_l}]$</p>
+</li>
+</ul>
+<p>其中，$\mu_t$ 考虑了分子黏度和湍流黏度，扩散项包括粘性应力和亚网格尺度应力，</p>
+<p>将应变张量和湍动能的迹的影响作用加入热力学压强，形成虚拟压强 $p=p_{ther}+\frac{2}{3}\mu_t(\frac{A_{ml}}{|J|}\frac{\partial u_m}{\partial \xi_l}+k)\delta_{ij}$</p>
+<p>用Gauss-Ostrogradskii定理将守恒方程在体积$\partial V$上积分，得守恒方程积分形式：</p>
+<ul>
+<li>
+<p>连续方程：</p>
+<p>$\int_{\partial V}\dfrac{\partial \bar{\rho}}{\partial t}+\int_{\partial S}\underbrace{A_{ik}\bar{\rho}\tilde{u_i}}_{G_k}n_kdS=0$</p>
+</li>
+<li>
+<p>动量方程：</p>
+<p>$\int_{\partial V}\dfrac{\partial\bar{\rho}\tilde{u_i}}{\partial t}dV+\underbrace{\int_{\partial S}G_k\tilde{u_i}n_kdS}<em>{\text{对流项}}=-\int</em>{\partial V}A_{ki}\dfrac{\partial\bar{p}}{\partial\xi_k}dV+\underbrace{\int_{\partial V}A_{ki}S_{u_i}dV}<em>{\text{浸没边界体积力源项}}+\underbrace{[\mu_t\dfrac{A</em>{lj}A_{kj}}{|J|}\dfrac{\partial\tilde{u_i}}{\partial\xi_l}+\mu_t\dfrac{A_{li}A_{kj}}{|J|}\dfrac{\partial\tilde{u_j}}{\partial\xi_l}]n_kdS}_{\text{扩散项}}$</p>
+<p><em>上式中压力项被视为彻体力，按照非保守力处理。</em></p>
+</li>
+<li>
+<p>标量守恒方程：</p>
+<p>$\int_{\partial V}\dfrac{\partial \bar{\rho}\tilde{\phi}}{\partial t}dV+\underbrace{\int_{\partial S}G_k\tilde{\phi}n_kdS}<em>{\text{对流项}}=\underbrace{\int</em>{\partial S}[\mu_t\dfrac{A_{li}A_{ki}}{|J|}\dfrac{\partial\tilde{\phi}}{\partial \xi_l}]n_k}_{\text{扩散项}}$</p>
+</li>
+</ul>
+<h2 id="扫描几何模型生成浸没边界网格">扫描几何模型生成浸没边界网格</h2>
+<p>&hellip;</p>
+<h2 id="流固耦合边界法向量处理">流固耦合边界法向量处理</h2>
+<p>&hellip;</p>
+<div class="mermaid" id="id-2"></div>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-08-28</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ibm_mesh/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/ibm_mesh/" data-title="一种浸没边界及网格处理建模方法" data-hashtags="IBM"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/ibm_mesh/" data-hashtag="IBM"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/ibm_mesh/" data-title="一种浸没边界及网格处理建模方法" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/ibm_mesh/" data-title="一种浸没边界及网格处理建模方法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/ibm_mesh/" data-title="一种浸没边界及网格处理建模方法" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/ibm_mesh/" data-title="一种浸没边界及网格处理建模方法" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/ibm_mesh/" data-title="一种浸没边界及网格处理建模方法" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/ibm_mesh/" data-title="一种浸没边界及网格处理建模方法"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ibm/">IBM</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/les/" class="prev" rel="prev" title="大涡模拟"><i class="fas fa-angle-left fa-fw"></i>大涡模拟</a>
+            <a href="/stl/" class="next" rel="next" title="文件格式-STL">文件格式-STL<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"graph TB;\n\tstart(开始) --\u003e mpi[MPI并行初始化]\n\tmpi --\u003e init[读取输入文件与存储初始化]\n\tinit --\u003e random[随机场初始化]\n\trandom --\u003e geom[计算域背景网格读取与处理]\n\tgeom --\u003e imbinput[浸没边界网格生成与初始化]\n\timbinput --\u003e other[初始化喷雾,燃烧,湍流进口等]\n\tsubgraph 主循环\n\t\tother --\u003e bdy[边界条件设置]\n\t\tbdy --\u003e sgs[亚网格黏度计算]\n\t\tsgs --\u003e courant[计算Courant数和时间步长]\n\t\tcourant --\u003e ewt[范数计算]\n\t\tewt --\u003e pdf[TPDF化学反应计算]\n\t\tsubgraph 时间步内求解器迭代\n\t\t\tpdf --\u003e sgs2[亚网格黏度计算]\n\t\t\tsubgraph u,v,w,压力梯度,混合分数计算\n\t\t\t\tsgs2 --\u003e vel[速度场计算]\n\t\t\t\tvel --\u003e bndry1[设置边界条件标量场]\n\t\t\t\tbndry1 --\u003e grad[梯度场计算]\n\t\t\t\tgrad --\u003e condif[变量集合系数阵计算]\n\t\t\t\tcondif --\u003e cmod[时间离散中心差分]\n\t\t\t\tcmod --\u003e source[速度,混合分数源项计算]\n\t\t\t\tsource --\u003e bndry2[修正边界条件常数矩阵]\n\t\t\t\tbndry2 --\u003e step[时间步推进]\n\t\t\t\tstep --\u003e cgstab[稳定双共轭梯度法求解器]\n\t\t\t\tcgstab --\u003e bndry3[更新壁面边界类型设置]\n\t\t\tend\n\t\t\tbndry3 --\u003e pbsrhl[分块边界信息交换]\n\t\t\tpbsrhl --\u003e densty[密度求解与压强求解]\n\t\t\tdensty --\u003e gvctr[压力平滑处理]\n\t\t\tgvctr --\u003e bndry11[设置边界条件标量场]\n\t\t\tbndry11 --\u003e press[压力校正]\n\t\t\tpress --\u003e cgsol[共轭梯度法求解]\n\t\t\tcgsol --\u003e bndry33[更新壁面边界类型设置]\n\t\t\tbndry33 --\u003e pbsrhll[分块边界信息交换]\n\t\tend\n\t\tpbsrhll --\u003e vtk[可视化输出]\n\t\tvtk --\u003e mpiend[MPI并行结束]\n\tend\n\tmpiend --\u003e allend(结束)","id-2":"gantt\n    dateFormat  YYYY-MM-DD\n    title AECSC-IBM V1.0\n    section  开发阶段 1\n    边界处理基本功能实现         :done,    des1, 2021-05-24,2021-06-15\n    浸没边界网格生成             :done,    des2, 2021-05-31,2021-06-06\n    浸没边界法向量计算           :done,    des3, 2021-06-15,2021-06-20\n    两相例子反弹               :done,    des4, 2021-06-15,2021-06-20\n    算例测试                  :active,  des5, 2021-07-01,2021-12-31\n    方法综述\u0026专利申请           :active,  des6, 2021-08-25, 60d\n    边界速度处理               :         des7, 2021-09-03, 60d\n    程序整理                   :         des8, after des7, 7d\n    section  开发阶段 2\n    动边界问题               :         des1, 2021-12-30, 1d\n    弹性边界问题              :         des2, 2021-12-30, 1d\n    并行优化                 :         des3, 2021-12-30, 1d\n    自适应网格                :         des3, 2021-12-30, 1d"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

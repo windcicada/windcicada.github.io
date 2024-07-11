@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+    <style type="text/css">
+    	.fireworks {
+    		position: fixed;
+    		pointer-events: none;
+    		top: 0;
+    		left: 0;
+    		height: 100%;
+    	}
+    </style>
+    <canvas class="fireworks"></canvas>
+    <script src="/js/anime.min.js"></script>
+    <script src="/js/fireworks.js"></script>
+    <script type="text/javascript">
+        fireworks.setCanvasSize();
+    </script>
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>markdown - Dong</title><meta name="Description" content="从markdown到html"><meta property="og:url" content="https://wangyudong.netlify.app/markdownnotes/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="markdown">
+  <meta property="og:description" content="从markdown到html">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-08-19T18:57:36+08:00">
+    <meta property="article:modified_time" content="2021-08-19T18:57:36+08:00">
+    <meta property="article:tag" content="Markdown">
+    <meta property="article:tag" content="Website">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="markdown">
+  <meta name="twitter:description" content="从markdown到html">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/markdownnotes/" /><link rel="prev" href="https://wangyudong.netlify.app/vimset/" /><link rel="next" href="https://wangyudong.netlify.app/ibm_method/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "markdown",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/markdownnotes\/"
+        },"genre": "posts","keywords": "markdown, website","wordcount":  2013 ,
+        "url": "https:\/\/wangyudong.netlify.app\/markdownnotes\/","datePublished": "2021-08-19T18:57:36+08:00","dateModified": "2021-08-19T18:57:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": "从markdown到html"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Dong"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Dong <i class='fa fa-heart'></i>
+                    </a><a class="menu-item" href="/posts/"> 文章 
+                    </a><a class="menu-item" href="/tags/"> 标签 
+                    </a><a class="menu-item" href="/categories/"> 分类 
+                    </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dong"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/"> Dong <i class='fa fa-heart'></i>
+                </a><a class="menu-item" href="/posts/"> 文章 
+                </a><a class="menu-item" href="/tags/"> 标签 
+                </a><a class="menu-item" href="/categories/"> 分类 
+                </a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">markdown</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/website/"><i class="far fa-folder fa-fw"></i>Website</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-19">2021-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2013 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;<span id="/markdownnotes/" class="leancloud_visitors" data-flag-title="markdown">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前缀模板">前缀模板</a></li>
+    <li><a href="#图像">图像</a>
+      <ul>
+        <li><a href="#图片-or-动图">图片 OR 动图</a></li>
+        <li><a href="#视频">视频</a></li>
+      </ul>
+    </li>
+    <li><a href="#特殊格式文本">特殊格式文本</a></li>
+    <li><a href="#绘图">绘图</a>
+      <ul>
+        <li><a href="#mermaid-流程图"><em>mermaid</em> 流程图</a></li>
+        <li><a href="#mermaid-时序图"><em>mermaid</em> 时序图</a></li>
+        <li><a href="#mermaid-gantt图"><em>mermaid</em> GANTT图</a></li>
+        <li><a href="#mermaid-类图"><em>mermaid</em> 类图</a></li>
+        <li><a href="#mermaid-状态图"><em>mermaid</em> 状态图</a></li>
+        <li><a href="#mermaid-git图"><em>mermaid</em> Git图</a></li>
+        <li><a href="#mermaid-饼图"><em>mermaid</em> 饼图</a></li>
+        <li><a href="#echarts-折线图"><em>echarts</em> 折线图</a></li>
+      </ul>
+    </li>
+    <li><a href="#地图">地图</a></li>
+    <li><a href="#音乐">音乐</a>
+      <ul>
+        <li><a href="#本地">本地</a></li>
+        <li><a href="#自动识别">自动识别</a></li>
+        <li><a href="#自定义">自定义</a></li>
+      </ul>
+    </li>
+    <li><a href="#bilibili">bilibili</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="基于markdown的网页构建">基于markdown的网页构建</h1>
+<h2 id="前缀模板">前缀模板</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: &#34;TITLE&#34;
+</span></span><span class="line"><span class="cl">date: 2021-08-19T00:00:00+08:00
+</span></span><span class="line"><span class="cl">draft: true
+</span></span><span class="line"><span class="cl">authorLink: &#34;&#34;
+</span></span><span class="line"><span class="cl">description: &#34;&#34;
+</span></span><span class="line"><span class="cl">images: []
+</span></span><span class="line"><span class="cl">tags: []
+</span></span><span class="line"><span class="cl">categories: []
+</span></span><span class="line"><span class="cl">hiddenFromHomePage: false
+</span></span><span class="line"><span class="cl">hiddenFromSearch: false
+</span></span><span class="line"><span class="cl">twemoji: false
+</span></span><span class="line"><span class="cl">lightgallery: true
+</span></span><span class="line"><span class="cl">ruby: true
+</span></span><span class="line"><span class="cl">fraction: true
+</span></span><span class="line"><span class="cl">fontawesome: true
+</span></span><span class="line"><span class="cl">---
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="图像">图像</h2>
+<h3 id="图片-or-动图">图片 OR 动图</h3>
+<ul>
+<li>markdown 格式插入</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">figureName</span>](<span class="na">../images/example.png</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>html 格式插入</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;align: center&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;../images/example.png&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;FIGURE&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;300&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;300&#34;</span> <span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><em>figure</em> ShortCode</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">figure</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;../images/example.png&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Example (figure)&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;../images/example.png&#34;</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>Example (figure)<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><em>image</em> ShortCode</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">image</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;../images/example.png&#34;</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Example (`image`)&#34;</span> <span class="na">src_s</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">src_l</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="视频">视频</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- mp4格式 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">video</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;video&#34;</span> <span class="na">controls</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">preload</span><span class="o">=</span><span class="s">&#34;none&#34;</span> <span class="na">poster</span><span class="o">=</span><span class="s">&#34;封面&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">source</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;mp4&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;mp4格式视频&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;video/mp4&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">videos</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- webm格式 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">video</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;video&#34;</span> <span class="na">controls</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">preload</span><span class="o">=</span><span class="s">&#34;none&#34;</span> <span class="na">poster</span><span class="o">=</span><span class="s">&#34;封面&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">source</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;webm&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;webm格式视频&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;video/webm&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">videos</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- ovg格式 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">video</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;video&#34;</span> <span class="na">controls</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">preload</span><span class="o">=</span><span class="s">&#34;none&#34;</span> <span class="na">poster</span><span class="o">=</span><span class="s">&#34;封面&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">source</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;ogv&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;ogv格式视频&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;video/ogv&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">videos</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="特殊格式文本">特殊格式文本</h2>
+<ul>
+<li><em>style</em> ShortCode</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">style</span> <span class="err">&#34;</span><span class="na">text-align:right</span><span class="err">;</span> <span class="na">strong</span><span class="err">{</span><span class="na">color:</span><span class="err">#</span><span class="na">00b1ff</span><span class="err">;}&#34;</span> <span class="p">&gt;</span><span class="err">}}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">This</span> <span class="nt">is</span> <span class="nt">a</span> <span class="gs">**right-aligned**</span> <span class="nt">paragraph</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{</span><span class="p">&lt;</span> <span class="p">/</span><span class="nt">style</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div id="id-1">This is a <strong>right-aligned</strong> paragraph.</div>
+<ul>
+<li><em>admonition</em> ShortCode</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">admonition</span> <span class="na">type</span><span class="o">=</span><span class="s">tip</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;This is a tip&#34;</span> <span class="na">open</span><span class="o">=</span><span class="s">false</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">一个 <span class="gs">**技巧**</span> 横幅
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">admonition</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>This is a tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">一个 <strong>技巧</strong> 横幅</div>
+        </div>
+    </div>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">type</th>
+<th style="text-align:center">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">note (default)</td>
+<td style="text-align:center">注意</td>
+</tr>
+<tr>
+<td style="text-align:center">quote</td>
+<td style="text-align:center">引用</td>
+</tr>
+<tr>
+<td style="text-align:center">example</td>
+<td style="text-align:center">示例</td>
+</tr>
+<tr>
+<td style="text-align:center">info</td>
+<td style="text-align:center">信息</td>
+</tr>
+<tr>
+<td style="text-align:center">bug</td>
+<td style="text-align:center">bug</td>
+</tr>
+<tr>
+<td style="text-align:center">tip</td>
+<td style="text-align:center">技巧</td>
+</tr>
+<tr>
+<td style="text-align:center">question</td>
+<td style="text-align:center">问题</td>
+</tr>
+<tr>
+<td style="text-align:center">abstract</td>
+<td style="text-align:center">摘要</td>
+</tr>
+<tr>
+<td style="text-align:center">danger</td>
+<td style="text-align:center">危险</td>
+</tr>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">成功</td>
+</tr>
+<tr>
+<td style="text-align:center">warning</td>
+<td style="text-align:center">警告</td>
+</tr>
+<tr>
+<td style="text-align:center">failure</td>
+<td style="text-align:center">失败</td>
+</tr>
+</tbody>
+</table>
+<h2 id="绘图">绘图</h2>
+<h3 id="mermaid-流程图"><em>mermaid</em> 流程图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">graph LR;
+</span></span><span class="line"><span class="cl">    A[Hard edge] --&gt;|Link text| B(Round edge)
+</span></span><span class="line"><span class="cl">    B --&gt; C{Decision}
+</span></span><span class="line"><span class="cl">    C --&gt;|One| D[Result one]
+</span></span><span class="line"><span class="cl">    C --&gt;|Two| E[Result two]
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+<div class="mermaid" id="id-2"></div>
+<h3 id="mermaid-时序图"><em>mermaid</em> 时序图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">sequenceDiagram
+</span></span><span class="line"><span class="cl">    participant Alice
+</span></span><span class="line"><span class="cl">    participant Bob
+</span></span><span class="line"><span class="cl">    Alice-&gt;&gt;John: Hello John, how are you?
+</span></span><span class="line"><span class="cl">    loop Healthcheck
+</span></span><span class="line"><span class="cl">        John-&gt;John: Fight against hypochondria
+</span></span><span class="line"><span class="cl">    end
+</span></span><span class="line"><span class="cl">    Note right of John: Rational thoughts <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>prevail...
+</span></span><span class="line"><span class="cl">    John--&gt;Alice: Great!
+</span></span><span class="line"><span class="cl">    John-&gt;Bob: How about you?
+</span></span><span class="line"><span class="cl">    Bob--&gt;John: Jolly good!
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+<div class="mermaid" id="id-3"></div>
+<h3 id="mermaid-gantt图"><em>mermaid</em> GANTT图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">gantt
+</span></span><span class="line"><span class="cl">    dateFormat  YYYY-MM-DD
+</span></span><span class="line"><span class="cl">    title Adding GANTT diagram functionality to mermaid
+</span></span><span class="line"><span class="cl">    section A section
+</span></span><span class="line"><span class="cl">    Completed task            :done,    des1, 2014-01-06,2014-01-08
+</span></span><span class="line"><span class="cl">    Active task               :active,  des2, 2014-01-09, 3d
+</span></span><span class="line"><span class="cl">    Future task               :         des3, after des2, 5d
+</span></span><span class="line"><span class="cl">    Future task2               :         des4, after des3, 5d
+</span></span><span class="line"><span class="cl">    section Critical tasks
+</span></span><span class="line"><span class="cl">    Completed task in the critical line :crit, done, 2014-01-06,24h
+</span></span><span class="line"><span class="cl">    Implement parser and jison          :crit, done, after des1, 2d
+</span></span><span class="line"><span class="cl">    Create tests for parser             :crit, active, 3d
+</span></span><span class="line"><span class="cl">    Future task in critical line        :crit, 5d
+</span></span><span class="line"><span class="cl">    Create tests for renderer           :2d
+</span></span><span class="line"><span class="cl">    Add to mermaid                      :1d
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+<div class="mermaid" id="id-4"></div>
+<h3 id="mermaid-类图"><em>mermaid</em> 类图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">classDiagram
+</span></span><span class="line"><span class="cl">    Class01 <span class="err">&lt;</span>|-- AveryLongClass : Cool
+</span></span><span class="line"><span class="cl">    Class03 *-- Class04
+</span></span><span class="line"><span class="cl">    Class05 o-- Class06
+</span></span><span class="line"><span class="cl">    Class07 .. Class08
+</span></span><span class="line"><span class="cl">    Class09 --&gt; C2 : Where am i?
+</span></span><span class="line"><span class="cl">    Class09 --* C3
+</span></span><span class="line"><span class="cl">    Class09 --|&gt; Class07
+</span></span><span class="line"><span class="cl">    Class07 : equals()
+</span></span><span class="line"><span class="cl">    Class07 : Object[] elementData
+</span></span><span class="line"><span class="cl">    Class01 : size()
+</span></span><span class="line"><span class="cl">    Class01 : int chimp
+</span></span><span class="line"><span class="cl">    Class01 : int gorilla
+</span></span><span class="line"><span class="cl">    Class08 <span class="p">&lt;</span><span class="nt">--</span><span class="p">&gt;</span> C2: Cool label
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+<div class="mermaid" id="id-5"></div>
+<h3 id="mermaid-状态图"><em>mermaid</em> 状态图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">stateDiagram
+</span></span><span class="line"><span class="cl">    [*] --&gt; Still
+</span></span><span class="line"><span class="cl">    Still --&gt; [*]
+</span></span><span class="line"><span class="cl">    Still --&gt; Moving
+</span></span><span class="line"><span class="cl">    Moving --&gt; Still
+</span></span><span class="line"><span class="cl">    Moving --&gt; Crash
+</span></span><span class="line"><span class="cl">    Crash --&gt; [*]
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+<div class="mermaid" id="id-6"></div>
+<h3 id="mermaid-git图"><em>mermaid</em> Git图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">gitGraph:
+</span></span><span class="line"><span class="cl">options
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    &#34;nodeSpacing&#34;: 100,
+</span></span><span class="line"><span class="cl">    &#34;nodeRadius&#34;: 10
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    branch newbranch
+</span></span><span class="line"><span class="cl">    checkout newbranch
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout master
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    merge newbranch
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+<div class="mermaid" id="id-7"></div>
+<h3 id="mermaid-饼图"><em>mermaid</em> 饼图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">pie
+</span></span><span class="line"><span class="cl">    &#34;Dogs&#34; : 386
+</span></span><span class="line"><span class="cl">    &#34;Cats&#34; : 85
+</span></span><span class="line"><span class="cl">    &#34;Rats&#34; : 15
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>呈现的输出效果如下:</p>
+<div class="mermaid" id="id-8"></div>
+<h3 id="echarts-折线图"><em>echarts</em> 折线图</h3>
+<p>以<strong>JSON</strong>格式为例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="err">{&lt;</span> <span class="err">echarts</span> <span class="err">&gt;</span><span class="p">}</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;折线统计图&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;2%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;left&#34;</span><span class="p">:</span> <span class="s2">&#34;center&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;tooltip&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;trigger&#34;</span><span class="p">:</span> <span class="s2">&#34;axis&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;legend&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;邮件营销&#34;</span><span class="p">,</span> <span class="s2">&#34;联盟广告&#34;</span><span class="p">,</span> <span class="s2">&#34;视频广告&#34;</span><span class="p">,</span> <span class="s2">&#34;直接访问&#34;</span><span class="p">,</span> <span class="s2">&#34;搜索引擎&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;10%&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;grid&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;left&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;right&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;bottom&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;20%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;containLabel&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;toolbox&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;feature&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;saveAsImage&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;保存为图片&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;xAxis&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;category&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;boundaryGap&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;周一&#34;</span><span class="p">,</span> <span class="s2">&#34;周二&#34;</span><span class="p">,</span> <span class="s2">&#34;周三&#34;</span><span class="p">,</span> <span class="s2">&#34;周四&#34;</span><span class="p">,</span> <span class="s2">&#34;周五&#34;</span><span class="p">,</span> <span class="s2">&#34;周六&#34;</span><span class="p">,</span> <span class="s2">&#34;周日&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;yAxis&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;value&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;series&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;邮件营销&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;总量&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">134</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">210</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;联盟广告&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;总量&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">310</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;视频广告&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;总量&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">154</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">410</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;直接访问&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;总量&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">320</span><span class="p">,</span> <span class="mi">332</span><span class="p">,</span> <span class="mi">301</span><span class="p">,</span> <span class="mi">334</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">320</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;搜索引擎&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;总量&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">820</span><span class="p">,</span> <span class="mi">932</span><span class="p">,</span> <span class="mi">901</span><span class="p">,</span> <span class="mi">934</span><span class="p">,</span> <span class="mi">1290</span><span class="p">,</span> <span class="mi">1330</span><span class="p">,</span> <span class="mi">1320</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{&lt;</span> <span class="err">/echarts</span> <span class="err">&gt;</span><span class="p">}</span><span class="err">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下：</p>
+<div class="echarts" id="id-9" style="width: 100%; height: 30rem;"></div>
+<h2 id="地图">地图</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">40</span><span class="err">.</span><span class="na">09</span> <span class="na">116</span><span class="err">.</span><span class="na">15</span> <span class="na">10</span> <span class="na">true</span> <span class="err">&#34;</span><span class="na">mapbox:</span><span class="err">//</span><span class="na">styles</span><span class="err">/</span><span class="na">mapbox</span><span class="err">/</span><span class="na">streets-zh-v1</span><span class="err">&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">或
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">lng</span><span class="o">=</span><span class="s">40.09</span> <span class="na">lat</span><span class="o">=</span><span class="s">116.15</span> <span class="na">zoom</span><span class="o">=</span><span class="s">10</span> <span class="na">marked</span><span class="o">=</span><span class="s">true</span> <span class="na">light-style</span><span class="o">=</span><span class="s">&#34;mapbox://styles/mapbox/streets-zh-v1&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="音乐">音乐</h2>
+<h3 id="本地">本地</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">url</span><span class="o">=</span><span class="s">&#34;/music/example.mp3&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">Example</span> <span class="na">artist</span><span class="o">=</span><span class="s">Example</span> <span class="na">cover</span><span class="o">=</span><span class="s">&#34;/images/example.jpg&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="自动识别">自动识别</h3>
+<ul>
+<li>
+<p><strong>auto</strong> <em>[必需]]</em> (<strong>第一个</strong>位置参数)</p>
+<p>支持 <code>netease</code>, <code>tencent</code>, <code>xiami</code> 平台.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">auto</span><span class="o">=</span><span class="s">&#34;http://music.163.com/song?id=505651753&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">或者
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="err">&#34;</span><span class="na">http:</span><span class="err">//</span><span class="na">music</span><span class="err">.</span><span class="na">163</span><span class="err">.</span><span class="na">com</span><span class="err">/</span><span class="na">song</span><span class="err">?</span><span class="na">id</span><span class="o">=</span><span class="s">505651753&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+<ul>
+<li>单曲</li>
+</ul>
+<meting-js auto="http://music.163.com/song?id=505651753" theme="#448aff" volume="0.1"></meting-js>
+<ul>
+<li>歌单</li>
+</ul>
+<meting-js auto="http://music.163.com/playlist?id=6899595309" theme="#448aff" volume="0.1"></meting-js>
+<div class="details admonition tip">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>其他参数<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>
+<p><strong>theme</strong> <em>[可选]</em></p>
+<p>音乐播放器的主题色, 默认值是 <code>#448aff</code>.</p>
+</li>
+<li>
+<p><strong>fixed</strong> <em>[可选]</em></p>
+<p>是否开启固定模式, 默认值是 <code>false</code>.</p>
+</li>
+<li>
+<p><strong>mini</strong> <em>[可选]</em></p>
+<p>是否开启迷你模式, 默认值是 <code>false</code>.</p>
+</li>
+<li>
+<p><strong>autoplay</strong> <em>[可选]</em></p>
+<p>是否自动播放音乐, 默认值是 <code>false</code>.</p>
+</li>
+<li>
+<p><strong>volume</strong> <em>[可选]</em></p>
+<p>默认音量, 会被保存在浏览器缓存中, 默认值是 <code>0.7</code>.</p>
+</li>
+<li>
+<p><strong>mutex</strong> <em>[可选]</em></p>
+<p>是否自动暂停其它播放器, 默认值是 <code>true</code>.</p>
+</li>
+<li>
+<p><strong>loop</strong> <em>[可选]</em> <em>[仅限歌单]</em></p>
+<p>[<code>all</code>, <code>one</code>, <code>none</code>]</p>
+<p>音乐列表的循环模式, 默认值是 <code>none</code>.</p>
+</li>
+<li>
+<p><strong>order</strong> <em>[可选]</em> <em>[仅限歌单]</em></p>
+<p>[<code>list</code>, <code>random</code>]</p>
+<p>音乐列表的播放顺序, 默认值是 <code>list</code>.</p>
+</li>
+<li>
+<p><strong>list-folded</strong> <em>[可选]</em> <em>[仅限歌单]</em></p>
+<p>初次打开的时候音乐列表是否折叠, 默认值是 <code>false</code>.</p>
+</li>
+<li>
+<p><strong>list-max-height</strong> <em>[可选]</em> <em>[仅限歌单]</em></p>
+<p>音乐列表的最大高度, 默认值是 <code>340px</code>.</p>
+</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h3 id="自定义">自定义</h3>
+<ul>
+<li>
+<p><strong>server</strong> <em>[必需]</em> (<strong>第一个</strong>位置参数-音乐平台)</p>
+<p>[<code>netease</code>, <code>tencent</code>, <code>kugou</code>, <code>xiami</code>, <code>baidu</code>]</p>
+<p>音乐平台.</p>
+</li>
+<li>
+<p><strong>type</strong> <em>[必需]</em> (<strong>第二个</strong>位置参数-音乐类型)</p>
+<p>[<code>song</code>, <code>playlist</code>, <code>album</code>, <code>search</code>, <code>artist</code>]</p>
+<p>音乐类型.</p>
+</li>
+<li>
+<p><strong>id</strong> <em>[必需]</em> (<strong>第三个</strong>歌曲 ID, 或者播放列表 ID, 或者专辑 ID, 或者搜索关键词, 或者创作者 ID)</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">server</span><span class="o">=</span><span class="s">&#34;netease&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;song&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;505651753&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">或者
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">netease</span> <span class="na">song</span> <span class="na">505651753</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bilibili">bilibili</h2>
+<p><em>shortcode</em> 视频的响应式播放器.</p>
+<p>如果视频只有一个部分, 则仅需要视频的 BV <code>id</code>, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.bilibili.com/video/BV1Sx411T7QQ
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一个 <code>bilibili</code> 示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">BV18b411u7sq</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">或者
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">BV18b411u7sq</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>呈现的输出效果如下:</p>
+<div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV18b411u7sq&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+
+<p>如果视频包含多个部分, 则除了视频的 BV <code>id</code> 之外, 还需要 <code>p</code>, 默认值为 <code>1</code>, 例如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.bilibili.com/video/BV1TJ411C7An?p=3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一个带有 <code>p</code> 参数的 <code>bilibili</code> 示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">BV1TJ411C7An</span> <span class="na">3</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">或者
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">id</span><span class="o">=</span><span class="s">BV1TJ411C7An</span> <span class="na">p</span><span class="o">=</span><span class="s">3</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+<div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV1TJ411C7An&page=3" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-08-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/markdownnotes/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/markdownnotes/" data-title="markdown" data-hashtags="markdown,website"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/markdownnotes/" data-hashtag="markdown"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/markdownnotes/" data-title="markdown" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/markdownnotes/" data-title="markdown"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/markdownnotes/" data-title="markdown" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/markdownnotes/" data-title="markdown" data-description="从markdown到html"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/markdownnotes/" data-title="markdown" data-description="从markdown到html"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/markdownnotes/" data-title="markdown"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/markdown/">Markdown</a>,&nbsp;<a href="/tags/website/">Website</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/vimset/" class="prev" rel="prev" title="VIM快速配置"><i class="fas fa-angle-left fa-fw"></i>VIM快速配置</a>
+            <a href="/ibm_method/" class="next" rel="next" title="浸没边界方法">浸没边界方法<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><link rel="stylesheet" href="/lib/aplayer/APlayer.min.css"><link rel="stylesheet" href="/lib/aplayer/dark.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/css/2f1ef0.min.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript" src="/lib/echarts/echarts.min.js"></script><script type="text/javascript" src="/lib/echarts/macarons.min.js"></script><script type="text/javascript" src="/lib/aplayer/APlayer.min.js"></script><script type="text/javascript" src="/lib/meting/Meting.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-2":"graph LR;\n    A[Hard edge] --\u003e|Link text| B(Round edge)\n    B --\u003e C{Decision}\n    C --\u003e|One| D[Result one]\n    C --\u003e|Two| E[Result two]","id-3":"sequenceDiagram\n    participant Alice\n    participant Bob\n    Alice-\u003e\u003eJohn: Hello John, how are you?\n    loop Healthcheck\n        John-\u003eJohn: Fight against hypochondria\n    end\n    Note right of John: Rational thoughts \u003cbr/\u003eprevail...\n    John--\u003eAlice: Great!\n    John-\u003eBob: How about you?\n    Bob--\u003eJohn: Jolly good!","id-4":"gantt\n    dateFormat  YYYY-MM-DD\n    title Adding GANTT diagram functionality to mermaid\n    section A section\n    Completed task            :done,    des1, 2014-01-06,2014-01-08\n    Active task               :active,  des2, 2014-01-09, 3d\n    Future task               :         des3, after des2, 5d\n    Future task2               :         des4, after des3, 5d\n    section Critical tasks\n    Completed task in the critical line :crit, done, 2014-01-06,24h\n    Implement parser and jison          :crit, done, after des1, 2d\n    Create tests for parser             :crit, active, 3d\n    Future task in critical line        :crit, 5d\n    Create tests for renderer           :2d\n    Add to mermaid                      :1d","id-5":"classDiagram\n    Class01 \u003c|-- AveryLongClass : Cool\n    Class03 *-- Class04\n    Class05 o-- Class06\n    Class07 .. Class08\n    Class09 --\u003e C2 : Where am i?\n    Class09 --* C3\n    Class09 --|\u003e Class07\n    Class07 : equals()\n    Class07 : Object[] elementData\n    Class01 : size()\n    Class01 : int chimp\n    Class01 : int gorilla\n    Class08 \u003c--\u003e C2: Cool label","id-6":"stateDiagram\n    [*] --\u003e Still\n    Still --\u003e [*]\n    Still --\u003e Moving\n    Moving --\u003e Still\n    Moving --\u003e Crash\n    Crash --\u003e [*]","id-7":"gitGraph:\noptions\n{\n    \"nodeSpacing\": 100,\n    \"nodeRadius\": 10\n}\nend\n    commit\n    branch newbranch\n    checkout newbranch\n    commit\n    commit\n    checkout master\n    commit\n    commit\n    merge newbranch","id-8":"pie\n    \"Dogs\" : 386\n    \"Cats\" : 85\n    \"Rats\" : 15","id-9":"{\"grid\":{\"bottom\":\"5%\",\"containLabel\":true,\"left\":\"5%\",\"right\":\"5%\",\"top\":\"20%\"},\"legend\":{\"data\":[\"邮件营销\",\"联盟广告\",\"视频广告\",\"直接访问\",\"搜索引擎\"],\"top\":\"10%\"},\"series\":[{\"data\":[120,132,101,134,90,230,210],\"name\":\"邮件营销\",\"stack\":\"总量\",\"type\":\"line\"},{\"data\":[220,182,191,234,290,330,310],\"name\":\"联盟广告\",\"stack\":\"总量\",\"type\":\"line\"},{\"data\":[150,232,201,154,190,330,410],\"name\":\"视频广告\",\"stack\":\"总量\",\"type\":\"line\"},{\"data\":[320,332,301,334,390,330,320],\"name\":\"直接访问\",\"stack\":\"总量\",\"type\":\"line\"},{\"data\":[820,932,901,934,1290,1330,1320],\"name\":\"搜索引擎\",\"stack\":\"总量\",\"type\":\"line\"}],\"title\":{\"left\":\"center\",\"text\":\"折线统计图\",\"top\":\"2%\"},\"toolbox\":{\"feature\":{\"saveAsImage\":{\"title\":\"保存为图片\"}}},\"tooltip\":{\"trigger\":\"axis\"},\"xAxis\":{\"boundaryGap\":false,\"data\":[\"周一\",\"周二\",\"周三\",\"周四\",\"周五\",\"周六\",\"周日\"],\"type\":\"category\"},\"yAxis\":{\"type\":\"value\"}}"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

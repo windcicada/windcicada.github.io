@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Log - Tag - Dong</title>
+        <link>https://wangyudong.netlify.app/tags/log/</link>
+        <description>Log - Tag - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 02 Oct 2021 14:43:00 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/log/" rel="self" type="application/rss+xml" /><item>
+    <title>AECSC-IBM UserGuide</title>
+    <link>https://wangyudong.netlify.app/aecsc_ibm/</link>
+    <pubDate>Sat, 02 Oct 2021 14:43:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/aecsc_ibm/</guid>
+    <description><![CDATA[AECSC-IBM用户手册 文件结构 源文件夹(./SRC) 可执行文件夹(./EXEC) 背景网格文件夹(./EXEC/Decomp) IBM网格存]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - Dong</title>
+        <link>https://wangyudong.netlify.app/posts/</link>
+        <description>All Posts | Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 11 Jul 2024 10:50:00 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Ascend C算子 学习笔记</title>
+    <link>https://wangyudong.netlify.app/huaweishengteng/</link>
+    <pubDate>Thu, 11 Jul 2024 10:50:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/huaweishengteng/</guid>
+    <description><![CDATA[Ascend及算子开发知识整理 昇腾计算产业生态 昇腾计算软硬件体系: 应用层: 包括ModelArts、HiAI Service、Mindx等平台。]]></description>
+</item><item>
+    <title>学术成果</title>
+    <link>https://wangyudong.netlify.app/awards/</link>
+    <pubDate>Mon, 01 Jul 2024 12:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/awards/</guid>
+    <description><![CDATA[期刊&amp;会议论文 [1] Yudong W, Fang W, Jiawei Z, et al. An improved immersed boundary method with local flow pattern reconstruction and its validation[J]. Physics of Fluids, 2024, 36(4). [2] 王煜栋,王方,金捷.多连通域曲线坐标系浸没边界方法及其检验[J]]></description>
+</item><item>
+    <title>北航自动网络认证</title>
+    <link>https://wangyudong.netlify.app/gw_buaa/</link>
+    <pubDate>Thu, 01 Dec 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/gw_buaa/</guid>
+    <description><![CDATA[北航自动网络认证 WINDOWS 主文件 gw_buaa.py 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 # @file gw_buaa.py # @author Dong # @date 2022-01-25 # @email wangyudong@buaa.edu.cn # @brief This is a python script to login the buaa network. # &#34;pip install]]></description>
+</item><item>
+    <title>个人网站搭建</title>
+    <link>https://wangyudong.netlify.app/firstsum/</link>
+    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/firstsum/</guid>
+    <description><![CDATA[网站搭建笔记 使用HUGO搭建网站 1.使用chocolatey安装HUGO HUGO choco install hugo -confirm HUGO-Extended choco install hugo-extended –confirm 2.初始化网站 在网站根目录下hug]]></description>
+</item><item>
+    <title>Tecplot后处理函数式</title>
+    <link>https://wangyudong.netlify.app/tecplotana/</link>
+    <pubDate>Mon, 10 Oct 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tecplotana/</guid>
+    <description><![CDATA[#Plot Equations Tecplot 对于 Visit导出数据 若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I]]></description>
+</item><item>
+    <title>AECSC-IBM注释规范</title>
+    <link>https://wangyudong.netlify.app/specification/</link>
+    <pubDate>Mon, 09 May 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/specification/</guid>
+    <description><![CDATA[AECSC-IBM 注释规范 Ver.1 1. 注释规范说明 注释符： !&gt; (For Fortran &quot;!&gt;&quot; or &quot;!&lt;&quot; starts a comment and &quot;!!&quot; or &quot;!&gt;&quot; can be used to continue an one line comment into a multi-line comment.) 文件开头注释内容 文件注释 意义 @file 文件名(建议有) @author 作者名]]></description>
+</item><item>
+    <title>FRP端口转发搭建</title>
+    <link>https://wangyudong.netlify.app/frp/</link>
+    <pubDate>Thu, 11 Nov 2021 20:17:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/frp/</guid>
+    <description><![CDATA[frpc在Windows端的使用 1 修改frpc.ini 1 2 3 4 5 6 7 8 9 [common] server_addr = 服务器地址 server_port = 服务器段frps.ini中开放的端口 [ssh] type = tcp local_ip =]]></description>
+</item><item>
+    <title>AECSC-IBM UserGuide</title>
+    <link>https://wangyudong.netlify.app/aecsc_ibm/</link>
+    <pubDate>Sat, 02 Oct 2021 14:43:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/aecsc_ibm/</guid>
+    <description><![CDATA[AECSC-IBM用户手册 文件结构 源文件夹(./SRC) 可执行文件夹(./EXEC) 背景网格文件夹(./EXEC/Decomp) IBM网格存]]></description>
+</item><item>
+    <title>稳定双共轭梯度法</title>
+    <link>https://wangyudong.netlify.app/cgstab/</link>
+    <pubDate>Wed, 22 Sep 2021 14:13:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/cgstab/</guid>
+    <description><![CDATA[稳定双共轭梯度法 Bi-CGSTAB: A fast and smoothly converging variant of BI-CG for the solution of nonsymetric linear systems[] 双共轭梯度法(Bi-CG)是共轭梯度法(CG-S)(Conjugate Gradients-S]]></description>
+</item><item>
+    <title>三角钝体测试</title>
+    <link>https://wangyudong.netlify.app/ibm_tri/</link>
+    <pubDate>Wed, 22 Sep 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/ibm_tri/</guid>
+    <description><![CDATA[AECSC-IBM 三角钝体测试 对照算例：BOFFIN计算结果 At Time-Step 20000 网格 瞬态速度(Velocity_magnitude) 标尺: (0, 45) m/s 平均流向速度(MEAN_U]]></description>
+</item></channel>
+</rss>

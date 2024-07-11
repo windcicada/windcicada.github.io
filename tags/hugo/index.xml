@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Hugo - Tag - Dong</title>
+        <link>https://wangyudong.netlify.app/tags/hugo/</link>
+        <description>Hugo - Tag - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/hugo/" rel="self" type="application/rss+xml" /><item>
+    <title>个人网站搭建</title>
+    <link>https://wangyudong.netlify.app/firstsum/</link>
+    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/firstsum/</guid>
+    <description><![CDATA[网站搭建笔记 使用HUGO搭建网站 1.使用chocolatey安装HUGO HUGO choco install hugo -confirm HUGO-Extended choco install hugo-extended –confirm 2.初始化网站 在网站根目录下hug]]></description>
+</item></channel>
+</rss>

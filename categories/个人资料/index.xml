@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>个人资料 - Category - Dong</title>
+        <link>https://wangyudong.netlify.app/categories/%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99/</link>
+        <description>个人资料 - Category - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Mon, 01 Jul 2024 12:50:51 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/categories/%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99/" rel="self" type="application/rss+xml" /><item>
+    <title>学术成果</title>
+    <link>https://wangyudong.netlify.app/awards/</link>
+    <pubDate>Mon, 01 Jul 2024 12:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/awards/</guid>
+    <description><![CDATA[期刊&amp;会议论文 [1] Yudong W, Fang W, Jiawei Z, et al. An improved immersed boundary method with local flow pattern reconstruction and its validation[J]. Physics of Fluids, 2024, 36(4). [2] 王煜栋,王方,金捷.多连通域曲线坐标系浸没边界方法及其检验[J]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>湍流燃烧仿真 - Category - Dong</title>
+        <link>https://wangyudong.netlify.app/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/</link>
+        <description>湍流燃烧仿真 - Category - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Mon, 10 Oct 2022 10:50:51 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/" rel="self" type="application/rss+xml" /><item>
+    <title>Tecplot后处理函数式</title>
+    <link>https://wangyudong.netlify.app/tecplotana/</link>
+    <pubDate>Mon, 10 Oct 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tecplotana/</guid>
+    <description><![CDATA[#Plot Equations Tecplot 对于 Visit导出数据 若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I]]></description>
+</item><item>
+    <title>AECSC-IBM注释规范</title>
+    <link>https://wangyudong.netlify.app/specification/</link>
+    <pubDate>Mon, 09 May 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/specification/</guid>
+    <description><![CDATA[AECSC-IBM 注释规范 Ver.1 1. 注释规范说明 注释符： !&gt; (For Fortran &quot;!&gt;&quot; or &quot;!&lt;&quot; starts a comment and &quot;!!&quot; or &quot;!&gt;&quot; can be used to continue an one line comment into a multi-line comment.) 文件开头注释内容 文件注释 意义 @file 文件名(建议有) @author 作者名]]></description>
+</item><item>
+    <title>稳定双共轭梯度法</title>
+    <link>https://wangyudong.netlify.app/cgstab/</link>
+    <pubDate>Wed, 22 Sep 2021 14:13:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/cgstab/</guid>
+    <description><![CDATA[稳定双共轭梯度法 Bi-CGSTAB: A fast and smoothly converging variant of BI-CG for the solution of nonsymetric linear systems[] 双共轭梯度法(Bi-CG)是共轭梯度法(CG-S)(Conjugate Gradients-S]]></description>
+</item><item>
+    <title>三角钝体测试</title>
+    <link>https://wangyudong.netlify.app/ibm_tri/</link>
+    <pubDate>Wed, 22 Sep 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/ibm_tri/</guid>
+    <description><![CDATA[AECSC-IBM 三角钝体测试 对照算例：BOFFIN计算结果 At Time-Step 20000 网格 瞬态速度(Velocity_magnitude) 标尺: (0, 45) m/s 平均流向速度(MEAN_U]]></description>
+</item><item>
+    <title>SIMPLE流场计算算法</title>
+    <link>https://wangyudong.netlify.app/simple/</link>
+    <pubDate>Sun, 05 Sep 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/simple/</guid>
+    <description><![CDATA[压力耦合方程的半隐式方法 基本思想 对于给定的压力场（可以是假定值或是上一次迭代计算所得到的结果），求解 离散形式的动量方程 ，得到速度场。（因为压]]></description>
+</item><item>
+    <title>文件格式-STL</title>
+    <link>https://wangyudong.netlify.app/stl/</link>
+    <pubDate>Wed, 01 Sep 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/stl/</guid>
+    <description><![CDATA[文件格式—STL 1 2 3 4 5 6 7 8 UINT8[80] – 标头 - 80 字节 UINT32 - 三角形数 - 4 个字节 foreach 三角形 - 50 个字节： REAL32[3] – 法线向量 - 12 字节 REAL32[3] – 顶点 1 - 12 字节 REAL32[3] – 顶点 2 -]]></description>
+</item><item>
+    <title>一种浸没边界及网格处理建模方法</title>
+    <link>https://wangyudong.netlify.app/ibm_mesh/</link>
+    <pubDate>Sat, 28 Aug 2021 00:00:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/ibm_mesh/</guid>
+    <description><![CDATA[一种浸没边界及网格处理建模方法 技术领域 本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成]]></description>
+</item><item>
+    <title>大涡模拟</title>
+    <link>https://wangyudong.netlify.app/les/</link>
+    <pubDate>Sun, 22 Aug 2021 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/les/</guid>
+    <description><![CDATA[大涡模拟 控制方程 张量 $u_i=u_x\vec{i}+u_y\vec{j}+u_z\vec{k}$ $\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;\tau_{12}&amp;\tau_{13}\\ \tau_{21}&amp;\tau_{22}&amp;\tau_{23}\\ \tau_{31}&amp;\tau_{32}&amp;\tau_{33}\end{bmatrix}$ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$ 质量守恒方程 (连续方程) $\dfrac{\partial \rho}{\partial t}+\dfrac{\partial \rho u_i}{\partial x_i}=0$ 也可写作： $\dfrac{\partial \rho}{\partial t}+\nabla\cdot(\rho \vec{V})=0$ 算子 汉密尔顿算子$\nabla$： $\nabla\cdot\vec{a}=div(\vec{a})=\dfrac{\partial a_x}{\partial x}+\dfrac{\partial a_y}{\partial]]></description>
+</item><item>
+    <title>二阶矩模型</title>
+    <link>https://wangyudong.netlify.app/som/</link>
+    <pubDate>Sat, 21 Aug 2021 20:17:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/som/</guid>
+    <description><![CDATA[综述 在大涡模拟（LES）中，二阶矩（Second-order Moment，SOM）模型直接分析滤波后的阿伦尼乌斯形式反应速率表达式，保留其至]]></description>
+</item><item>
+    <title>浸没边界方法</title>
+    <link>https://wangyudong.netlify.app/ibm_method/</link>
+    <pubDate>Sat, 21 Aug 2021 15:51:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/ibm_method/</guid>
+    <description><![CDATA[浸没边界方法 用途 模拟存在复杂结构的流场 模拟动边界问题 Peskin 直接力法-柔性边界 浸没边界方法最早由Peskin提出，将复杂结构的边界模化为N-S方程]]></description>
+</item></channel>
+</rss>

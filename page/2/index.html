@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+    <style type="text/css">
+    	.fireworks {
+    		position: fixed;
+    		pointer-events: none;
+    		top: 0;
+    		left: 0;
+    		height: 100%;
+    	}
+    </style>
+    <canvas class="fireworks"></canvas>
+    <script src="/js/anime.min.js"></script>
+    <script src="/js/fireworks.js"></script>
+    <script type="text/javascript">
+        fireworks.setCanvasSize();
+    </script>
+
+
+    <head>
+	<meta name="generator" content="Hugo 0.128.2">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="Dong">
+  <meta property="og:description" content="论文下载地址">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="Dong">
+  <meta name="twitter:description" content="论文下载地址">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Dong">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Dong"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https:\/\/wangyudong.netlify.app\/","inLanguage": "en","author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": "Dong","name": "Dong"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Dong"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item active" href="/"> Dong <i class='fa fa-heart'></i>
+                    </a><a class="menu-item" href="/posts/"> 文章 
+                    </a><a class="menu-item" href="/tags/"> 标签 
+                    </a><a class="menu-item" href="/categories/"> 分类 
+                    </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dong"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item active" href="/"> Dong <i class='fa fa-heart'></i>
+                </a><a class="menu-item" href="/posts/"> 文章 
+                </a><a class="menu-item" href="/tags/"> 标签 
+                </a><a class="menu-item" href="/categories/"> 分类 
+                </a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/" title="Dong"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/cat.GIF"
+        data-srcset="/images/cat.GIF, /images/cat.GIF 1.5x, /images/cat.GIF 2x"
+        data-sizes="auto"
+        alt="/images/cat.GIF"
+        title="/images/cat.GIF" /></a></div><h1 class="home-title">Dong</h1><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/windcicada" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://weibo.com/6086629393" title="微博" target="_blank" rel="noopener noreffer me"><i class="fab fa-weibo fa-fw"></i></a><a href="https://steamcommunity.com/id/windcicada" title="Steam" target="_blank" rel="noopener noreffer me"><i class="fab fa-steam fa-fw"></i></a><a href="mailto:wangyudong@buaa.edu.cn" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
+<div class="single">
+                <div class="content" id="content"><h1 id="heading"></h1>
+<meting-js server="netease" type="song" id="1353187371" theme="#448aff" fixed="true" mini="true" autoplay="false" loop="one" volume="0.3"></meting-js>
+<div align=center style="background:#FFF; color:#000; opacity:0.9">
+<img src="/images/index_sum.png">
+<p><a href="./awards/" rel=""><strong>论文下载地址</strong></a></p>
+</div>
+
+</div>
+            </div><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/cgstab/">稳定双共轭梯度法</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-09-22">2021-09-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">稳定双共轭梯度法 Bi-CGSTAB: A fast and smoothly converging variant of BI-CG for the solution of nonsymetric linear systems[] 双共轭梯度法(Bi-CG)是共轭梯度法(CG-S)(Conjugate Gradients-S</div><div class="post-footer">
+        <a href="/cgstab/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/ibm/">IBM</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/simple/">SIMPLE流场计算算法</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-09-05">2021-09-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">压力耦合方程的半隐式方法 基本思想 对于给定的压力场（可以是假定值或是上一次迭代计算所得到的结果），求解 离散形式的动量方程 ，得到速度场。（因为压</div><div class="post-footer">
+        <a href="/simple/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/les/">LES</a>,&nbsp;<a href="/tags/boffin/">Boffin</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/stl/">文件格式-STL</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-09-01">2021-09-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">文件格式—STL 1 2 3 4 5 6 7 8 UINT8[80] – 标头 - 80 字节 UINT32 - 三角形数 - 4 个字节 foreach 三角形 - 50 个字节： REAL32[3] – 法线向量 - 12 字节 REAL32[3] – 顶点 1 - 12 字节 REAL32[3] – 顶点 2 -</div><div class="post-footer">
+        <a href="/stl/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/les/">LES</a>,&nbsp;<a href="/tags/boffin/">Boffin</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/les/">大涡模拟</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-22">2021-08-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">大涡模拟 控制方程 张量 $u_i=u_x\vec{i}+u_y\vec{j}+u_z\vec{k}$ $\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;\tau_{12}&amp;\tau_{13}\\ \tau_{21}&amp;\tau_{22}&amp;\tau_{23}\\ \tau_{31}&amp;\tau_{32}&amp;\tau_{33}\end{bmatrix}$ $u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$ 质量守恒方程 (连续方程) $\dfrac{\partial \rho}{\partial t}+\dfrac{\partial \rho u_i}{\partial x_i}=0$ 也可写作： $\dfrac{\partial \rho}{\partial t}+\nabla\cdot(\rho \vec{V})=0$ 算子 汉密尔顿算子$\nabla$： $\nabla\cdot\vec{a}=div(\vec{a})=\dfrac{\partial a_x}{\partial x}+\dfrac{\partial a_y}{\partial</div><div class="post-footer">
+        <a href="/les/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/les/">LES</a>,&nbsp;<a href="/tags/boffin/">Boffin</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/som/">二阶矩模型</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-21">2021-08-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div><div class="content">综述 在大涡模拟（LES）中，二阶矩（Second-order Moment，SOM）模型直接分析滤波后的阿伦尼乌斯形式反应速率表达式，保留其至</div><div class="post-footer">
+        <a href="/som/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aecsc/">AECSC</a>,&nbsp;<a href="/tags/les/">LES</a>,&nbsp;<a href="/tags/boffin/">Boffin</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/katex/">KaTeX</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-08-21">2021-08-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/website/"><i class="far fa-folder fa-fw"></i>Website</a></span></div><div class="content">$ \KaTeX $ 矩阵 Code Result \begin{**matrix**}a&amp;b\\\ c&amp;d\end{**matrix**} $\begin{matrix}a&amp;b\\ c&amp;d\end{matrix}$ \begin{**pmatrix**}a&amp;b\\\ c&amp;d\end{**pmatrix**} $\begin{pmatrix}a&amp;b\\ c&amp;d\end{pmatrix}$ \begin{**bmatrix**}a&amp;b\\\ c&amp;d\end{**bmatrix**} $\begin{bmatrix}a&amp;b\\ c&amp;d\end{bmatrix}$ \begin{**vmatrix**}a&amp;b\\\ c&amp;d\end{**vmatrix**} $\begin{vmatrix}a&amp;b\\ c&amp;d\end{vmatrix}$ \begin{**Vmatrix**}a&amp;b\\\ c&amp;d\end{**Vmatrix**} $\begin{Vmatrix}a&amp;b\\ c&amp;d\end{Vmatrix}$ \begin{**Bmatrix**}a&amp;b\\\\\\ c&amp;d\end{**Bmatrix**} $\begin{Bmatrix}a&amp;b\\ c&amp;d\end{Bmatrix}$ **\binom** {n}{k} $\binom{n}{k}$ n **\brace** k ${n\brace k}$ n **\brack** k ${n\brack k}$ 标记 Code Result Code Result a' $a'$ a'' $a&rsquo;'$ \dot{a} $\dot{a}$ \ddot{a} $\ddot{a}$ \hat{a} $\hat{a}$ \check{a} $\check{a}$ \bar{a} $\bar{a}$ \tilde{a} $\tilde{a}$ \widehat{ab} $\widehat{ab}$ \widecheck{ab} $\widecheck{ab}$</div><div class="post-footer">
+        <a href="/katex/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/katex/">KaTeX</a>,&nbsp;<a href="/tags/website/">Website</a>,&nbsp;<a href="/tags/markdown/">Markdown</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/2/">2</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/3/">3</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"Wechat: windcicada"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

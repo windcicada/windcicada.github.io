@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>FRP - Tag - Dong</title>
+        <link>https://wangyudong.netlify.app/tags/frp/</link>
+        <description>FRP - Tag - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 11 Nov 2021 20:17:00 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/frp/" rel="self" type="application/rss+xml" /><item>
+    <title>FRP端口转发搭建</title>
+    <link>https://wangyudong.netlify.app/frp/</link>
+    <pubDate>Thu, 11 Nov 2021 20:17:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/frp/</guid>
+    <description><![CDATA[frpc在Windows端的使用 1 修改frpc.ini 1 2 3 4 5 6 7 8 9 [common] server_addr = 服务器地址 server_port = 服务器段frps.ini中开放的端口 [ssh] type = tcp local_ip =]]></description>
+</item></channel>
+</rss>

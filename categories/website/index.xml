@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Website - Category - Dong</title>
+        <link>https://wangyudong.netlify.app/categories/website/</link>
+        <description>Website - Category - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/categories/website/" rel="self" type="application/rss+xml" /><item>
+    <title>个人网站搭建</title>
+    <link>https://wangyudong.netlify.app/firstsum/</link>
+    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/firstsum/</guid>
+    <description><![CDATA[网站搭建笔记 使用HUGO搭建网站 1.使用chocolatey安装HUGO HUGO choco install hugo -confirm HUGO-Extended choco install hugo-extended –confirm 2.初始化网站 在网站根目录下hug]]></description>
+</item><item>
+    <title>KaTeX</title>
+    <link>https://wangyudong.netlify.app/katex/</link>
+    <pubDate>Sat, 21 Aug 2021 18:54:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/katex/</guid>
+    <description><![CDATA[$ \KaTeX $ 矩阵 Code Result \begin{**matrix**}a&amp;b\\\ c&amp;d\end{**matrix**} $\begin{matrix}a&amp;b\\ c&amp;d\end{matrix}$ \begin{**pmatrix**}a&amp;b\\\ c&amp;d\end{**pmatrix**} $\begin{pmatrix}a&amp;b\\ c&amp;d\end{pmatrix}$ \begin{**bmatrix**}a&amp;b\\\ c&amp;d\end{**bmatrix**} $\begin{bmatrix}a&amp;b\\ c&amp;d\end{bmatrix}$ \begin{**vmatrix**}a&amp;b\\\ c&amp;d\end{**vmatrix**} $\begin{vmatrix}a&amp;b\\ c&amp;d\end{vmatrix}$ \begin{**Vmatrix**}a&amp;b\\\ c&amp;d\end{**Vmatrix**} $\begin{Vmatrix}a&amp;b\\ c&amp;d\end{Vmatrix}$ \begin{**Bmatrix**}a&amp;b\\\\\\ c&amp;d\end{**Bmatrix**} $\begin{Bmatrix}a&amp;b\\ c&amp;d\end{Bmatrix}$ **\binom** {n}{k} $\binom{n}{k}$ n **\brace** k ${n\brace k}$ n **\brack** k ${n\brack k}$ 标记 Code Result Code Result a' $a'$ a'' $a&rsquo;'$ \dot{a} $\dot{a}$ \ddot{a} $\ddot{a}$ \hat{a} $\hat{a}$ \check{a} $\check{a}$ \bar{a} $\bar{a}$ \tilde{a} $\tilde{a}$ \widehat{ab} $\widehat{ab}$ \widecheck{ab} $\widecheck{ab}$]]></description>
+</item><item>
+    <title>markdown</title>
+    <link>https://wangyudong.netlify.app/markdownnotes/</link>
+    <pubDate>Thu, 19 Aug 2021 18:57:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/markdownnotes/</guid>
+    <description><![CDATA[基于markdown的网页构建 前缀模板 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 --- title: &#34;TITLE&#34; date: 2021-08-19T00:00:00+08:00 draft: true authorLink: &#34;&#34; description: &#34;&#34; images: [] tags: [] categories: [] hiddenFromHomePage: false hiddenFromSearch: false twemoji: false lightgallery: true ruby: true fraction: true fontawesome: true --- 图像]]></description>
+</item></channel>
+</rss>

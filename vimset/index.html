@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+    <style type="text/css">
+    	.fireworks {
+    		position: fixed;
+    		pointer-events: none;
+    		top: 0;
+    		left: 0;
+    		height: 100%;
+    	}
+    </style>
+    <canvas class="fireworks"></canvas>
+    <script src="/js/anime.min.js"></script>
+    <script src="/js/fireworks.js"></script>
+    <script type="text/javascript">
+        fireworks.setCanvasSize();
+    </script>
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>VIM快速配置 - Dong</title><meta name="Description" content="基于vim-plug"><meta property="og:url" content="https://wangyudong.netlify.app/vimset/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="VIM快速配置">
+  <meta property="og:description" content="基于vim-plug">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-08-19T17:11:00+08:00">
+    <meta property="article:modified_time" content="2021-08-19T17:11:00+08:00">
+    <meta property="article:tag" content="Vim">
+    <meta property="article:tag" content="Linux">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="VIM快速配置">
+  <meta name="twitter:description" content="基于vim-plug">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/vimset/" /><link rel="next" href="https://wangyudong.netlify.app/markdownnotes/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "VIM快速配置",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/vimset\/"
+        },"genre": "posts","keywords": "vim, linux","wordcount":  1129 ,
+        "url": "https:\/\/wangyudong.netlify.app\/vimset\/","datePublished": "2021-08-19T17:11:00+08:00","dateModified": "2021-08-19T17:11:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": "基于vim-plug"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Dong"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Dong <i class='fa fa-heart'></i>
+                    </a><a class="menu-item" href="/posts/"> 文章 
+                    </a><a class="menu-item" href="/tags/"> 标签 
+                    </a><a class="menu-item" href="/categories/"> 分类 
+                    </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dong"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/"> Dong <i class='fa fa-heart'></i>
+                </a><a class="menu-item" href="/posts/"> 文章 
+                </a><a class="menu-item" href="/tags/"> 标签 
+                </a><a class="menu-item" href="/categories/"> 分类 
+                </a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">VIM快速配置</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/vim/"><i class="far fa-folder fa-fw"></i>Vim</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-19">2021-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1129 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;<span id="/vimset/" class="leancloud_visitors" data-flag-title="VIM快速配置">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础插件">基础插件</a></li>
+    <li><a href="#安装-vim-plug">安装 VIM-Plug</a></li>
+    <li><a href="#编辑-vimrc-文件">编辑 &ldquo;~/.vimrc&rdquo; 文件</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="vim-编辑器快速配置">VIM 编辑器快速配置</h1>
+<div style="align: center">
+<img src="../images/vimlogo.png" alt="Vim Logo" width="300" height="300" >
+</div>
+<h2 id="基础插件">基础插件</h2>
+<p>安装<strong>ctags, vim-scripts, vim-addon-manager, taglist, winmanager</strong>, 以Debian类系统为例.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get install vim
+</span></span><span class="line"><span class="cl">sudo apt-get install ctags
+</span></span><span class="line"><span class="cl">sudo apt-get install vim-scripts
+</span></span><span class="line"><span class="cl">sudo apt-get install vim-addon-manager
+</span></span><span class="line"><span class="cl">vim-addons install taglist
+</span></span><span class="line"><span class="cl">vim-addons install winmanager
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>若后续安装<a href="https://github.com/neoclide/coc.nvim" target="_blank" rel="noopener noreffer">coc.nvim</a>作为智能补全插件，还需安装nodejs, yarn, clangd.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get install nodejs yarn clangd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装-vim-plug">安装 VIM-Plug</h2>
+<p>使用<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener noreffer">VIM-Plug</a>作为插件管理器，安装命令如下.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>VIM-Plug插件管理基本命令：</p>
+<p>首先, 打开vim, 在vim命令模式中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">PlugStatus</span>   #<span class="nx">插件状态</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PlugInstall</span>  #<span class="nx">安装</span>.<span class="nx">vimrc文件中Plug命令声明的插件</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PlugUpdate</span>   #<span class="nx">安装或更新插件</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PlugClean</span>    #<span class="nx">删除</span>.<span class="nx">vimrc文件中无声明的插件</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PlugDiff</span>     #<span class="nx">检查上次更新的更改和挂起的更改</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PlugSnapshot</span> #<span class="nx">生成用于快速恢复插件当前状态的脚本</span><span class="p">(</span><span class="nx">备份</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="编辑-vimrc-文件">编辑 &ldquo;~/.vimrc&rdquo; 文件</h2>
+<p>参考配置如下.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-.vimrc" data-lang=".vimrc"><span class="line"><span class="cl"><span class="c">&#34;vim-plug ##################################</span>
+</span></span><span class="line"><span class="cl"><span class="nx">call</span> <span class="nx">plug</span>#<span class="nx">begin</span><span class="p">(</span><span class="s1">&#39;~/.vim/plugged&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;itchyny/lightline.vim&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;neoclide/coc.nvim&#39;</span><span class="p">,</span>{<span class="s1">&#39;branch&#39;</span>:<span class="s1">&#39;release&#39;</span>}
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;preservim/nerdtree&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;Xuyuanp/nerdtree-git-plugin&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;Yggdroot/LeaderF&#39;</span><span class="p">,</span> { <span class="s1">&#39;do&#39;</span>: <span class="s1">&#39;./install.sh&#39;</span> }
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;jiangmiao/auto-pairs&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;crusoexia/vim-monokai&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;luochen1990/rainbow&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;vim-airline/vim-airline&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;vim-airline/vim-airline-themes&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">call</span> <span class="nx">plug</span>#<span class="nx">end</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;Coc.nvim ##################################</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;nodejs yarn clangd is needed for coc.nvim</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34; use &lt;CR&gt; to confirm completion and format</span>
+</span></span><span class="line"><span class="cl"><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span> <span class="nx">pumvisible</span><span class="p">()</span> ? <span class="nx">coc</span>#<span class="nx">_select_confirm</span><span class="p">()</span> : <span class="s2">&#34;\&lt;C-g&gt;u\&lt;CR&gt;\&lt;c-r&gt;=coc#on_enter()\&lt;CR&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34; use &lt;tab&gt; for trigger completion and navigate to the next complete item</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span><span class="p">!</span> <span class="nx">s</span>:<span class="nx">check_back_space</span><span class="p">()</span> <span class="nx">abort</span>
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nx">col</span> <span class="p">=</span> <span class="nx">col</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="p">-</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">return</span> <span class="p">!</span><span class="nx">col</span> <span class="p">||</span> <span class="nx">getline</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>[<span class="nx">col</span> <span class="p">-</span> <span class="m">1</span>]  <span class="p">=~</span> <span class="s1">&#39;\s&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">endfunction</span>
+</span></span><span class="line"><span class="cl"><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Tab</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	\ <span class="nx">pumvisible</span><span class="p">()</span> ? <span class="s2">&#34;\&lt;C-n&gt;&#34;</span> :
+</span></span><span class="line"><span class="cl">	\ <span class="p">&lt;</span><span class="nx">SID</span><span class="p">&gt;</span><span class="nx">check_back_space</span><span class="p">()</span> ? <span class="s2">&#34;\&lt;Tab&gt;&#34;</span> :
+</span></span><span class="line"><span class="cl">	\ <span class="nx">coc</span>#<span class="nx">refresh</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;nerdtree ###################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">map</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">n</span><span class="p">&gt;</span> :<span class="nx">NERDTreeToggle</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">NERDTreeShowBookmarks</span><span class="p">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">autocmd</span> <span class="nx">vimenter</span> * <span class="k">if</span> <span class="p">!</span><span class="nx">argc</span><span class="p">()|</span><span class="nx">NERDTree</span><span class="p">|</span><span class="k">endif</span>
+</span></span><span class="line"><span class="cl"><span class="k">autocmd</span> <span class="nx">bufenter</span> * <span class="k">if</span> <span class="p">(</span><span class="nx">winnr</span><span class="p">(</span><span class="s2">&#34;$&#34;</span><span class="p">)</span> <span class="p">==</span> <span class="m">1</span> &amp;&amp; <span class="nx">exists</span><span class="p">(</span><span class="s2">&#34;b:NERDTree&#34;</span><span class="p">)</span> &amp;&amp; <span class="nx">b</span>:<span class="nx">NERDTree</span>.<span class="nx">isTabTree</span><span class="p">())</span> <span class="p">|</span> <span class="nx">q</span> <span class="p">|</span> <span class="k">endif</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDTreeDirArrowExpandable</span> <span class="p">=</span> <span class="s1">&#39;+&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDTreeDirArrowCollapsible</span> <span class="p">=</span> <span class="s1">&#39;-&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDTreeShowLineNumbers</span><span class="p">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDTreeHidden</span><span class="p">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">NERDTreeMinimalUI</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">NERDTreeDirArrows</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;LeaderF #################################</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cnoreabbrev</span> <span class="nx">fline</span> <span class="nx">LeaderfLine</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cnoreabbrev</span> <span class="nx">ffunc</span> <span class="nx">LeaderfFunctioN</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;auto-pairs ##################################</span>
+</span></span><span class="line"><span class="cl"><span class="nx">au</span> <span class="nx">Filetype</span> <span class="nx">FILETYPE</span> <span class="k">let</span> <span class="nx">b</span>:<span class="nx">AutoPairs</span> <span class="p">=</span> {<span class="s2">&#34;(&#34;</span>: <span class="s2">&#34;)&#34;</span>}
+</span></span><span class="line"><span class="cl"><span class="nx">au</span> <span class="nx">FileType</span> <span class="nx">php</span>      <span class="k">let</span> <span class="nx">b</span>:<span class="nx">AutoPairs</span> <span class="p">=</span> <span class="nx">AutoPairsDefine</span><span class="p">(</span>{<span class="s1">&#39;&lt;?&#39;</span> : <span class="s1">&#39;?&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;?php&#39;</span>: <span class="s1">&#39;?&gt;&#39;</span>}<span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;vim-monokai ##################################</span>
+</span></span><span class="line"><span class="cl"><span class="nx">colo</span> <span class="nx">monokai</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;rainbow ##################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">rainbow_active</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">rainbow_conf</span> <span class="p">=</span> {
+</span></span><span class="line"><span class="cl">			\   <span class="s1">&#39;guifgs&#39;</span>: [<span class="s1">&#39;darkorange3&#39;</span><span class="p">,</span> <span class="s1">&#39;seagreen3&#39;</span><span class="p">,</span> <span class="s1">&#39;royalblue3&#39;</span><span class="p">,</span> <span class="s1">&#39;firebrick&#39;</span>]<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\   <span class="s1">&#39;ctermfgs&#39;</span>: [<span class="s1">&#39;lightyellow&#39;</span><span class="p">,</span> <span class="s1">&#39;lightcyan&#39;</span><span class="p">,</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightmagenta&#39;</span>]<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\   <span class="s1">&#39;operators&#39;</span>: <span class="s1">&#39;_,_&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\   <span class="s1">&#39;parentheses&#39;</span>: [<span class="s1">&#39;start=/(/ end=/)/ fold&#39;</span><span class="p">,</span> <span class="s1">&#39;start=/\[/ end=/\]/ fold&#39;</span><span class="p">,</span> <span class="s1">&#39;start=/{/ end=/}/ fold&#39;</span>]<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\   <span class="s1">&#39;separately&#39;</span>: {
+</span></span><span class="line"><span class="cl">			\       <span class="s1">&#39;*&#39;</span>: {}<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\       <span class="s1">&#39;tex&#39;</span>: {
+</span></span><span class="line"><span class="cl">			\           <span class="s1">&#39;parentheses&#39;</span>: [<span class="s1">&#39;start=/(/ end=/)/&#39;</span><span class="p">,</span> <span class="s1">&#39;start=/\[/ end=/\]/&#39;</span>]<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\       }<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\       <span class="s1">&#39;lisp&#39;</span>: {
+</span></span><span class="line"><span class="cl">			\           <span class="s1">&#39;guifgs&#39;</span>: [<span class="s1">&#39;darkorange3&#39;</span><span class="p">,</span> <span class="s1">&#39;seagreen3&#39;</span><span class="p">,</span> <span class="s1">&#39;royalblue3&#39;</span><span class="p">,</span> <span class="s1">&#39;firebrick&#39;</span>]<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\       }<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\       <span class="s1">&#39;vim&#39;</span>: {
+</span></span><span class="line"><span class="cl">			\           <span class="s1">&#39;parentheses&#39;</span>: [<span class="s1">&#39;start=/(/ end=/)/&#39;</span><span class="p">,</span> <span class="s1">&#39;start=/\[/ end=/\]/&#39;</span><span class="p">,</span> <span class="s1">&#39;start=/{/ end=/}/ fold&#39;</span><span class="p">,</span> <span class="s1">&#39;start=/(/ end=/)/ containedin=vimFuncBody&#39;</span><span class="p">,</span> <span class="s1">&#39;start=/\[/ end=/\]/ containedin=vimFuncBody&#39;</span><span class="p">,</span> <span class="s1">&#39;start=/{/ end=/}/ fold containedin=vimFuncBody&#39;</span>]<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\       }<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\       <span class="s1">&#39;html&#39;</span>: {
+</span></span><span class="line"><span class="cl">			\           <span class="s1">&#39;parentheses&#39;</span>: [<span class="s1">&#39;start=/\v\&lt;((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ &gt; ])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=(&#34;[^&#34;]*&#34;|&#39;</span>.<span class="s2">&#34;&#39;&#34;</span>.<span class="s1">&#39;[^&#39;</span>.<span class="s2">&#34;&#39;&#34;</span>.<span class="s1">&#39;]*&#39;</span>.<span class="s2">&#34;&#39;&#34;</span>.<span class="s1">&#39;|[^ &#39;</span>.<span class="s2">&#34;&#39;&#34;</span>.<span class="s1">&#39;&#34;&gt;&lt;=`]*))?)*\&gt;/ end=#&lt;/\z1&gt;# fold&#39;</span>]<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\       }<span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\       <span class="s1">&#39;css&#39;</span>: <span class="m">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			\   }
+</span></span><span class="line"><span class="cl">			\}
+</span></span><span class="line"><span class="cl"><span class="c">&#34;vim-airline #################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline_powerline_fonts</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">whitespace</span>#<span class="nx">enabled</span> <span class="p">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">whitespace</span>#<span class="nx">symbol</span> <span class="p">=</span> <span class="s1">&#39;!&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;VIM SETTINGS #################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">helplang</span><span class="p">=</span><span class="nx">cn</span> 
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">langmenu</span><span class="p">=</span><span class="nx">zh_CN</span>.<span class="nx">UTF</span><span class="m">-8</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">encoding</span><span class="p">=</span><span class="nx">utf8</span> 
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">fencs</span><span class="p">=</span><span class="nx">utf</span><span class="m">-8</span><span class="p">,</span><span class="nx">ucs</span><span class="p">-</span><span class="nx">bom</span><span class="p">,</span><span class="nx">shift</span><span class="p">-</span><span class="nx">jis</span><span class="p">,</span><span class="nx">gb18030</span><span class="p">,</span><span class="nx">gbk</span><span class="p">,</span><span class="nx">gb2312</span><span class="p">,</span><span class="nx">cp936</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="k">syntax</span><span class="p">=</span><span class="nx">on</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">nocompatible</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">confirm</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">autoindent</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">cindent</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">tabstop</span><span class="p">=</span><span class="m">4</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">autoread</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">number</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">nobackup</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">noswapfile</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">ignorecase</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">hlsearch</span>
+</span></span><span class="line"><span class="cl"><span class="k">filetype</span> <span class="nx">on</span>
+</span></span><span class="line"><span class="cl"><span class="k">filetype</span> <span class="nx">plugin</span> <span class="nx">on</span>
+</span></span><span class="line"><span class="cl"><span class="k">filetype</span> <span class="nx">indent</span> <span class="nx">on</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">iskeyword</span><span class="p">+=</span><span class="nx">_</span><span class="p">,</span>$<span class="p">,</span>@<span class="p">,</span>%<span class="p">,-</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">wildmenu</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">incsearch</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">mouse</span><span class="p">=</span><span class="nx">a</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">selection</span><span class="p">=</span><span class="nx">exclusive</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">report</span><span class="p">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">smartindent</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">statusline</span><span class="p">=</span>%<span class="nx">r</span>%<span class="nx">h</span>%<span class="nx">w</span>\ [<span class="nx">POS</span><span class="p">=</span>%<span class="nx">l</span><span class="p">,</span>%<span class="nx">v</span>][%<span class="nx">p</span>%%]\ %{<span class="nx">strftime</span><span class="p">(</span>\<span class="s2">&#34;%d/%m/%y\ -\ %H:%M\&#34;</span><span class="p">)</span>}
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">laststatus</span><span class="p">=</span><span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="k">autocmd</span> <span class="nx">InsertLeave</span> * <span class="nx">se</span> <span class="nx">nocul</span>  
+</span></span><span class="line"><span class="cl"><span class="k">autocmd</span> <span class="nx">InsertEnter</span> * <span class="nx">se</span> <span class="nx">cul</span>    
+</span></span><span class="line"><span class="cl"><span class="c">&#34;ctags #################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">tags</span><span class="p">=</span><span class="sr">/home/</span><span class="nx">ubuntu</span><span class="sr">/fileserver/</span><span class="nx">aecsc2</span><span class="sr">/SRC/</span><span class="nx">tags</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">Tlist_Sort_Type</span> <span class="p">=</span> <span class="s2">&#34;name&#34;</span>    
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">Tlist_Compart_Format</span> <span class="p">=</span> <span class="m">1</span>    
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">Tlist_Exist_OnlyWindow</span> <span class="p">=</span> <span class="m">1</span>  
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">Tlist_Ctags_Cmd</span> <span class="p">=</span> <span class="s1">&#39;/usr/bin/ctags&#39;</span> 
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">Tlist_Show_One_File</span> <span class="p">=</span> <span class="m">0</span>  
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">Tlist_Exit_OnlyWindow</span> <span class="p">=</span> <span class="m">1</span>  
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">Tlist_Use_Right_Window</span> <span class="p">=</span> <span class="m">0</span> 
+</span></span><span class="line"><span class="cl"><span class="c">&#34; minibufexpl</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">miniBufExplMapWindowNavVim</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">miniBufExplMapWindowNavArrows</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">miniBufExplMapCTabSwitchBufs</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">miniBufExplModSelTarget</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34; FORTRAN</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">fortran_have_tabs</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34; let fortran_fold = 1</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34; set tags=/home/ubuntu/fileserver/aecsc2/SRC/tags</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">winManagerWindowLayout</span><span class="p">=</span><span class="s1">&#39;FileExplorer|TagList&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">F3</span><span class="p">&gt;</span> : <span class="nx">WMToggle</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&#34;Auto write for c,h,sh,java #################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">autocmd</span> <span class="nx">BufNewFile</span> *.<span class="nx">cpp</span><span class="p">,</span>*.[<span class="nx">ch</span>]<span class="p">,</span>*.<span class="nx">sh</span><span class="p">,</span>*.<span class="nx">jrva</span> <span class="nx">exec</span> <span class="s2">&#34;:call SetTitle()&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">func</span> <span class="nx">SetTitle</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> &amp;<span class="k">filetype</span> <span class="p">==</span> <span class="s1">&#39;sh&#39;</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">setline</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="s2">&#34;\#########################################################################&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">),</span> <span class="s2">&#34;\# File Name: &#34;</span>.<span class="nx">expand</span><span class="p">(</span><span class="s2">&#34;%&#34;</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">1</span><span class="p">,</span> <span class="s2">&#34;\# Author: Dong&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">2</span><span class="p">,</span> <span class="s2">&#34;\# mail: wangyudong@buaa.edu.cn&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">3</span><span class="p">,</span> <span class="s2">&#34;\# Created Time: &#34;</span>.<span class="nx">strftime</span><span class="p">(</span><span class="s2">&#34;%c&#34;</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">4</span><span class="p">,</span> <span class="s2">&#34;\#########################################################################&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">5</span><span class="p">,</span> <span class="s2">&#34;\#!/bin/bash&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">6</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;	elseif &amp;filetype == &#39;F&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;		call setline(1, &#34;C*************************************************************************&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;), &#34;C   &gt; File Name: &#34;.expand(&#34;%&#34;)) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+1, &#34;C   &gt; Author: Dong&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+2, &#34;C   &gt; Mail: wangyudong@buaa.edu.cn&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+3, &#34;C   &gt; Created Time: &#34;.strftime(&#34;%c&#34;)) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+4, &#34;C************************************************************************&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+5, &#34;&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;	elseif &amp;filetype == &#39;F90&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;		call setline(1, &#34;!*************************************************************************&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;), &#34;!   &gt; File Name: &#34;.expand(&#34;%&#34;)) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+1, &#34;!   &gt; Author: Dong&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+2, &#34;!   &gt; Mail: wangyudong@buaa.edu.cn&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+3, &#34;!   &gt; Created Time: &#34;.strftime(&#34;%c&#34;)) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+4, &#34;!************************************************************************&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="c">		&#34;        call append(line(&#34;.&#34;)+5, &#34;&#34;)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">setline</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s2">&#34;/*************************************************************************&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">),</span> <span class="s2">&#34;    &gt; File Name: &#34;</span>.<span class="nx">expand</span><span class="p">(</span><span class="s2">&#34;%&#34;</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">1</span><span class="p">,</span> <span class="s2">&#34;    &gt; Author: Dong&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">2</span><span class="p">,</span> <span class="s2">&#34;    &gt; Mail: wangyudong@buaa.edu.cn&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">3</span><span class="p">,</span> <span class="s2">&#34;    &gt; Created Time: &#34;</span>.<span class="nx">strftime</span><span class="p">(</span><span class="s2">&#34;%c&#34;</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">4</span><span class="p">,</span> <span class="s2">&#34; ************************************************************************/&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">5</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">endif</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> &amp;<span class="k">filetype</span> <span class="p">==</span> <span class="s1">&#39;cpp&#39;</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">6</span><span class="p">,</span> <span class="s2">&#34;#include&lt;iostream&gt;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">7</span><span class="p">,</span> <span class="s2">&#34;using namespace std;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">8</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">endif</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> &amp;<span class="k">filetype</span> <span class="p">==</span> <span class="s1">&#39;c&#39;</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">6</span><span class="p">,</span> <span class="s2">&#34;#include&lt;stdio.h&gt;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">call</span> <span class="nx">append</span><span class="p">(</span><span class="nx">line</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)+</span><span class="m">7</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">endif</span>
+</span></span><span class="line"><span class="cl">	<span class="k">autocmd</span> <span class="nx">BufNewFile</span> * <span class="nx">normal</span> <span class="nx">G</span>
+</span></span><span class="line"><span class="cl"><span class="nx">endfunc</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-08-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/vimset/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/vimset/" data-title="VIM快速配置" data-hashtags="vim,linux"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/vimset/" data-hashtag="vim"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/vimset/" data-title="VIM快速配置" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/vimset/" data-title="VIM快速配置"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/vimset/" data-title="VIM快速配置" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/vimset/" data-title="VIM快速配置" data-description="基于vim-plug"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/vimset/" data-title="VIM快速配置" data-description="基于vim-plug"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/vimset/" data-title="VIM快速配置"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">Vim</a>,&nbsp;<a href="/tags/linux/">Linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/markdownnotes/" class="next" rel="next" title="markdown">markdown<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script></body>
+</html>
