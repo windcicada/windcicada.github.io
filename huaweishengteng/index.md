@@ -211,6 +211,29 @@ kernel_name<<<blockDim,12ctrl,stream>>>(argument list);
 
 ## 算子开发示例：Sinh算子
 
+### AddCustom 目录结构
+
+| 目录                      | 描述                                                         |
+| ------------------------- | ------------------------------------------------------------ |
+| `build.sh`                | 编译入口脚本                                                 |
+| `cmake`                   | 算子工程编译所需脚本及公共编译文件存放目录                   |
+| ├── `config.cmake`        | 配置文件                                                     |
+| ├── `func.cmake`          | 功能文件                                                     |
+| ├── `intf.cmake`          | 接口文件                                                     |
+| ├── `makeself.cmake`      | 自我构建文件                                                 |
+| ├── `util`                | 算子工程编译所需脚本及公共编译文件存放目录                   |
+| `CMakeLists.txt`          | 算子工程的CMakeLists.txt                                     |
+| `CMakePresets.json`       | 编译配置项                                                   |
+| `framework`               | 算子插件实现文件目录，单算子模型文件的生成不依赖算子适配插件，无需关注 |
+| `op_host`                 | host侧实现文件                                               |
+| ├── `add_custom_tiling.h` | 算子tiling定义文件                                           |
+| ├── `add_custom.cpp`      | 算子原型注册、shape推导、信息库、tiling实现等内容文件        |
+| ├── `CMakeLists.txt`      | CMakeLists文件                                               |
+| `op_kernel`               | kernel侧实现文件                                             |
+| ├── `CMakeLists.txt`      | CMakeLists文件                                               |
+| ├── `add_custom.cpp`      | 算子代码实现文件                                             |
+| `scripts`                 | 自定义算子工程打包相关脚本所在目录                           |
+
 ### Sinh算子开发流程
 
 {{< mermaid >}}

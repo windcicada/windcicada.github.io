@@ -50,7 +50,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/wangyudong.netlify.app\/huaweishengteng\/"
-        },"genre": "posts","keywords": "website","wordcount":  6530 ,
+        },"genre": "posts","keywords": "website","wordcount":  6825 ,
         "url": "https:\/\/wangyudong.netlify.app\/huaweishengteng\/","datePublished": "2024-07-11T10:50:00+08:00","dateModified": "2024-07-11T10:50:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -134,7 +134,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Ascend C算子 学习笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/"><i class="far fa-folder fa-fw"></i>工作日志</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-07-11">2024-07-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;6530 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-07-11">2024-07-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;6825 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;14 minutes&nbsp;<span id="/huaweishengteng/" class="leancloud_visitors" data-flag-title="Ascend C算子 学习笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -185,6 +185,7 @@
     </li>
     <li><a href="#算子开发示例sinh算子">算子开发示例：Sinh算子</a>
       <ul>
+        <li><a href="#addcustom-目录结构">AddCustom 目录结构</a></li>
         <li><a href="#sinh算子开发流程">Sinh算子开发流程</a></li>
         <li><a href="#sinh算子功能">Sinh算子功能</a></li>
         <li><a href="#算子实现流程">算子实现流程</a>
@@ -480,6 +481,89 @@
 </ul>
 <hr>
 <h2 id="算子开发示例sinh算子">算子开发示例：Sinh算子</h2>
+<h3 id="addcustom-目录结构">AddCustom 目录结构</h3>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build.sh</code></td>
+<td>编译入口脚本</td>
+</tr>
+<tr>
+<td><code>cmake</code></td>
+<td>算子工程编译所需脚本及公共编译文件存放目录</td>
+</tr>
+<tr>
+<td>├── <code>config.cmake</code></td>
+<td>配置文件</td>
+</tr>
+<tr>
+<td>├── <code>func.cmake</code></td>
+<td>功能文件</td>
+</tr>
+<tr>
+<td>├── <code>intf.cmake</code></td>
+<td>接口文件</td>
+</tr>
+<tr>
+<td>├── <code>makeself.cmake</code></td>
+<td>自我构建文件</td>
+</tr>
+<tr>
+<td>├── <code>util</code></td>
+<td>算子工程编译所需脚本及公共编译文件存放目录</td>
+</tr>
+<tr>
+<td><code>CMakeLists.txt</code></td>
+<td>算子工程的CMakeLists.txt</td>
+</tr>
+<tr>
+<td><code>CMakePresets.json</code></td>
+<td>编译配置项</td>
+</tr>
+<tr>
+<td><code>framework</code></td>
+<td>算子插件实现文件目录，单算子模型文件的生成不依赖算子适配插件，无需关注</td>
+</tr>
+<tr>
+<td><code>op_host</code></td>
+<td>host侧实现文件</td>
+</tr>
+<tr>
+<td>├── <code>add_custom_tiling.h</code></td>
+<td>算子tiling定义文件</td>
+</tr>
+<tr>
+<td>├── <code>add_custom.cpp</code></td>
+<td>算子原型注册、shape推导、信息库、tiling实现等内容文件</td>
+</tr>
+<tr>
+<td>├── <code>CMakeLists.txt</code></td>
+<td>CMakeLists文件</td>
+</tr>
+<tr>
+<td><code>op_kernel</code></td>
+<td>kernel侧实现文件</td>
+</tr>
+<tr>
+<td>├── <code>CMakeLists.txt</code></td>
+<td>CMakeLists文件</td>
+</tr>
+<tr>
+<td>├── <code>add_custom.cpp</code></td>
+<td>算子代码实现文件</td>
+</tr>
+<tr>
+<td><code>scripts</code></td>
+<td>自定义算子工程打包相关脚本所在目录</td>
+</tr>
+</tbody>
+</table>
 <h3 id="sinh算子开发流程">Sinh算子开发流程</h3>
 <div class="mermaid" id="id-2"></div>
 <h3 id="sinh算子功能">Sinh算子功能</h3>
