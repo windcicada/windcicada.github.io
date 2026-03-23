@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ImmersedBoundaryMethod on Dong</title><link>https://wangyudong.netlify.app/tags/immersedboundarymethod/</link><description>Recent content in ImmersedBoundaryMethod on Dong</description><generator>Hugo</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor><webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 21 Aug 2021 15:51:00 +0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/immersedboundarymethod/index.xml" rel="self" type="application/rss+xml"/><item><title>浸没边界方法</title><link>https://wangyudong.netlify.app/ibm_method/</link><pubDate>Sat, 21 Aug 2021 15:51:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/ibm_method/</guid><description>&lt;h1 id="浸没边界方法"&gt;浸没边界方法&lt;/h1&gt;
+&lt;h2 id="用途"&gt;用途&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;模拟存在复杂结构的流场&lt;/li&gt;
+&lt;li&gt;模拟动边界问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="peskin-直接力法-柔性边界"&gt;Peskin 直接力法-柔性边界&lt;/h2&gt;
+&lt;p&gt;浸没边界方法最早由Peskin提出，将复杂结构的边界模化为N-S方程中的一种彻体力，用&lt;strong&gt;笛卡尔网格&lt;/strong&gt;解决网格生成困难问题并提高计算效率。&lt;/p&gt;</description></item></channel></rss>

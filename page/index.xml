@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Dong</title><link>https://wangyudong.netlify.app/page/</link><description>Recent content in Pages on Dong</description><generator>Hugo</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor><webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><atom:link href="https://wangyudong.netlify.app/page/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://wangyudong.netlify.app/page/1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/page/1/</guid><description>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+ &lt;title&gt;https://wangyudong.netlify.app/&lt;/title&gt;
+ &lt;link rel="canonical" href="https://wangyudong.netlify.app/"&gt;
+ &lt;meta name="robots" content="noindex"&gt;
+ &lt;meta charset="utf-8"&gt;
+ &lt;meta http-equiv="refresh" content="0; url=https://wangyudong.netlify.app/"&gt;
+ &lt;/head&gt;
+&lt;/html&gt;</description></item><item><title/><link>https://wangyudong.netlify.app/page/2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/page/2/</guid><description>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;&lt;/html&gt;
+ &lt;style type="text/css"&gt;
+ 	.fireworks {
+ 		position: fixed;
+ 		pointer-events: none;
+ 		top: 0;
+ 		left: 0;
+ 		height: 100%;
+ 	}
+ &lt;/style&gt;
+ &lt;canvas class="fireworks"&gt;&lt;/canvas&gt;
+ &lt;script src="https://wangyudong.netlify.app/js/anime.min.js"&gt;&lt;/script&gt;
+ &lt;script src="https://wangyudong.netlify.app/js/fireworks.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript"&gt;
+ fireworks.setCanvasSize();
+ &lt;/script&gt;
+
+
+ &lt;head&gt;
+	&lt;meta name="generator" content="Hugo 0.128.2"&gt;
+ &lt;meta charset="utf-8"&gt;
+ &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+ &lt;meta name="robots" content="noodp" /&gt;
+ &lt;meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"&gt;
+ &lt;title&gt;Dong&lt;/title&gt;&lt;meta name="Description" content="Dong"&gt;&lt;meta property="og:url" content="https://wangyudong.netlify.app/"&gt;
+ &lt;meta property="og:site_name" content="Dong"&gt;
+ &lt;meta property="og:title" content="Dong"&gt;
+ &lt;meta property="og:description" content="论文下载地址"&gt;
+ &lt;meta property="og:locale" content="en"&gt;
+ &lt;meta property="og:type" content="website"&gt;
+ &lt;meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png"&gt;
+
+ &lt;meta name="twitter:card" content="summary_large_image"&gt;
+ &lt;meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png"&gt;
+ &lt;meta name="twitter:title" content="Dong"&gt;
+ &lt;meta name="twitter:description" content="论文下载地址"&gt;
+&lt;meta name="application-name" content="Dong"&gt;
+&lt;meta name="apple-mobile-web-app-title" content="Dong"&gt;&lt;meta name="theme-color" content="#ffffff"&gt;&lt;meta name="msapplication-TileColor" content="#da532c"&gt;&lt;link rel="shortcut icon" type="image/x-icon" href="https://wangyudong.netlify.app/favicon.ico" /&gt;
+ &lt;link rel="icon" type="image/png" sizes="32x32" href="https://wangyudong.netlify.app/favicon-32x32.png"&gt;
+ &lt;link rel="icon" type="image/png" sizes="16x16" href="https://wangyudong.netlify.app/favicon-16x16.png"&gt;&lt;link rel="apple-touch-icon" sizes="180x180" href="https://wangyudong.netlify.app/apple-touch-icon.png"&gt;&lt;link rel="mask-icon" href="https://wangyudong.netlify.app/safari-pinned-tab.svg" color="#5bbad5"&gt;&lt;link rel="manifest" href="https://wangyudong.netlify.app/site.webmanifest"&gt;&lt;link rel="canonical" href="https://wangyudong.netlify.app/" /&gt;&lt;link rel="alternate" href="https://wangyudong.netlify.app/index.xml" type="application/rss+xml" title="Dong"&gt;
+ &lt;link rel="feed" href="https://wangyudong.netlify.app/index.xml" type="application/rss+xml" title="Dong"&gt;&lt;link rel="stylesheet" href="https://wangyudong.netlify.app/lib/normalize/normalize.min.css"&gt;&lt;link rel="stylesheet" href="https://wangyudong.netlify.app/css/style.min.css"&gt;&lt;link rel="stylesheet" href="https://wangyudong.netlify.app/lib/fontawesome-free/all.min.css"&gt;&lt;link rel="stylesheet" href="https://wangyudong.netlify.app/lib/animate/animate.min.css"&gt;&lt;script type="application/ld+json"&gt;
+ {
+ "@context": "http://schema.org",
+ "@type": "WebSite",
+ "url": "https:\/\/wangyudong.netlify.app\/","inLanguage": "en","author": {
+ "@type": "Person",
+ "name": "Dong"
+ },"description": "Dong","name": "Dong"
+ }
+ &lt;/script&gt;&lt;/head&gt;
+ &lt;body header-desktop="fixed" header-mobile="auto"&gt;&lt;script type="text/javascript"&gt;(window.localStorage &amp;&amp; localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) &amp;&amp; document.body.setAttribute('theme', 'dark');&lt;/script&gt;
+
+ &lt;div id="mask"&gt;&lt;/div&gt;&lt;div class="wrapper"&gt;&lt;!DOCTYPE html&gt;&lt;header class="desktop" id="header-desktop"&gt;
+ &lt;div class="header-wrapper"&gt;
+ &lt;div class="header-title"&gt;
+ &lt;a href="https://wangyudong.netlify.app/" title="Dong"&gt;&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;div class="menu"&gt;
+ &lt;div class="menu-inner"&gt;&lt;a class="menu-item active" href="https://wangyudong.netlify.app/"&gt; Dong &lt;i class='fa fa-heart'&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/posts/"&gt; 文章 
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/tags/"&gt; 标签 
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/categories/"&gt; 分类 
+ &lt;/a&gt;&lt;span class="menu-item delimiter"&gt;&lt;/span&gt;&lt;span class="menu-item search" id="search-desktop"&gt;
+ &lt;input type="text" placeholder="Search titles or contents..." id="search-input-desktop"&gt;
+ &lt;a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search"&gt;
+ &lt;i class="fas fa-search fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear"&gt;
+ &lt;i class="fas fa-times-circle fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;span class="search-button search-loading" id="search-loading-desktop"&gt;
+ &lt;i class="fas fa-spinner fa-fw fa-spin"&gt;&lt;/i&gt;
+ &lt;/span&gt;
+ &lt;/span&gt;&lt;a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme"&gt;
+ &lt;i class="fas fa-adjust fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/header&gt;&lt;header class="mobile" id="header-mobile"&gt;
+ &lt;div class="header-container"&gt;
+ &lt;div class="header-wrapper"&gt;
+ &lt;div class="header-title"&gt;
+ &lt;a href="https://wangyudong.netlify.app/" title="Dong"&gt;&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;div class="menu-toggle" id="menu-toggle-mobile"&gt;
+ &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="menu" id="menu-mobile"&gt;&lt;div class="search-wrapper"&gt;
+ &lt;div class="search mobile" id="search-mobile"&gt;
+ &lt;input type="text" placeholder="Search titles or contents..." id="search-input-mobile"&gt;
+ &lt;a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search"&gt;
+ &lt;i class="fas fa-search fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear"&gt;
+ &lt;i class="fas fa-times-circle fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;span class="search-button search-loading" id="search-loading-mobile"&gt;
+ &lt;i class="fas fa-spinner fa-fw fa-spin"&gt;&lt;/i&gt;
+ &lt;/span&gt;
+ &lt;/div&gt;
+ &lt;a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile"&gt;
+ Cancel
+ &lt;/a&gt;
+ &lt;/div&gt;&lt;a class="menu-item active" href="https://wangyudong.netlify.app/"&gt; Dong &lt;i class='fa fa-heart'&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/posts/"&gt; 文章 
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/tags/"&gt; 标签 
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/categories/"&gt; 分类 
+ &lt;/a&gt;&lt;a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme"&gt;
+ &lt;i class="fas fa-adjust fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/header&gt;
+&lt;div class="search-dropdown desktop"&gt;
+ &lt;div id="search-dropdown-desktop"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="search-dropdown mobile"&gt;
+ &lt;div id="search-dropdown-mobile"&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;main class="main"&gt;
+ &lt;div class="container"&gt;&lt;div class="page home" posts&gt;&lt;div class="home-profile"&gt;&lt;div class="home-avatar"&gt;&lt;a href="https://wangyudong.netlify.app/" title="Dong"&gt;&lt;img
+ class="lazyload"
+ src="https://wangyudong.netlify.app/svg/loading.min.svg"
+ data-src="https://wangyudong.netlify.app/images/cat.GIF"
+ data-srcset="https://wangyudong.netlify.app/images/cat.GIF, https://wangyudong.netlify.app/images/cat.GIF 1.5x, https://wangyudong.netlify.app/images/cat.GIF 2x"
+ data-sizes="auto"
+ alt="/images/cat.GIF"
+ title="/images/cat.GIF" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;h1 class="home-title"&gt;Dong&lt;/h1&gt;&lt;h2 class="home-subtitle"&gt;&lt;div id="id-1" class="typeit"&gt;&lt;/div&gt;&lt;/h2&gt;&lt;div class="links"&gt;&lt;a href="https://github.com/windcicada" title="GitHub" target="_blank" rel="noopener noreffer me"&gt;&lt;i class="fab fa-github-alt fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href="https://weibo.com/6086629393" title="微博" target="_blank" rel="noopener noreffer me"&gt;&lt;i class="fab fa-weibo fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href="https://steamcommunity.com/id/windcicada" title="Steam" target="_blank" rel="noopener noreffer me"&gt;&lt;i class="fab fa-steam fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href="mailto:wangyudong@buaa.edu.cn" title="Email" rel=" me"&gt;&lt;i class="far fa-envelope fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href="https://wangyudong.netlify.app/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"&gt;&lt;i class="fas fa-rss fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="single"&gt;
+ &lt;div class="content" id="content"&gt;&lt;h1 id="heading"&gt;&lt;/h1&gt;
+&lt;meting-js server="netease" type="song" id="1353187371" theme="#448aff" fixed="true" mini="true" autoplay="false" loop="one" volume="0.3"&gt;&lt;/meting-js&gt;
+&lt;div align=center style="background:#FFF; color:#000; opacity:0.9"&gt;
+&lt;img src="https://wangyudong.netlify.app/images/index_sum.png"&gt;
+&lt;p&gt;&lt;a href="./awards/" rel=""&gt;&lt;strong&gt;论文下载地址&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title/><link>https://wangyudong.netlify.app/page/3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/page/3/</guid><description>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;&lt;/html&gt;
+ &lt;style type="text/css"&gt;
+ 	.fireworks {
+ 		position: fixed;
+ 		pointer-events: none;
+ 		top: 0;
+ 		left: 0;
+ 		height: 100%;
+ 	}
+ &lt;/style&gt;
+ &lt;canvas class="fireworks"&gt;&lt;/canvas&gt;
+ &lt;script src="https://wangyudong.netlify.app/js/anime.min.js"&gt;&lt;/script&gt;
+ &lt;script src="https://wangyudong.netlify.app/js/fireworks.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript"&gt;
+ fireworks.setCanvasSize();
+ &lt;/script&gt;
+
+
+ &lt;head&gt;
+	&lt;meta name="generator" content="Hugo 0.128.2"&gt;
+ &lt;meta charset="utf-8"&gt;
+ &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+ &lt;meta name="robots" content="noodp" /&gt;
+ &lt;meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"&gt;
+ &lt;title&gt;Dong&lt;/title&gt;&lt;meta name="Description" content="Dong"&gt;&lt;meta property="og:url" content="https://wangyudong.netlify.app/"&gt;
+ &lt;meta property="og:site_name" content="Dong"&gt;
+ &lt;meta property="og:title" content="Dong"&gt;
+ &lt;meta property="og:description" content="论文下载地址"&gt;
+ &lt;meta property="og:locale" content="en"&gt;
+ &lt;meta property="og:type" content="website"&gt;
+ &lt;meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png"&gt;
+
+ &lt;meta name="twitter:card" content="summary_large_image"&gt;
+ &lt;meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png"&gt;
+ &lt;meta name="twitter:title" content="Dong"&gt;
+ &lt;meta name="twitter:description" content="论文下载地址"&gt;
+&lt;meta name="application-name" content="Dong"&gt;
+&lt;meta name="apple-mobile-web-app-title" content="Dong"&gt;&lt;meta name="theme-color" content="#ffffff"&gt;&lt;meta name="msapplication-TileColor" content="#da532c"&gt;&lt;link rel="shortcut icon" type="image/x-icon" href="https://wangyudong.netlify.app/favicon.ico" /&gt;
+ &lt;link rel="icon" type="image/png" sizes="32x32" href="https://wangyudong.netlify.app/favicon-32x32.png"&gt;
+ &lt;link rel="icon" type="image/png" sizes="16x16" href="https://wangyudong.netlify.app/favicon-16x16.png"&gt;&lt;link rel="apple-touch-icon" sizes="180x180" href="https://wangyudong.netlify.app/apple-touch-icon.png"&gt;&lt;link rel="mask-icon" href="https://wangyudong.netlify.app/safari-pinned-tab.svg" color="#5bbad5"&gt;&lt;link rel="manifest" href="https://wangyudong.netlify.app/site.webmanifest"&gt;&lt;link rel="canonical" href="https://wangyudong.netlify.app/" /&gt;&lt;link rel="alternate" href="https://wangyudong.netlify.app/index.xml" type="application/rss+xml" title="Dong"&gt;
+ &lt;link rel="feed" href="https://wangyudong.netlify.app/index.xml" type="application/rss+xml" title="Dong"&gt;&lt;link rel="stylesheet" href="https://wangyudong.netlify.app/lib/normalize/normalize.min.css"&gt;&lt;link rel="stylesheet" href="https://wangyudong.netlify.app/css/style.min.css"&gt;&lt;link rel="stylesheet" href="https://wangyudong.netlify.app/lib/fontawesome-free/all.min.css"&gt;&lt;link rel="stylesheet" href="https://wangyudong.netlify.app/lib/animate/animate.min.css"&gt;&lt;script type="application/ld+json"&gt;
+ {
+ "@context": "http://schema.org",
+ "@type": "WebSite",
+ "url": "https:\/\/wangyudong.netlify.app\/","inLanguage": "en","author": {
+ "@type": "Person",
+ "name": "Dong"
+ },"description": "Dong","name": "Dong"
+ }
+ &lt;/script&gt;&lt;/head&gt;
+ &lt;body header-desktop="fixed" header-mobile="auto"&gt;&lt;script type="text/javascript"&gt;(window.localStorage &amp;&amp; localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) &amp;&amp; document.body.setAttribute('theme', 'dark');&lt;/script&gt;
+
+ &lt;div id="mask"&gt;&lt;/div&gt;&lt;div class="wrapper"&gt;&lt;!DOCTYPE html&gt;&lt;header class="desktop" id="header-desktop"&gt;
+ &lt;div class="header-wrapper"&gt;
+ &lt;div class="header-title"&gt;
+ &lt;a href="https://wangyudong.netlify.app/" title="Dong"&gt;&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;div class="menu"&gt;
+ &lt;div class="menu-inner"&gt;&lt;a class="menu-item active" href="https://wangyudong.netlify.app/"&gt; Dong &lt;i class='fa fa-heart'&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/posts/"&gt; 文章 
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/tags/"&gt; 标签 
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/categories/"&gt; 分类 
+ &lt;/a&gt;&lt;span class="menu-item delimiter"&gt;&lt;/span&gt;&lt;span class="menu-item search" id="search-desktop"&gt;
+ &lt;input type="text" placeholder="Search titles or contents..." id="search-input-desktop"&gt;
+ &lt;a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search"&gt;
+ &lt;i class="fas fa-search fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear"&gt;
+ &lt;i class="fas fa-times-circle fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;span class="search-button search-loading" id="search-loading-desktop"&gt;
+ &lt;i class="fas fa-spinner fa-fw fa-spin"&gt;&lt;/i&gt;
+ &lt;/span&gt;
+ &lt;/span&gt;&lt;a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme"&gt;
+ &lt;i class="fas fa-adjust fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/header&gt;&lt;header class="mobile" id="header-mobile"&gt;
+ &lt;div class="header-container"&gt;
+ &lt;div class="header-wrapper"&gt;
+ &lt;div class="header-title"&gt;
+ &lt;a href="https://wangyudong.netlify.app/" title="Dong"&gt;&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;div class="menu-toggle" id="menu-toggle-mobile"&gt;
+ &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="menu" id="menu-mobile"&gt;&lt;div class="search-wrapper"&gt;
+ &lt;div class="search mobile" id="search-mobile"&gt;
+ &lt;input type="text" placeholder="Search titles or contents..." id="search-input-mobile"&gt;
+ &lt;a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search"&gt;
+ &lt;i class="fas fa-search fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear"&gt;
+ &lt;i class="fas fa-times-circle fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;span class="search-button search-loading" id="search-loading-mobile"&gt;
+ &lt;i class="fas fa-spinner fa-fw fa-spin"&gt;&lt;/i&gt;
+ &lt;/span&gt;
+ &lt;/div&gt;
+ &lt;a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile"&gt;
+ Cancel
+ &lt;/a&gt;
+ &lt;/div&gt;&lt;a class="menu-item active" href="https://wangyudong.netlify.app/"&gt; Dong &lt;i class='fa fa-heart'&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/posts/"&gt; 文章 
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/tags/"&gt; 标签 
+ &lt;/a&gt;&lt;a class="menu-item" href="https://wangyudong.netlify.app/categories/"&gt; 分类 
+ &lt;/a&gt;&lt;a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme"&gt;
+ &lt;i class="fas fa-adjust fa-fw"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/header&gt;
+&lt;div class="search-dropdown desktop"&gt;
+ &lt;div id="search-dropdown-desktop"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="search-dropdown mobile"&gt;
+ &lt;div id="search-dropdown-mobile"&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;main class="main"&gt;
+ &lt;div class="container"&gt;&lt;div class="page home" posts&gt;&lt;div class="home-profile"&gt;&lt;div class="home-avatar"&gt;&lt;a href="https://wangyudong.netlify.app/" title="Dong"&gt;&lt;img
+ class="lazyload"
+ src="https://wangyudong.netlify.app/svg/loading.min.svg"
+ data-src="https://wangyudong.netlify.app/images/cat.GIF"
+ data-srcset="https://wangyudong.netlify.app/images/cat.GIF, https://wangyudong.netlify.app/images/cat.GIF 1.5x, https://wangyudong.netlify.app/images/cat.GIF 2x"
+ data-sizes="auto"
+ alt="/images/cat.GIF"
+ title="/images/cat.GIF" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;h1 class="home-title"&gt;Dong&lt;/h1&gt;&lt;h2 class="home-subtitle"&gt;&lt;div id="id-1" class="typeit"&gt;&lt;/div&gt;&lt;/h2&gt;&lt;div class="links"&gt;&lt;a href="https://github.com/windcicada" title="GitHub" target="_blank" rel="noopener noreffer me"&gt;&lt;i class="fab fa-github-alt fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href="https://weibo.com/6086629393" title="微博" target="_blank" rel="noopener noreffer me"&gt;&lt;i class="fab fa-weibo fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href="https://steamcommunity.com/id/windcicada" title="Steam" target="_blank" rel="noopener noreffer me"&gt;&lt;i class="fab fa-steam fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href="mailto:wangyudong@buaa.edu.cn" title="Email" rel=" me"&gt;&lt;i class="far fa-envelope fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href="https://wangyudong.netlify.app/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"&gt;&lt;i class="fas fa-rss fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="single"&gt;
+ &lt;div class="content" id="content"&gt;&lt;h1 id="heading"&gt;&lt;/h1&gt;
+&lt;meting-js server="netease" type="song" id="1353187371" theme="#448aff" fixed="true" mini="true" autoplay="false" loop="one" volume="0.3"&gt;&lt;/meting-js&gt;
+&lt;div align=center style="background:#FFF; color:#000; opacity:0.9"&gt;
+&lt;img src="https://wangyudong.netlify.app/images/index_sum.png"&gt;
+&lt;p&gt;&lt;a href="./awards/" rel=""&gt;&lt;strong&gt;论文下载地址&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

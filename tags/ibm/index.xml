@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>IBM on Dong</title><link>https://wangyudong.netlify.app/tags/ibm/</link><description>Recent content in IBM on Dong</description><generator>Hugo</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor><webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 02 Oct 2021 14:43:00 +0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/ibm/index.xml" rel="self" type="application/rss+xml"/><item><title>AECSC-IBM UserGuide</title><link>https://wangyudong.netlify.app/aecsc_ibm/</link><pubDate>Sat, 02 Oct 2021 14:43:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/aecsc_ibm/</guid><description>&lt;h1 id="aecsc-ibm用户手册"&gt;AECSC-IBM用户手册&lt;/h1&gt;
+&lt;h2 id="文件结构"&gt;文件结构&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;源文件夹(./SRC)&lt;/li&gt;
+&lt;li&gt;可执行文件夹(./EXEC)&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;背景网格文件夹(./EXEC/Decomp)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;IBM网格存储文件夹(./EXEC/imbmesh)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;IBM主程序(./EXEC/aecsc)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;后处理(./EXEC/Restart)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;Visit(./EXEC/Restart), 其中标量imbflag为流固标记(流体1，固体0)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="imbd-文件"&gt;imb.d 文件&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;xxx.STL &lt;code&gt;模型名&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1表示几何模型为固壁区域，0表示几何模型为流体区域&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1表示Y轴方向网格为直线，0表示网格Y轴扭曲(生成网格速度慢，不建议)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1表示读取已有浸没边界网格标记，0表示重新生成网格标记&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1表示输出网格标记，0表示不输出&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1补全空洞(网格密度低、质量差时可调用)，0表示不处理&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1表示计算法向量，0表示不计算&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1表示调用壁面函数，0表示不调用，其他数(如2)表示调用不含法向量的壁面函数&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1表示流体非壁面区(与壁面间接相邻的网格)壁面处理，0表示不处理流体非壁面区&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0.0~1.0 &lt;code&gt;[第9行为1时生效]流体非壁面区(与壁面间接相邻的网格)速度处理权重，0.0为不处理，1.0为不允许沿壁面法向流动&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;[第8行为1时生效]1表示全邻居函数(线邻居和点邻居壁面处理)，0表示面邻居函数&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1表示浸没边界角落网格用插值方法计算，0表示角落网格作为普通流体边界计算&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;0或1 &lt;code&gt;1表示计算法向量，0表示不计算&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="inputd-文件"&gt;input.d 文件&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt; 10
+&lt;/span&gt;&lt;span class="lnt"&gt; 11
+&lt;/span&gt;&lt;span class="lnt"&gt; 12
+&lt;/span&gt;&lt;span class="lnt"&gt; 13
+&lt;/span&gt;&lt;span class="lnt"&gt; 14
+&lt;/span&gt;&lt;span class="lnt"&gt; 15
+&lt;/span&gt;&lt;span class="lnt"&gt; 16
+&lt;/span&gt;&lt;span class="lnt"&gt; 17
+&lt;/span&gt;&lt;span class="lnt"&gt; 18
+&lt;/span&gt;&lt;span class="lnt"&gt; 19
+&lt;/span&gt;&lt;span class="lnt"&gt; 20
+&lt;/span&gt;&lt;span class="lnt"&gt; 21
+&lt;/span&gt;&lt;span class="lnt"&gt; 22
+&lt;/span&gt;&lt;span class="lnt"&gt; 23
+&lt;/span&gt;&lt;span class="lnt"&gt; 24
+&lt;/span&gt;&lt;span class="lnt"&gt; 25
+&lt;/span&gt;&lt;span class="lnt"&gt; 26
+&lt;/span&gt;&lt;span class="lnt"&gt; 27
+&lt;/span&gt;&lt;span class="lnt"&gt; 28
+&lt;/span&gt;&lt;span class="lnt"&gt; 29
+&lt;/span&gt;&lt;span class="lnt"&gt; 30
+&lt;/span&gt;&lt;span class="lnt"&gt; 31
+&lt;/span&gt;&lt;span class="lnt"&gt; 32
+&lt;/span&gt;&lt;span class="lnt"&gt; 33
+&lt;/span&gt;&lt;span class="lnt"&gt; 34
+&lt;/span&gt;&lt;span class="lnt"&gt; 35
+&lt;/span&gt;&lt;span class="lnt"&gt; 36
+&lt;/span&gt;&lt;span class="lnt"&gt; 37
+&lt;/span&gt;&lt;span class="lnt"&gt; 38
+&lt;/span&gt;&lt;span class="lnt"&gt; 39
+&lt;/span&gt;&lt;span class="lnt"&gt; 40
+&lt;/span&gt;&lt;span class="lnt"&gt; 41
+&lt;/span&gt;&lt;span class="lnt"&gt; 42
+&lt;/span&gt;&lt;span class="lnt"&gt; 43
+&lt;/span&gt;&lt;span class="lnt"&gt; 44
+&lt;/span&gt;&lt;span class="lnt"&gt; 45
+&lt;/span&gt;&lt;span class="lnt"&gt; 46
+&lt;/span&gt;&lt;span class="lnt"&gt; 47
+&lt;/span&gt;&lt;span class="lnt"&gt; 48
+&lt;/span&gt;&lt;span class="lnt"&gt; 49
+&lt;/span&gt;&lt;span class="lnt"&gt; 50
+&lt;/span&gt;&lt;span class="lnt"&gt; 51
+&lt;/span&gt;&lt;span class="lnt"&gt; 52
+&lt;/span&gt;&lt;span class="lnt"&gt; 53
+&lt;/span&gt;&lt;span class="lnt"&gt; 54
+&lt;/span&gt;&lt;span class="lnt"&gt; 55
+&lt;/span&gt;&lt;span class="lnt"&gt; 56
+&lt;/span&gt;&lt;span class="lnt"&gt; 57
+&lt;/span&gt;&lt;span class="lnt"&gt; 58
+&lt;/span&gt;&lt;span class="lnt"&gt; 59
+&lt;/span&gt;&lt;span class="lnt"&gt; 60
+&lt;/span&gt;&lt;span class="lnt"&gt; 61
+&lt;/span&gt;&lt;span class="lnt"&gt; 62
+&lt;/span&gt;&lt;span class="lnt"&gt; 63
+&lt;/span&gt;&lt;span class="lnt"&gt; 64
+&lt;/span&gt;&lt;span class="lnt"&gt; 65
+&lt;/span&gt;&lt;span class="lnt"&gt; 66
+&lt;/span&gt;&lt;span class="lnt"&gt; 67
+&lt;/span&gt;&lt;span class="lnt"&gt; 68
+&lt;/span&gt;&lt;span class="lnt"&gt; 69
+&lt;/span&gt;&lt;span class="lnt"&gt; 70
+&lt;/span&gt;&lt;span class="lnt"&gt; 71
+&lt;/span&gt;&lt;span class="lnt"&gt; 72
+&lt;/span&gt;&lt;span class="lnt"&gt; 73
+&lt;/span&gt;&lt;span class="lnt"&gt; 74
+&lt;/span&gt;&lt;span class="lnt"&gt; 75
+&lt;/span&gt;&lt;span class="lnt"&gt; 76
+&lt;/span&gt;&lt;span class="lnt"&gt; 77
+&lt;/span&gt;&lt;span class="lnt"&gt; 78
+&lt;/span&gt;&lt;span class="lnt"&gt; 79
+&lt;/span&gt;&lt;span class="lnt"&gt; 80
+&lt;/span&gt;&lt;span class="lnt"&gt; 81
+&lt;/span&gt;&lt;span class="lnt"&gt; 82
+&lt;/span&gt;&lt;span class="lnt"&gt; 83
+&lt;/span&gt;&lt;span class="lnt"&gt; 84
+&lt;/span&gt;&lt;span class="lnt"&gt; 85
+&lt;/span&gt;&lt;span class="lnt"&gt; 86
+&lt;/span&gt;&lt;span class="lnt"&gt; 87
+&lt;/span&gt;&lt;span class="lnt"&gt; 88
+&lt;/span&gt;&lt;span class="lnt"&gt; 89
+&lt;/span&gt;&lt;span class="lnt"&gt; 90
+&lt;/span&gt;&lt;span class="lnt"&gt; 91
+&lt;/span&gt;&lt;span class="lnt"&gt; 92
+&lt;/span&gt;&lt;span class="lnt"&gt; 93
+&lt;/span&gt;&lt;span class="lnt"&gt; 94
+&lt;/span&gt;&lt;span class="lnt"&gt; 95
+&lt;/span&gt;&lt;span class="lnt"&gt; 96
+&lt;/span&gt;&lt;span class="lnt"&gt; 97
+&lt;/span&gt;&lt;span class="lnt"&gt; 98
+&lt;/span&gt;&lt;span class="lnt"&gt; 99
+&lt;/span&gt;&lt;span class="lnt"&gt;100
+&lt;/span&gt;&lt;span class="lnt"&gt;101
+&lt;/span&gt;&lt;span class="lnt"&gt;102
+&lt;/span&gt;&lt;span class="lnt"&gt;103
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-input.d" data-lang="input.d"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;LOAD&lt;/span&gt; &lt;span class="n"&gt;BALANCING&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt;				&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;cores&lt;/span&gt; &lt;span class="n"&gt;是否自由分配CPU&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;否即block数&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;CPU数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;INPUT&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;OUTPUT&lt;/span&gt; &lt;span class="n"&gt;DIRECTORIES&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Decomp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;				&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;读取网格文件夹&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Restart&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;				&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;读取RESTART数据文件夹&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Restart&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;				&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;读取PDF_RESTART数据文件夹&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;COMMAND&lt;/span&gt; &lt;span class="n"&gt;PARAMETERS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt;		 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;FORM&lt;/span&gt;		 &lt;span class="n"&gt;网格是否有格式&lt;/span&gt;&lt;span class="err"&gt;（&lt;/span&gt;&lt;span class="n"&gt;边界代码有无表头&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; 	&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;RESTART&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;WRITE&lt;/span&gt; &lt;span class="n"&gt;TO&lt;/span&gt; &lt;span class="n"&gt;RESTART&lt;/span&gt; 	 &lt;span class="n"&gt;是否继续&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;是否保存中间文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;40000&lt;/span&gt;			&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;LSTEP&lt;/span&gt;								&lt;span class="n"&gt;最大迭代次数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;50&lt;/span&gt; 				&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stepsave&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;write&lt;/span&gt; &lt;span class="n"&gt;restart&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;interval&lt;/span&gt;	&lt;span class="n"&gt;保存中间文件间隔迭代次数&lt;/span&gt;&lt;span class="err"&gt;（&lt;/span&gt;&lt;span class="n"&gt;覆盖&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;500&lt;/span&gt;				&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stepplot&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;write&lt;/span&gt; &lt;span class="n"&gt;plot&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;interval&lt;/span&gt;		&lt;span class="n"&gt;保存输出文件间隔迭代次数&lt;/span&gt;&lt;span class="err"&gt;（&lt;/span&gt;&lt;span class="n"&gt;新建&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;Large&lt;/span&gt; &lt;span class="n"&gt;Eddy&lt;/span&gt; &lt;span class="n"&gt;Simulation&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;DYN_STRESS&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;SIMIL&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DYNPHI&lt;/span&gt;	 &lt;span class="n"&gt;是否采用动态压力模型&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;无用&lt;/span&gt;&lt;span class="err"&gt;，？&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;			&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;DYN_RESTART_STRESS&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DYNPHI_RESTART&lt;/span&gt; &lt;span class="n"&gt;是否保存动态压力中继文件&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;DYNPHI中继文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="mf"&gt;0.09&lt;/span&gt; &lt;span class="mf"&gt;0.09&lt;/span&gt; 	 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;SMAGORINSKY&lt;/span&gt; &lt;span class="n"&gt;CONSTANT&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;CXIA&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;CXIS&lt;/span&gt;	 &lt;span class="n"&gt;smagorinsky常数&lt;/span&gt;&lt;span class="err"&gt;，？，&lt;/span&gt;&lt;span class="n"&gt;无用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;TURBSTAT&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;TURBREAD&lt;/span&gt;				 &lt;span class="n"&gt;是否求湍流平均值&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;是否读取湍流平均值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Digital&lt;/span&gt; &lt;span class="n"&gt;Filter&lt;/span&gt; &lt;span class="n"&gt;inflow&lt;/span&gt;	 &lt;span class="n"&gt;是否采用虚拟湍流进口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;Some&lt;/span&gt; &lt;span class="n"&gt;miscellaneous&lt;/span&gt; &lt;span class="n"&gt;variables&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;2&lt;/span&gt; 	 	 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ITNUM&lt;/span&gt;					&lt;span class="n"&gt;每步迭代次数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;10000000&lt;/span&gt; 			&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;INTEGRATION&lt;/span&gt; &lt;span class="n"&gt;TIME&lt;/span&gt;	 &lt;span class="n"&gt;最大计算时间长&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;10000000&lt;/span&gt;			&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;NSKIP&lt;/span&gt;					&lt;span class="n"&gt;输出结果跳过间隔&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;CFL&lt;/span&gt; &lt;span class="n"&gt;variables&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.20&lt;/span&gt; &lt;span class="mf"&gt;0.30&lt;/span&gt; &lt;span class="mf"&gt;0.25&lt;/span&gt;			&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;CFLMIN&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;CFLMAX&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;CFL_OK&lt;/span&gt;		&lt;span class="n"&gt;最小CFL数&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;最大CFL数&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;最优CFL数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;Convection&lt;/span&gt; &lt;span class="n"&gt;velocity&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;used&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;convective&lt;/span&gt; &lt;span class="n"&gt;outflow&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vx_c&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vy_c&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vz_c&lt;/span&gt;		&lt;span class="n"&gt;边界速度x&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;z方向&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;Wall&lt;/span&gt; &lt;span class="n"&gt;clock&lt;/span&gt; &lt;span class="n"&gt;execution&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt;	 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;TEXEC&lt;/span&gt;					&lt;span class="n"&gt;最大运行小时数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;Some&lt;/span&gt; &lt;span class="n"&gt;physical&lt;/span&gt; &lt;span class="n"&gt;properties&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;1.1965&lt;/span&gt; &lt;span class="mf"&gt;1.8173&lt;/span&gt; &lt;span class="mf"&gt;1.814E-5&lt;/span&gt; &lt;span class="mf"&gt;1.01325e+05&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;RHOAIR&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RHOJET&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;VISCO&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;PRESSURE&lt;/span&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 &lt;span class="n"&gt;空气密度&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;燃料密度&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;空气动力粘度&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;空气压力&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;Variable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="mi"&gt;50&lt;/span&gt;	&lt;span class="mf"&gt;1.0e-04&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;VEL&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nf"&gt;ICYCL&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt;&lt;span class="n"&gt;TOL&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;		&lt;span class="n"&gt;x方向速度迭代残差累积步数&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;迭代残差&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="mi"&gt;51&lt;/span&gt;	&lt;span class="mf"&gt;1.0e-04&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;VEL&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="nf"&gt;ICYCL&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt;&lt;span class="n"&gt;TOL&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;		&lt;span class="n"&gt;y方向速度迭代残差累积步数&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;迭代残差&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="mi"&gt;50&lt;/span&gt;	&lt;span class="mf"&gt;1.0e-04&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;VEL&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nf"&gt;ICYCL&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt;&lt;span class="n"&gt;TOL&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;		&lt;span class="n"&gt;z方向速度迭代残差累积步数&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;迭代残差&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="mi"&gt;500&lt;/span&gt;	&lt;span class="mf"&gt;1.0e-04&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;DP&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nf"&gt;ICYCL&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt;&lt;span class="n"&gt;TOL&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;		&lt;span class="n"&gt;压力迭代残差累积步数&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;迭代残差&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="mi"&gt;0&lt;/span&gt;	&lt;span class="mf"&gt;1.0e-03&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nf"&gt;ICYCL&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt;&lt;span class="n"&gt;TOL&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;		&lt;span class="n"&gt;混合分数迭代残差累积步数&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;迭代残差&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="mi"&gt;0&lt;/span&gt;	&lt;span class="mf"&gt;1.0e-03&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="nf"&gt;ICYCL&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt;&lt;span class="n"&gt;TOL&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;		&lt;span class="n"&gt;混合分数脉动迭代残差累积步数&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;迭代残差&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;Combustion&lt;/span&gt; &lt;span class="n"&gt;variables&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;methane&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;fuel&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;methanol&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;methane&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ethylene&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;heptane&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;propane&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;kerosene&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ethanol&lt;/span&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;						&lt;span class="n"&gt;燃料&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;依次为甲醇&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;甲烷&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;乙烯&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;正庚烷&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;丙烷&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;煤油&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;乙醇&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt;		&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;BURN&lt;/span&gt; 				&lt;span class="n"&gt;是否点燃&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;即化学反应&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;PDF&lt;/span&gt; &lt;span class="n"&gt;equation&lt;/span&gt; &lt;span class="n"&gt;variables&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt; 		 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;solve&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;PDF&lt;/span&gt;					&lt;span class="n"&gt;是否求解PDF方程&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;stochastic&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;	&lt;span class="n"&gt;随机场数目&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;			&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;READ_PDF&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;WRITE_PDF&lt;/span&gt;				&lt;span class="n"&gt;是否读取PDF中继文件&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;是否保存PDF文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stochastic&lt;/span&gt; &lt;span class="n"&gt;noise&lt;/span&gt; &lt;span class="n"&gt;reduction&lt;/span&gt;		&lt;span class="n"&gt;是否采用随机降噪&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="mf"&gt;1.0e-03&lt;/span&gt;	 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ICYCL&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt;&lt;span class="n"&gt;TOL&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;					&lt;span class="n"&gt;迭代残差累积步数&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;迭代残差&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;Radiative&lt;/span&gt; &lt;span class="n"&gt;Heat&lt;/span&gt; &lt;span class="n"&gt;Transfer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt;				&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Include&lt;/span&gt; &lt;span class="n"&gt;radiate&lt;/span&gt; &lt;span class="n"&gt;heat&lt;/span&gt; &lt;span class="n"&gt;transfer&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;	&lt;span class="n"&gt;是否包含辐射换热&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------&lt;/span&gt; &lt;span class="o"&gt;------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;SPRAY&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;SPRAY&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;				&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;喷雾粒子存储文件夹&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;okc格式&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;visit可读取&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt;	&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;solve&lt;/span&gt; &lt;span class="n"&gt;spray&lt;/span&gt; &lt;span class="n"&gt;equations&lt;/span&gt;								 &lt;span class="n"&gt;是否喷雾&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt; 	&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;c0&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;dispersion&lt;/span&gt; &lt;span class="n"&gt;coefficientInvalid&lt;/span&gt; &lt;span class="n"&gt;LOGICAL&lt;/span&gt; &lt;span class="nf"&gt;input&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt; &lt;span class="n"&gt;扩散系数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt;	&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;reflection&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;particles&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;boundary&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="n"&gt;sticking&lt;/span&gt; 	 &lt;span class="n"&gt;是否发生粒子反射&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; 	&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;MASS&lt;/span&gt; &lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="n"&gt;MOMENTUM&lt;/span&gt; &lt;span class="n"&gt;Coupling&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;GAS&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;LIQUID&lt;/span&gt; &lt;span class="n"&gt;EQUATIONS&lt;/span&gt; &lt;span class="n"&gt;是否气液相质量耦合&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;动量耦合&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;VAPORISATION&lt;/span&gt; &lt;span class="n"&gt;PARAMETERS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt;			&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;Vaporise&lt;/span&gt;										&lt;span class="n"&gt;粒子是否蒸发&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt;			&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;Stochastic&lt;/span&gt; &lt;span class="n"&gt;vapourisation&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;				&lt;span class="n"&gt;是否使用随机蒸发模型&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt;			&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;Cv&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;vaporisation&lt;/span&gt; &lt;span class="n"&gt;coefficient&lt;/span&gt;						&lt;span class="n"&gt;蒸发系数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;BREAK&lt;/span&gt; &lt;span class="n"&gt;UP&lt;/span&gt; &lt;span class="n"&gt;PARAMETERS&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt;		&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;Breakup&lt;/span&gt; 											&lt;span class="n"&gt;粒子是否破碎&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="mf"&gt;2.0&lt;/span&gt;	&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stochasic&lt;/span&gt; &lt;span class="n"&gt;breakup&lt;/span&gt; &lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;csb&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;sgs&lt;/span&gt; &lt;span class="n"&gt;erosion&lt;/span&gt; &lt;span class="n"&gt;coefficient&lt;/span&gt;	&lt;span class="n"&gt;是否使用随机破碎模型&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;亚格子冲刷系数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt; 	&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;debugging&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;spray&lt;/span&gt;	 &lt;span class="n"&gt;是否启用喷雾调试模式&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;Save&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Start&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;Restart&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;10000&lt;/span&gt; 		&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;SNAPSHOT&lt;/span&gt; &lt;span class="n"&gt;OF&lt;/span&gt; &lt;span class="n"&gt;THE&lt;/span&gt; &lt;span class="n"&gt;SPRAY&lt;/span&gt;							&lt;span class="n"&gt;路径EXEC&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Visit&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Spray&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;保存喷雾参数文件间隔迭代次数&lt;/span&gt;&lt;span class="err"&gt;（&lt;/span&gt;&lt;span class="n"&gt;新建&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;spray&lt;/span&gt; &lt;span class="n"&gt;PDF&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;write&lt;/span&gt; &lt;span class="n"&gt;spray&lt;/span&gt; &lt;span class="n"&gt;PDF&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;是否读取喷雾pdf文件&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;是否保存喷雾pdf文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;		&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;spray&lt;/span&gt; &lt;span class="n"&gt;statistics&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;spray&lt;/span&gt; &lt;span class="n"&gt;statistics&lt;/span&gt;	 &lt;span class="n"&gt;是否输出喷雾参数文件&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;是否读取喷雾参数文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="inject_def-喷雾配置文件"&gt;inject_def 喷雾配置文件&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-inject_def.d" data-lang="inject_def.d"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="o"&gt;::::::::&lt;/span&gt; &lt;span class="n"&gt;FILE&lt;/span&gt; &lt;span class="n"&gt;DEFINING&lt;/span&gt; &lt;span class="n"&gt;THE&lt;/span&gt; &lt;span class="n"&gt;INJECTION&lt;/span&gt; &lt;span class="n"&gt;CHARACTERISTICS&lt;/span&gt; &lt;span class="o"&gt;::::::&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt; &lt;span class="n"&gt;喷射点位置&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.000115&lt;/span&gt;	 	 &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;喷孔半径&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;		 &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;喷射方向矢量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="mf"&gt;30.0&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;偏转角度&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;扩散角度&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;是否空心喷雾&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;100&lt;/span&gt; 			 &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;粒子直径数目&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;1&lt;/span&gt;				 &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;每种直径的粒子数&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;2.5&lt;/span&gt; &lt;span class="mf"&gt;63.0&lt;/span&gt; 	 &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R积分分布&lt;/span&gt;&lt;span class="err"&gt;：&lt;/span&gt;&lt;span class="n"&gt;指数n&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;平均直径smd&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;8.6E-04&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;质量流量&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Kg&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sec&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;Droplet&lt;/span&gt; &lt;span class="n"&gt;properties&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;velocity&lt;/span&gt; &lt;span class="n"&gt;magnitude&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;temperature&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="n"&gt;Kelvin&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:::::::&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;15.0&lt;/span&gt; &lt;span class="mf"&gt;301.0&lt;/span&gt; 	 &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;液滴速度&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;温度&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;false&lt;/span&gt; 			 &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;是否读取中继喷射数据&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt;			 &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;是否在不同位置用指定SMD的空心圆锥喷雾&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="sparkd-点火配置文件"&gt;spark.d 点火配置文件&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-spark.d" data-lang="spark.d"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="n"&gt;Input&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;ED&lt;/span&gt; &lt;span class="n"&gt;spark&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;-----------------------------------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kc"&gt;true&lt;/span&gt; 	&lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;spark&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.005&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;spark&lt;/span&gt; &lt;span class="n"&gt;duration&lt;/span&gt; &lt;span class="nf"&gt;time&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.005&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;spark&lt;/span&gt; &lt;span class="n"&gt;initiation&lt;/span&gt; &lt;span class="nf"&gt;time&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;550.0&lt;/span&gt; &lt;span class="mf"&gt;2000.0&lt;/span&gt;	&lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;initial&lt;/span&gt; &lt;span class="n"&gt;air&lt;/span&gt; &lt;span class="n"&gt;Temperature&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;maximum&lt;/span&gt; &lt;span class="nf"&gt;temperature&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;2&lt;/span&gt;		&lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;sparks&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;0.015&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="mf"&gt;0.01&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.015&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="mf"&gt;0.01&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;spark_type&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;为原ED模型&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;为IBM稳定点火模型&lt;/span&gt;&lt;span class="err"&gt;（&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;容易点着火&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>稳定双共轭梯度法</title><link>https://wangyudong.netlify.app/cgstab/</link><pubDate>Wed, 22 Sep 2021 14:13:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/cgstab/</guid><description>&lt;h1 id="稳定双共轭梯度法"&gt;稳定双共轭梯度法&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;Bi-CGSTAB: A fast and smoothly converging variant of BI-CG for the solution of nonsymetric linear systems[]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;双共轭梯度法(Bi-CG)是共轭梯度法(CG-S)(Conjugate Gradients-Squared)发展而来的。CG-S方法可能导致相当不规则的收敛行为，可能使舍入误差产生严重的抵消效应。稳定双共轭梯度法(Bi-CGSTAB)则似乎不受这些负面影响。&lt;/p&gt;</description></item><item><title>三角钝体测试</title><link>https://wangyudong.netlify.app/ibm_tri/</link><pubDate>Wed, 22 Sep 2021 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/ibm_tri/</guid><description>&lt;h1 id="aecsc-ibm-三角钝体测试"&gt;AECSC-IBM 三角钝体测试&lt;/h1&gt;
+&lt;h2 id="对照算例boffin计算结果"&gt;对照算例：BOFFIN计算结果&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;At Time-Step 20000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="网格"&gt;网格&lt;/h3&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://wangyudong.netlify.app/svg/loading.min.svg"
+ data-src="../images/IBM_tri/image-20210919194031799.png"
+ data-srcset="../images/IBM_tri/image-20210919194031799.png, ../images/IBM_tri/image-20210919194031799.png 1.5x, ../images/IBM_tri/image-20210919194031799.png 2x"
+ data-sizes="auto"
+ alt="../images/IBM_tri/image-20210919194031799.png"
+ title="image-20210919194031799" /&gt;&lt;/p&gt;
+&lt;h3 id="瞬态速度velocity_magnitude"&gt;瞬态速度(Velocity_magnitude)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;标尺: (0, 45) m/s&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://wangyudong.netlify.app/svg/loading.min.svg"
+ data-src="../images/IBM_tri/image-20210919194247190.png"
+ data-srcset="../images/IBM_tri/image-20210919194247190.png, ../images/IBM_tri/image-20210919194247190.png 1.5x, ../images/IBM_tri/image-20210919194247190.png 2x"
+ data-sizes="auto"
+ alt="../images/IBM_tri/image-20210919194247190.png"
+ title="image-20210919194247190" /&gt;&lt;/p&gt;
+&lt;h3 id="平均流向速度mean_u"&gt;平均流向速度(MEAN_U)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;标尺: (-15, 35) m/s&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://wangyudong.netlify.app/svg/loading.min.svg"
+ data-src="../images/IBM_tri/image-20210919194725577.png"
+ data-srcset="../images/IBM_tri/image-20210919194725577.png, ../images/IBM_tri/image-20210919194725577.png 1.5x, ../images/IBM_tri/image-20210919194725577.png 2x"
+ data-sizes="auto"
+ alt="../images/IBM_tri/image-20210919194725577.png"
+ title="image-20210919194725577" /&gt;&lt;/p&gt;
+&lt;h3 id="局部瞬态速度矢量velocity"&gt;局部瞬态速度矢量(Velocity)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;标尺: (0, 45) m/s&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;区域：x = (0.00, 0.20) m&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://wangyudong.netlify.app/svg/loading.min.svg"
+ data-src="../images/IBM_tri/image-20210919195245904.png"
+ data-srcset="../images/IBM_tri/image-20210919195245904.png, ../images/IBM_tri/image-20210919195245904.png 1.5x, ../images/IBM_tri/image-20210919195245904.png 2x"
+ data-sizes="auto"
+ alt="../images/IBM_tri/image-20210919195245904.png"
+ title="image-20210919195245904" /&gt;&lt;/p&gt;</description></item><item><title>一种浸没边界及网格处理建模方法</title><link>https://wangyudong.netlify.app/ibm_mesh/</link><pubDate>Sat, 28 Aug 2021 00:00:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/ibm_mesh/</guid><description>&lt;h1 id="一种浸没边界及网格处理建模方法"&gt;一种浸没边界及网格处理建模方法&lt;/h1&gt;
+&lt;div class="mermaid" id="id-5"&gt;&lt;/div&gt;
+&lt;h2 id="技术领域"&gt;技术领域&lt;/h2&gt;
+&lt;p&gt;本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成方法。它涉及到计算流体力学、化学流体力学、航空燃气涡轮发动机燃烧室设计以及网格生成算法，属于航空燃气涡轮发动机燃烧室设计分析和两相湍流燃烧数值模拟领域。&lt;/p&gt;</description></item></channel></rss>
