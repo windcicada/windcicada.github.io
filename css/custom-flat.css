@@ -109,6 +109,16 @@ body[theme="dark"] .navbar {
         width: 48px;
         height: 48px;
         font-size: 1.2rem;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+    }
+    
+    /* 确保移动端菜单按钮可见且可点击 */
+    #mobile-menu-toggle {
+        display: flex !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        opacity: 1 !important;
     }
 }
 
@@ -921,7 +931,9 @@ article.single.summary .single-title a:hover {
 }
 
 /* 置顶标签样式 */
-.tag-pinned {
+.blog-item .tag-pinned {
+    display: inline-flex;
+    align-items: center;
     background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
     color: white !important;
     padding: 3px 10px;
@@ -930,11 +942,15 @@ article.single.summary .single-title a:hover {
     font-weight: 600;
     letter-spacing: 0.5px;
     box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+    margin-right: 8px;
 }
 
-.tag-pinned:hover {
-    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%) !important;
-    transform: translateY(-1px);
+/* 隐藏可能重复的置顶标签（如果主题自动添加） */
+.blog-item .pin-icon,
+.blog-item .featured-icon,
+.blog-item [class*="pin"],
+.blog-item [class*="featured"] {
+    display: none !important;
 }
 
 /* Blog 列表页置顶样式 */
