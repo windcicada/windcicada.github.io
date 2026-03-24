@@ -1,614 +1,83 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>TCR小尺度混合模型：湍流-化学递归闭合方法 - Dong</title><meta name="Description" content="介绍TCR (Turbulence-Chemistry Recursive) 小尺度混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"><meta property="og:url" content="https://wangyudong.netlify.app/tcr_micro_mixing_model/">
-  <meta property="og:site_name" content="Dong">
-  <meta property="og:title" content="TCR小尺度混合模型：湍流-化学递归闭合方法">
-  <meta property="og:description" content="介绍TCR (Turbulence-Chemistry Recursive) 小尺度混合模型，用于ESF-TPDF方法中的湍流燃烧模拟">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-03-16T15:45:00+08:00">
-    <meta property="article:modified_time" content="2025-03-16T15:45:00+08:00">
-    <meta property="article:tag" content="Turbulent Combustion">
-    <meta property="article:tag" content="PDF Method">
-    <meta property="article:tag" content="Micro-Mixing">
-    <meta property="article:tag" content="ESF">
-    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
-  <meta name="twitter:title" content="TCR小尺度混合模型：湍流-化学递归闭合方法">
-  <meta name="twitter:description" content="介绍TCR (Turbulence-Chemistry Recursive) 小尺度混合模型，用于ESF-TPDF方法中的湍流燃烧模拟">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr_micro_mixing_model/" /><link rel="prev" href="https://wangyudong.netlify.app/huaweishengteng/" /><link rel="next" href="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
-<script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "TCR小尺度混合模型：湍流-化学递归闭合方法",
-        "inLanguage": "en",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/wangyudong.netlify.app\/tcr_micro_mixing_model\/"
-        },"genre": "posts","keywords": "turbulent combustion, PDF method, micro-mixing, ESF","wordcount":  6000 ,
-        "url": "https:\/\/wangyudong.netlify.app\/tcr_micro_mixing_model\/","datePublished": "2025-03-16T15:45:00+08:00","dateModified": "2025-03-16T15:45:00+08:00","publisher": {
-            "@type": "Organization",
-            "name": ""},"author": {
-                "@type": "Person",
-                "name": "Dong"
-            },"description": "介绍TCR (Turbulence-Chemistry Recursive) 小尺度混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
-    <div class="nav-container">
-        
-        <a href="/" class="nav-brand">Dong</a>
-        
-        
-        <div class="nav-menu" id="nav-menu-desktop">
-            <a href="/" class="nav-link">首页</a>
-            <a href="/posts/" class="nav-link active">Blog文章</a>
-            <a href="/awards/" class="nav-link">学术成果</a>
-        </div>
-        
-        
-        <div class="nav-tools">
-            
-            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </div>
-    
-    
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-        <a href="/" class="mobile-nav-link">首页</a>
-        <a href="/posts/" class="mobile-nav-link active">Blog文章</a>
-        <a href="/awards/" class="mobile-nav-link">学术成果</a>
-    </div>
-</nav>
-
-
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">TCR小尺度混合模型：湍流-化学递归闭合方法</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E6%9C%AF%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>学术笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-03-16">2025-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;6000 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;12 minutes&nbsp;<span id="/tcr_micro_mixing_model/" class="leancloud_visitors" data-flag-title="TCR小尺度混合模型：湍流-化学递归闭合方法">
-                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
-                    </span>&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="true">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-研究背景与挑战">1. 研究背景与挑战</a>
-      <ul>
-        <li><a href="#11-现有小尺度混合模型的局限">1.1 现有小尺度混合模型的局限</a></li>
-      </ul>
-    </li>
-    <li><a href="#2-tcr小尺度混合模型理论">2. TCR小尺度混合模型理论</a>
-      <ul>
-        <li><a href="#21-多层分区反应器框架">2.1 多层分区反应器框架</a></li>
-        <li><a href="#22-分层分区结构">2.2 分层分区结构</a></li>
-        <li><a href="#23-psr-体积分数的确定">2.3 PSR 体积分数的确定</a></li>
-        <li><a href="#24-亚格子混合时间尺度">2.4 亚格子混合时间尺度</a></li>
-        <li><a href="#25-tcr-模型表达式">2.5 TCR 模型表达式</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-理论分析梯度区尺度效应">3. 理论分析：梯度区尺度效应</a>
-      <ul>
-        <li><a href="#31-问题描述">3.1 问题描述</a></li>
-        <li><a href="#32-方差演化方程">3.2 方差演化方程</a></li>
-        <li><a href="#33-空间浓度分布特征">3.3 空间浓度分布特征</a></li>
-        <li><a href="#34-梯度尺度效应分析">3.4 梯度尺度效应分析</a></li>
-        <li><a href="#35-方差衰减率与梯度的关系">3.5 方差衰减率与梯度的关系</a></li>
-        <li><a href="#36-对-tcr-模型的理论支撑">3.6 对 TCR 模型的理论支撑</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-模型验证dns-先验分析">4. 模型验证：DNS 先验分析</a>
-      <ul>
-        <li><a href="#41-验证方法">4.1 验证方法</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-结论">5. 结论</a></li>
-    <li><a href="#参考文献">参考文献</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="1-研究背景与挑战">1. 研究背景与挑战</h2>
-<p>湍流燃烧是现代航空推进和能源系统的核心现象<a href="https://doi.org/10.1016/j.paerosci.2011.03.001" target="_blank" rel="noopener noreffer">[1]</a>。即使在未来的低碳能源体系中，航空、航运等领域仍将大量使用燃料燃烧技术。准确预测湍流燃烧过程对于发动机设计、污染物排放控制以及燃烧稳定性分析具有重要意义。</p>
-<p>在湍流燃烧建模中，<strong>输运概率密度函数（Transported Probability Density Function, TPDF）方法</strong>提供了处理湍流-化学相互作用的严格理论框架<a href="https://doi.org/10.1016/j.pecs.2011.05.003" target="_blank" rel="noopener noreffer">[2]</a>。TPDF 方法的核心优势在于化学反应源项以显式形式出现，无需进行封闭近似。然而，PDF 输运方程中的<strong>小尺度混合（micro-mixing）项</strong>仍需准确建模，这成为制约 TPDF 方法预测精度的关键因素<a href="https://doi.org/10.1016/j.combustflame.2019.09.006" target="_blank" rel="noopener noreffer">[3]</a>。</p>
-<h3 id="11-现有小尺度混合模型的局限">1.1 现有小尺度混合模型的局限</h3>
-<p>当前小尺度混合模型主要面临以下挑战：</p>
-<p><strong>局部性（Localness）建模困境</strong>：IEM（Interaction by Exchange with the Mean）模型<a href="https://doi.org/10.1016/0094-5765%2879%2990111-5" target="_blank" rel="noopener noreffer">[4]</a> 和修正 Curl 模型<a href="https://doi.org/10.1016/0010-2180%2879%2990111-2" target="_blank" rel="noopener noreffer">[5]</a> 等传统模型缺乏对组成空间局部性的描述，难以准确表征湍流-化学相互作用。EMST（Euclidean Minimum Spanning Tree）模型<a href="https://doi.org/10.1016/S0010-2180%2898%2900016-3" target="_blank" rel="noopener noreffer">[6]</a> 虽然引入了组成空间局部性，但违反了线性守恒原则。MMC（Multiple Mapping Conditioning）模型<a href="https://doi.org/10.1063/1.1575756" target="_blank" rel="noopener noreffer">[7]</a> 和 SPMM（Stochastic Particle Mixing Model）模型<a href="https://doi.org/10.1016/j.combustflame.2013.02.004" target="_blank" rel="noopener noreffer">[8]</a> 等参数化模型虽然提供了可调的局部性，但表现出强烈的参数敏感性，需要针对具体工况进行标定<a href="https://doi.org/10.1016/j.combustflame.2011.05.011" target="_blank" rel="noopener noreffer">[9]</a>。</p>
-<p><strong>混合时间尺度建模困难</strong>：现有模型通常采用机械-标量时间尺度比 $C_\phi$ 来表征混合频率，但文献中 $C_\phi$ 的取值跨越一个数量级<a href="https://doi.org/10.1016/j.combustflame.2006.11.003" target="_blank" rel="noopener noreffer">[10]</a>，缺乏普适性。动态模型虽然能够根据局部湍流和标量分布调整 $C_\phi$<a href="https://doi.org/10.1016/j.combustflame.2015.08.014" target="_blank" rel="noopener noreffer">[11]</a>，但难以准确捕捉化学反应对混合时间尺度的影响。</p>
-<p><strong>欧拉随机场（ESF）方法的局限</strong>：ESF 方法是求解 TPDF 方程的欧拉方法，具有计算效率高、易于并行化、可与欧拉求解器耦合等优势<a href="https://doi.org/10.1023/A:1009991308404" target="_blank" rel="noopener noreffer">[12]</a>。然而，ESF 方法无法直接引入基于局部性的小尺度混合模型（如 EMST、SPMM），这限制了其在实际燃烧工况中的应用精度。</p>
-<h2 id="2-tcr小尺度混合模型理论">2. TCR小尺度混合模型理论</h2>
-<p>针对上述挑战，本文提出<strong>湍流-化学递归（Turbulence-Chemistry Recursive, TCR）小尺度混合模型</strong>。该模型通过多层分区反应器结构表征控制体积内的湍流-化学平衡状态，消除了对混合局部性的显式建模需求。</p>
-<h3 id="21-多层分区反应器框架">2.1 多层分区反应器框架</h3>
-<p>TCR 模型的核心思想是将计算单元分解为具有不同混合状态的分区区域，这些状态由湍流混合强度与化学反应强度的相对关系确定。如图 1 所示，计算单元被划分为两个主要区域：</p>
-<ul>
-<li><strong>完全搅拌反应器（PSR）区域</strong>：体积分数为 $\kappa$，PDF 方差极小，小尺度混合速率无需考虑空间局部性即可达到平衡目标</li>
-<li><strong>未混合区域</strong>：体积分数为 $1-\kappa$，高度局部化的混合阻止了方差的显著变化</li>
-</ul>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/PaSR_scheme.png"
-        data-srcset="/images/posts/TCR_Model/PaSR_scheme.png, /images/posts/TCR_Model/PaSR_scheme.png 1.5x, /images/posts/TCR_Model/PaSR_scheme.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/PaSR_scheme.png"
-        title="分区反应器概念示意图" />
-<em>图 1 分区反应器概念示意图。计算单元被划分为 PSR 区域（体积分数 $\kappa$）和未混合区域（体积分数 $1-\kappa$）。</em></p>
-<p>对于反应 $\alpha + \beta \rightarrow \gamma$，反应物比例由体积分数表征：</p>
-<p>$$
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=X-UA-Compatible content="IE=edge, chrome=1"><title>TCR微混合模型：湍流-化学递归闭合方法 - Dong</title><meta name=Description content="介绍TCR (Turbulence-Chemistry Recursive) 微混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"><meta property="og:url" content="https://wangyudong.netlify.app/tcr_micro_mixing_model/"><meta property="og:site_name" content="Dong"><meta property="og:title" content="TCR微混合模型：湍流-化学递归闭合方法"><meta property="og:description" content="介绍TCR (Turbulence-Chemistry Recursive) 微混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-03-16T15:45:00+08:00"><meta property="article:modified_time" content="2025-03-16T15:45:00+08:00"><meta property="article:tag" content="Turbulent Combustion"><meta property="article:tag" content="PDF Method"><meta property="article:tag" content="Micro-Mixing"><meta property="article:tag" content="ESF"><meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wangyudong.netlify.app/images/avatar.png"><meta name=twitter:title content="TCR微混合模型：湍流-化学递归闭合方法"><meta name=twitter:description content="介绍TCR (Turbulence-Chemistry Recursive) 微混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"><meta name=application-name content="Dong"><meta name=apple-mobile-web-app-title content="Dong"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://wangyudong.netlify.app/tcr_micro_mixing_model/><link rel=prev href=https://wangyudong.netlify.app/huaweishengteng/><link rel=next href=https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><link rel=stylesheet href=/css/custom-flat.css><link rel=stylesheet href=/css/toc-comment.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"TCR微混合模型：湍流-化学递归闭合方法","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wangyudong.netlify.app\/tcr_micro_mixing_model\/"},"genre":"posts","keywords":"turbulent combustion, PDF method, micro-mixing, ESF","wordcount":5992,"url":"https:\/\/wangyudong.netlify.app\/tcr_micro_mixing_model\/","datePublished":"2025-03-16T15:45:00+08:00","dateModified":"2025-03-16T15:45:00+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Dong"},"description":"介绍TCR (Turbulence-Chemistry Recursive) 微混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"light"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"light"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><!doctype html><nav class=navbar id=navbar><div class=nav-container><a href=/ class=nav-brand>Dong</a><div class=nav-menu id=nav-menu-desktop><a href=/ class=nav-link>首页</a>
+<a href=/posts/ class="nav-link active">Blog文章</a>
+<a href=/awards/ class=nav-link>学术成果</a></div><div class=nav-tools><button class="nav-btn mobile-menu-btn" id=mobile-menu-toggle type=button aria-label="Toggle menu" aria-expanded=false>
+<i class="fas fa-bars"></i></button></div></div><div class=mobile-menu id=mobile-menu aria-hidden=true><a href=/ class=mobile-nav-link>首页</a>
+<a href=/posts/ class="mobile-nav-link active">Blog文章</a>
+<a href=/awards/ class=mobile-nav-link>学术成果</a></div></nav><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">TCR微混合模型：湍流-化学递归闭合方法</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%E5%AD%A6%E6%9C%AF%E7%AC%94%E8%AE%B0/><i class="far fa-folder fa-fw"></i>学术笔记</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2025-03-16>2025-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;5992 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;12 minutes&nbsp;<span id=/tcr_micro_mixing_model/ class=leancloud_visitors data-flag-title=TCR微混合模型：湍流-化学递归闭合方法>
+<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+</span>&nbsp;</div></div><div class="details toc" id=toc-static kept=true><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-研究背景与挑战>1. 研究背景与挑战</a><ul><li><a href=#11-现有微混合模型的局限>1.1 现有微混合模型的局限</a></li></ul></li><li><a href=#2-tcr微混合模型理论>2. TCR微混合模型理论</a><ul><li><a href=#21-多层分区反应器框架>2.1 多层分区反应器框架</a></li><li><a href=#22-分层分区结构>2.2 分层分区结构</a></li><li><a href=#23-psr-体积分数的确定>2.3 PSR 体积分数的确定</a></li><li><a href=#24-亚格子混合时间尺度>2.4 亚格子混合时间尺度</a></li><li><a href=#25-tcr-模型表达式>2.5 TCR 模型表达式</a></li></ul></li><li><a href=#3-理论分析梯度区尺度效应>3. 理论分析：梯度区尺度效应</a><ul><li><a href=#31-问题描述>3.1 问题描述</a></li><li><a href=#32-方差演化方程>3.2 方差演化方程</a></li><li><a href=#33-空间浓度分布特征>3.3 空间浓度分布特征</a></li><li><a href=#34-梯度尺度效应分析>3.4 梯度尺度效应分析</a></li><li><a href=#35-方差衰减率与梯度的关系>3.5 方差衰减率与梯度的关系</a></li><li><a href=#36-对-tcr-模型的理论支撑>3.6 对 TCR 模型的理论支撑</a></li></ul></li><li><a href=#4-模型验证dns-先验分析>4. 模型验证：DNS 先验分析</a><ul><li><a href=#41-验证方法>4.1 验证方法</a></li></ul></li><li><a href=#5-结论>5. 结论</a></li><li><a href=#参考文献>参考文献</a></li></ul></nav></div></div><div class=content id=content><h1 id=tcr微混合模型湍流-化学递归闭合方法>TCR微混合模型：湍流-化学递归闭合方法</h1><h2 id=1-研究背景与挑战>1. 研究背景与挑战</h2><p>湍流燃烧是现代航空推进和能源系统的核心现象<a href=https://doi.org/10.1016/j.paerosci.2011.03.001 target=_blank rel="noopener noreffer">[1]</a>。即使在未来的低碳能源体系中，航空、航运等领域仍将大量使用燃料燃烧技术。准确预测湍流燃烧过程对于发动机设计、污染物排放控制以及燃烧稳定性分析具有重要意义。</p><p>在湍流燃烧建模中，<strong>输运概率密度函数（Transported Probability Density Function, TPDF）方法</strong>提供了处理湍流-化学相互作用的严格理论框架<a href=https://doi.org/10.1016/j.pecs.2011.05.003 target=_blank rel="noopener noreffer">[2]</a>。TPDF 方法的核心优势在于化学反应源项以显式形式出现，无需进行封闭近似。然而，PDF 输运方程中的<strong>微混合（micro-mixing）项</strong>仍需准确建模，这成为制约 TPDF 方法预测精度的关键因素<a href=https://doi.org/10.1016/j.combustflame.2019.09.006 target=_blank rel="noopener noreffer">[3]</a>。</p><h3 id=11-现有微混合模型的局限>1.1 现有微混合模型的局限</h3><p>当前微混合模型主要面临以下挑战：</p><p><strong>局部性（Localness）建模困境</strong>：IEM（Interaction by Exchange with the Mean）模型<a href=https://doi.org/10.1016/0094-5765%2879%2990111-5 target=_blank rel="noopener noreffer">[4]</a> 和修正 Curl 模型<a href=https://doi.org/10.1016/0010-2180%2879%2990111-2 target=_blank rel="noopener noreffer">[5]</a> 等传统模型缺乏对组成空间局部性的描述，难以准确表征湍流-化学相互作用。EMST（Euclidean Minimum Spanning Tree）模型<a href=https://doi.org/10.1016/S0010-2180%2898%2900016-3 target=_blank rel="noopener noreffer">[6]</a> 虽然引入了组成空间局部性，但违反了线性守恒原则。MMC（Multiple Mapping Conditioning）模型<a href=https://doi.org/10.1063/1.1575756 target=_blank rel="noopener noreffer">[7]</a> 和 SPMM（Stochastic Particle Mixing Model）模型<a href=https://doi.org/10.1016/j.combustflame.2013.02.004 target=_blank rel="noopener noreffer">[8]</a> 等参数化模型虽然提供了可调的局部性，但表现出强烈的参数敏感性，需要针对具体工况进行标定<a href=https://doi.org/10.1016/j.combustflame.2011.05.011 target=_blank rel="noopener noreffer">[9]</a>。</p><p><strong>混合时间尺度建模困难</strong>：现有模型通常采用机械-标量时间尺度比 $C_\phi$ 来表征混合频率，但文献中 $C_\phi$ 的取值跨越一个数量级<a href=https://doi.org/10.1016/j.combustflame.2006.11.003 target=_blank rel="noopener noreffer">[10]</a>，缺乏普适性。动态模型虽然能够根据局部湍流和标量分布调整 $C_\phi$<a href=https://doi.org/10.1016/j.combustflame.2015.08.014 target=_blank rel="noopener noreffer">[11]</a>，但难以准确捕捉化学反应对混合时间尺度的影响。</p><p><strong>欧拉随机场（ESF）方法的局限</strong>：ESF 方法是求解 TPDF 方程的欧拉方法，具有计算效率高、易于并行化、可与欧拉求解器耦合等优势<a href=https://doi.org/10.1023/A:1009991308404 target=_blank rel="noopener noreffer">[12]</a>。然而，ESF 方法无法直接引入基于局部性的微混合模型（如 EMST、SPMM），这限制了其在实际燃烧工况中的应用精度。</p><h2 id=2-tcr微混合模型理论>2. TCR微混合模型理论</h2><p>针对上述挑战，本文提出<strong>湍流-化学递归（Turbulence-Chemistry Recursive, TCR）微混合模型</strong>。该模型通过多层分区反应器结构表征控制体积内的湍流-化学平衡状态，消除了对混合局部性的显式建模需求。</p><h3 id=21-多层分区反应器框架>2.1 多层分区反应器框架</h3><p>TCR 模型的核心思想是将计算单元分解为具有不同混合状态的分区区域，这些状态由湍流混合强度与化学反应强度的相对关系确定。如图 1 所示，计算单元被划分为两个主要区域：</p><ul><li><strong>完全搅拌反应器（PSR）区域</strong>：体积分数为 $\kappa$，PDF 方差极小，微混合速率无需考虑空间局部性即可达到平衡目标</li><li><strong>未混合区域</strong>：体积分数为 $1-\kappa$，高度局部化的混合阻止了方差的显著变化</li></ul><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/PaSR_scheme.png data-srcset="/images/posts/TCR_Model/PaSR_scheme.png, /images/posts/TCR_Model/PaSR_scheme.png 1.5x, /images/posts/TCR_Model/PaSR_scheme.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/PaSR_scheme.png title=分区反应器概念示意图>
+<em>图 1 分区反应器概念示意图。计算单元被划分为 PSR 区域（体积分数 $\kappa$）和未混合区域（体积分数 $1-\kappa$）。</em></p><p>对于反应 $\alpha + \beta \rightarrow \gamma$，反应物比例由体积分数表征：</p><p>$$
 \eta = X_\alpha + X_\beta
-$$</p>
-<p>其中 $X$ 表示体积分数。PSR 体积分数 $\kappa$ 同时控制混合物间（$m$-$n$）和反应物内（$\alpha$-$\beta$）的均匀化过程。</p>
-<h3 id="22-分层分区结构">2.2 分层分区结构</h3>
-<p>TCR 模型采用三层分区结构（如图 2 所示）：</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/mutilayer.png"
-        data-srcset="/images/posts/TCR_Model/mutilayer.png, /images/posts/TCR_Model/mutilayer.png 1.5x, /images/posts/TCR_Model/mutilayer.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/mutilayer.png"
-        title="多层 PaSR 框架层次结构" />
-<em>图 2 多层 PaSR 框架层次结构。主分区将 PSR 区域（区域 1）与未混合区域（区域 2）分离，随后基于反应物混合完备性进行二次和三次分区。</em></p>
-<p><strong>第一层分区</strong>：将计算单元划分为 PSR 区域（区域 1）和未混合区域（区域 2）。过滤后的反应速率表示为：</p>
-<p>$$
+$$</p><p>其中 $X$ 表示体积分数。PSR 体积分数 $\kappa$ 同时控制混合物间（$m$-$n$）和反应物内（$\alpha$-$\beta$）的均匀化过程。</p><h3 id=22-分层分区结构>2.2 分层分区结构</h3><p>TCR 模型采用三层分区结构（如图 2 所示）：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/mutilayer.png data-srcset="/images/posts/TCR_Model/mutilayer.png, /images/posts/TCR_Model/mutilayer.png 1.5x, /images/posts/TCR_Model/mutilayer.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/mutilayer.png title="多层 PaSR 框架层次结构">
+<em>图 2 多层 PaSR 框架层次结构。主分区将 PSR 区域（区域 1）与未混合区域（区域 2）分离，随后基于反应物混合完备性进行二次和三次分区。</em></p><p><strong>第一层分区</strong>：将计算单元划分为 PSR 区域（区域 1）和未混合区域（区域 2）。过滤后的反应速率表示为：</p><p>$$
 \widetilde{\dot{\omega}_c(\mathbf{\phi})} = \kappa \dot{\omega}_1 + (1-\kappa) \dot{\omega}_2
-$$</p>
-<p><strong>第二层分区</strong>：在区域 1 内，基于 $\alpha$-$\beta$ 混合完备性进行二次分区。区域 1 的 $\kappa$ 分数构成区域 1A，其中完全的 $\alpha$-$\beta$ 混合使反应速率达到最大值 $\dot{\omega}_{1A} = \dot{\omega}(\widetilde{\mathbf{\phi}})$；剩余 $1-\kappa$ 形成区域 1B——非反应区域，化学活性为零。因此：</p>
-<p>$$
+$$</p><p><strong>第二层分区</strong>：在区域 1 内，基于 $\alpha$-$\beta$ 混合完备性进行二次分区。区域 1 的 $\kappa$ 分数构成区域 1A，其中完全的 $\alpha$-$\beta$ 混合使反应速率达到最大值 $\dot{\omega}_{1A} = \dot{\omega}(\widetilde{\mathbf{\phi}})$；剩余 $1-\kappa$ 形成区域 1B——非反应区域，化学活性为零。因此：</p><p>$$
 \dot{\omega}<em>1 = \kappa \dot{\omega}</em>{1A} + (1-\kappa) \dot{\omega}_{1B} = \kappa \dot{\omega}_c(\widetilde{\mathbf{\phi}})
-$$</p>
-<p>区域 2 随后按比例 $\eta$ 划分，形成区域 3（分数 $\eta$，包含纯反应物）和区域 4（分数 $1-\eta$，包含混合物 $n$）。区域 2 的反应速率为：</p>
-<p>$$
+$$</p><p>区域 2 随后按比例 $\eta$ 划分，形成区域 3（分数 $\eta$，包含纯反应物）和区域 4（分数 $1-\eta$，包含混合物 $n$）。区域 2 的反应速率为：</p><p>$$
 \dot{\omega}_2 = \eta \dot{\omega}_3 + (1-\eta) \dot{\omega}_4 = \eta \dot{\omega}_3
-$$</p>
-<p><strong>第三层分区</strong>：对区域 3 进行三次分区，引入区域 3A（分数 $\kappa$，具有完全混合的 $\alpha$-$\beta$ 反应物）和区域 3B（分数 $1-\kappa$，表现出反应物分离）。</p>
-<p>假设稀释（区域 1A）和未稀释（区域 3A）反应物混合物的焓分布等价，Arrhenius 速率关系给出：</p>
-<p>$$
+$$</p><p><strong>第三层分区</strong>：对区域 3 进行三次分区，引入区域 3A（分数 $\kappa$，具有完全混合的 $\alpha$-$\beta$ 反应物）和区域 3B（分数 $1-\kappa$，表现出反应物分离）。</p><p>假设稀释（区域 1A）和未稀释（区域 3A）反应物混合物的焓分布等价，Arrhenius 速率关系给出：</p><p>$$
 \frac{\dot{\omega}<em>{3A}}{\dot{\omega}(\widetilde{\mathbf{\phi}})} = \frac{Y</em>{\alpha,3A}Y_{\beta,3A}}{Y_{\alpha,1A}Y_{\beta,1A}} = \frac{1}{\eta^2}
-$$</p>
-<p>综合以上分区关系，得到过滤反应速率与 PSR 反应速率的关系：</p>
-<p>$$
+$$</p><p>综合以上分区关系，得到过滤反应速率与 PSR 反应速率的关系：</p><p>$$
 \widetilde{\dot{\omega}_c(\mathbf{\phi})} = \left( \kappa^2 + \frac{\kappa(1-\kappa)}{\eta} \right)\dot{\omega}_c(\widetilde{\mathbf{\phi}})
-$$</p>
-<h3 id="23-psr-体积分数的确定">2.3 PSR 体积分数的确定</h3>
-<p>重新整理上式，得到 $\kappa$ 的显式表达式：</p>
-<p>$$
+$$</p><h3 id=23-psr-体积分数的确定>2.3 PSR 体积分数的确定</h3><p>重新整理上式，得到 $\kappa$ 的显式表达式：</p><p>$$
 \kappa =
 \begin{cases}
-\frac{1 \pm \sqrt{1 - 4\eta(1-\eta)\frac{\widetilde{\dot{\omega}_c(\mathbf{\phi})}}{\dot{\omega}_c(\widetilde{\mathbf{\phi}})}}}{2(1-\eta)}, &amp; 0 &lt; \eta &lt; 1 \
-\frac{\widetilde{\dot{\omega}_c(\mathbf{\phi})}}{\dot{\omega}_c(\widetilde{\mathbf{\phi}})}, &amp; \eta = 1
+\frac{1 \pm \sqrt{1 - 4\eta(1-\eta)\frac{\widetilde{\dot{\omega}_c(\mathbf{\phi})}}{\dot{\omega}_c(\widetilde{\mathbf{\phi}})}}}{2(1-\eta)}, & 0 &lt; \eta &lt; 1 \
+\frac{\widetilde{\dot{\omega}_c(\mathbf{\phi})}}{\dot{\omega}_c(\widetilde{\mathbf{\phi}})}, & \eta = 1
 \end{cases}
-$$</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/ww0_k_lines.png"
-        data-srcset="/images/posts/TCR_Model/ww0_k_lines.png, /images/posts/TCR_Model/ww0_k_lines.png 1.5x, /images/posts/TCR_Model/ww0_k_lines.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/ww0_k_lines.png"
-        title="混合均匀性参数变化曲线" />
-<em>图 3 不同反应物体积分数 $\eta$ 下，混合均匀性参数 $\kappa$ 随过滤反应速率与 PSR 反应速率比值的变化曲线。</em></p>
-<p>该表达式揭示了不同 $\eta$ 值下的 distinct 燃烧模式（如图 3 所示）。物理可实现性约束为：</p>
-<p>$$
+$$</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/ww0_k_lines.png data-srcset="/images/posts/TCR_Model/ww0_k_lines.png, /images/posts/TCR_Model/ww0_k_lines.png 1.5x, /images/posts/TCR_Model/ww0_k_lines.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/ww0_k_lines.png title=混合均匀性参数变化曲线>
+<em>图 3 不同反应物体积分数 $\eta$ 下，混合均匀性参数 $\kappa$ 随过滤反应速率与 PSR 反应速率比值的变化曲线。</em></p><p>该表达式揭示了不同 $\eta$ 值下的 distinct 燃烧模式（如图 3 所示）。物理可实现性约束为：</p><p>$$
 0 \leq \frac{\widetilde{\dot{\omega}_c(\mathbf{\phi})}}{\dot{\omega}_c(\widetilde{\mathbf{\phi}})} \leq \frac{1}{4\eta(1-\eta)}
-$$</p>
-<p>参数 $\kappa$ 随 Da 数增加而减小，与传统 PaSR 行为一致。其中 $\eta$ 来自过滤场，$\dot{\omega}_c(\widetilde{\mathbf{\phi}})$ 来自化学求解器，$\widetilde{\dot{\omega}_c(\mathbf{\phi})}$ 来自 TPDF 解。</p>
-<h3 id="24-亚格子混合时间尺度">2.4 亚格子混合时间尺度</h3>
-<p>对于守恒标量方差和耗散率建模，采用动态模型确定 $C_\phi$：</p>
-<p>$$
+$$</p><p>参数 $\kappa$ 随 Da 数增加而减小，与传统 PaSR 行为一致。其中 $\eta$ 来自过滤场，$\dot{\omega}_c(\widetilde{\mathbf{\phi}})$ 来自化学求解器，$\widetilde{\dot{\omega}_c(\mathbf{\phi})}$ 来自 TPDF 解。</p><h3 id=24-亚格子混合时间尺度>2.4 亚格子混合时间尺度</h3><p>对于守恒标量方差和耗散率建模，采用动态模型确定 $C_\phi$：</p><p>$$
 C_\phi^{-1}=\frac{\langle LM\rangle}{\langle M^2\rangle}
-$$</p>
-<p>通过测试过滤，其中 $L$ 为 Leonard 项，$M$ 为模型项。空间混合尺度 $\Delta^{\text{TCR}}$ 对应于网格分区后的完全搅拌部分：</p>
-<p>$$
+$$</p><p>通过测试过滤，其中 $L$ 为 Leonard 项，$M$ 为模型项。空间混合尺度 $\Delta^{\text{TCR}}$ 对应于网格分区后的完全搅拌部分：</p><p>$$
 \Delta^{\text{TCR}} = \kappa^{1/3} \cdot \Delta
-$$</p>
-<p>其中 $\Delta$ 为控制体积空间尺度。最终混合时间尺度为：</p>
-<p>$$
+$$</p><p>其中 $\Delta$ 为控制体积空间尺度。最终混合时间尺度为：</p><p>$$
 \tau_{\text{SGS}}^{\text{TCR}}=\frac{\widetilde{Z&rsquo;&rsquo;^2}}{\chi}=\frac{\bar\rho(\Delta^{\text{TCR}})^2}{C_\phi\Gamma}
-$$</p>
-<p>当系统接近火焰面模式时，化学非均匀性增加，$\kappa$ 减小，混合时间尺度相应减小，有效增加了混合频率。这在物理上表征了火焰面模式下标量梯度的增强。</p>
-<h3 id="25-tcr-模型表达式">2.5 TCR 模型表达式</h3>
-<p>TCR 模型通过分区混合模式统一了混合模式和时间尺度：湍流控制搅拌区内的标量混合，其中发生均匀反应；未混合区保持标量方差，消除了局部性建模需求。这种分离允许直接采用 IEM 模型进行 PSR 混合。</p>
-<p>小尺度混合目标 $\psi_\alpha^n$ 通过体积分数加权组合各区域：</p>
-<p>$$
+$$</p><p>当系统接近火焰面模式时，化学非均匀性增加，$\kappa$ 减小，混合时间尺度相应减小，有效增加了混合频率。这在物理上表征了火焰面模式下标量梯度的增强。</p><h3 id=25-tcr-模型表达式>2.5 TCR 模型表达式</h3><p>TCR 模型通过分区混合模式统一了混合模式和时间尺度：湍流控制搅拌区内的标量混合，其中发生均匀反应；未混合区保持标量方差，消除了局部性建模需求。这种分离允许直接采用 IEM 模型进行 PSR 混合。</p><p>微混合目标 $\psi_\alpha^n$ 通过体积分数加权组合各区域：</p><p>$$
 \psi_\alpha^n = \kappa \widetilde{\phi_\alpha} + (1-\kappa)\xi_\alpha^n
-$$</p>
-<p>代入 IEM 表达式，得到 TCR 模型的小尺度混合项：</p>
-<p>$$
+$$</p><p>代入 IEM 表达式，得到 TCR 模型的微混合项：</p><p>$$
 \mathcal{M} = - \kappa^{1/3}\frac{\bar{\rho}}{2\tau_{\text{SGS}}} \left( \xi_\alpha^n - \widetilde{\phi}_\alpha \right)\mathrm{d}t
-$$</p>
-<p>虽然 $\kappa$ 的减小降低了小尺度混合的空间尺度，从而减小了混合时间尺度，但表达式显示 $\kappa$ 对混合时间尺度的影响弱于对混合模式的影响。因此，总体而言，较小的 $\kappa$ 导致 $\xi_\alpha^n$ 的变化率降低，对应于小尺度混合后更高的方差。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/TCR.png"
-        data-srcset="/images/posts/TCR_Model/TCR.png, /images/posts/TCR_Model/TCR.png 1.5x, /images/posts/TCR_Model/TCR.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/TCR.png"
-        title="TCR 模型在 ESF-TPDF 框架中的实现流程" />
-<em>图 4 TCR 模型在 ESF-TPDF 框架中的实现流程（使用 4 个随机场）。递归闭合利用 PDF 解中的过滤反应速率 ($\widetilde{\dot{\omega}_c}$) 和参考反应速率 ($\dot{\omega}_c(\widetilde{\mathbf{\phi}})$) 动态确定下一时间步的 $\kappa$。</em></p>
-<p>TCR 模型中的参数 $\kappa$ 通过前一计算步骤获得的过滤-PSR 反应速率比，利用前述公式递归确定，并应用于当前 TPDF 计算周期。这种处理消除了经验模型参数，实现了自递归闭合。</p>
-<h2 id="3-理论分析梯度区尺度效应">3. 理论分析：梯度区尺度效应</h2>
-<h3 id="31-问题描述">3.1 问题描述</h3>
-<p>为深入理解 TCR 模型中梯度区尺度对小尺度混合过程的影响，考虑一维计算网格系统，其中总网格数 $N$，空间坐标 $x_1 &lt; x_2 &lt; \cdots &lt; x_N$ 对应递增的网格编号。某标量物质浓度分布满足 $Y_1 \leq Y_2 \leq \cdots \leq Y_N$，且满足边界条件 $Y_N - Y_1 = \Delta Y = \text{const}$。系统划分为三个特征区域：</p>
-<ul>
-<li><strong>左侧非梯度区</strong>：网格 $1$ 至 $p$，浓度恒为 $Y_1$</li>
-<li><strong>梯度区</strong>：网格 $p$ 至 $q$，浓度线性变化，梯度 $g = \frac{Y_N - Y_1}{x_q - x_p} = \frac{\Delta Y}{L_g}$</li>
-<li><strong>右侧非梯度区</strong>：网格 $q$ 至 $N$，浓度恒为 $Y_N$</li>
-</ul>
-<p>其中 $L_g = x_q - x_p$ 表示梯度区物理尺度。系统内定义随机变量 $\xi$ 表征物质浓度波动，其动力学行为由以下松弛方程描述：</p>
-<p>$$
+$$</p><p>虽然 $\kappa$ 的减小降低了微混合的空间尺度，从而减小了混合时间尺度，但表达式显示 $\kappa$ 对混合时间尺度的影响弱于对混合模式的影响。因此，总体而言，较小的 $\kappa$ 导致 $\xi_\alpha^n$ 的变化率降低，对应于微混合后更高的方差。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/TCR.png data-srcset="/images/posts/TCR_Model/TCR.png, /images/posts/TCR_Model/TCR.png 1.5x, /images/posts/TCR_Model/TCR.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/TCR.png title="TCR 模型在 ESF-TPDF 框架中的实现流程">
+<em>图 4 TCR 模型在 ESF-TPDF 框架中的实现流程（使用 4 个随机场）。递归闭合利用 PDF 解中的过滤反应速率 ($\widetilde{\dot{\omega}_c}$) 和参考反应速率 ($\dot{\omega}_c(\widetilde{\mathbf{\phi}})$) 动态确定下一时间步的 $\kappa$。</em></p><p>TCR 模型中的参数 $\kappa$ 通过前一计算步骤获得的过滤-PSR 反应速率比，利用前述公式递归确定，并应用于当前 TPDF 计算周期。这种处理消除了经验模型参数，实现了自递归闭合。</p><h2 id=3-理论分析梯度区尺度效应>3. 理论分析：梯度区尺度效应</h2><h3 id=31-问题描述>3.1 问题描述</h3><p>为深入理解 TCR 模型中梯度区尺度对微混合过程的影响，考虑一维计算网格系统，其中总网格数 $N$，空间坐标 $x_1 &lt; x_2 &lt; \cdots &lt; x_N$ 对应递增的网格编号。某标量物质浓度分布满足 $Y_1 \leq Y_2 \leq \cdots \leq Y_N$，且满足边界条件 $Y_N - Y_1 = \Delta Y = \text{const}$。系统划分为三个特征区域：</p><ul><li><strong>左侧非梯度区</strong>：网格 $1$ 至 $p$，浓度恒为 $Y_1$</li><li><strong>梯度区</strong>：网格 $p$ 至 $q$，浓度线性变化，梯度 $g = \frac{Y_N - Y_1}{x_q - x_p} = \frac{\Delta Y}{L_g}$</li><li><strong>右侧非梯度区</strong>：网格 $q$ 至 $N$，浓度恒为 $Y_N$</li></ul><p>其中 $L_g = x_q - x_p$ 表示梯度区物理尺度。系统内定义随机变量 $\xi$ 表征物质浓度波动，其动力学行为由以下松弛方程描述：</p><p>$$
 \frac{d\xi}{dt} = -\Omega (\xi - Y_m)
-$$</p>
-<p>这里 $\Omega$ 为湍流混合频率，$Y_m$ 表示 $\xi$ 所在局部网格 $m$ 的浓度。系统处于湍流-化学反应平衡态，网格浓度 $Y_n$ 保持恒定，而 $\xi$ 统计上向全局均值松弛。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/theory_fig1_concentration_distribution.png"
-        data-srcset="/images/posts/TCR_Model/theory_fig1_concentration_distribution.png, /images/posts/TCR_Model/theory_fig1_concentration_distribution.png 1.5x, /images/posts/TCR_Model/theory_fig1_concentration_distribution.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/theory_fig1_concentration_distribution.png"
-        title="浓度分布示意图" />
-<em>图 7 一维浓度分布示意图，展示梯度区（Gradient zone）与非梯度区（Non-gradient zone）的结构。梯度区尺度为 $L_g$，非梯度区尺度为 $L_e$。</em></p>
-<h3 id="32-方差演化方程">3.2 方差演化方程</h3>
-<p>定义浓度波动方差 $\langle (\xi - \widetilde{Y})^2 \rangle$，其中 $\langle \cdot \rangle$ 表示统计期望。对时间求导：</p>
-<p>$$
+$$</p><p>这里 $\Omega$ 为湍流混合频率，$Y_m$ 表示 $\xi$ 所在局部网格 $m$ 的浓度。系统处于湍流-化学反应平衡态，网格浓度 $Y_n$ 保持恒定，而 $\xi$ 统计上向全局均值松弛。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/theory_fig1_concentration_distribution.png data-srcset="/images/posts/TCR_Model/theory_fig1_concentration_distribution.png, /images/posts/TCR_Model/theory_fig1_concentration_distribution.png 1.5x, /images/posts/TCR_Model/theory_fig1_concentration_distribution.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/theory_fig1_concentration_distribution.png title=浓度分布示意图>
+<em>图 7 一维浓度分布示意图，展示梯度区（Gradient zone）与非梯度区（Non-gradient zone）的结构。梯度区尺度为 $L_g$，非梯度区尺度为 $L_e$。</em></p><h3 id=32-方差演化方程>3.2 方差演化方程</h3><p>定义浓度波动方差 $\langle (\xi - \widetilde{Y})^2 \rangle$，其中 $\langle \cdot \rangle$ 表示统计期望。对时间求导：</p><p>$$
 \frac{d}{dt} \langle (\xi - \widetilde{Y})^2 \rangle = 2 \left\langle (\xi - \widetilde{Y}) \frac{d\xi}{dt} \right\rangle
-$$</p>
-<p>代入松弛方程：</p>
-<p>$$
+$$</p><p>代入松弛方程：</p><p>$$
 \frac{d}{dt} \langle (\xi - \widetilde{Y})^2 \rangle = -2\Omega \left\langle (\xi - \widetilde{Y}) (\xi - Y_m) \right\rangle
-$$</p>
-<p>展开右边项：</p>
-<p>$$
+$$</p><p>展开右边项：</p><p>$$
 (\xi - \widetilde{Y}) (\xi - Y_m) = (\xi - \widetilde{Y})^2 - (\xi - \widetilde{Y}) (Y_m - \widetilde{Y})
-$$</p>
-<p>得方差演化方程：</p>
-<p>$$
+$$</p><p>得方差演化方程：</p><p>$$
 \frac{d}{dt} \langle (\xi - \widetilde{Y})^2 \rangle = -2\Omega \left[ \langle (\xi - \widetilde{Y})^2 \rangle - \langle (\xi - \widetilde{Y}) (Y_m - \widetilde{Y}) \rangle \right]
-$$</p>
-<h3 id="33-空间浓度分布特征">3.3 空间浓度分布特征</h3>
-<p>全局均值计算：</p>
-<p>$$
+$$</p><h3 id=33-空间浓度分布特征>3.3 空间浓度分布特征</h3><p>全局均值计算：</p><p>$$
 \widetilde{Y} = \frac{1}{x_N - x_1} \left[ \sum_{k=1}^{p-1} Y_1 \Delta x_k + \sum_{k=p}^{q} \left( Y_1 + g(x_k - x_p) \right) \Delta x_k + \sum_{k=q+1}^{N} Y_N \Delta x_k \right]
-$$</p>
-<p>当网格均匀时($\Delta x_k = \Delta x$)，令 $L = x_N - x_1$，则：</p>
-<p>$$
+$$</p><p>当网格均匀时($\Delta x_k = \Delta x$)，令 $L = x_N - x_1$，则：</p><p>$$
 \widetilde{Y} = Y_1 + \frac{\Delta Y}{L} \left[ (x_p - x_1) + \frac{1}{2} L_g \right]
-$$</p>
-<p>浓度场空间方差：</p>
-<p>$$
+$$</p><p>浓度场空间方差：</p><p>$$
 \sigma_Y^2 = \frac{1}{L} \int_{x_1}^{x_N} (Y(x) - \widetilde{Y})^2 dx = \frac{(\Delta Y)^2}{L^2} \left[ (x_p - x_1)^2 + \frac{2}{3} (x_p - x_1) L_g + \frac{1}{12} L_g^2 \right]
-$$</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png"
-        data-srcset="/images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png, /images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png 1.5x, /images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png"
-        title="空间方差随梯度区尺度变化" />
-<em>图 8 空间方差 $\sigma_Y^2$ 随梯度区尺度 $L_g$ 的变化关系（固定总长度 $L$）。当 $L_g$ 增大时，$\sigma_Y^2$ 从 $(\Delta Y)^2/4$ 单调递减至 $(\Delta Y)^2/12$。</em></p>
-<h3 id="34-梯度尺度效应分析">3.4 梯度尺度效应分析</h3>
-<p>在松弛过程中，协方差项近似满足：</p>
-<p>$$
+$$</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png data-srcset="/images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png, /images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png 1.5x, /images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/theory_fig2_variance_vs_Lg.png title=空间方差随梯度区尺度变化>
+<em>图 8 空间方差 $\sigma_Y^2$ 随梯度区尺度 $L_g$ 的变化关系（固定总长度 $L$）。当 $L_g$ 增大时，$\sigma_Y^2$ 从 $(\Delta Y)^2/4$ 单调递减至 $(\Delta Y)^2/12$。</em></p><h3 id=34-梯度尺度效应分析>3.4 梯度尺度效应分析</h3><p>在松弛过程中，协方差项近似满足：</p><p>$$
 \langle (\xi - \widetilde{Y}) (Y_m - \widetilde{Y}) \rangle \approx \sigma_Y^2
-$$</p>
-<p>方差演化方程简化为：</p>
-<p>$$
+$$</p><p>方差演化方程简化为：</p><p>$$
 \frac{d}{dt} \langle (\xi - \widetilde{Y})^2 \rangle = -2\Omega \left[ \langle (\xi - \widetilde{Y})^2 \rangle - \sigma_Y^2 \right]
-$$</p>
-<p>由空间方差表达式可得关键关系：</p>
-<p>$$
+$$</p><p>由空间方差表达式可得关键关系：</p><p>$$
 \frac{\partial \sigma_Y^2}{\partial L_g} = -\frac{(\Delta Y)^2}{L^3} \left[ \frac{2}{3} (x_p - x_1) L_g + \frac{1}{3} (x_p - x_1)^2 \right] &lt; 0
-$$</p>
-<p>这表明 $\sigma_Y^2$ 是 $L_g$ 的单调递减函数。当 $L_g \to \infty$ 时 $\sigma_Y^2 \to \frac{(\Delta Y)^2}{12}$，$L_g \to 0$ 时 $\sigma_Y^2 \to \frac{(\Delta Y)^2}{4}$。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png"
-        data-srcset="/images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png, /images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png 1.5x, /images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png"
-        title="方差衰减率随梯度区尺度变化" />
-<em>图 9 方差衰减率 $|dV/dt|$ 随梯度区尺度 $L_g$ 的变化关系。当 $L_g$ 增大时，$\sigma_Y^2$ 减小，偏差项 $(V - \sigma_Y^2)$ 增大，导致方差衰减率增大。</em></p>
-<h3 id="35-方差衰减率与梯度的关系">3.5 方差衰减率与梯度的关系</h3>
-<p>由方差演化方程，方差衰减率：</p>
-<p>$$
+$$</p><p>这表明 $\sigma_Y^2$ 是 $L_g$ 的单调递减函数。当 $L_g \to \infty$ 时 $\sigma_Y^2 \to \frac{(\Delta Y)^2}{12}$，$L_g \to 0$ 时 $\sigma_Y^2 \to \frac{(\Delta Y)^2}{4}$。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png data-srcset="/images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png, /images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png 1.5x, /images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/theory_fig3_decay_rate_vs_Lg.png title=方差衰减率随梯度区尺度变化>
+<em>图 9 方差衰减率 $|dV/dt|$ 随梯度区尺度 $L_g$ 的变化关系。当 $L_g$ 增大时，$\sigma_Y^2$ 减小，偏差项 $(V - \sigma_Y^2)$ 增大，导致方差衰减率增大。</em></p><h3 id=35-方差衰减率与梯度的关系>3.5 方差衰减率与梯度的关系</h3><p>由方差演化方程，方差衰减率：</p><p>$$
 \left| \frac{d}{dt} \langle (\xi - \widetilde{Y})^2 \rangle \right| = 2\Omega \left[ \langle (\xi - \widetilde{Y})^2 \rangle - \sigma_Y^2 \right]
-$$</p>
-<p>当 $L_g$ 增大时：</p>
-<ol>
-<li>$\sigma_Y^2$ 减小（浓度分布更平缓）</li>
-<li>偏差项 $\langle (\xi - \widetilde{Y})^2 \rangle - \sigma_Y^2$ 增大</li>
-<li><strong>方差衰减率</strong> $|dV/dt|$ 增大</li>
-</ol>
-<p>这意味着：梯度区尺度越大，系统趋向均匀混合的速率越快。物理上，这是因为较大的梯度区提供了更多的&quot;混合空间&quot;，使得随机变量能够更有效地向均值松弛。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/theory_fig4_partition_correspondence.png"
-        data-srcset="/images/posts/TCR_Model/theory_fig4_partition_correspondence.png, /images/posts/TCR_Model/theory_fig4_partition_correspondence.png 1.5x, /images/posts/TCR_Model/theory_fig4_partition_correspondence.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/theory_fig4_partition_correspondence.png"
-        title="理论分析与TCR模型对应关系" />
-<em>图 10 理论分析与 TCR 模型分区结构的对应关系。左图：理论分析中的一维网格，梯度区对应 PSR 区域，非梯度区对应未混合区域；右图：TCR 模型的分区反应器结构，参数 $\kappa$ 表示 PSR 体积分数。</em></p>
-<h3 id="36-对-tcr-模型的理论支撑">3.6 对 TCR 模型的理论支撑</h3>
-<p>上述分析为 TCR 模型的分区结构提供了理论基础：</p>
-<p><strong>PSR 区域（梯度区）</strong>：对应于理论分析中的梯度区，其中存在持续的浓度梯度驱动混合。当梯度区尺度 $L_g$ 较大时，虽然梯度值 $g$ 较小，但混合的有效空间增大，整体混合效率提高。</p>
-<p><strong>未混合区域（非梯度区）</strong>：对应于理论分析中的非梯度区，浓度均匀，不贡献于混合过程。这些区域的存在&quot;稀释&quot;了混合效率，使得整体混合速率降低。</p>
-<p>TCR 模型通过参数 $\kappa$（PSR 体积分数）来量化这一效应：</p>
-<ul>
-<li>当 $L_g$ 增大（梯度区扩大），$\kappa$ 增大，模型预测的混合效率提高</li>
-<li>当 $L_g$ 减小（趋向火焰面模式），$\kappa$ 减小，混合被&quot;抑制&quot;，方差保持较高水平</li>
-</ul>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png"
-        data-srcset="/images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png, /images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png 1.5x, /images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png"
-        title="综合关系图" />
-<em>图 11 综合关系图。上图：$\sigma_Y^2$ 随 $L_g$ 的变化（左）和 $|dV/dt|$ 随 $\sigma_Y^2$ 的变化（右）；下图：双 y 轴图展示 $|dV/dt|$ 和 $\sigma_Y^2$ 随 $L_g$ 的反向变化关系。</em></p>
-<p>该理论分析成立需满足：</p>
-<ol>
-<li>$L_g \gg \Delta x$（梯度区远大于网格尺度）</li>
-<li>$\Delta Y = Y_N - Y_1$ 守恒</li>
-<li>混合频率 $\Omega$ 空间均匀</li>
-<li>初始波动方差大于空间方差（确保方差减小过程）</li>
-</ol>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/theory_fig6_physical_mechanism.png"
-        data-srcset="/images/posts/TCR_Model/theory_fig6_physical_mechanism.png, /images/posts/TCR_Model/theory_fig6_physical_mechanism.png 1.5x, /images/posts/TCR_Model/theory_fig6_physical_mechanism.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/theory_fig6_physical_mechanism.png"
-        title="物理机制示意图" />
-<em>图 12 物理机制示意图，展示不同梯度区尺度下的混合效率。小 $L_g$（火焰面模式）：混合效率低，方差保持较高；大 $L_g$（分布式反应模式）：混合效率高，方差快速衰减。</em></p>
-<h2 id="4-模型验证dns-先验分析">4. 模型验证：DNS 先验分析</h2>
-<h3 id="41-验证方法">4.1 验证方法</h3>
-<p>采用预混火焰 DNS 数据对 TCR 模型进行先验验证。DNS 数据来自三维反应湍流预混甲烷-空气圆射流火焰，采用半全局 CH4-BFER 机理。通过将 $10\times10\times10=1000$ 个 DNS 单元聚合形成虚拟 LES 网格点，实现亚格子尺度 PDF 方差的直接比较。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/10x10x10mesh.png"
-        data-srcset="/images/posts/TCR_Model/10x10x10mesh.png, /images/posts/TCR_Model/10x10x10mesh.png 1.5x, /images/posts/TCR_Model/10x10x10mesh.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/10x10x10mesh.png"
-        title="虚拟 LES 控制体积构建" />
-<em>图 13 从 DNS 数据构建虚拟 LES 控制体积用于先验模型评估。每个虚拟 LES 单元聚合 $10\times10\times10=1000$ 个 DNS 单元。</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/RPVandRate.png"
-        data-srcset="/images/posts/TCR_Model/RPVandRate.png, /images/posts/TCR_Model/RPVandRate.png 1.5x, /images/posts/TCR_Model/RPVandRate.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/RPVandRate.png"
-        title="反应进度变量及其变化率分布" />
-<em>图 14 中心截面轮廓图。左：反应进度变量；右：反应进度变量变化率。</em></p>
-<p>$\dot{\omega}_c$ 分布显示射流 periphery 附近存在更强烈且非均匀的化学反应，而射流周围的共流区域反应速率较慢且空间均匀性更高。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/wcwc0.png"
-        data-srcset="/images/posts/TCR_Model/wcwc0.png, /images/posts/TCR_Model/wcwc0.png 1.5x, /images/posts/TCR_Model/wcwc0.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/wcwc0.png"
-        title="均匀混合假设下的反应速率与 DNS 过滤速率的相关性" />
-<em>图 15 均匀混合假设下计算的反应进度变量速率 ($\dot{\omega}_c(\widetilde{\mathbf{\phi}})$) 与 DNS 导出的过滤速率 ($\widetilde{\dot{\omega}_c(\mathbf{\phi}})$) 的相关性。偏离单位线（红色虚线）表示 LES 控制体积内的亚格子化学非均匀性。</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/kappa1.png"
-        data-srcset="/images/posts/TCR_Model/kappa1.png, /images/posts/TCR_Model/kappa1.png 1.5x, /images/posts/TCR_Model/kappa1.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/kappa1.png"
-        title="PSR 体积分数空间分布" />
-<em>图 16 中心截面上 PSR 体积分数 $\kappa$ 的空间分布。较低的 $\kappa$ 值（蓝色）表示接近火焰面燃烧模式的薄反应区，而较高值（黄色）对应于湍流主导的分布式反应区。</em></p>
-<p>ESF-TPDF 方法应用于从 1000 个 DNS 单元采样的虚拟 LES 网格，使用 Wiener 过程获得初始标量 PDF 方差。Wiener 过程提供的初始标量 PDF 方差仅依赖于当前和相邻 LES 网格的空间尺度和均值，无需亚格子标量分布细节或化学反应信息。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/IEMscatter.png"
-        data-srcset="/images/posts/TCR_Model/IEMscatter.png, /images/posts/TCR_Model/IEMscatter.png 1.5x, /images/posts/TCR_Model/IEMscatter.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/IEMscatter.png"
-        title="IEM 模型 PDF 方差散点图" />
-<em>图 17 氧质量分数 PDF 方差估计值与理论值散点图，显示初始 Wiener 过程结果（深蓝色）和 IEM 混合后结果（绿色）。</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/TCRscatter.png"
-        data-srcset="/images/posts/TCR_Model/TCRscatter.png, /images/posts/TCR_Model/TCRscatter.png 1.5x, /images/posts/TCR_Model/TCRscatter.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/TCRscatter.png"
-        title="TCR 模型 PDF 方差散点图" />
-<em>图 18 氧质量分数 PDF 方差估计值与理论值散点图，显示初始 Wiener 过程结果（深蓝色）和 TCR 混合后结果（红色）。</em></p>
-<p>TCR 和 IEM 模型在低方差区域差异较小，这可能是因为均匀的化学反应分布使 $\kappa$ 接近 1，此时 TCR 退化为 IEM。显著差异出现在高方差区域，那里 IEM 的线性梯度混合未能捕捉化学反应诱导的非均匀性。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/posts/TCR_Model/errorline.png"
-        data-srcset="/images/posts/TCR_Model/errorline.png, /images/posts/TCR_Model/errorline.png 1.5x, /images/posts/TCR_Model/errorline.png 2x"
-        data-sizes="auto"
-        alt="/images/posts/TCR_Model/errorline.png"
-        title="PDF 方差预测误差比较" />
-<em>图 19 IEM 和 TCR 模型在不同方差量级下的氧质量分数 PDF 方差预测误差比较。</em></p>
-<table>
-  <thead>
-      <tr>
-          <th>变量</th>
-          <th>IEM</th>
-          <th>TCR</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>温度</td>
-          <td>6.10%</td>
-          <td>1.25%</td>
-      </tr>
-      <tr>
-          <td>CH$_4$</td>
-          <td>10.64%</td>
-          <td>1.65%</td>
-      </tr>
-      <tr>
-          <td>O$_2$</td>
-          <td>5.99%</td>
-          <td>1.10%</td>
-      </tr>
-      <tr>
-          <td>CO$_2$</td>
-          <td>4.96%</td>
-          <td>0.17%</td>
-      </tr>
-      <tr>
-          <td>H$_2$O</td>
-          <td>12.57%</td>
-          <td>0.70%</td>
-      </tr>
-      <tr>
-          <td>N$_2$</td>
-          <td>1.13%</td>
-          <td>0.07%</td>
-      </tr>
-  </tbody>
-</table>
-<p><em>表 2 使用 IEM 和 TCR 模型的温度和组分浓度平均 PDF 方差误差</em></p>
-<p>TCR 模型将 PDF 方差预测误差降低至 IEM 值的 3.43%-20.49%。传统 TPDF 模拟通常针对具体工况调整常数 $C_\phi$ 以获得精度，但这种方法缺乏普适性。</p>
-<h2 id="5-结论">5. 结论</h2>
-<p>TCR 小尺度混合模型针对 ESF 方法长期无法引入基于局部性的小尺度混合封闭问题，提出了创新的解决方案。多层分区反应器结构在不进行显式局部性建模的情况下捕捉湍流-化学相互作用。通过标量方差演化统一混合模式和时间尺度，模型正确预测了火焰面模式下混合频率和标量方差同时增加的现象。递归闭合利用 PDF 解中的过滤和参考反应速率，消除了经验标定。</p>
-<p>理论分析表明，在湍流-化学反应平衡态下，随机浓度变量的方差衰减率与梯度区尺度呈正相关。这意味着较大的梯度区提供了更多的混合空间，使得系统趋向均匀化的速率加快。这一结论为 TCR 模型中通过参数 $\kappa$ 来量化混合效率提供了理论基础：梯度区尺度越大（趋向分布式反应），$\kappa$ 越大，混合效率越高；反之，梯度区尺度越小（趋向火焰面模式），$\kappa$ 越小，混合被抑制，方差保持较高水平。</p>
-<p>验证结果表明，相比传统 IEM 封闭，TCR 模型显著提高了精度。先验 DNS 分析显示 PDF 方差预测误差降低至 IEM 水平的 3.43%-20.49%，在对应于小尺度化学反应的高方差区域优势尤为明显。</p>
-<p>作为一种无参数方法，TCR 模型增加的计算成本可忽略不计，且与现有 ESF 框架完全兼容。该模型为工程燃烧器跨 diverse 燃烧模式的预测模拟提供了物理一致的框架。</p>
-<hr>
-<h2 id="参考文献">参考文献</h2>
-<p>[1] Gohardani, A.S., Doulgeris, G., Singh, R. (2011). Challenges of future aircraft propulsion: a review of distributed propulsion technology and its potential application for the all electric commercial aircraft. <em>Progress in Aerospace Sciences</em>, 47(5), 369-391.</p>
-<p>[2] Pope, S.B. (1985). PDF Methods for turbulent reacting flows. <em>Progress in Energy and Combustion Science</em>, 11, 119-192.</p>
-<p>[3] Gutierrez, E., et al. (2025). Micro-mixing modeling in turbulent combustion. <em>Combustion and Flame</em>.</p>
-<p>[4] Dopazo, C., O&rsquo;Brien, E.E. (1979). An approach to the autoignition of a turbulent mixture. <em>Acta Astronautica</em>, 1, 1239-1266.</p>
-<p>[5] Curl, R.L. (1963). Dispersed phase mixing: I. Theory and effects in simple reactors. <em>AIChE Journal</em>, 9(2), 175-181.</p>
-<p>[6] Subramaniam, S., Pope, S.B. (1998). A mixing model for turbulent reactive flows based on Euclidean minimum spanning trees. <em>Combustion and Flame</em>, 115(4), 487-514.</p>
-<p>[7] Klimenko, A.Y., Pope, S.B. (2003). The modeling of turbulent reactive flows based on multiple mapping conditioning. <em>Physics of Fluids</em>, 15(7), 1907-1925.</p>
-<p>[8] Pope, S.B. (2013). A stochastic mixing model for turbulent reactive flows with multiple mixing levels. <em>Combustion and Flame</em>, 160(9), 1577-1591.</p>
-<p>[9] Ge, Y., et al. (2011). Mixing model evaluation in turbulent jet flames. <em>Combustion and Flame</em>, 158(8), 1555-1566.</p>
-<p>[10] Cao, R.R., et al. (2007). Turbulent transport and scalar dissipation rate in turbulent jet flames. <em>Combustion and Flame</em>, 151(1-2), 118-131.</p>
-<p>[11] Han, W., et al. (2016). Dynamic model for scalar mixing in turbulent flows. <em>Combustion and Flame</em>, 168, 334-345.</p>
-<p>[12] Valiño, L. (1998). A field Monte Carlo formulation for calculating the probability density function of a single scalar in a turbulent flow. <em>Flow, Turbulence and Combustion</em>, 60, 157-172.</p>
-<p>[13] Haworth, D.C. (2010). Progress in probability density function methods for turbulent reacting flows. <em>Progress in Energy and Combustion Science</em>, 36(2), 168-259.</p>
-<p>[14] Brouzet, G., et al. (2021). DNS of turbulent premixed flames. <em>Journal of Fluid Mechanics</em>.</p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2025-03-16</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/tcr_micro_mixing_model/index.md" target="_blank">Read Markdown</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/tcr_micro_mixing_model/" data-title="TCR小尺度混合模型：湍流-化学递归闭合方法" data-hashtags="turbulent combustion,PDF method,micro-mixing,ESF"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/tcr_micro_mixing_model/" data-hashtag="turbulent combustion"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/tcr_micro_mixing_model/" data-title="TCR小尺度混合模型：湍流-化学递归闭合方法" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/tcr_micro_mixing_model/" data-title="TCR小尺度混合模型：湍流-化学递归闭合方法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/tcr_micro_mixing_model/" data-title="TCR小尺度混合模型：湍流-化学递归闭合方法" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/tcr_micro_mixing_model/" data-title="TCR小尺度混合模型：湍流-化学递归闭合方法" data-description="介绍TCR (Turbulence-Chemistry Recursive) 小尺度混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/tcr_micro_mixing_model/" data-title="TCR小尺度混合模型：湍流-化学递归闭合方法" data-description="介绍TCR (Turbulence-Chemistry Recursive) 小尺度混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/tcr_micro_mixing_model/" data-title="TCR小尺度混合模型：湍流-化学递归闭合方法"><i class="fab fa-evernote fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/turbulent-combustion/">Turbulent Combustion</a>,&nbsp;<a href="/tags/pdf-method/">PDF Method</a>,&nbsp;<a href="/tags/micro-mixing/">Micro-Mixing</a>,&nbsp;<a href="/tags/esf/">ESF</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/huaweishengteng/" class="prev" rel="prev" title="Ascend C算子 学习笔记"><i class="fas fa-angle-left fa-fw"></i>Ascend C算子 学习笔记</a>
-            <a href="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" class="next" rel="next" title="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础">大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="valine" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
-            </div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
-
-<script type="text/javascript">
-    L2Dwidget.init({
-        model: {
-            scale: 1,
-            hHeadPos: 0.5,
-            vHeadPos: 0.618,
-            
-            
-            
-            
-            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
-        },
-        display: {
-            superSample: 1,     
-            width: 120,         
-            height: 300,        
-            position: 'left',   
-            hOffset: 0,         
-            vOffset: 0,         
-        },
-        mobile: {
-            show: false,         
-            scale: 0.3,           
-            motion: true,       
-        },
-        react: {
-            opacityDefault: 1,  
-            opacityOnHover: 1,  
-        },
-     });
-</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
-
-<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
-
-<script>
-
-(function() {
-    
-    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
-    
-    
-    if (!localStorage.getItem('feishu_webhook')) {
-        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
-    }
-})();
-</script>
-</body>
-</html>
+$$</p><p>当 $L_g$ 增大时：</p><ol><li>$\sigma_Y^2$ 减小（浓度分布更平缓）</li><li>偏差项 $\langle (\xi - \widetilde{Y})^2 \rangle - \sigma_Y^2$ 增大</li><li><strong>方差衰减率</strong> $|dV/dt|$ 增大</li></ol><p>这意味着：梯度区尺度越大，系统趋向均匀混合的速率越快。物理上，这是因为较大的梯度区提供了更多的"混合空间"，使得随机变量能够更有效地向均值松弛。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/theory_fig4_partition_correspondence.png data-srcset="/images/posts/TCR_Model/theory_fig4_partition_correspondence.png, /images/posts/TCR_Model/theory_fig4_partition_correspondence.png 1.5x, /images/posts/TCR_Model/theory_fig4_partition_correspondence.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/theory_fig4_partition_correspondence.png title=理论分析与TCR模型对应关系>
+<em>图 10 理论分析与 TCR 模型分区结构的对应关系。左图：理论分析中的一维网格，梯度区对应 PSR 区域，非梯度区对应未混合区域；右图：TCR 模型的分区反应器结构，参数 $\kappa$ 表示 PSR 体积分数。</em></p><h3 id=36-对-tcr-模型的理论支撑>3.6 对 TCR 模型的理论支撑</h3><p>上述分析为 TCR 模型的分区结构提供了理论基础：</p><p><strong>PSR 区域（梯度区）</strong>：对应于理论分析中的梯度区，其中存在持续的浓度梯度驱动混合。当梯度区尺度 $L_g$ 较大时，虽然梯度值 $g$ 较小，但混合的有效空间增大，整体混合效率提高。</p><p><strong>未混合区域（非梯度区）</strong>：对应于理论分析中的非梯度区，浓度均匀，不贡献于混合过程。这些区域的存在"稀释"了混合效率，使得整体混合速率降低。</p><p>TCR 模型通过参数 $\kappa$（PSR 体积分数）来量化这一效应：</p><ul><li>当 $L_g$ 增大（梯度区扩大），$\kappa$ 增大，模型预测的混合效率提高</li><li>当 $L_g$ 减小（趋向火焰面模式），$\kappa$ 减小，混合被"抑制"，方差保持较高水平</li></ul><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png data-srcset="/images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png, /images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png 1.5x, /images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/theory_fig5_comprehensive_relationship.png title=综合关系图>
+<em>图 11 综合关系图。上图：$\sigma_Y^2$ 随 $L_g$ 的变化（左）和 $|dV/dt|$ 随 $\sigma_Y^2$ 的变化（右）；下图：双 y 轴图展示 $|dV/dt|$ 和 $\sigma_Y^2$ 随 $L_g$ 的反向变化关系。</em></p><p>该理论分析成立需满足：</p><ol><li>$L_g \gg \Delta x$（梯度区远大于网格尺度）</li><li>$\Delta Y = Y_N - Y_1$ 守恒</li><li>混合频率 $\Omega$ 空间均匀</li><li>初始波动方差大于空间方差（确保方差减小过程）</li></ol><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/theory_fig6_physical_mechanism.png data-srcset="/images/posts/TCR_Model/theory_fig6_physical_mechanism.png, /images/posts/TCR_Model/theory_fig6_physical_mechanism.png 1.5x, /images/posts/TCR_Model/theory_fig6_physical_mechanism.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/theory_fig6_physical_mechanism.png title=物理机制示意图>
+<em>图 12 物理机制示意图，展示不同梯度区尺度下的混合效率。小 $L_g$（火焰面模式）：混合效率低，方差保持较高；大 $L_g$（分布式反应模式）：混合效率高，方差快速衰减。</em></p><h2 id=4-模型验证dns-先验分析>4. 模型验证：DNS 先验分析</h2><h3 id=41-验证方法>4.1 验证方法</h3><p>采用预混火焰 DNS 数据对 TCR 模型进行先验验证。DNS 数据来自三维反应湍流预混甲烷-空气圆射流火焰，采用半全局 CH4-BFER 机理。通过将 $10\times10\times10=1000$ 个 DNS 单元聚合形成虚拟 LES 网格点，实现亚格子尺度 PDF 方差的直接比较。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/10x10x10mesh.png data-srcset="/images/posts/TCR_Model/10x10x10mesh.png, /images/posts/TCR_Model/10x10x10mesh.png 1.5x, /images/posts/TCR_Model/10x10x10mesh.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/10x10x10mesh.png title="虚拟 LES 控制体积构建">
+<em>图 13 从 DNS 数据构建虚拟 LES 控制体积用于先验模型评估。每个虚拟 LES 单元聚合 $10\times10\times10=1000$ 个 DNS 单元。</em></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/RPVandRate.png data-srcset="/images/posts/TCR_Model/RPVandRate.png, /images/posts/TCR_Model/RPVandRate.png 1.5x, /images/posts/TCR_Model/RPVandRate.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/RPVandRate.png title=反应进度变量及其变化率分布>
+<em>图 14 中心截面轮廓图。左：反应进度变量；右：反应进度变量变化率。</em></p><p>$\dot{\omega}_c$ 分布显示射流 periphery 附近存在更强烈且非均匀的化学反应，而射流周围的共流区域反应速率较慢且空间均匀性更高。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/wcwc0.png data-srcset="/images/posts/TCR_Model/wcwc0.png, /images/posts/TCR_Model/wcwc0.png 1.5x, /images/posts/TCR_Model/wcwc0.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/wcwc0.png title="均匀混合假设下的反应速率与 DNS 过滤速率的相关性">
+<em>图 15 均匀混合假设下计算的反应进度变量速率 ($\dot{\omega}_c(\widetilde{\mathbf{\phi}})$) 与 DNS 导出的过滤速率 ($\widetilde{\dot{\omega}_c(\mathbf{\phi})}$) 的相关性。偏离单位线（红色虚线）表示 LES 控制体积内的亚格子化学非均匀性。</em></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/kappa1.png data-srcset="/images/posts/TCR_Model/kappa1.png, /images/posts/TCR_Model/kappa1.png 1.5x, /images/posts/TCR_Model/kappa1.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/kappa1.png title="PSR 体积分数空间分布">
+<em>图 16 中心截面上 PSR 体积分数 $\kappa$ 的空间分布。较低的 $\kappa$ 值（蓝色）表示接近火焰面燃烧模式的薄反应区，而较高值（黄色）对应于湍流主导的分布式反应区。</em></p><p>ESF-TPDF 方法应用于从 1000 个 DNS 单元采样的虚拟 LES 网格，使用 Wiener 过程获得初始标量 PDF 方差。Wiener 过程提供的初始标量 PDF 方差仅依赖于当前和相邻 LES 网格的空间尺度和均值，无需亚格子标量分布细节或化学反应信息。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/IEMscatter.png data-srcset="/images/posts/TCR_Model/IEMscatter.png, /images/posts/TCR_Model/IEMscatter.png 1.5x, /images/posts/TCR_Model/IEMscatter.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/IEMscatter.png title="IEM 模型 PDF 方差散点图">
+<em>图 17 氧质量分数 PDF 方差估计值与理论值散点图，显示初始 Wiener 过程结果（深蓝色）和 IEM 混合后结果（绿色）。</em></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/TCRscatter.png data-srcset="/images/posts/TCR_Model/TCRscatter.png, /images/posts/TCR_Model/TCRscatter.png 1.5x, /images/posts/TCR_Model/TCRscatter.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/TCRscatter.png title="TCR 模型 PDF 方差散点图">
+<em>图 18 氧质量分数 PDF 方差估计值与理论值散点图，显示初始 Wiener 过程结果（深蓝色）和 TCR 混合后结果（红色）。</em></p><p>TCR 和 IEM 模型在低方差区域差异较小，这可能是因为均匀的化学反应分布使 $\kappa$ 接近 1，此时 TCR 退化为 IEM。显著差异出现在高方差区域，那里 IEM 的线性梯度混合未能捕捉化学反应诱导的非均匀性。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/posts/TCR_Model/errorline.png data-srcset="/images/posts/TCR_Model/errorline.png, /images/posts/TCR_Model/errorline.png 1.5x, /images/posts/TCR_Model/errorline.png 2x" data-sizes=auto alt=/images/posts/TCR_Model/errorline.png title="PDF 方差预测误差比较">
+<em>图 19 IEM 和 TCR 模型在不同方差量级下的氧质量分数 PDF 方差预测误差比较。</em></p><table><thead><tr><th>变量</th><th>IEM</th><th>TCR</th></tr></thead><tbody><tr><td>温度</td><td>6.10%</td><td>1.25%</td></tr><tr><td>CH$_4$</td><td>10.64%</td><td>1.65%</td></tr><tr><td>O$_2$</td><td>5.99%</td><td>1.10%</td></tr><tr><td>CO$_2$</td><td>4.96%</td><td>0.17%</td></tr><tr><td>H$_2$O</td><td>12.57%</td><td>0.70%</td></tr><tr><td>N$_2$</td><td>1.13%</td><td>0.07%</td></tr></tbody></table><p><em>表 2 使用 IEM 和 TCR 模型的温度和组分浓度平均 PDF 方差误差</em></p><p>TCR 模型将 PDF 方差预测误差降低至 IEM 值的 3.43%-20.49%。传统 TPDF 模拟通常针对具体工况调整常数 $C_\phi$ 以获得精度，但这种方法缺乏普适性。</p><h2 id=5-结论>5. 结论</h2><p>TCR 微混合模型针对 ESF 方法长期无法引入基于局部性的微混合封闭问题，提出了创新的解决方案。多层分区反应器结构在不进行显式局部性建模的情况下捕捉湍流-化学相互作用。通过标量方差演化统一混合模式和时间尺度，模型正确预测了火焰面模式下混合频率和标量方差同时增加的现象。递归闭合利用 PDF 解中的过滤和参考反应速率，消除了经验标定。</p><p>理论分析表明，在湍流-化学反应平衡态下，随机浓度变量的方差衰减率与梯度区尺度呈正相关。这意味着较大的梯度区提供了更多的混合空间，使得系统趋向均匀化的速率加快。这一结论为 TCR 模型中通过参数 $\kappa$ 来量化混合效率提供了理论基础：梯度区尺度越大（趋向分布式反应），$\kappa$ 越大，混合效率越高；反之，梯度区尺度越小（趋向火焰面模式），$\kappa$ 越小，混合被抑制，方差保持较高水平。</p><p>验证结果表明，相比传统 IEM 封闭，TCR 模型显著提高了精度。先验 DNS 分析显示 PDF 方差预测误差降低至 IEM 水平的 3.43%-20.49%，在对应于小尺度化学反应的高方差区域优势尤为明显。</p><p>作为一种无参数方法，TCR 模型增加的计算成本可忽略不计，且与现有 ESF 框架完全兼容。该模型为工程燃烧器跨 diverse 燃烧模式的预测模拟提供了物理一致的框架。</p><hr><h2 id=参考文献>参考文献</h2><p>[1] Gohardani, A.S., Doulgeris, G., Singh, R. (2011). Challenges of future aircraft propulsion: a review of distributed propulsion technology and its potential application for the all electric commercial aircraft. <em>Progress in Aerospace Sciences</em>, 47(5), 369-391.</p><p>[2] Pope, S.B. (1985). PDF Methods for turbulent reacting flows. <em>Progress in Energy and Combustion Science</em>, 11, 119-192.</p><p>[3] Gutierrez, E., et al. (2025). Micro-mixing modeling in turbulent combustion. <em>Combustion and Flame</em>.</p><p>[4] Dopazo, C., O&rsquo;Brien, E.E. (1979). An approach to the autoignition of a turbulent mixture. <em>Acta Astronautica</em>, 1, 1239-1266.</p><p>[5] Curl, R.L. (1963). Dispersed phase mixing: I. Theory and effects in simple reactors. <em>AIChE Journal</em>, 9(2), 175-181.</p><p>[6] Subramaniam, S., Pope, S.B. (1998). A mixing model for turbulent reactive flows based on Euclidean minimum spanning trees. <em>Combustion and Flame</em>, 115(4), 487-514.</p><p>[7] Klimenko, A.Y., Pope, S.B. (2003). The modeling of turbulent reactive flows based on multiple mapping conditioning. <em>Physics of Fluids</em>, 15(7), 1907-1925.</p><p>[8] Pope, S.B. (2013). A stochastic mixing model for turbulent reactive flows with multiple mixing levels. <em>Combustion and Flame</em>, 160(9), 1577-1591.</p><p>[9] Ge, Y., et al. (2011). Mixing model evaluation in turbulent jet flames. <em>Combustion and Flame</em>, 158(8), 1555-1566.</p><p>[10] Cao, R.R., et al. (2007). Turbulent transport and scalar dissipation rate in turbulent jet flames. <em>Combustion and Flame</em>, 151(1-2), 118-131.</p><p>[11] Han, W., et al. (2016). Dynamic model for scalar mixing in turbulent flows. <em>Combustion and Flame</em>, 168, 334-345.</p><p>[12] Valiño, L. (1998). A field Monte Carlo formulation for calculating the probability density function of a single scalar in a turbulent flow. <em>Flow, Turbulence and Combustion</em>, 60, 157-172.</p><p>[13] Haworth, D.C. (2010). Progress in probability density function methods for turbulent reacting flows. <em>Progress in Energy and Combustion Science</em>, 36(2), 168-259.</p><p>[14] Brouzet, G., et al. (2021). DNS of turbulent premixed flames. <em>Journal of Fluid Mechanics</em>.</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2025-03-16</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/tcr_micro_mixing_model/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://wangyudong.netlify.app/tcr_micro_mixing_model/ data-title=TCR微混合模型：湍流-化学递归闭合方法 data-hashtags="turbulent combustion,PDF method,micro-mixing,ESF"><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://wangyudong.netlify.app/tcr_micro_mixing_model/ data-hashtag="turbulent combustion"><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on WhatsApp" data-sharer=whatsapp data-url=https://wangyudong.netlify.app/tcr_micro_mixing_model/ data-title=TCR微混合模型：湍流-化学递归闭合方法 data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://wangyudong.netlify.app/tcr_micro_mixing_model/ data-title=TCR微混合模型：湍流-化学递归闭合方法><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://wangyudong.netlify.app/tcr_micro_mixing_model/ data-title=TCR微混合模型：湍流-化学递归闭合方法 data-ralateuid=6086629393><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="Share on Myspace" data-sharer=myspace data-url=https://wangyudong.netlify.app/tcr_micro_mixing_model/ data-title=TCR微混合模型：湍流-化学递归闭合方法 data-description="介绍TCR (Turbulence-Chemistry Recursive) 微混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"><i data-svg-src=/lib/simple-icons/icons/myspace.min.svg></i></a><a href=javascript:void(0); title="Share on Blogger" data-sharer=blogger data-url=https://wangyudong.netlify.app/tcr_micro_mixing_model/ data-title=TCR微混合模型：湍流-化学递归闭合方法 data-description="介绍TCR (Turbulence-Chemistry Recursive) 微混合模型，用于ESF-TPDF方法中的湍流燃烧模拟"><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="Share on Evernote" data-sharer=evernote data-url=https://wangyudong.netlify.app/tcr_micro_mixing_model/ data-title=TCR微混合模型：湍流-化学递归闭合方法><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/turbulent-combustion/>Turbulent Combustion</a>,&nbsp;<a href=/tags/pdf-method/>PDF Method</a>,&nbsp;<a href=/tags/micro-mixing/>Micro-Mixing</a>,&nbsp;<a href=/tags/esf/>ESF</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/huaweishengteng/ class=prev rel=prev title="Ascend C算子 学习笔记"><i class="fas fa-angle-left fa-fw"></i>Ascend C算子 学习笔记</a>
+<a href=/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/ class=next rel=next title=大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础>大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=valine class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><script type=text/javascript id=clustrmaps src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class=footer-line><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Dong</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/valine/valine.min.css><link rel=stylesheet href=/lib/lightgallery/lightgallery.min.css><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><link rel=stylesheet href=/lib/cookieconsent/cookieconsent.min.css><link rel=stylesheet href=css/custom-flat.css><script type=text/javascript src=/lib/valine/Valine.min.js></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/lightgallery/lightgallery.min.js></script><script type=text/javascript src=/lib/lightgallery/lg-thumbnail.min.js></script><script type=text/javascript src=/lib/lightgallery/lg-zoom.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript src=/lib/cookieconsent/cookieconsent.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:10},comment:{valine:{appId:"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz",appKey:"SL9ydCelSxirpnPfFitBbCuB",avatar:"mp",el:"#valine",emojiCDN:"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/",emojiMaps:{100:"1f4af.png",alien:"1f47d.png",anger:"1f4a2.png",angry:"1f620.png",anguished:"1f627.png",astonished:"1f632.png",black_heart:"1f5a4.png",blue_heart:"1f499.png",blush:"1f60a.png",bomb:"1f4a3.png",boom:"1f4a5.png",broken_heart:"1f494.png",brown_heart:"1f90e.png",clown_face:"1f921.png",cold_face:"1f976.png",cold_sweat:"1f630.png",confounded:"1f616.png",confused:"1f615.png",cry:"1f622.png",crying_cat_face:"1f63f.png",cupid:"1f498.png",dash:"1f4a8.png",disappointed:"1f61e.png",disappointed_relieved:"1f625.png",dizzy:"1f4ab.png",dizzy_face:"1f635.png",drooling_face:"1f924.png",exploding_head:"1f92f.png",expressionless:"1f611.png",face_vomiting:"1f92e.png",face_with_cowboy_hat:"1f920.png",face_with_hand_over_mouth:"1f92d.png",face_with_head_bandage:"1f915.png",face_with_monocle:"1f9d0.png",face_with_raised_eyebrow:"1f928.png",face_with_rolling_eyes:"1f644.png",face_with_symbols_on_mouth:"1f92c.png",face_with_thermometer:"1f912.png",fearful:"1f628.png",flushed:"1f633.png",frowning:"1f626.png",ghost:"1f47b.png",gift_heart:"1f49d.png",green_heart:"1f49a.png",grimacing:"1f62c.png",grin:"1f601.png",grinning:"1f600.png",hankey:"1f4a9.png",hear_no_evil:"1f649.png",heart:"2764-fe0f.png",heart_decoration:"1f49f.png",heart_eyes:"1f60d.png",heart_eyes_cat:"1f63b.png",heartbeat:"1f493.png",heartpulse:"1f497.png",heavy_heart_exclamation_mark_ornament:"2763-fe0f.png",hole:"1f573-fe0f.png",hot_face:"1f975.png",hugging_face:"1f917.png",hushed:"1f62f.png",imp:"1f47f.png",innocent:"1f607.png",japanese_goblin:"1f47a.png",japanese_ogre:"1f479.png",joy:"1f602.png",joy_cat:"1f639.png",kiss:"1f48b.png",kissing:"1f617.png",kissing_cat:"1f63d.png",kissing_closed_eyes:"1f61a.png",kissing_heart:"1f618.png",kissing_smiling_eyes:"1f619.png",laughing:"1f606.png",left_speech_bubble:"1f5e8-fe0f.png",love_letter:"1f48c.png",lying_face:"1f925.png",mask:"1f637.png",money_mouth_face:"1f911.png",nauseated_face:"1f922.png",nerd_face:"1f913.png",neutral_face:"1f610.png",no_mouth:"1f636.png",open_mouth:"1f62e.png",orange_heart:"1f9e1.png",partying_face:"1f973.png",pensive:"1f614.png",persevere:"1f623.png",pleading_face:"1f97a.png",pouting_cat:"1f63e.png",purple_heart:"1f49c.png",rage:"1f621.png",relaxed:"263a-fe0f.png",relieved:"1f60c.png",revolving_hearts:"1f49e.png",right_anger_bubble:"1f5ef-fe0f.png",robot_face:"1f916.png",rolling_on_the_floor_laughing:"1f923.png",scream:"1f631.png",scream_cat:"1f640.png",see_no_evil:"1f648.png",shushing_face:"1f92b.png",skull:"1f480.png",skull_and_crossbones:"2620-fe0f.png",sleeping:"1f634.png",sleepy:"1f62a.png",slightly_frowning_face:"1f641.png",slightly_smiling_face:"1f642.png",smile:"1f604.png",smile_cat:"1f638.png",smiley:"1f603.png",smiley_cat:"1f63a.png",smiling_face_with_3_hearts:"1f970.png",smiling_imp:"1f608.png",smirk:"1f60f.png",smirk_cat:"1f63c.png",sneezing_face:"1f927.png",sob:"1f62d.png",space_invader:"1f47e.png",sparkling_heart:"1f496.png",speak_no_evil:"1f64a.png",speech_balloon:"1f4ac.png","star-struck":"1f929.png",stuck_out_tongue:"1f61b.png",stuck_out_tongue_closed_eyes:"1f61d.png",stuck_out_tongue_winking_eye:"1f61c.png",sunglasses:"1f60e.png",sweat:"1f613.png",sweat_drops:"1f4a6.png",sweat_smile:"1f605.png",thinking_face:"1f914.png",thought_balloon:"1f4ad.png",tired_face:"1f62b.png",triumph:"1f624.png",two_hearts:"1f495.png",unamused:"1f612.png",upside_down_face:"1f643.png",weary:"1f629.png",white_frowning_face:"2639-fe0f.png",white_heart:"1f90d.png",wink:"1f609.png",woozy_face:"1f974.png",worried:"1f61f.png",yawning_face:"1f971.png",yellow_heart:"1f49b.png",yum:"1f60b.png",zany_face:"1f92a.png",zipper_mouth_face:"1f910.png",zzz:"1f4a4.png"},enableQQ:!1,highlight:!0,lang:"en",pageSize:10,placeholder:"Your comment ...",recordIP:!0,visitor:!0}},cookieconsent:{content:{dismiss:"Got it!",link:"Learn more",message:"This website uses Cookies to improve your experience."},enable:!0,palette:{button:{background:"#f0f0f0"},popup:{background:"#1aa3ff"}},theme:"edgeless"},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js></script><script type=text/javascript>L2Dwidget.init({model:{scale:1,hHeadPos:.5,vHeadPos:.618,jsonPath:"https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json"},display:{superSample:1,width:120,height:300,position:"left",hOffset:0,vOffset:0},mobile:{show:!1,scale:.3,motion:!0},react:{opacityDefault:1,opacityOnHover:1}})</script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js></script><script type=text/javascript src=/js/custom.js></script><script type=text/javascript src=/js/katex-render.js></script><script src=/js/toc-comment.js></script><script>(function(){const e="https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b";localStorage.getItem("feishu_webhook")||localStorage.setItem("feishu_webhook",e)})()</script></body></html>

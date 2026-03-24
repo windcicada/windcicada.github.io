@@ -1,21 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>个人资料 on Dong</title>
-    <link>https://wangyudong.netlify.app/categories/%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99/</link>
-    <description>Recent content in 个人资料 on Dong</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
-    <lastBuildDate>Mon, 01 Jul 2024 12:50:51 +0800</lastBuildDate>
-    <atom:link href="https://wangyudong.netlify.app/categories/%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>学术成果</title>
-      <link>https://wangyudong.netlify.app/awards/</link>
-      <pubDate>Mon, 01 Jul 2024 12:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
-      <guid>https://wangyudong.netlify.app/awards/</guid>
-      <description>&lt;h2 id=&#34;期刊会议论文&#34;&gt;期刊&amp;amp;会议论文&lt;/h2&gt;&#xA;&lt;p&gt;[1] &lt;strong&gt;Yudong W&lt;/strong&gt;, Fang W, Jiawei Z, et al. &lt;a href=&#34;../pdf/IBM_POF.pdf&#34; rel=&#34;&#34;&gt;An improved immersed boundary method with local flow pattern reconstruction and its validation&lt;/a&gt;[J]. Physics of Fluids, 2024, 36(4).&lt;/p&gt;&#xA;&lt;p&gt;[2] &lt;strong&gt;王煜栋&lt;/strong&gt;,王方,金捷.&lt;a href=&#34;../pdf/IBM_The.pdf&#34; rel=&#34;&#34;&gt;多连通域曲线坐标系浸没边界方法及其检验&lt;/a&gt;[J/OL].工程力学:1-13[2022-10-31].DOI:10.6052/j.issn.1000-4750.2022.03.0247.&lt;/p&gt;&#xA;&lt;p&gt;[3] &lt;strong&gt;王煜栋&lt;/strong&gt;,王方,甘甜,金捷.&lt;a href=&#34;../pdf/IBM_WP11.pdf&#34; rel=&#34;&#34;&gt;基于曲线坐标系浸没边界方法的折流燃烧室模拟&lt;/a&gt;[J/OL].推进技术:1-22[2022-10-31].DOI:10.13675/j.cnki.tjjs.2207026.&lt;/p&gt;&#xA;&lt;p&gt;[4] &lt;strong&gt;王煜栋&lt;/strong&gt;,王方,周佳伟,金捷.&lt;a href=&#34;../pdf/AECSC_IBM.pdf&#34; rel=&#34;&#34;&gt;AECSC-IBM航空发动机燃烧室数值模拟软件研发与检验&lt;/a&gt;[J].航空动力学报,2022,37(10):2310-2323.DOI:10.13224/j.cnki.jasp.20220216.&lt;/p&gt;&#xA;&lt;p&gt;[5] Fang Wang,&lt;strong&gt;Yu-dong Wang&lt;/strong&gt;,Xiang Gao,Yu-long Ye,Rui Liu,Gao Han,Jie Jin.&lt;a href=&#34;../pdf/JAHS_Slinger.pdf&#34; rel=&#34;&#34;&gt;Exploration on Nonaxisymmetric Flow Phenomenon in a Slinger Injector&lt;/a&gt;[J].Journal of the American Helicopter Society,2022,67(3):142-152.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>个人资料 on Dong</title><link>https://wangyudong.netlify.app/categories/%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99/</link><description>Recent content in 个人资料 on Dong</description><generator>Hugo</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor><webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Mon, 01 Jul 2024 12:50:51 +0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/categories/%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99/index.xml" rel="self" type="application/rss+xml"/><item><title>学术成果</title><link>https://wangyudong.netlify.app/awards/</link><pubDate>Mon, 01 Jul 2024 12:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/awards/</guid><description>&lt;h2 id="期刊会议论文"&gt;期刊&amp;amp;会议论文&lt;/h2&gt;
+&lt;p&gt;[1] &lt;strong&gt;Yudong W&lt;/strong&gt;, Fang W, Jiawei Z, et al. &lt;a href="../pdf/IBM_POF.pdf" rel=""&gt;An improved immersed boundary method with local flow pattern reconstruction and its validation&lt;/a&gt;[J]. Physics of Fluids, 2024, 36(4).&lt;/p&gt;
+&lt;p&gt;[2] &lt;strong&gt;王煜栋&lt;/strong&gt;,王方,金捷.&lt;a href="../pdf/IBM_The.pdf" rel=""&gt;多连通域曲线坐标系浸没边界方法及其检验&lt;/a&gt;[J/OL].工程力学:1-13[2022-10-31].DOI:10.6052/j.issn.1000-4750.2022.03.0247.&lt;/p&gt;
+&lt;p&gt;[3] &lt;strong&gt;王煜栋&lt;/strong&gt;,王方,甘甜,金捷.&lt;a href="../pdf/IBM_WP11.pdf" rel=""&gt;基于曲线坐标系浸没边界方法的折流燃烧室模拟&lt;/a&gt;[J/OL].推进技术:1-22[2022-10-31].DOI:10.13675/j.cnki.tjjs.2207026.&lt;/p&gt;
+&lt;p&gt;[4] &lt;strong&gt;王煜栋&lt;/strong&gt;,王方,周佳伟,金捷.&lt;a href="../pdf/AECSC_IBM.pdf" rel=""&gt;AECSC-IBM航空发动机燃烧室数值模拟软件研发与检验&lt;/a&gt;[J].航空动力学报,2022,37(10):2310-2323.DOI:10.13224/j.cnki.jasp.20220216.&lt;/p&gt;
+&lt;p&gt;[5] Fang Wang,&lt;strong&gt;Yu-dong Wang&lt;/strong&gt;,Xiang Gao,Yu-long Ye,Rui Liu,Gao Han,Jie Jin.&lt;a href="../pdf/JAHS_Slinger.pdf" rel=""&gt;Exploration on Nonaxisymmetric Flow Phenomenon in a Slinger Injector&lt;/a&gt;[J].Journal of the American Helicopter Society,2022,67(3):142-152.&lt;/p&gt;</description></item></channel></rss>

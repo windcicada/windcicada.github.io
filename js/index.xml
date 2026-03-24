@@ -1,20 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Js on Dong</title>
-    <link>https://wangyudong.netlify.app/js/</link>
-    <description>Recent content in Js on Dong</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
-    <atom:link href="https://wangyudong.netlify.app/js/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title></title>
-      <link>https://wangyudong.netlify.app/js/fire/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
-      <guid>https://wangyudong.netlify.app/js/fire/</guid>
-      <description>&lt;style type=&#34;text/css&#34;&gt;&#xD;&#xA;  .fireworks {&#xD;&#xA;      position: fixed;&#xD;&#xA;      top: 0;&#xD;&#xA;      left: 0;&#xD;&#xA;      widows: 100%;&#xD;&#xA;      height: 100%;&#xD;&#xA;  }&#xD;&#xA;&lt;/style&gt;&#xD;&#xA;&lt;canvas class=&#34;fireworks&#34;&gt;&lt;/canvas&gt;&#xD;&#xA;&lt;script src=&#34;./anime.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;./fireworks.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script type=&#34;text/javascript&#34;&gt;&#xD;&#xA;  fireworks.setCanvasSize();&#xD;&#xA;&lt;/script&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Js on Dong</title><link>https://wangyudong.netlify.app/js/</link><description>Recent content in Js on Dong</description><generator>Hugo</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor><webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><atom:link href="https://wangyudong.netlify.app/js/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://wangyudong.netlify.app/js/fire/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/js/fire/</guid><description>&lt;style type="text/css"&gt;
+ .fireworks {
+ position: fixed;
+ top: 0;
+ left: 0;
+ widows: 100%;
+ height: 100%;
+ }
+&lt;/style&gt;
+&lt;canvas class="fireworks"&gt;&lt;/canvas&gt;
+&lt;script src="./anime.min.js"&gt;&lt;/script&gt;
+&lt;script src="./fireworks.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+ fireworks.setCanvasSize();
+&lt;/script&gt;</description></item></channel></rss>
