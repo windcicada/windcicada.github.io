@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>燃烧模式 on Dong</title><link>https://wangyudong.netlify.app/tags/%E7%87%83%E7%83%A7%E6%A8%A1%E5%BC%8F/</link><description>Recent content in 燃烧模式 on Dong</description><generator>Hugo</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor><webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/%E7%87%83%E7%83%A7%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>LES-BOFFIN 反应进度变量与 TCR κ_c 诊断方法详解</title><link>https://wangyudong.netlify.app/tcr_progress_variable_method/</link><pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/tcr_progress_variable_method/</guid><description>&lt;ul&gt;
+&lt;li&gt;TCR模型
+type: post
+featuredImage: &amp;quot;&amp;quot;
+featuredImagePreview: &amp;quot;&amp;quot;
+draft: false&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id="les-boffin-反应进度变量与-tcr-κ_c-诊断方法详解"&gt;LES-BOFFIN 反应进度变量与 TCR κ_c 诊断方法详解&lt;/h1&gt;
+&lt;h2 id="1-研究背景"&gt;1. 研究背景&lt;/h2&gt;
+&lt;p&gt;在大涡模拟（LES）与概率密度函数（PDF）方法结合的湍流燃烧模拟中，准确诊断燃烧状态和理解湍流-化学相互作用是重要课题。传统方法难以直接刻画反应进程和燃烧模式之间的耦合关系。&lt;/p&gt;
+&lt;p&gt;本文详细介绍基于**反应进度变量（Progress Variable）**的燃烧诊断方法，包括 TCR（湍流-化学递归）模型中 κ_c 的计算方法。&lt;/p&gt;</description></item></channel></rss>

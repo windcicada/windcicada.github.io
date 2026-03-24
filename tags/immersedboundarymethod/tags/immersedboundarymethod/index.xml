@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ImmersedBoundaryMethod - Tag - Dong</title>
+        <link>https://wangyudong.netlify.app/tags/immersedboundarymethod/</link>
+        <description>ImmersedBoundaryMethod - Tag - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Sat, 21 Aug 2021 15:51:00 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/immersedboundarymethod/" rel="self" type="application/rss+xml" /><item>
+    <title>浸没边界方法</title>
+    <link>https://wangyudong.netlify.app/ibm_method/</link>
+    <pubDate>Sat, 21 Aug 2021 15:51:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/ibm_method/</guid>
+    <description><![CDATA[浸没边界方法 用途 模拟存在复杂结构的流场 模拟动边界问题 Peskin 直接力法-柔性边界 浸没边界方法最早由Peskin提出，将复杂结构的边界模化为N-S方程]]></description>
+</item></channel>
+</rss>
