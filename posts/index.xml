@@ -21,17 +21,15 @@
     <author>Author</author>
     <guid>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</guid>
     <description><![CDATA[<blockquote>
-<p><strong>写在前面</strong>：本文系统整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）小尺度混合模型的理论笔记，分享给同领域的研究者。</p>]]></description>
+<p><strong>写在前面</strong>：本文初步整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）小尺度混合模型的理论笔记，分享给同领域的研究者。</p>]]></description>
 </item><item>
-    <title>TCR灏忓昂搴︽贩鍚堟ā鍨嬶細婀嶆祦-鍖栧閫掑綊闂悎鏂规硶</title>
+    <title>TCR小尺度混合模型：湍流-化学递归闭合方法</title>
     <link>https://wangyudong.netlify.app/tcr_micro_mixing_model/</link>
     <pubDate>Sun, 16 Mar 2025 15:45:00 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://wangyudong.netlify.app/tcr_micro_mixing_model/</guid>
-    <description><![CDATA[<h2 id="1-鐮旂鑳屾櫙涓庢寫鎴">1. 鐮旂┒鑳屾櫙涓庢寫鎴?</h2>
-<h2 id="1-鐮旂鑳屾櫙涓庢寫鎴-1">1. 鐮旂┒鑳屾櫙涓庢寫鎴?</h2>
-<p>婀嶆祦鐕冪儳鏄幇浠ｈ埅绌烘帹杩涘拰鑳芥簮绯荤粺鐨勬牳蹇冪幇璞[1]](<a href="https://doi.org/10.1016/j.paerosci.2011.03.001" target="_blank" rel="noopener noreffer">https://doi.org/10.1016/j.paerosci.2011.03.001</a>)銆傚嵆浣垮湪鏈潵鐨勪綆纰宠兘婧愪綋绯讳腑锛岃埅绌恒€佽埅杩愮瓑棰嗗煙浠嶅皢澶ч噺浣跨敤鐕冩枡鐕冪儳鎶€鏈€傚噯纭娴嬫箥娴佺噧鐑ц繃绋嬪浜庡彂鍔ㄦ満璁捐銆佹薄鏌撶墿鎺掓斁鎺у埗浠ュ強鐕冪儳绋冲畾鎬у垎鏋愬叿鏈夐噸瑕佹剰涔夈€?
-鍦ㄦ箥娴佺噧鐑у缓妯′腑锛?*杈撹繍姒傜巼瀵嗗害鍑芥暟锛圱ransported Probability Density Function, TPDF锛夋柟娉?*鎻愪緵浜嗗鐞嗘箥娴?鍖栧鐩镐簰浣滅敤鐨勪弗鏍肩悊璁烘鏋禰[2]](<a href="https://doi.org/10.1016/j.pecs.2011.05.003" target="_blank" rel="noopener noreffer">https://doi.org/10.1016/j.pecs.2011.05.003</a>)銆俆PDF 鏂规硶鐨勬牳蹇冧紭鍔垮湪浜庡寲瀛﹀弽搴旀簮椤逛互鏄惧紡褰㈠紡鍑虹幇锛屾棤闇€杩涜灏侀棴杩戜技銆傜劧鑰岋紝PDF 杈撹繍鏂圭▼涓殑**寰贩鍚堬紙micro-mixing锛夐」**浠嶉渶鍑嗙‘寤烘ā锛岃繖鎴愪负鍒剁害 TPDF 鏂规硶棰勬祴绮惧害鐨勫叧閿洜绱燵[3]](<a href="https://doi.org/10.1016/j.combustflame.2019.09.006" target="_blank" rel="noopener noreffer">https://doi.org/10.1016/j.combustflame.2019.09.006</a>)銆?</p>]]></description>
+    <description><![CDATA[<h2 id="1-研究背景与挑战">1. 研究背景与挑战</h2>
+<p>湍流燃烧是现代航空推进和能源系统的核心现象<a href="https://doi.org/10.1016/j.paerosci.2011.03.001" target="_blank" rel="noopener noreffer">[1]</a>。即使在未来的低碳能源体系中，航空、航运等领域仍将大量使用燃料燃烧技术。准确预测湍流燃烧过程对于发动机设计、污染物排放控制以及燃烧稳定性分析具有重要意义。</p>]]></description>
 </item><item>
     <title>Ascend C算子 学习笔记</title>
     <link>https://wangyudong.netlify.app/huaweishengteng/</link>

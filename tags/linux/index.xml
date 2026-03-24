@@ -1,59 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Dong</title><link>https://wangyudong.netlify.app/tags/linux/</link><description>Recent content in Linux on Dong</description><generator>Hugo</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor><webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 11 Nov 2021 20:17:00 +0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>FRP端口转发搭建</title><link>https://wangyudong.netlify.app/frp/</link><pubDate>Thu, 11 Nov 2021 20:17:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/frp/</guid><description>&lt;h2 id="frpc在windows端的使用"&gt;frpc在Windows端的使用&lt;/h2&gt;
-&lt;h3 id="1-修改frpcini"&gt;1 修改&lt;code&gt;frpc.ini&lt;/code&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;span class="lnt"&gt;2
-&lt;/span&gt;&lt;span class="lnt"&gt;3
-&lt;/span&gt;&lt;span class="lnt"&gt;4
-&lt;/span&gt;&lt;span class="lnt"&gt;5
-&lt;/span&gt;&lt;span class="lnt"&gt;6
-&lt;/span&gt;&lt;span class="lnt"&gt;7
-&lt;/span&gt;&lt;span class="lnt"&gt;8
-&lt;/span&gt;&lt;span class="lnt"&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-ini" data-lang="ini"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;[common]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;server_addr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;服务器地址&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;server_port&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;服务器段frps.ini中开放的端口&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;[ssh]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;tcp&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;local_ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;127.0.0.1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;local_port&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;3389&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;remote_port&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;服务器对外开放的端口&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class="details admonition tip"&gt;
- &lt;div class="details-summary admonition-title"&gt;
- &lt;i class="icon fas fa-lightbulb fa-fw"&gt;&lt;/i&gt;对于 TND Server&lt;i class="details-icon fas fa-angle-right fa-fw"&gt;&lt;/i&gt;
- &lt;/div&gt;
- &lt;div class="details-content"&gt;
- &lt;div class="admonition-content"&gt;&lt;p&gt;对于TND_SERVER：
-[common]
-server_addr = 服务器地址
-server_port = 6001（或6002）&lt;/p&gt;</description></item><item><title>VIM快速配置</title><link>https://wangyudong.netlify.app/vimset/</link><pubDate>Thu, 19 Aug 2021 17:11:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/vimset/</guid><description>&lt;h1 id="vim-编辑器快速配置"&gt;VIM 编辑器快速配置&lt;/h1&gt;
-&lt;div style="align: center"&gt;
-&lt;img src="../images/vimlogo.png" alt="Vim Logo" width="300" height="300" &gt;
-&lt;/div&gt;
-&lt;h2 id="基础插件"&gt;基础插件&lt;/h2&gt;
-&lt;p&gt;安装&lt;strong&gt;ctags, vim-scripts, vim-addon-manager, taglist, winmanager&lt;/strong&gt;, 以Debian类系统为例.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;span class="lnt"&gt;2
-&lt;/span&gt;&lt;span class="lnt"&gt;3
-&lt;/span&gt;&lt;span class="lnt"&gt;4
-&lt;/span&gt;&lt;span class="lnt"&gt;5
-&lt;/span&gt;&lt;span class="lnt"&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get install vim
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get install ctags
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get install vim-scripts
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get install vim-addon-manager
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim-addons install taglist
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vim-addons install winmanager
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;若后续安装&lt;a href="https://github.com/neoclide/coc.nvim" target="_blank" rel="noopener noreffer"&gt;coc.nvim&lt;/a&gt;作为智能补全插件，还需安装nodejs, yarn, clangd.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Dong</title>
+    <link>https://wangyudong.netlify.app/tags/linux/</link>
+    <description>Recent content in Linux on Dong</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
+    <lastBuildDate>Thu, 11 Nov 2021 20:17:00 +0800</lastBuildDate>
+    <atom:link href="https://wangyudong.netlify.app/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FRP端口转发搭建</title>
+      <link>https://wangyudong.netlify.app/frp/</link>
+      <pubDate>Thu, 11 Nov 2021 20:17:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/frp/</guid>
+      <description>&lt;h2 id=&#34;frpc在windows端的使用&#34;&gt;frpc在Windows端的使用&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-修改frpcini&#34;&gt;1 修改&lt;code&gt;frpc.ini&lt;/code&gt;&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[common]&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;server_addr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;服务器地址&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;server_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;服务器段frps.ini中开放的端口&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;[ssh]&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;127.0.0.1&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;3389&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;服务器对外开放的端口&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;div class=&#34;details admonition tip&#34;&gt;&#xD;&#xA;        &lt;div class=&#34;details-summary admonition-title&#34;&gt;&#xD;&#xA;            &lt;i class=&#34;icon fas fa-lightbulb fa-fw&#34;&gt;&lt;/i&gt;对于 TND Server&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;        &lt;div class=&#34;details-content&#34;&gt;&#xD;&#xA;            &lt;div class=&#34;admonition-content&#34;&gt;&lt;p&gt;对于TND_SERVER：&#xA;[common]&#xA;server_addr = 服务器地址&#xA;server_port = 6001（或6002）&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>VIM快速配置</title>
+      <link>https://wangyudong.netlify.app/vimset/</link>
+      <pubDate>Thu, 19 Aug 2021 17:11:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/vimset/</guid>
+      <description>&lt;h1 id=&#34;vim-编辑器快速配置&#34;&gt;VIM 编辑器快速配置&lt;/h1&gt;&#xA;&lt;div style=&#34;align: center&#34;&gt;&#xA;&lt;img src=&#34;../images/vimlogo.png&#34; alt=&#34;Vim Logo&#34; width=&#34;300&#34; height=&#34;300&#34; &gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;基础插件&#34;&gt;基础插件&lt;/h2&gt;&#xA;&lt;p&gt;安装&lt;strong&gt;ctags, vim-scripts, vim-addon-manager, taglist, winmanager&lt;/strong&gt;, 以Debian类系统为例.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install vim&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install ctags&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install vim-scripts&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install vim-addon-manager&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vim-addons install taglist&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vim-addons install winmanager&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;若后续安装&lt;a href=&#34;https://github.com/neoclide/coc.nvim&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;coc.nvim&lt;/a&gt;作为智能补全插件，还需安装nodejs, yarn, clangd.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

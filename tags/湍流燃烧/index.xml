@@ -1,5 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>湍流燃烧 on Dong</title><link>https://wangyudong.netlify.app/tags/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/</link><description>Recent content in 湍流燃烧 on Dong</description><generator>Hugo</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor><webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/index.xml" rel="self" type="application/rss+xml"/><item><title>LES-BOFFIN 反应进度变量与燃烧模式诊断方法</title><link>https://wangyudong.netlify.app/les_progress_variable/</link><pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/les_progress_variable/</guid><description>&lt;h1 id="les-boffin-反应进度变量与燃烧模式诊断方法"&gt;LES-BOFFIN 反应进度变量与燃烧模式诊断方法&lt;/h1&gt;
-&lt;h2 id="1-研究背景"&gt;1. 研究背景&lt;/h2&gt;
-&lt;p&gt;在大涡模拟（LES）与概率密度函数（PDF）方法结合的湍流燃烧模拟中，准确诊断燃烧状态和理解湍流-化学相互作用是重要课题。传统方法难以直接刻画反应进程和燃烧模式之间的耦合关系。&lt;/p&gt;
-&lt;p&gt;本文详细介绍基于**反应进度变量（Progress Variable）**的燃烧诊断方法，包括 TCR（湍流-化学递归）模型中 κ_c 的计算方法。&lt;/p&gt;</description></item><item><title>大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础</title><link>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</link><pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;写在前面&lt;/strong&gt;：本文系统整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）微混合模型的理论笔记，分享给同领域的研究者。&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>湍流燃烧 on Dong</title>
+    <link>https://wangyudong.netlify.app/tags/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/</link>
+    <description>Recent content in 湍流燃烧 on Dong</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
+    <lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://wangyudong.netlify.app/tags/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LES-BOFFIN 反应进度变量与燃烧模式诊断方法</title>
+      <link>https://wangyudong.netlify.app/les_progress_variable/</link>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/les_progress_variable/</guid>
+      <description>&lt;h1 id=&#34;les-boffin-反应进度变量与燃烧模式诊断方法&#34;&gt;LES-BOFFIN 反应进度变量与燃烧模式诊断方法&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-研究背景&#34;&gt;1. 研究背景&lt;/h2&gt;&#xA;&lt;p&gt;在大涡模拟（LES）与概率密度函数（PDF）方法结合的湍流燃烧模拟中，准确诊断燃烧状态和理解湍流-化学相互作用是重要课题。传统方法难以直接刻画反应进程和燃烧模式之间的耦合关系。&lt;/p&gt;&#xA;&lt;p&gt;本文详细介绍基于**反应进度变量（Progress Variable）**的燃烧诊断方法，包括 TCR（湍流-化学递归）模型中 κ_c 的计算方法。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础</title>
+      <link>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;写在前面&lt;/strong&gt;：本文初步整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）小尺度混合模型的理论笔记，分享给同领域的研究者。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

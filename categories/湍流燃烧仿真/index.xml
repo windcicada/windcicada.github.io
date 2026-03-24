@@ -1,247 +1,91 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>湍流燃烧仿真 on Dong</title><link>https://wangyudong.netlify.app/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/</link><description>Recent content in 湍流燃烧仿真 on Dong</description><generator>Hugo</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor><webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://wangyudong.netlify.app/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/index.xml" rel="self" type="application/rss+xml"/><item><title>LES-BOFFIN 反应进度变量与燃烧模式诊断方法</title><link>https://wangyudong.netlify.app/les_progress_variable/</link><pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/les_progress_variable/</guid><description>&lt;h1 id="les-boffin-反应进度变量与燃烧模式诊断方法"&gt;LES-BOFFIN 反应进度变量与燃烧模式诊断方法&lt;/h1&gt;
-&lt;h2 id="1-研究背景"&gt;1. 研究背景&lt;/h2&gt;
-&lt;p&gt;在大涡模拟（LES）与概率密度函数（PDF）方法结合的湍流燃烧模拟中，准确诊断燃烧状态和理解湍流-化学相互作用是重要课题。传统方法难以直接刻画反应进程和燃烧模式之间的耦合关系。&lt;/p&gt;
-&lt;p&gt;本文详细介绍基于**反应进度变量（Progress Variable）**的燃烧诊断方法，包括 TCR（湍流-化学递归）模型中 κ_c 的计算方法。&lt;/p&gt;</description></item><item><title>Tecplot后处理函数式</title><link>https://wangyudong.netlify.app/tecplotana/</link><pubDate>Mon, 10 Oct 2022 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/tecplotana/</guid><description>&lt;p&gt;#Plot Equations&lt;/p&gt;
-&lt;h2 id="tecplot"&gt;Tecplot&lt;/h2&gt;
-&lt;div class="details admonition tip"&gt;
- &lt;div class="details-summary admonition-title"&gt;
- &lt;i class="icon fas fa-lightbulb fa-fw"&gt;&lt;/i&gt;对于 Visit导出数据&lt;i class="details-icon fas fa-angle-right fa-fw"&gt;&lt;/i&gt;
- &lt;/div&gt;
- &lt;div class="details-content"&gt;
- &lt;div class="admonition-content"&gt;若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I,J,K。&lt;/div&gt;
- &lt;/div&gt;
- &lt;/div&gt;
-&lt;h3 id="q准则"&gt;Q准则&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{Q}=-1/2*((ddx(v4))**2+(ddy(v5))**2+(ddz(v6))**2)-ddy(v4)*ddx(v5)-ddz(v4)*ddx(v6)-ddz(v5)*ddy(v6)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id="liutex"&gt;Liutex&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;span class="lnt"&gt;2
-&lt;/span&gt;&lt;span class="lnt"&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{B2}=1/2*((ddy(v4)-ddx(v5))**2+(ddz(v4)-ddx(v6))**2+(ddz(v5)-ddy(v6))**2)
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{A2}=(ddx(v4))**2+1/2*(ddy(v6)+ddz(v5))**2+(ddy(v5))**2+1/2*(ddz(v4)+ddx(v6))**2+(ddz(v6))**2+1/2*(ddx(v5)+ddy(v4))**2
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{Liutex}={B2}/({A2}+{B2})
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id="visit"&gt;Visit&lt;/h2&gt;
-&lt;h3 id="tke"&gt;TKE&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;TKE=0.5*(VAR_U-MEAN_U^2+VAR_V-MEAN_V^2+VAR_W-MEAN_W^2)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id="uuuc2"&gt;u’u’/Uc^2&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;span class="lnt"&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-gdscript3" data-lang="gdscript3"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;u_var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VAR_U&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;MEAN_U&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Uc&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;8.390755&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;Circular&lt;/span&gt; &lt;span class="mf"&gt;2.89668&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;u_var&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VAR_U&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;MEAN_U&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;8.390755&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>AECSC-IBM注释规范</title><link>https://wangyudong.netlify.app/specification/</link><pubDate>Mon, 09 May 2022 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/specification/</guid><description>&lt;h1 id="aecsc-ibm-注释规范-ver1"&gt;AECSC-IBM 注释规范 Ver.1&lt;/h1&gt;
-&lt;h2 id="1-注释规范说明"&gt;1. 注释规范说明&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;注释符： &lt;code&gt;!&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;(&lt;code&gt;For Fortran &amp;quot;!&amp;gt;&amp;quot; or &amp;quot;!&amp;lt;&amp;quot; starts a comment and &amp;quot;!!&amp;quot; or &amp;quot;!&amp;gt;&amp;quot; can be used to continue an one line comment into a multi-line comment.&lt;/code&gt;)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;文件开头注释内容&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table&gt;
- &lt;thead&gt;
- &lt;tr&gt;
- &lt;th&gt;文件注释&lt;/th&gt;
- &lt;th&gt;意义&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/thead&gt;
- &lt;tbody&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;@file&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;&lt;strong&gt;文件名&lt;/strong&gt;(建议有)&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;@author&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;&lt;strong&gt;作者名&lt;/strong&gt;(建议有)&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;@email&lt;/td&gt;
- &lt;td&gt;邮箱地址(可无)&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;@version&lt;/td&gt;
- &lt;td&gt;文件版本(可无)&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;@date&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;&lt;strong&gt;修改日期&lt;/strong&gt;(建议有)&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;@brief&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;&lt;strong&gt;对文件功能的简介&lt;/strong&gt;(建议有)&lt;/td&gt;
- &lt;/tr&gt;
- &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;函数与子程序开头注释内容&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table&gt;
- &lt;thead&gt;
- &lt;tr&gt;
- &lt;th&gt;文件注释&lt;/th&gt;
- &lt;th&gt;意义&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/thead&gt;
- &lt;tbody&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;@brief&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;&lt;strong&gt;对函数或子程序功能的简介&lt;/strong&gt;&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;@param[in]&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;&lt;strong&gt;参数&lt;/strong&gt;(输入)&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;@param[out]&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;&lt;strong&gt;参数&lt;/strong&gt;(输出)&lt;/td&gt;
- &lt;/tr&gt;
- &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id="示例"&gt;示例&lt;/h3&gt;
-&lt;p&gt;下面是一个注释过的Fortran文件与子程序的例子:&lt;/p&gt;</description></item><item><title>稳定双共轭梯度法</title><link>https://wangyudong.netlify.app/cgstab/</link><pubDate>Wed, 22 Sep 2021 14:13:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/cgstab/</guid><description>&lt;h1 id="稳定双共轭梯度法"&gt;稳定双共轭梯度法&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;Bi-CGSTAB: A fast and smoothly converging variant of BI-CG for the solution of nonsymetric linear systems[]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;双共轭梯度法(Bi-CG)是共轭梯度法(CG-S)(Conjugate Gradients-Squared)发展而来的。CG-S方法可能导致相当不规则的收敛行为，可能使舍入误差产生严重的抵消效应。稳定双共轭梯度法(Bi-CGSTAB)则似乎不受这些负面影响。&lt;/p&gt;</description></item><item><title>三角钝体测试</title><link>https://wangyudong.netlify.app/ibm_tri/</link><pubDate>Wed, 22 Sep 2021 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/ibm_tri/</guid><description>&lt;h1 id="aecsc-ibm-三角钝体测试"&gt;AECSC-IBM 三角钝体测试&lt;/h1&gt;
-&lt;h2 id="对照算例boffin计算结果"&gt;对照算例：BOFFIN计算结果&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;At Time-Step 20000&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="网格"&gt;网格&lt;/h3&gt;
-&lt;p&gt;&lt;img
- class="lazyload"
- src="https://wangyudong.netlify.app/svg/loading.min.svg"
- data-src="../images/IBM_tri/image-20210919194031799.png"
- data-srcset="../images/IBM_tri/image-20210919194031799.png, ../images/IBM_tri/image-20210919194031799.png 1.5x, ../images/IBM_tri/image-20210919194031799.png 2x"
- data-sizes="auto"
- alt="../images/IBM_tri/image-20210919194031799.png"
- title="image-20210919194031799" /&gt;&lt;/p&gt;
-&lt;h3 id="瞬态速度velocity_magnitude"&gt;瞬态速度(Velocity_magnitude)&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;标尺: (0, 45) m/s&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img
- class="lazyload"
- src="https://wangyudong.netlify.app/svg/loading.min.svg"
- data-src="../images/IBM_tri/image-20210919194247190.png"
- data-srcset="../images/IBM_tri/image-20210919194247190.png, ../images/IBM_tri/image-20210919194247190.png 1.5x, ../images/IBM_tri/image-20210919194247190.png 2x"
- data-sizes="auto"
- alt="../images/IBM_tri/image-20210919194247190.png"
- title="image-20210919194247190" /&gt;&lt;/p&gt;
-&lt;h3 id="平均流向速度mean_u"&gt;平均流向速度(MEAN_U)&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;标尺: (-15, 35) m/s&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img
- class="lazyload"
- src="https://wangyudong.netlify.app/svg/loading.min.svg"
- data-src="../images/IBM_tri/image-20210919194725577.png"
- data-srcset="../images/IBM_tri/image-20210919194725577.png, ../images/IBM_tri/image-20210919194725577.png 1.5x, ../images/IBM_tri/image-20210919194725577.png 2x"
- data-sizes="auto"
- alt="../images/IBM_tri/image-20210919194725577.png"
- title="image-20210919194725577" /&gt;&lt;/p&gt;
-&lt;h3 id="局部瞬态速度矢量velocity"&gt;局部瞬态速度矢量(Velocity)&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;标尺: (0, 45) m/s&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;区域：x = (0.00, 0.20) m&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img
- class="lazyload"
- src="https://wangyudong.netlify.app/svg/loading.min.svg"
- data-src="../images/IBM_tri/image-20210919195245904.png"
- data-srcset="../images/IBM_tri/image-20210919195245904.png, ../images/IBM_tri/image-20210919195245904.png 1.5x, ../images/IBM_tri/image-20210919195245904.png 2x"
- data-sizes="auto"
- alt="../images/IBM_tri/image-20210919195245904.png"
- title="image-20210919195245904" /&gt;&lt;/p&gt;</description></item><item><title>SIMPLE流场计算算法</title><link>https://wangyudong.netlify.app/simple/</link><pubDate>Sun, 05 Sep 2021 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/simple/</guid><description>&lt;h1 id="压力耦合方程的半隐式方法"&gt;压力耦合方程的半隐式方法&lt;/h1&gt;
-&lt;h2 id="基本思想"&gt;基本思想&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;对于给定的压力场（可以是假定值或是上一次迭代计算所得到的结果），求解 &lt;strong&gt;离散形式的动量方程&lt;/strong&gt; ，得到速度场。（因为压力场是假定的，可能是不精确的，得到的速度场一般不满足连续方程）&lt;/li&gt;
-&lt;li&gt;根据&lt;strong&gt;离散形式的连续方程&lt;/strong&gt;所规定的速度与压力的关系得到&lt;strong&gt;压力修正方程&lt;/strong&gt;，由压力修正方程得到压力修正值。&lt;/li&gt;
-&lt;li&gt;根据修正后的压力场求解得到新的速度场。&lt;/li&gt;
-&lt;li&gt;检查速度场是否收敛，若不收敛，则以现压力场为基础继续修正。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="离散形式动量方程"&gt;离散形式动量方程&lt;/h2&gt;
-&lt;p&gt;$\vec{u}^{n+1}-\frac{4}{3}\vec{u}^n+\frac{1}{3}\vec{u}^{n-1}+\frac{2}{3}\delta t\cdot \vec{T}\cdot \vec{u}=-\frac{2}{3}\delta t\cdot \vec{D}\cdot\vec{p}^{n+1}+\frac{2}{3}\delta t \cdot \vec{S}+\Omicron(\Delta t^3)$&lt;/p&gt;</description></item><item><title>文件格式-STL</title><link>https://wangyudong.netlify.app/stl/</link><pubDate>Wed, 01 Sep 2021 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/stl/</guid><description>&lt;h1 id="文件格式stl"&gt;文件格式—STL&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;span class="lnt"&gt;2
-&lt;/span&gt;&lt;span class="lnt"&gt;3
-&lt;/span&gt;&lt;span class="lnt"&gt;4
-&lt;/span&gt;&lt;span class="lnt"&gt;5
-&lt;/span&gt;&lt;span class="lnt"&gt;6
-&lt;/span&gt;&lt;span class="lnt"&gt;7
-&lt;/span&gt;&lt;span class="lnt"&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;UINT8[80] – 标头 - 80 字节
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;UINT32 - 三角形数 - 4 个字节
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;foreach 三角形 - 50 个字节：
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; REAL32[3] – 法线向量 - 12 字节
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; REAL32[3] – 顶点 1 - 12 字节
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; REAL32[3] – 顶点 2 - 12 字节
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; REAL32[3] – 顶点 3 - 12 字节
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; UINT16 – 属性字节数 - 2 个字节
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>一种浸没边界及网格处理建模方法</title><link>https://wangyudong.netlify.app/ibm_mesh/</link><pubDate>Sat, 28 Aug 2021 00:00:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/ibm_mesh/</guid><description>&lt;h1 id="一种浸没边界及网格处理建模方法"&gt;一种浸没边界及网格处理建模方法&lt;/h1&gt;
-&lt;div class="mermaid" id="id-5"&gt;&lt;/div&gt;
-&lt;h2 id="技术领域"&gt;技术领域&lt;/h2&gt;
-&lt;p&gt;本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成方法。它涉及到计算流体力学、化学流体力学、航空燃气涡轮发动机燃烧室设计以及网格生成算法，属于航空燃气涡轮发动机燃烧室设计分析和两相湍流燃烧数值模拟领域。&lt;/p&gt;</description></item><item><title>大涡模拟</title><link>https://wangyudong.netlify.app/les/</link><pubDate>Sun, 22 Aug 2021 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/les/</guid><description>&lt;h1 id="大涡模拟"&gt;大涡模拟&lt;/h1&gt;
-&lt;h2 id="控制方程"&gt;控制方程&lt;/h2&gt;
-&lt;div class="details admonition tip"&gt;
- &lt;div class="details-summary admonition-title"&gt;
- &lt;i class="icon fas fa-lightbulb fa-fw"&gt;&lt;/i&gt;张量&lt;i class="details-icon fas fa-angle-right fa-fw"&gt;&lt;/i&gt;
- &lt;/div&gt;
- &lt;div class="details-content"&gt;
- &lt;div class="admonition-content"&gt;$u_i=u_x\vec{i}+u_y\vec{j}+u_z\vec{k}$
-$\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;amp;\tau_{12}&amp;amp;\tau_{13}\\ \tau_{21}&amp;amp;\tau_{22}&amp;amp;\tau_{23}\\ \tau_{31}&amp;amp;\tau_{32}&amp;amp;\tau_{33}\end{bmatrix}$
-$u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$&lt;/div&gt;
- &lt;/div&gt;
- &lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;质量守恒方程 (连续方程)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;$\dfrac{\partial \rho}{\partial t}+\dfrac{\partial \rho u_i}{\partial x_i}=0$&lt;/p&gt;
-&lt;p&gt;也可写作： $\dfrac{\partial \rho}{\partial t}+\nabla\cdot(\rho \vec{V})=0$&lt;/p&gt;
-&lt;div class="details admonition tip"&gt;
- &lt;div class="details-summary admonition-title"&gt;
- &lt;i class="icon fas fa-lightbulb fa-fw"&gt;&lt;/i&gt;算子&lt;i class="details-icon fas fa-angle-right fa-fw"&gt;&lt;/i&gt;
- &lt;/div&gt;
- &lt;div class="details-content"&gt;
- &lt;div class="admonition-content"&gt;&lt;p&gt;汉密尔顿算子$\nabla$：&lt;/p&gt;</description></item><item><title>二阶矩模型</title><link>https://wangyudong.netlify.app/som/</link><pubDate>Sat, 21 Aug 2021 20:17:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/som/</guid><description>&lt;h2 id="综述"&gt;综述&lt;/h2&gt;
-&lt;p&gt;在大涡模拟（LES）中，二阶矩（Second-order Moment，SOM）模型直接分析滤波后的阿伦尼乌斯形式反应速率表达式，保留其至二阶项而忽略高阶项。&lt;/p&gt;</description></item><item><title>浸没边界方法</title><link>https://wangyudong.netlify.app/ibm_method/</link><pubDate>Sat, 21 Aug 2021 15:51:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author><guid>https://wangyudong.netlify.app/ibm_method/</guid><description>&lt;h1 id="浸没边界方法"&gt;浸没边界方法&lt;/h1&gt;
-&lt;h2 id="用途"&gt;用途&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;模拟存在复杂结构的流场&lt;/li&gt;
-&lt;li&gt;模拟动边界问题&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="peskin-直接力法-柔性边界"&gt;Peskin 直接力法-柔性边界&lt;/h2&gt;
-&lt;p&gt;浸没边界方法最早由Peskin提出，将复杂结构的边界模化为N-S方程中的一种彻体力，用&lt;strong&gt;笛卡尔网格&lt;/strong&gt;解决网格生成困难问题并提高计算效率。&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>湍流燃烧仿真 on Dong</title>
+    <link>https://wangyudong.netlify.app/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/</link>
+    <description>Recent content in 湍流燃烧仿真 on Dong</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
+    <lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://wangyudong.netlify.app/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LES-BOFFIN 反应进度变量与燃烧模式诊断方法</title>
+      <link>https://wangyudong.netlify.app/les_progress_variable/</link>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/les_progress_variable/</guid>
+      <description>&lt;h1 id=&#34;les-boffin-反应进度变量与燃烧模式诊断方法&#34;&gt;LES-BOFFIN 反应进度变量与燃烧模式诊断方法&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-研究背景&#34;&gt;1. 研究背景&lt;/h2&gt;&#xA;&lt;p&gt;在大涡模拟（LES）与概率密度函数（PDF）方法结合的湍流燃烧模拟中，准确诊断燃烧状态和理解湍流-化学相互作用是重要课题。传统方法难以直接刻画反应进程和燃烧模式之间的耦合关系。&lt;/p&gt;&#xA;&lt;p&gt;本文详细介绍基于**反应进度变量（Progress Variable）**的燃烧诊断方法，包括 TCR（湍流-化学递归）模型中 κ_c 的计算方法。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tecplot后处理函数式</title>
+      <link>https://wangyudong.netlify.app/tecplotana/</link>
+      <pubDate>Mon, 10 Oct 2022 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/tecplotana/</guid>
+      <description>&lt;p&gt;#Plot Equations&lt;/p&gt;&#xA;&lt;h2 id=&#34;tecplot&#34;&gt;Tecplot&lt;/h2&gt;&#xA;&lt;div class=&#34;details admonition tip&#34;&gt;&#xD;&#xA;        &lt;div class=&#34;details-summary admonition-title&#34;&gt;&#xD;&#xA;            &lt;i class=&#34;icon fas fa-lightbulb fa-fw&#34;&gt;&lt;/i&gt;对于 Visit导出数据&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;        &lt;div class=&#34;details-content&#34;&gt;&#xD;&#xA;            &lt;div class=&#34;admonition-content&#34;&gt;若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I,J,K。&lt;/div&gt;&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;    &lt;/div&gt;&#xA;&lt;h3 id=&#34;q准则&#34;&gt;Q准则&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{Q}=-1/2*((ddx(v4))**2+(ddy(v5))**2+(ddz(v6))**2)-ddy(v4)*ddx(v5)-ddz(v4)*ddx(v6)-ddz(v5)*ddy(v6)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;h3 id=&#34;liutex&#34;&gt;Liutex&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{B2}=1/2*((ddy(v4)-ddx(v5))**2+(ddz(v4)-ddx(v6))**2+(ddz(v5)-ddy(v6))**2)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{A2}=(ddx(v4))**2+1/2*(ddy(v6)+ddz(v5))**2+(ddy(v5))**2+1/2*(ddz(v4)+ddx(v6))**2+(ddz(v6))**2+1/2*(ddx(v5)+ddy(v4))**2&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{Liutex}={B2}/({A2}+{B2})&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;h2 id=&#34;visit&#34;&gt;Visit&lt;/h2&gt;&#xA;&lt;h3 id=&#34;tke&#34;&gt;TKE&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TKE=0.5*(VAR_U-MEAN_U^2+VAR_V-MEAN_V^2+VAR_W-MEAN_W^2)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;h3 id=&#34;uuuc2&#34;&gt;u’u’/Uc^2&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;u_var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VAR_U&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MEAN_U&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Uc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;8.390755&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Circular&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;2.89668&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;u_var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VAR_U&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MEAN_U&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;8.390755&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>AECSC-IBM注释规范</title>
+      <link>https://wangyudong.netlify.app/specification/</link>
+      <pubDate>Mon, 09 May 2022 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/specification/</guid>
+      <description>&lt;h1 id=&#34;aecsc-ibm-注释规范-ver1&#34;&gt;AECSC-IBM 注释规范 Ver.1&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-注释规范说明&#34;&gt;1. 注释规范说明&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;注释符： &lt;code&gt;!&amp;gt;&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;(&lt;code&gt;For Fortran &amp;quot;!&amp;gt;&amp;quot; or &amp;quot;!&amp;lt;&amp;quot; starts a comment and &amp;quot;!!&amp;quot; or &amp;quot;!&amp;gt;&amp;quot; can be used to continue an one line comment into a multi-line comment.&lt;/code&gt;)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;文件开头注释内容&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;文件注释&lt;/th&gt;&#xA;          &lt;th&gt;意义&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;@file&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;文件名&lt;/strong&gt;(建议有)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;@author&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;作者名&lt;/strong&gt;(建议有)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;@email&lt;/td&gt;&#xA;          &lt;td&gt;邮箱地址(可无)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;@version&lt;/td&gt;&#xA;          &lt;td&gt;文件版本(可无)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;@date&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;修改日期&lt;/strong&gt;(建议有)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;@brief&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;对文件功能的简介&lt;/strong&gt;(建议有)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;函数与子程序开头注释内容&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;文件注释&lt;/th&gt;&#xA;          &lt;th&gt;意义&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;@brief&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;对函数或子程序功能的简介&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;@param[in]&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;参数&lt;/strong&gt;(输入)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;@param[out]&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;参数&lt;/strong&gt;(输出)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;示例&#34;&gt;示例&lt;/h3&gt;&#xA;&lt;p&gt;下面是一个注释过的Fortran文件与子程序的例子:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>稳定双共轭梯度法</title>
+      <link>https://wangyudong.netlify.app/cgstab/</link>
+      <pubDate>Wed, 22 Sep 2021 14:13:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/cgstab/</guid>
+      <description>&lt;h1 id=&#34;稳定双共轭梯度法&#34;&gt;稳定双共轭梯度法&lt;/h1&gt;&#xA;&lt;p&gt;&lt;code&gt;Bi-CGSTAB: A fast and smoothly converging variant of BI-CG for the solution of nonsymetric linear systems[]&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;双共轭梯度法(Bi-CG)是共轭梯度法(CG-S)(Conjugate Gradients-Squared)发展而来的。CG-S方法可能导致相当不规则的收敛行为，可能使舍入误差产生严重的抵消效应。稳定双共轭梯度法(Bi-CGSTAB)则似乎不受这些负面影响。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三角钝体测试</title>
+      <link>https://wangyudong.netlify.app/ibm_tri/</link>
+      <pubDate>Wed, 22 Sep 2021 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/ibm_tri/</guid>
+      <description>&lt;h1 id=&#34;aecsc-ibm-三角钝体测试&#34;&gt;AECSC-IBM 三角钝体测试&lt;/h1&gt;&#xA;&lt;h2 id=&#34;对照算例boffin计算结果&#34;&gt;对照算例：BOFFIN计算结果&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;At Time-Step 20000&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;网格&#34;&gt;网格&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img&#xD;&#xA;        class=&#34;lazyload&#34;&#xD;&#xA;        src=&#34;https://wangyudong.netlify.app/svg/loading.min.svg&#34;&#xD;&#xA;        data-src=&#34;../images/IBM_tri/image-20210919194031799.png&#34;&#xD;&#xA;        data-srcset=&#34;../images/IBM_tri/image-20210919194031799.png, ../images/IBM_tri/image-20210919194031799.png 1.5x, ../images/IBM_tri/image-20210919194031799.png 2x&#34;&#xD;&#xA;        data-sizes=&#34;auto&#34;&#xD;&#xA;        alt=&#34;../images/IBM_tri/image-20210919194031799.png&#34;&#xD;&#xA;        title=&#34;image-20210919194031799&#34; /&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;瞬态速度velocity_magnitude&#34;&gt;瞬态速度(Velocity_magnitude)&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;标尺: (0, 45) m/s&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img&#xD;&#xA;        class=&#34;lazyload&#34;&#xD;&#xA;        src=&#34;https://wangyudong.netlify.app/svg/loading.min.svg&#34;&#xD;&#xA;        data-src=&#34;../images/IBM_tri/image-20210919194247190.png&#34;&#xD;&#xA;        data-srcset=&#34;../images/IBM_tri/image-20210919194247190.png, ../images/IBM_tri/image-20210919194247190.png 1.5x, ../images/IBM_tri/image-20210919194247190.png 2x&#34;&#xD;&#xA;        data-sizes=&#34;auto&#34;&#xD;&#xA;        alt=&#34;../images/IBM_tri/image-20210919194247190.png&#34;&#xD;&#xA;        title=&#34;image-20210919194247190&#34; /&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;平均流向速度mean_u&#34;&gt;平均流向速度(MEAN_U)&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;标尺: (-15, 35) m/s&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img&#xD;&#xA;        class=&#34;lazyload&#34;&#xD;&#xA;        src=&#34;https://wangyudong.netlify.app/svg/loading.min.svg&#34;&#xD;&#xA;        data-src=&#34;../images/IBM_tri/image-20210919194725577.png&#34;&#xD;&#xA;        data-srcset=&#34;../images/IBM_tri/image-20210919194725577.png, ../images/IBM_tri/image-20210919194725577.png 1.5x, ../images/IBM_tri/image-20210919194725577.png 2x&#34;&#xD;&#xA;        data-sizes=&#34;auto&#34;&#xD;&#xA;        alt=&#34;../images/IBM_tri/image-20210919194725577.png&#34;&#xD;&#xA;        title=&#34;image-20210919194725577&#34; /&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;局部瞬态速度矢量velocity&#34;&gt;局部瞬态速度矢量(Velocity)&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;标尺:  (0, 45) m/s&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;区域：x = (0.00, 0.20) m&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img&#xD;&#xA;        class=&#34;lazyload&#34;&#xD;&#xA;        src=&#34;https://wangyudong.netlify.app/svg/loading.min.svg&#34;&#xD;&#xA;        data-src=&#34;../images/IBM_tri/image-20210919195245904.png&#34;&#xD;&#xA;        data-srcset=&#34;../images/IBM_tri/image-20210919195245904.png, ../images/IBM_tri/image-20210919195245904.png 1.5x, ../images/IBM_tri/image-20210919195245904.png 2x&#34;&#xD;&#xA;        data-sizes=&#34;auto&#34;&#xD;&#xA;        alt=&#34;../images/IBM_tri/image-20210919195245904.png&#34;&#xD;&#xA;        title=&#34;image-20210919195245904&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SIMPLE流场计算算法</title>
+      <link>https://wangyudong.netlify.app/simple/</link>
+      <pubDate>Sun, 05 Sep 2021 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/simple/</guid>
+      <description>&lt;h1 id=&#34;压力耦合方程的半隐式方法&#34;&gt;压力耦合方程的半隐式方法&lt;/h1&gt;&#xA;&lt;h2 id=&#34;基本思想&#34;&gt;基本思想&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;对于给定的压力场（可以是假定值或是上一次迭代计算所得到的结果），求解 &lt;strong&gt;离散形式的动量方程&lt;/strong&gt; ，得到速度场。（因为压力场是假定的，可能是不精确的，得到的速度场一般不满足连续方程）&lt;/li&gt;&#xA;&lt;li&gt;根据&lt;strong&gt;离散形式的连续方程&lt;/strong&gt;所规定的速度与压力的关系得到&lt;strong&gt;压力修正方程&lt;/strong&gt;，由压力修正方程得到压力修正值。&lt;/li&gt;&#xA;&lt;li&gt;根据修正后的压力场求解得到新的速度场。&lt;/li&gt;&#xA;&lt;li&gt;检查速度场是否收敛，若不收敛，则以现压力场为基础继续修正。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;离散形式动量方程&#34;&gt;离散形式动量方程&lt;/h2&gt;&#xA;&lt;p&gt;$\vec{u}^{n+1}-\frac{4}{3}\vec{u}^n+\frac{1}{3}\vec{u}^{n-1}+\frac{2}{3}\delta t\cdot \vec{T}\cdot \vec{u}=-\frac{2}{3}\delta t\cdot \vec{D}\cdot\vec{p}^{n+1}+\frac{2}{3}\delta t \cdot \vec{S}+\Omicron(\Delta t^3)$&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>文件格式-STL</title>
+      <link>https://wangyudong.netlify.app/stl/</link>
+      <pubDate>Wed, 01 Sep 2021 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/stl/</guid>
+      <description>&lt;h1 id=&#34;文件格式stl&#34;&gt;文件格式—STL&lt;/h1&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;UINT8[80] – 标头 - 80 字节&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;UINT32 - 三角形数 - 4 个字节&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;foreach 三角形 - 50 个字节：&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    REAL32[3] – 法线向量 - 12 字节&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    REAL32[3] – 顶点 1 - 12 字节&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    REAL32[3] – 顶点 2 - 12 字节&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    REAL32[3] – 顶点 3 - 12 字节&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    UINT16 – 属性字节数 - 2 个字节&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>一种浸没边界及网格处理建模方法</title>
+      <link>https://wangyudong.netlify.app/ibm_mesh/</link>
+      <pubDate>Sat, 28 Aug 2021 00:00:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/ibm_mesh/</guid>
+      <description>&lt;h1 id=&#34;一种浸没边界及网格处理建模方法&#34;&gt;一种浸没边界及网格处理建模方法&lt;/h1&gt;&#xA;&lt;div class=&#34;mermaid&#34; id=&#34;id-5&#34;&gt;&lt;/div&gt;&#xA;&lt;h2 id=&#34;技术领域&#34;&gt;技术领域&lt;/h2&gt;&#xA;&lt;p&gt;本发明涉及一种用于航空发动机燃烧室等复杂结构内两相湍流燃烧数值模拟的浸没边界方法以及与之配套的网格生成方法。它涉及到计算流体力学、化学流体力学、航空燃气涡轮发动机燃烧室设计以及网格生成算法，属于航空燃气涡轮发动机燃烧室设计分析和两相湍流燃烧数值模拟领域。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>大涡模拟</title>
+      <link>https://wangyudong.netlify.app/les/</link>
+      <pubDate>Sun, 22 Aug 2021 10:50:51 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/les/</guid>
+      <description>&lt;h1 id=&#34;大涡模拟&#34;&gt;大涡模拟&lt;/h1&gt;&#xA;&lt;h2 id=&#34;控制方程&#34;&gt;控制方程&lt;/h2&gt;&#xA;&lt;div class=&#34;details admonition tip&#34;&gt;&#xD;&#xA;        &lt;div class=&#34;details-summary admonition-title&#34;&gt;&#xD;&#xA;            &lt;i class=&#34;icon fas fa-lightbulb fa-fw&#34;&gt;&lt;/i&gt;张量&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;        &lt;div class=&#34;details-content&#34;&gt;&#xD;&#xA;            &lt;div class=&#34;admonition-content&#34;&gt;$u_i=u_x\vec{i}+u_y\vec{j}+u_z\vec{k}$&#xA;$\tau_{ij}=\begin{bmatrix}\tau_{11}&amp;amp;\tau_{12}&amp;amp;\tau_{13}\\ \tau_{21}&amp;amp;\tau_{22}&amp;amp;\tau_{23}\\ \tau_{31}&amp;amp;\tau_{32}&amp;amp;\tau_{33}\end{bmatrix}$&#xA;$u_i x_i=u_1 x_1 + u_2 x_2 +u_3 x_3$&lt;/div&gt;&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;    &lt;/div&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;质量守恒方程 (连续方程)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;$\dfrac{\partial \rho}{\partial t}+\dfrac{\partial \rho u_i}{\partial x_i}=0$&lt;/p&gt;&#xA;&lt;p&gt;也可写作： $\dfrac{\partial \rho}{\partial t}+\nabla\cdot(\rho \vec{V})=0$&lt;/p&gt;&#xA;&lt;div class=&#34;details admonition tip&#34;&gt;&#xD;&#xA;        &lt;div class=&#34;details-summary admonition-title&#34;&gt;&#xD;&#xA;            &lt;i class=&#34;icon fas fa-lightbulb fa-fw&#34;&gt;&lt;/i&gt;算子&lt;i class=&#34;details-icon fas fa-angle-right fa-fw&#34;&gt;&lt;/i&gt;&#xD;&#xA;        &lt;/div&gt;&#xD;&#xA;        &lt;div class=&#34;details-content&#34;&gt;&#xD;&#xA;            &lt;div class=&#34;admonition-content&#34;&gt;&lt;p&gt;汉密尔顿算子$\nabla$：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>二阶矩模型</title>
+      <link>https://wangyudong.netlify.app/som/</link>
+      <pubDate>Sat, 21 Aug 2021 20:17:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/som/</guid>
+      <description>&lt;h2 id=&#34;综述&#34;&gt;综述&lt;/h2&gt;&#xA;&lt;p&gt;在大涡模拟（LES）中，二阶矩（Second-order Moment，SOM）模型直接分析滤波后的阿伦尼乌斯形式反应速率表达式，保留其至二阶项而忽略高阶项。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>浸没边界方法</title>
+      <link>https://wangyudong.netlify.app/ibm_method/</link>
+      <pubDate>Sat, 21 Aug 2021 15:51:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/ibm_method/</guid>
+      <description>&lt;h1 id=&#34;浸没边界方法&#34;&gt;浸没边界方法&lt;/h1&gt;&#xA;&lt;h2 id=&#34;用途&#34;&gt;用途&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;模拟存在复杂结构的流场&lt;/li&gt;&#xA;&lt;li&gt;模拟动边界问题&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;peskin-直接力法-柔性边界&#34;&gt;Peskin 直接力法-柔性边界&lt;/h2&gt;&#xA;&lt;p&gt;浸没边界方法最早由Peskin提出，将复杂结构的边界模化为N-S方程中的一种彻体力，用&lt;strong&gt;笛卡尔网格&lt;/strong&gt;解决网格生成困难问题并提高计算效率。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

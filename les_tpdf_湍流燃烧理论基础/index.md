@@ -1,7 +1,7 @@
 # 大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础
 
 
-> **写在前面**：本文系统整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）微混合模型的理论笔记，分享给同领域的研究者。
+> **写在前面**：本文初步整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）小尺度混合模型的理论笔记，分享给同领域的研究者。
 
 ---
 
@@ -11,9 +11,9 @@
 
 传统的 RANS 方法通过时间平均丢失了瞬态信息；而直接数值模拟（DNS）虽然精确，但计算量随 Reynolds 数呈 $Re^{9/4}$ 增长，几乎不可能用于实际工程。
 
-**大涡模拟（LES）** 应运而生——它过滤掉小尺度湍流，直接模拟大尺度结构，用亚网格模型模化小尺度效应。这是一种介于 DNS 和 RANS 之间的方法，兼顾精度与效率。
+**大涡模拟（LES）** 过滤掉小尺度湍流，直接模拟大尺度结构，用亚网格模型模化小尺度效应。这是一种介于 DNS 和 RANS 之间的方法，兼顾精度与效率。
 
-当 LES 遇到燃烧时，化学反应发生在亚网格尺度上，标量的不均匀分布直接影响反应速率。**概率密度函数（PDF）方法**正是为解决这一问题而生——它描述标量在亚网格上的概率分布，从而封闭平均化学反应速率。
+当 LES 遇到燃烧时，化学反应发生在亚网格尺度上，标量的不均匀分布直接影响反应速率。**输运概率密度函数（TPDF）模型**正是为解决这一问题提出，通过求解输运方程获得描述标量在亚网格上的概率密度函数（PDF），从而封闭平均化学反应速率。
 
 ---
 
@@ -41,7 +41,7 @@ $$\tau_{ij} = 2\mu S_{ij} - \frac{2}{3}\mu S_{kk}\delta_{ij}, \quad S_{ij} = \fr
 
 $$\frac{p}{\rho} = \frac{R^0 T}{W} \tag{3}$$
 
-其中 $R^0 = 8.314 \times 10^3\ \text{J/(kmol·K)}$ 是通用气体常数，$T$ 是温度，$W$ 是分子量。
+其中 $R^0 = 8.314 \times 10^3\ \text{J/(kmol K)}$ 是通用气体常数，$T$ 是温度，$W$ 是分子量。
 
 分子粘度随温度变化显著，空气的粘度可用 **Sutherland 定律**描述：
 
@@ -299,7 +299,7 @@ $$\rho = \check{\rho}(\xi), \quad T = \check{T}(\xi), \quad Y_\alpha = \check{Y}
 
 ---
 
-## 7. TCR 微混合模型：超越 IEM
+## 7. TCR 小尺度混合模型：超越 IEM
 
 > 详见 memory/TCR-knowledge.md（王煜栋，2026）
 
@@ -355,4 +355,5 @@ LES-TPDF 方法是湍流燃烧数值模拟的强大框架：
 2. Wang, Y., et al. An improved immersed boundary method with local flow pattern reconstruction and its validation[J]. *Physics of Fluids*, 2026.
 3. Pope, S. B. Turbulent Flows[M]. Cambridge University Press, 2000.
 4. Valiño, L. Field Monte Carlo formulation for calculating the probability density function of a reactive scalar in turbulent flow[J]. *Physics of Fluids*, 1998.
+
 

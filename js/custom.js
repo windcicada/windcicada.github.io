@@ -44,143 +44,17 @@ jQuery(document).ready(function($) {
     });
 });
 
-/* 背景图片已移除 - 平面化设计风格 */
-
-/* ========================================
-   简洁导航栏交互
-   ======================================== */
-
-(function() {
-    'use strict';
-    
-    // 移动端菜单切换
-    function initMobileMenu() {
-        var mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        var mobileMenu = document.getElementById('mobile-menu');
-        
-        if (!mobileMenuToggle || !mobileMenu) {
-            console.log('Mobile menu elements not found');
-            return;
-        }
-        
-        console.log('Mobile menu initialized');
-        
-        function toggleMobileMenu(e) {
-            if (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            
-            var isOpen = mobileMenu.classList.contains('show');
-            
-            if (isOpen) {
-                mobileMenu.classList.remove('show');
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                mobileMenu.setAttribute('aria-hidden', 'true');
-            } else {
-                mobileMenu.classList.add('show');
-                mobileMenuToggle.setAttribute('aria-expanded', 'true');
-                mobileMenu.setAttribute('aria-hidden', 'false');
-            }
-            
-            var icon = mobileMenuToggle.querySelector('i');
-            if (icon) {
-                if (mobileMenu.classList.contains('show')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-            
-            console.log('Mobile menu toggled:', mobileMenu.classList.contains('show'));
-        }
-        
-        // 使用 onclick 属性确保兼容性
-        mobileMenuToggle.onclick = toggleMobileMenu;
-        
-        // 同时添加 addEventListener 作为备用
-        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-        mobileMenuToggle.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            toggleMobileMenu(e);
-        }, {passive: false});
-        
-        // 点击菜单外部关闭菜单
-        document.addEventListener('click', function(e) {
-            if (mobileMenu.classList.contains('show') && 
-                !mobileMenu.contains(e.target) && 
-                !mobileMenuToggle.contains(e.target)) {
-                toggleMobileMenu();
-            }
-        });
-        
-        // 点击菜单链接后关闭菜单
-        var mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
-        for (var i = 0; i < mobileNavLinks.length; i++) {
-            mobileNavLinks[i].addEventListener('click', function() {
-                toggleMobileMenu();
-            });
-        }
-    }
-    
-    // 页面加载完成后初始化
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMobileMenu);
-    } else {
-        initMobileMenu();
-    }
-    
-    // 搜索功能
-    const searchToggle = document.getElementById('search-toggle');
-    const searchOverlay = document.getElementById('search-overlay');
-    const searchClose = document.getElementById('search-close');
-    const searchInput = document.getElementById('search-input');
-    
-    if (searchToggle && searchOverlay) {
-        searchToggle.addEventListener('click', function() {
-            searchOverlay.classList.add('show');
-            if (searchInput) searchInput.focus();
-        });
-    }
-    
-    if (searchClose && searchOverlay) {
-        searchClose.addEventListener('click', function() {
-            searchOverlay.classList.remove('show');
-        });
-    }
-    
-    if (searchOverlay) {
-        searchOverlay.addEventListener('click', function(e) {
-            if (e.target === searchOverlay) {
-                searchOverlay.classList.remove('show');
-            }
-        });
-    }
-    
-    // ESC键关闭搜索
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && searchOverlay) {
-            searchOverlay.classList.remove('show');
-        }
-    });
-    
-    // 主题切换
-    var themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            var body = document.body;
-            var currentTheme = body.getAttribute('theme');
-            var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            body.setAttribute('theme', newTheme);
-            if (window.localStorage) {
-                localStorage.setItem('theme', newTheme);
-            }
-        });
-    }
-    
-})();
+/* 轮播背景图片 */
+$(function () {
+	$.backstretch([
+		  "/images/background/bk1.jpg",
+		  "/images/background/bk2.jpg",
+		  "/images/background/bk3.jpg",
+		  "/images/background/bk4.jpg",
+		  "/images/background/bk5.jpg",
+	      "/images/background/bk6.jpg"
+	], { duration: 60000, fade: 1500 });
+});
 
 /* 拉姆蕾姆回到顶部或底部按钮 */
 $(function() {
