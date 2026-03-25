@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>LES-TPDF 湍流燃烧求解器的数值方法实现 - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="LES-TPDF 湍流燃烧求解器的数值方法实现">
+  <meta property="og:description" content="写在前面：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-25T00:00:00+00:00">
+    <meta property="article:tag" content="LES">
+    <meta property="article:tag" content="TPDF">
+    <meta property="article:tag" content="数值方法">
+    <meta property="article:tag" content="有限体积法">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="LES-TPDF 湍流燃烧求解器的数值方法实现">
+  <meta name="twitter:description" content="写在前面：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" /><link rel="prev" href="https://wangyudong.netlify.app/les_progress_variable/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LES-TPDF 湍流燃烧求解器的数值方法实现",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/les_tpdf_numerical_procedure\/"
+        },"genre": "posts","keywords": "LES, TPDF, 数值方法, 有限体积法","wordcount":  2541 ,
+        "url": "https:\/\/wangyudong.netlify.app\/les_tpdf_numerical_procedure\/","datePublished": "2026-03-25T00:00:00+00:00","dateModified": "2026-03-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "王煜栋"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
+    <div class="nav-container">
+        
+        <a href="/" class="nav-brand">Dong</a>
+        
+        
+        <div class="nav-menu" id="nav-menu-desktop">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/posts/" class="nav-link active">Blog文章</a>
+            <a href="/awards/" class="nav-link">学术成果</a>
+        </div>
+        
+        
+        <div class="nav-tools">
+            
+            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="/" class="mobile-nav-link">首页</a>
+        <a href="/posts/" class="mobile-nav-link active">Blog文章</a>
+        <a href="/awards/" class="mobile-nav-link">学术成果</a>
+    </div>
+</nav>
+
+
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">LES-TPDF 湍流燃烧求解器的数值方法实现</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>王煜栋</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E6%9C%AF/"><i class="far fa-folder fa-fw"></i>学术</a>&nbsp;<a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/"><i class="far fa-folder fa-fw"></i>湍流燃烧</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-25">2026-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2541 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;<span id="/les_tpdf_numerical_procedure/" class="leancloud_visitors" data-flag-title="LES-TPDF 湍流燃烧求解器的数值方法实现">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-坐标变换">1. 坐标变换</a>
+      <ul>
+        <li><a href="#11-从物理空间到计算空间">1.1 从物理空间到计算空间</a></li>
+        <li><a href="#12-变换后的导数">1.2 变换后的导数</a></li>
+        <li><a href="#13-变换后的输运方程">1.3 变换后的输运方程</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-输运方程的离散化">2. 输运方程的离散化</a>
+      <ul>
+        <li><a href="#21-控制体积法">2.1 控制体积法</a></li>
+        <li><a href="#22-对流项离散">2.2 对流项离散</a></li>
+        <li><a href="#23-扩散项离散">2.3 扩散项离散</a></li>
+        <li><a href="#24-时间离散">2.4 时间离散</a></li>
+        <li><a href="#25-代数方程">2.5 代数方程</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-标量输运方程的-tvd-格式">3. 标量输运方程的 TVD 格式</a>
+      <ul>
+        <li><a href="#31-godunov-定理与-tvd-原则">3.1 Godunov 定理与 TVD 原则</a></li>
+        <li><a href="#32-通量限制器">3.2 通量限制器</a></li>
+        <li><a href="#33-van-leer-格式">3.3 van Leer 格式</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-压力-速度耦合求解">4. 压力-速度耦合求解</a>
+      <ul>
+        <li><a href="#41-simple-型算法">4.1 SIMPLE 型算法</a></li>
+        <li><a href="#42-两级近似分解">4.2 两级近似分解</a></li>
+        <li><a href="#43-压力修正方程poisson-方程">4.3 压力修正方程（Poisson 方程）</a></li>
+        <li><a href="#44-rhie-chow-压力平滑">4.4 Rhie-Chow 压力平滑</a></li>
+        <li><a href="#45-求解算法流程">4.5 求解算法流程</a></li>
+        <li><a href="#46-求解器选择">4.6 求解器选择</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-总结">5. 总结</a></li>
+    <li><a href="#参考文献">参考文献</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p><strong>写在前面</strong>：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。</p>
+</blockquote>
+<hr>
+<h2 id="1-坐标变换">1. 坐标变换</h2>
+<h3 id="11-从物理空间到计算空间">1.1 从物理空间到计算空间</h3>
+<p>对于复杂几何外形的流场，采用 Thompson 提出的坐标变换方法，将物理空间 $(x_1, x_2, x_3)$ 映射到矩形计算空间 $(\xi_1, \xi_2, \xi_3)$。这一变换的核心优势在于：无论物理边界如何复杂，计算空间中均可采用标准的矩形网格离散格式。</p>
+<p><strong>Jacobian 矩阵</strong>定义为：</p>
+<p>$$J_{ij} = \frac{\partial x_i}{\partial \xi_j}$$</p>
+<p>其行列式 $|J|$ 满足：</p>
+<p>$$|J| = \frac{\partial x_i}{\partial \xi_j} A_{ij}, \quad \text{（不对 $i$ 求和）}$$</p>
+<p>其中 $A_{ij}$ 是余因子矩阵的元素，定义为 $\mathbf{A} = |J| \cdot |J|^{-1}$。</p>
+<h3 id="12-变换后的导数">1.2 变换后的导数</h3>
+<p>利用链式法则，物理空间中的导数可表示为：</p>
+<p>$$\frac{\partial \phi}{\partial x_i} = \frac{A_{ij}}{|J|} \frac{\partial \phi}{\partial \xi_j}$$</p>
+<h3 id="13-变换后的输运方程">1.3 变换后的输运方程</h3>
+<p>变换后的控制方程（以 Favre 过滤量为例）：</p>
+<p><strong>连续方程</strong>：</p>
+<p>$$\frac{\partial \overline{\rho}}{\partial t} + \frac{\partial}{\partial \xi_k} \left( \frac{A_{ki}}{|J|} \overline{\rho} \widetilde{u}_i \right) = 0$$</p>
+<p><strong>动量方程</strong>：</p>
+<p>$$\frac{\partial \overline{\rho} \widetilde{u}<em>i}{\partial t} + \frac{\partial}{\partial \xi_k} \left( \frac{A</em>{kj}}{|J|} \overline{\rho} \widetilde{u}<em>i \widetilde{u}<em>j \right) = -\frac{A</em>{ki}}{|J|} \frac{\partial \overline{p}}{\partial \xi_k} + \frac{\partial}{\partial \xi_k} \left( \frac{A</em>{kj}}{|J|} \Gamma_{eff} \frac{\partial \widetilde{u}_i}{\partial \xi_l} \right)$$</p>
+<p><strong>守恒标量方程</strong>：</p>
+<p>$$\frac{\partial \overline{\rho} \widetilde{\phi}}{\partial t} + \frac{\partial}{\partial \xi_k} \left( \frac{A_{ki}}{|J|} \overline{\rho} \widetilde{u}<em>i \widetilde{\phi} \right) = \frac{\partial}{\partial \xi_k} \left( \frac{A</em>{ki}}{|J|} \Gamma_{eff} \frac{\partial \widetilde{\phi}}{\partial \xi_l} \right)$$</p>
+<p>其中 $\Gamma_{eff}$ 为有效扩散系数（分子扩散 + 湍流扩散）。</p>
+<blockquote>
+<p><strong>伪压力</strong>：对于低马赫数不可压缩流动，通常将应变张量迹和湍动能的贡献加入热力学压力，形成伪压力 $p = p_{ther} + \frac{2}{3} \mu_t \left( \frac{A_{ml}}{|J|} \frac{\partial u_m}{\partial \xi_l} + k \right)$</p>
+</blockquote>
+<hr>
+<h2 id="2-输运方程的离散化">2. 输运方程的离散化</h2>
+<h3 id="21-控制体积法">2.1 控制体积法</h3>
+<p>采用<strong>控制体积法</strong>（有限体积法）进行空间离散。该方法的核心优势在于自动满足<strong>守恒性</strong>——离散格式与原始偏微分方程满足相同的守恒定律。</p>
+<p>网格布局采用<strong>同位存储</strong>（Colocated Arrangement）：所有原始变量（速度、压力、标量）均存储在单元中心，假设在控制体积内均匀分布。相邻节点间采用线性插值确定单元面上的值。</p>
+<h3 id="22-对流项离散">2.2 对流项离散</h3>
+<p>以 $u$-动量方程为例，对流项的离散形式为：</p>
+<p>$$\int_{\partial S} G_k \widetilde{u}<em>i n_k dS \approx G_1 \widetilde{u},</em>{n} - G_1 \widetilde{u},<em>{s} + G_2 \widetilde{u},</em>{e} - G_2 \widetilde{u},<em>{w} + G_3 \widetilde{u},</em>{r} - G_3 \widetilde{u},_{l}$$</p>
+<p>其中 $G_k = A_{ik} \overline{\rho} \widetilde{u}_i$ 为质量通量，$n, s, e, w, r, l$ 表示六个单元面。</p>
+<h3 id="23-扩散项离散">2.3 扩散项离散</h3>
+<p>扩散项采用类似的中心差分格式。以北界面为例：</p>
+<p>$$\mu_t \frac{A_{11}}{|J|} \frac{\partial \widetilde{u}}{\partial \xi_1} _{n} \approx \frac{\mu_{t,P} + \mu_{t,N}}{2} (\widetilde{u}_N - \widetilde{u}<em>P) \frac{A</em>{11}}{|J|}$$</p>
+<p>由网格非正交性引起的交叉导数项作为源项显式处理。</p>
+<h3 id="24-时间离散">2.4 时间离散</h3>
+<p>时间项采用<strong>三点向后格式</strong>（Three-Point Backward Scheme）：</p>
+<p>$$\overline{\rho} \frac{\partial \widetilde{\phi}}{\partial t} \approx \rho^* \left[ (R+1) \frac{\phi^{n+1} - \phi^n}{\delta t} - R \frac{\phi^n - \phi^{n-1}}{\delta t_o} \right]$$</p>
+<p>其中 $R = \frac{\delta t}{\delta t + \delta t_o}$，$\rho^* = \frac{\rho^{n+1} + \rho^n}{2}$。</p>
+<p>若采用恒定时间步长，上式退化为经典格式：</p>
+<p>$$\overline{\rho} \frac{\partial \widetilde{\phi}}{\partial t} \approx \rho^* \left[ \frac{3}{2} \frac{\phi^{n+1} - \phi^n}{\delta t} - \frac{1}{2} \frac{\phi^n - \phi^{n-1}}{\delta t} \right]$$</p>
+<h3 id="25-代数方程">2.5 代数方程</h3>
+<p>离散后得到准线性代数方程：</p>
+<p>$$\widetilde{\phi}<em>P a_P = \sum</em>{S,N,W,E,L,R} \widetilde{\phi}<em>\alpha a</em>\alpha + S_P$$</p>
+<p>其中 $S_P$ 为包含所有无法表示为面通量的源项。</p>
+<hr>
+<h2 id="3-标量输运方程的-tvd-格式">3. 标量输运方程的 TVD 格式</h2>
+<h3 id="31-godunov-定理与-tvd-原则">3.1 Godunov 定理与 TVD 原则</h3>
+<p>中心差分格式在求解标量输运方程时会产生负值的非物理振荡。<strong>Godunov 定理</strong>指出：线性二阶格式（中心或迎风）无法同时满足二阶精度和单调性——即必然产生振荡。</p>
+<p>为克服这一问题，引入<strong>总变差递减</strong>（TVD）原则。标量守恒律的总变差定义为：</p>
+<p>$$\mathrm{TV}(\phi) = \sum_i |\phi_{i+1} - \phi_i|$$</p>
+<p>TVD 格式满足 $\text{TV}(\phi^{n+1}) \le \text{TV}(\phi^n)$，确保不产生新的极值。</p>
+<h3 id="32-通量限制器">3.2 通量限制器</h3>
+<p>高阶格式可通过低阶通量和高阶通量的线性组合构造：</p>
+<p>$$h_n = h_n^\ell + \Psi_n (h_n^h - h_n^\ell)$$</p>
+<p>其中 $\Psi_n$ 为<strong>通量限制器</strong>（Flux Limiter），依赖于解的光滑度，通过相邻梯度比 $r_P$ 度量：</p>
+<p>$$r_P = \frac{\delta^- \phi_P}{\delta^+ \phi_P}$$</p>
+<p>$$\delta^- \phi_P = \phi_P - \phi_S, \quad \delta^+ \phi_P = \phi_N - \phi_P$$</p>
+<h3 id="33-van-leer-格式">3.3 van Leer 格式</h3>
+<p>本程序采用 van Leer 提出的通量限制器：</p>
+<p>$$\Psi(r) = \frac{r + |r|}{1 + |r|}$$</p>
+<p>或等效形式：</p>
+<p>$$\Psi(r) = \begin{cases} 0 &amp; r \le 0 \ \frac{2r}{1+r} &amp; r &gt; 0 \end{cases}$$</p>
+<p>单元面上的通量计算：</p>
+<p>$$\phi_n = \begin{cases} \widetilde{\phi}_P + \frac{\Psi(r^+)}{2} (\widetilde{\phi}_N - \widetilde{\phi}<em>P) &amp; G</em>{1,n} \ge 0 \ \widetilde{\phi}_N + \frac{\Psi(r^-)}{2} (\widetilde{\phi}_N - \widetilde{\phi}<em>P) &amp; G</em>{1,n} &lt; 0 \end{cases}$$</p>
+<p>在光滑区域 ($r \approx 1$)，$\Psi \approx 1$，格式保持二阶精度；在极值点处退化为一阶精度，确保 TVD 性质。</p>
+<hr>
+<h2 id="4-压力-速度耦合求解">4. 压力-速度耦合求解</h2>
+<h3 id="41-simple-型算法">4.1 SIMPLE 型算法</h3>
+<p>压力和速度场通过 <strong>SIMPLE</strong>（Semi-Implicit Method for Pressure-Linked Equations）型算法求解。以 $u$-动量方程为例，离散形式可写为：</p>
+<p>$$\mathbf{u}^{n+1} - \frac{4}{3}\mathbf{u}^n + \frac{1}{3}\mathbf{u}^{n-1} + \frac{2}{3}\delta t \mathbf{T} \mathbf{u}^{n+1} = -\frac{2}{3}\delta t \mathbf{D} \mathbf{p}^{n+1} + \frac{2}{3}\delta t \mathbf{S}$$</p>
+<h3 id="42-两级近似分解">4.2 两级近似分解</h3>
+<p>为保持二阶精度，采用<strong>两级近似分解</strong>（Two-Stage Approximate Factorisation）。</p>
+<p><strong>第一级</strong>：</p>
+<p>$$\mathbf{u}^* = (\mathbf{I} + \frac{2}{3}\delta t \mathbf{T},<em>{n})^{-1} \cdot \frac{2}{3}\delta t (\mathbf{D}\mathbf{p}^n + \mathbf{S},</em>{n})$$</p>
+<p>$$\mathbf{u}^m = \mathbf{u}^* - \frac{2}{3}\delta t \mathbf{D} (\boldsymbol{\Delta}\mathbf{p})^m$$</p>
+<p><strong>第二级</strong>：</p>
+<p>$$\mathbf{u}^{**} = (\mathbf{I} + \frac{2}{3}\delta t \mathbf{T},<em>{m})^{-1} \cdot \frac{2}{3}\delta t (\mathbf{D}\mathbf{p}^m + \mathbf{S},</em>{m})$$</p>
+<p>$$\mathbf{u}^{n+1} = \mathbf{u}^{**} - \frac{2}{3}\delta t \mathbf{D} (\boldsymbol{\Delta}\mathbf{p})^{n+1}$$</p>
+<p>其中 $(\boldsymbol{\Delta}\mathbf{p})^m = \mathbf{p}^m - \mathbf{p}^{m-1}$ 为压力增量。</p>
+<h3 id="43-压力修正方程poisson-方程">4.3 压力修正方程（Poisson 方程）</h3>
+<p>将速度表达式代入连续方程，得到压力增量的 <strong>Poisson 型方程</strong>：</p>
+<p>$$A_{1i}\rho u_i\big|<em>{n} - A</em>{1i}\rho u_i\big|<em>{s} = A</em>{1i}\frac{\delta t}{R+1} \left( \frac{A_{ki}}{|J|} \frac{\partial \Delta p^m}{\partial \xi_k} \right)<em>{n} - A</em>{1i}\frac{\delta t}{R+1} \left( \frac{A_{ki}}{|J|} \frac{\partial \Delta p^m}{\partial \xi_k} \right)_{s}$$</p>
+<h3 id="44-rhie-chow-压力平滑">4.4 Rhie-Chow 压力平滑</h3>
+<p>同位存储格式下，压力场与速度场可能产生棋盘格式的振荡。<strong>Rhie-Chow 压力平滑</strong>通过在压力修正方程中添加三阶导数项来消除这一耦合问题：</p>
+<p>$$A_{1i}u_i\big|<em>{n} - A</em>{1i}u_i\big|<em>{s} + A</em>{1i}\frac{\delta t}{R+1} \left( \frac{A_{ki}}{|J|} \frac{\partial^3 p^{m-1}}{\partial \xi_k^3} \right)<em>{n} - A</em>{1i}\frac{\delta t}{R+1} \left( \frac{A_{ki}}{|J|} \frac{\partial^3 p^{m-1}}{\partial \xi_k^3} \right)_{s} = \mathrm{RHS}$$</p>
+<p>该格式采用 $1\Delta$ 紧凑模板计算压力梯度，确保压力场与质量通量的强耦合。</p>
+<h3 id="45-求解算法流程">4.5 求解算法流程</h3>
+<ol>
+<li>由 $n$ 时刻流场 ($\mathbf{u}^n, \mathbf{v}^n, \mathbf{w}^n, \mathbf{p}^n, \rho^n$)，求解 $\mathbf{u}^<em>, \mathbf{v}^</em>, \mathbf{w}^*$</li>
+<li>求解压力增量 Poisson 方程 $(\boldsymbol{\Delta}\mathbf{p})^m$</li>
+<li>更新速度得 $\mathbf{u}^m, \mathbf{v}^m, \mathbf{w}^m$，更新压力 $p^m$ 和质量通量 $G_k^m$</li>
+<li>求解标量场 $\phi^m$</li>
+<li>由 $m$ 时刻流场，求解 $\mathbf{u}^{<strong>}, \mathbf{v}^{</strong>}, \mathbf{w}^{**}$</li>
+<li>求解压力增量 Poisson 方程 $(\boldsymbol{\Delta}\mathbf{p})^{n+1}$</li>
+<li>更新速度得 $\mathbf{u}^{n+1}, \mathbf{v}^{n+1}, \mathbf{w}^{n+1}$，更新压力 $p^{n+1}$ 和质量通量 $G_k^{n+1}$</li>
+<li>求解标量场 $\phi^{n+1}$</li>
+<li>由 $\phi^{n+1}$ 更新密度、粘性和组分</li>
+</ol>
+<h3 id="46-求解器选择">4.6 求解器选择</h3>
+<ul>
+<li><strong>动量方程与标量方程</strong>：采用 Van der Vorst 提出的 <strong>Bi-CGSTAB</strong>（双共轭梯度稳定性）方法</li>
+<li><strong>压力 Poisson 方程</strong>：采用 <strong>ICCG(1,1,1)</strong>（不完全 Cholesky 预处理的共轭梯度法）</li>
+</ul>
+<p>其中压力增量的梯度项为：</p>
+<p>$$\frac{A_{ki}}{|J|}\frac{\partial \Delta p^m}{\partial \xi_k} = \frac{A_{1i}}{|J|}\frac{\partial \Delta p^m}{\partial \xi_1} + \frac{A_{2i}}{|J|}\frac{\partial \Delta p^m}{\partial \xi_2} + \frac{A_{3i}}{|J|}\frac{\partial \Delta p^m}{\partial \xi_3}$$</p>
+<p>采用紧凑 $1\Delta$ 模板近似：</p>
+<p>$$\frac{\partial \Delta p^m}{\partial \xi_1}_{n} = \Delta p_N^m - \Delta p_P^m$$</p>
+<p>质量通量在单元面的更新公式为：</p>
+<p>$$G_1^m,<em>{n} = G_1^*,</em>{m-1} - A_{1i}\frac{A_{1i}}{|J|},_{n} \frac{\delta t}{R+1} ((\Delta p)^m_N - (\Delta p)^m_P)$$</p>
+<p>速度在单元中心的更新公式为：</p>
+<p>$$u_{i,P} = A_{ik,P}\left[ A_{ki}u^{m-1}<em>{i,P} - \frac{1}{\rho}\frac{A</em>{ki}^2}{|J|}\frac{\delta t}{R+1} \frac{\partial (\Delta p)^m}{\partial \xi_k} \right]_P$$</p>
+<p>标量对流项的离散形式为：</p>
+<p>$$\int_{\partial S} G_k \widetilde{\phi} n_k dS \approx G_1 \phi,<em>{n} - G_1 \phi,</em>{s}$$</p>
+<p>残差归一化采用无穷范数：</p>
+<p>$$\lVert \mathbf{u}^{n+1} \rVert^{\#} = \frac{1}{t^{\#}} \left[ \max\left( \rho_{ijk}^2 u_{ijk}^2 + \rho_{ijk}^2 v_{ijk}^2 + \rho_{ijk}^2 w_{ijk}^2 \right)^{1/2} \right]$$</p>
+<p>标量场的归一化残差为：</p>
+<p>$$\lVert \mathbf{\phi}^{n+1} \rVert = \frac{1}{t^{\#}} \left[ \max\left( \rho_{ijk}^2 \phi_{ijk}^2 \right)^{1/2} \right]$$</p>
+<p>压力 Poisson 方程残差的归一化：</p>
+<p>$$\lVert \mathbf{\Delta P}^{n+1} \rVert^{\#} = \frac{1}{t^{\#}} \left( \frac{1}{N}\sum_N \rho_{ijk}^2 \right)^{1/2}$$</p>
+<hr>
+<h2 id="5-总结">5. 总结</h2>
+<p>本文详细介绍了 LES-TPDF 湍流燃烧求解器的数值实现方法：</p>
+<ol>
+<li><strong>坐标变换</strong>：通过 Jacobian 矩阵实现物理空间到计算空间的映射，简化复杂边界处理</li>
+<li><strong>空间离散</strong>：控制体积法自动满足守恒性，对流项采用 van Leer TVD 格式防止非物理振荡</li>
+<li><strong>时间离散</strong>：三点向后格式保证二阶精度，灵活的时间步长适应燃烧初期的大密度变化</li>
+<li><strong>压力-速度耦合</strong>：SIMPLE 型算法结合两级近似分解确保二阶时间精度，Rhie-Chow 光滑消除同位存储的棋盘格振荡</li>
+</ol>
+<p>这些数值方法共同构成了一个稳定、高效、可信的 LES-TPDF 湍流燃烧求解器框架。</p>
+<hr>
+<h2 id="参考文献">参考文献</h2>
+<ol>
+<li>Thompson, J.F. (1974). Grid Generation. <em>Numerical Grid Generation</em>.</li>
+<li>Patankar, S.V. (1971). Calculation of Unsteady Three-Dimensional Flows. <em>Int. J. Heat Mass Transfer</em>.</li>
+<li>Rhie, C.M., Chow, W.L. (1983). A Numerical Study of the Turbulent Flow Past an Airfoil. <em>AIAA Journal</em>.</li>
+<li>Van der Vorst, H.A. (1992). Bi-CGSTAB: A Fast and Smoothly Converging Variant of Bi-CG for the Solution of Nonsymmetric Linear Systems. <em>SIAM J. Sci. Stat. Comput.</em></li>
+<li>Hirsch, C. (1990). <em>Numerical Computation of Internal and External Flows</em>. Wiley.</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-25</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/les_tpdf_numerical_procedure/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" data-title="LES-TPDF 湍流燃烧求解器的数值方法实现" data-hashtags="LES,TPDF,数值方法,有限体积法"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" data-hashtag="LES"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" data-title="LES-TPDF 湍流燃烧求解器的数值方法实现" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" data-title="LES-TPDF 湍流燃烧求解器的数值方法实现"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" data-title="LES-TPDF 湍流燃烧求解器的数值方法实现" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" data-title="LES-TPDF 湍流燃烧求解器的数值方法实现" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" data-title="LES-TPDF 湍流燃烧求解器的数值方法实现" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" data-title="LES-TPDF 湍流燃烧求解器的数值方法实现"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/les/">LES</a>,&nbsp;<a href="/tags/tpdf/">TPDF</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/">数值方法</a>,&nbsp;<a href="/tags/%E6%9C%89%E9%99%90%E4%BD%93%E7%A7%AF%E6%B3%95/">有限体积法</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/les_progress_variable/" class="prev" rel="prev" title="LES-BOFFIN 反应进度变量与燃烧模式诊断方法"><i class="fas fa-angle-left fa-fw"></i>LES-BOFFIN 反应进度变量与燃烧模式诊断方法</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
+
+<script>
+
+(function() {
+    
+    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
+    
+    
+    if (!localStorage.getItem('feishu_webhook')) {
+        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
+    }
+})();
+</script>
+</body>
+</html>

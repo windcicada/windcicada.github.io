@@ -4,7 +4,15 @@
         <link>https://wangyudong.netlify.app/posts/</link>
         <description>All Blog文章 | Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Mon, 23 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://wangyudong.netlify.app/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Wed, 25 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://wangyudong.netlify.app/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>LES-TPDF 湍流燃烧求解器的数值方法实现</title>
+    <link>https://wangyudong.netlify.app/les_tpdf_numerical_procedure/</link>
+    <pubDate>Wed, 25 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/les_tpdf_numerical_procedure/</guid>
+    <description><![CDATA[<blockquote>
+<p><strong>写在前面</strong>：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。</p>]]></description>
+</item><item>
     <title>LES-BOFFIN 反应进度变量与燃烧模式诊断方法</title>
     <link>https://wangyudong.netlify.app/les_progress_variable/</link>
     <pubDate>Mon, 23 Mar 2026 00:00:00 &#43;0000</pubDate>
@@ -304,46 +312,5 @@
 </table>
 <h3 id="示例">示例</h3>
 <p>下面是一个注释过的Fortran文件与子程序的例子:</p>]]></description>
-</item><item>
-    <title>FRP端口转发搭建</title>
-    <link>https://wangyudong.netlify.app/frp/</link>
-    <pubDate>Thu, 11 Nov 2021 20:17:00 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://wangyudong.netlify.app/frp/</guid>
-    <description><![CDATA[<h2 id="frpc在windows端的使用">frpc在Windows端的使用</h2>
-<h3 id="1-修改frpcini">1 修改<code>frpc.ini</code></h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[common]</span>
-</span></span><span class="line"><span class="cl"><span class="na">server_addr</span> <span class="o">=</span> <span class="s">服务器地址</span>
-</span></span><span class="line"><span class="cl"><span class="na">server_port</span> <span class="o">=</span> <span class="s">服务器段frps.ini中开放的端口</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">[ssh]</span>
-</span></span><span class="line"><span class="cl"><span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
-</span></span><span class="line"><span class="cl"><span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
-</span></span><span class="line"><span class="cl"><span class="na">local_port</span> <span class="o">=</span> <span class="s">3389</span>
-</span></span><span class="line"><span class="cl"><span class="na">remote_port</span> <span class="o">=</span> <span class="s">服务器对外开放的端口</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="details admonition tip">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-lightbulb fa-fw"></i>对于 TND Server<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><p>对于TND_SERVER：
-[common]
-server_addr = 服务器地址
-server_port = 6001（或6002）</p>]]></description>
 </item></channel>
 </rss>
