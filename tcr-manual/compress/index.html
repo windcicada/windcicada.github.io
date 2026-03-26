@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>compress - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/compress/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="compress">
+  <meta property="og:description" content="compress.F90 — 可压缩性修正 1. 程序概述 compress 子程序向动量方程添加可压缩性贡献（compressibility contributions），用于考虑密度变化对流场的影响。这是压力基求解器中处理可压缩流动的关键模块。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="tcr-manual">
+    <meta property="article:published_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:tag" content="TCR">
+    <meta property="article:tag" content="Fortran">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="compress">
+  <meta name="twitter:description" content="compress.F90 — 可压缩性修正 1. 程序概述 compress 子程序向动量方程添加可压缩性贡献（compressibility contributions），用于考虑密度变化对流场的影响。这是压力基求解器中处理可压缩流动的关键模块。">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/compress/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/condif/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/cmod/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "compress",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/tcr-manual\/compress\/"
+        },"genre": "tcr-manual","keywords": "TCR, Fortran","wordcount":  799 ,
+        "url": "https:\/\/wangyudong.netlify.app\/tcr-manual\/compress\/","datePublished": "2026-03-26T00:00:00+00:00","dateModified": "2026-03-26T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
+    <div class="nav-container">
+        
+        <a href="/" class="nav-brand">Dong</a>
+        
+        
+        <div class="nav-menu" id="nav-menu-desktop">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/posts/" class="nav-link">Blog文章</a>
+            <a href="/awards/" class="nav-link">学术成果</a>
+        </div>
+        
+        
+        <div class="nav-tools">
+            
+            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="/" class="mobile-nav-link">首页</a>
+        <a href="/posts/" class="mobile-nav-link">Blog文章</a>
+        <a href="/awards/" class="mobile-nav-link">学术成果</a>
+    </div>
+</nav>
+
+
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">compress</h1><div class="content" id="content"><h1 id="compressf90--可压缩性修正">compress.F90 — 可压缩性修正</h1>
+<h2 id="1-程序概述">1. 程序概述</h2>
+<p><code>compress</code> 子程序向动量方程添加<strong>可压缩性贡献</strong>（compressibility contributions），用于考虑密度变化对流场的影响。这是压力基求解器中处理可压缩流动的关键模块。</p>
+<h2 id="2-物理背景">2. 物理背景</h2>
+<p>在压力基求解器中，通过假设密度仅与压力变化相关（Boussinesq 近似或状态方程的线性化），可压缩性效应被建模为源项：</p>
+<p>$$\frac{\partial \rho}{\partial p} \cdot \frac{\partial p}{\partial t}$$</p>
+<p>该修正项被添加到动量方程的对角系数中，确保数值稳定性。</p>
+<h2 id="3-算法流程">3. 算法流程</h2>
+<h3 id="31-核心思想">3.1 核心思想</h3>
+<p>对每个方向（i, j, k），程序：</p>
+<ol>
+<li>计算当地声速系数 <code>gam_n</code>, <code>gam_e</code>, <code>gam_r</code></li>
+<li>使用 TVD（Total Variation Diminishing）格式计算界面通量</li>
+<li>将可压缩性贡献添加到系数矩阵的三对角分量</li>
+</ol>
+<h3 id="32-tvd-格式条件">3.2 TVD 格式条件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tvd</span><span class="p">(</span><span class="n">nvdp</span><span class="p">))</span><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">call</span><span class="w"> </span><span class="n">vls</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">b11</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">fi</span><span class="p">,</span><span class="w"> </span><span class="n">ibs</span><span class="p">,</span><span class="w"> </span><span class="n">ibn</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">w1</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">endif</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>当启用压力修正 <code>dp</code> 的 TVD 格式时，计算界面系数 <code>gam_*</code>；否则设为零。</p>
+<h2 id="4-系数更新公式">4. 系数更新公式</h2>
+<h3 id="41-i-方向">4.1 i 方向</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="n">coef</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">tip</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w1</span><span class="p">(</span><span class="n">ijks</span><span class="p">)</span><span class="o">*</span><span class="n">fi</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="o">/</span><span class="n">ajc</span><span class="p">(</span><span class="n">ijk</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">coef</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">tip</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">w1</span><span class="p">(</span><span class="n">ijks</span><span class="p">))</span><span class="o">*</span><span class="n">fi</span><span class="p">(</span><span class="n">ijk</span><span class="p">))</span><span class="o">/</span><span class="n">ajc</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">coef</span><span class="p">(</span><span class="n">nc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef</span><span class="p">(</span><span class="n">nc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">tip</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">w1</span><span class="p">(</span><span class="n">ijk</span><span class="p">))</span><span class="o">*</span><span class="n">fi</span><span class="p">(</span><span class="n">ijkn</span><span class="p">))</span><span class="o">/</span><span class="n">ajc</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中：</p>
+<ul>
+<li><code>tip = b11(ijk) * gam_n(i)</code> — 界面压力梯度系数</li>
+<li><code>fi</code> — i 方向的质量通量</li>
+<li><code>w1</code> — TVD 权重因子</li>
+<li><code>ajc</code> — 单元体积</li>
+</ul>
+<h3 id="42-j-方向">4.2 j 方向</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="n">coef</span><span class="p">(</span><span class="n">wc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef</span><span class="p">(</span><span class="n">wc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">tjp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w2</span><span class="p">(</span><span class="n">ijkw</span><span class="p">)</span><span class="o">*</span><span class="n">fj</span><span class="p">(</span><span class="n">ijk</span><span class="p">))</span><span class="o">/</span><span class="n">ajc</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">coef</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">tjp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">w2</span><span class="p">(</span><span class="n">ijkw</span><span class="p">))</span><span class="o">*</span><span class="n">fj</span><span class="p">(</span><span class="n">ijk</span><span class="p">))</span><span class="o">/</span><span class="n">ajc</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="43-k-方向">4.3 k 方向</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="n">coef</span><span class="p">(</span><span class="n">lc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef</span><span class="p">(</span><span class="n">lc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">tkp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w3</span><span class="p">(</span><span class="n">ijkl</span><span class="p">)</span><span class="o">*</span><span class="n">fk</span><span class="p">(</span><span class="n">ijk</span><span class="p">))</span><span class="o">/</span><span class="n">ajc</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">coef</span><span class="p">(</span><span class="n">rc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef</span><span class="p">(</span><span class="n">rc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">tkp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">w3</span><span class="p">(</span><span class="n">ijk</span><span class="p">))</span><span class="o">*</span><span class="n">fk</span><span class="p">(</span><span class="n">ijkr</span><span class="p">))</span><span class="o">/</span><span class="n">ajc</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-密度导数项">5. 密度导数项</h2>
+<h3 id="51-对角系数修正">5.1 对角系数修正</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="n">coef</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">drhodp</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="o">/</span><span class="n">dtim</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>drhodp</code> 是密度对压力的导数：</p>
+<ul>
+<li><strong>可压缩流动</strong>：<code>drhodp = 1 / c²</code>（c 为当地声速）</li>
+<li><strong>不可压缩流动</strong>：<code>drhodp = 0</code></li>
+</ul>
+<h3 id="52-时间步长影响">5.2 时间步长影响</h3>
+<p>该修正项与时间步长 <code>dtim</code> 成反比，隐式处理密度脉动的时间演变。</p>
+<h2 id="6-关键变量">6. 关键变量</h2>
+<table>
+  <thead>
+      <tr>
+          <th>变量</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>b11</code>, <code>b22</code>, <code>b33</code></td>
+          <td>各方向的网格度量系数</td>
+      </tr>
+      <tr>
+          <td><code>fi</code>, <code>fj</code>, <code>fk</code></td>
+          <td>各方向的质量通量</td>
+      </tr>
+      <tr>
+          <td><code>w1</code>, <code>w2</code>, <code>w3</code></td>
+          <td>TVD 权重因子</td>
+      </tr>
+      <tr>
+          <td><code>gam_n</code>, <code>gam_e</code>, <code>gam_r</code></td>
+          <td>TVD 界面系数</td>
+      </tr>
+      <tr>
+          <td><code>drhodp</code></td>
+          <td>密度对压力的导数</td>
+      </tr>
+      <tr>
+          <td><code>ajc</code></td>
+          <td>单元体积</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="7-网格索引">7. 网格索引</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">i ∈ [1, l]    — x 方向
+</span></span><span class="line"><span class="cl">j ∈ [1, m]    — y 方向
+</span></span><span class="line"><span class="cl">k ∈ [1, n]    — z 方向
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>内点循环从 i=2, j=2, k=2 开始，避开边界单元。</p>
+<h2 id="8-与其他模块的关系">8. 与其他模块的关系</h2>
+<ul>
+<li><strong>输入</strong>: <code>p</code> (压力), <code>fi/fj/fk</code> (质量通量), <code>drhodp</code> (状态方程)</li>
+<li><strong>输出</strong>: 更新 <code>coef</code> 数组的三对角系数</li>
+<li><strong>调用</strong>: 由主程序 <code>boffin.F90</code> 在动量方程求解前调用</li>
+</ul>
+<h2 id="9-注意事项">9. 注意事项</h2>
+<ol>
+<li>该子程序仅在可压缩流动时产生非零贡献</li>
+<li>TVD 格式需要配合 <code>vls</code> 子程序计算界面值</li>
+<li>系数更新采用半隐式格式，确保数值稳定性</li>
+</ol>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
+
+<script>
+
+(function() {
+    
+    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
+    
+    
+    if (!localStorage.getItem('feishu_webhook')) {
+        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
+    }
+})();
+</script>
+</body>
+</html>

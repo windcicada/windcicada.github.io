@@ -4,8 +4,19 @@
         <link>https://wangyudong.netlify.app/posts/</link>
         <description>All Blog文章 | Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Wed, 25 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://wangyudong.netlify.app/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>LES-TPDF 湍流燃烧求解器的数值方法实现</title>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 26 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://wangyudong.netlify.app/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>湍流燃烧大涡模拟：代码实现</title>
+    <link>https://wangyudong.netlify.app/tcr-solver-manual/</link>
+    <pubDate>Thu, 26 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tcr-solver-manual/</guid>
+    <description><![CDATA[<blockquote>
+<p>详细介绍亚音速可压缩燃烧模拟软件 CSTCSP/AECSC/BOFFIN 的架构和全部函数，由该软件的 123 个代码文档整理得到。</p>
+</blockquote>
+<h2 id="1-程序概述">1. 程序概述</h2>
+<p><strong>TCR (Turbulent Combustion Research)</strong> 是基于 LES 的湍流燃烧求解器，采用随机场 (Stochastic Field) PDF 方法模拟湍流燃烧过程。</p>]]></description>
+</item><item>
+    <title>湍流燃烧大涡模拟：数值方法</title>
     <link>https://wangyudong.netlify.app/les_tpdf_numerical_procedure/</link>
     <pubDate>Wed, 25 Mar 2026 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -23,13 +34,13 @@
 <p>在大涡模拟（LES）与概率密度函数（PDF）方法结合的湍流燃烧模拟中，准确诊断燃烧状态和理解湍流-化学相互作用是重要课题。传统方法难以直接刻画反应进程和燃烧模式之间的耦合关系。</p>
 <p>本文详细介绍基于**反应进度变量（Progress Variable）**的燃烧诊断方法，包括 TCR（湍流-化学递归）模型中 κ_c 的计算方法。</p>]]></description>
 </item><item>
-    <title>大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础</title>
+    <title>湍流燃烧大涡模拟：理论基础</title>
     <link>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</link>
     <pubDate>Thu, 19 Mar 2026 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</guid>
     <description><![CDATA[<blockquote>
-<p><strong>写在前面</strong>：本文初步整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）小尺度混合模型的理论笔记，分享给同领域的研究者。</p>]]></description>
+<p><strong>写在前面</strong>：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。</p>]]></description>
 </item><item>
     <title>TCR小尺度混合模型：湍流-化学递归闭合方法</title>
     <link>https://wangyudong.netlify.app/tcr_micro_mixing_model/</link>
@@ -236,81 +247,5 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div>]]></description>
-</item><item>
-    <title>AECSC-IBM注释规范</title>
-    <link>https://wangyudong.netlify.app/specification/</link>
-    <pubDate>Mon, 09 May 2022 10:50:51 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://wangyudong.netlify.app/specification/</guid>
-    <description><![CDATA[<h1 id="aecsc-ibm-注释规范-ver1">AECSC-IBM 注释规范 Ver.1</h1>
-<h2 id="1-注释规范说明">1. 注释规范说明</h2>
-<ul>
-<li>注释符： <code>!&gt;</code></li>
-</ul>
-<p>(<code>For Fortran &quot;!&gt;&quot; or &quot;!&lt;&quot; starts a comment and &quot;!!&quot; or &quot;!&gt;&quot; can be used to continue an one line comment into a multi-line comment.</code>)</p>
-<ul>
-<li>文件开头注释内容</li>
-</ul>
-<table>
-  <thead>
-      <tr>
-          <th>文件注释</th>
-          <th>意义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>@file</strong></td>
-          <td><strong>文件名</strong>(建议有)</td>
-      </tr>
-      <tr>
-          <td><strong>@author</strong></td>
-          <td><strong>作者名</strong>(建议有)</td>
-      </tr>
-      <tr>
-          <td>@email</td>
-          <td>邮箱地址(可无)</td>
-      </tr>
-      <tr>
-          <td>@version</td>
-          <td>文件版本(可无)</td>
-      </tr>
-      <tr>
-          <td><strong>@date</strong></td>
-          <td><strong>修改日期</strong>(建议有)</td>
-      </tr>
-      <tr>
-          <td><strong>@brief</strong></td>
-          <td><strong>对文件功能的简介</strong>(建议有)</td>
-      </tr>
-  </tbody>
-</table>
-<ul>
-<li>函数与子程序开头注释内容</li>
-</ul>
-<table>
-  <thead>
-      <tr>
-          <th>文件注释</th>
-          <th>意义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>@brief</strong></td>
-          <td><strong>对函数或子程序功能的简介</strong></td>
-      </tr>
-      <tr>
-          <td><strong>@param[in]</strong></td>
-          <td><strong>参数</strong>(输入)</td>
-      </tr>
-      <tr>
-          <td><strong>@param[out]</strong></td>
-          <td><strong>参数</strong>(输出)</td>
-      </tr>
-  </tbody>
-</table>
-<h3 id="示例">示例</h3>
-<p>下面是一个注释过的Fortran文件与子程序的例子:</p>]]></description>
 </item></channel>
 </rss>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>TCR 代码文档索引 - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/tcr-code-docs/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="TCR 代码文档索引">
+  <meta property="og:description" content="本文档索引了 TCR 求解器源代码生成的 123 个代码文档。
+文档分类 求解器核心 文档 说明 boffin.md 主程序 config_boffin.md 配置子程序 input.md 输入参数读取 boffin_stop.md 终止程序 线性求解器 文档 说明 cgstab.md Bi-CGSTAB 求解器 cgsol.md PCG 求解器 linsol.md 线性求解器通用接口 离散格式 文档 说明 condif.md 对流-扩散离散 press.md 压力方程构建 update.md 速度压力更新 step.md 时间步进 模块文件 文档 说明 module_global.md 全局变量 module_arrays.md 主数组 module_chemistry.md 化学模块 module_chemkin.md ChemKin 接口 module_exchange.md MPI 通信 module_sgs_pdf.md SGS/PDF 参数 module_digital_turbulence.md 数字湍流 module_spark.md 点火模型 燃烧模型 文档 说明 fieldpdf.md 随机场 PDF 方法 mixer.md TCR 混合模型 reactor.md 反应计算 &#43; MPI 负载均衡 react_hc.md 碳氢燃料反应求解 react_psr.md PSR 反应求解 stochastic.md 随机过程 (Wiener) source_pdf.md PDF 源项 chemdot.md 反应率计算 亚格子模型 文档 说明 gamma_smagorinsky.md Smagorinsky 模型 gamma_dyn_lilly.md 动态 Lilly 模型 gamma_dyn_piomelli.md 动态 Piomelli 模型 gamma_vreman.md Vreman 模型 gamma_k.md 湍流动能模型 边界条件 文档 说明 bndry1.md Dirichlet 边界 bndry2.md Neumann 边界 bndry2dp.md 压力修正 Neumann bndry3.md 速度边界 bndry3crn.md 速度角点处理 bndry_NSCBC.md NSCBC 超声速边界 bndry_wall.md 壁面边界 boundary1.md 入口/出口 boundary2.md 第二类边界 boundary_wall.md 壁面边界 wall.md 壁面处理 wall_v.md 壁面速度 初始化 文档 说明 start_init.md 流场初始化 start_read.md 重启读取 start_pdf.md PDF 初始化 start_probe.md 探针初始化 start_phase_averaging.md 相平均初始化 inprofile.md 入口分布 profile.md 剖面输入 后处理 文档 说明 statistics.md 湍流统计 output.md 输出信息 probe.md 探针输出 minmax.md 极值计算 vtk.md VTK 输出 物性与热力学 文档 说明 viscos.md 分子粘度 temperature.md 温度 enthalpy.md 焓 densty.md 密度 equilb.md 平衡 speedofsound.md 声速 compress.md 可压缩性 MPI 并行 文档 说明 pbsrhl.md MPI 通信主程序 pbconf.md MPI 配置 pbload.md 负载加载 pexch.md 并行交换 辅助工具 文档 说明 geom.md 网格几何 gradient.md 梯度计算 locate.md 网格定位 jac.md Jacobian moment.md 动量 checkmass.md 质量守恒检查 燃料模型 文档 说明 funcv_4.md 通用燃料函数 funcv_h2.md 氢气 funcv_ch4_arm2.md 甲烷 (ARM2) funcv_ch4_red19.md 甲烷 (RED19) funcv_c2h4.md 乙烯 funcv_c2h5oh.md 乙醇 funcv_c7h16.md 庚烷 funcv_ch3oh.md 甲醇 其他 文档 说明 janaf_input.md 热力学数据读取 source.md 通用源项 souru.md 动量源项 vls.md TVD 限制器 gam_tvd.md TVD 扩散系数 ignition.md 点火 courant.md CFL 计算 共 123 个文档">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="tcr-manual">
+    <meta property="article:published_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:tag" content="TCR">
+    <meta property="article:tag" content="Fortran">
+    <meta property="article:tag" content="源码解析">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="TCR 代码文档索引">
+  <meta name="twitter:description" content="本文档索引了 TCR 求解器源代码生成的 123 个代码文档。
+文档分类 求解器核心 文档 说明 boffin.md 主程序 config_boffin.md 配置子程序 input.md 输入参数读取 boffin_stop.md 终止程序 线性求解器 文档 说明 cgstab.md Bi-CGSTAB 求解器 cgsol.md PCG 求解器 linsol.md 线性求解器通用接口 离散格式 文档 说明 condif.md 对流-扩散离散 press.md 压力方程构建 update.md 速度压力更新 step.md 时间步进 模块文件 文档 说明 module_global.md 全局变量 module_arrays.md 主数组 module_chemistry.md 化学模块 module_chemkin.md ChemKin 接口 module_exchange.md MPI 通信 module_sgs_pdf.md SGS/PDF 参数 module_digital_turbulence.md 数字湍流 module_spark.md 点火模型 燃烧模型 文档 说明 fieldpdf.md 随机场 PDF 方法 mixer.md TCR 混合模型 reactor.md 反应计算 &#43; MPI 负载均衡 react_hc.md 碳氢燃料反应求解 react_psr.md PSR 反应求解 stochastic.md 随机过程 (Wiener) source_pdf.md PDF 源项 chemdot.md 反应率计算 亚格子模型 文档 说明 gamma_smagorinsky.md Smagorinsky 模型 gamma_dyn_lilly.md 动态 Lilly 模型 gamma_dyn_piomelli.md 动态 Piomelli 模型 gamma_vreman.md Vreman 模型 gamma_k.md 湍流动能模型 边界条件 文档 说明 bndry1.md Dirichlet 边界 bndry2.md Neumann 边界 bndry2dp.md 压力修正 Neumann bndry3.md 速度边界 bndry3crn.md 速度角点处理 bndry_NSCBC.md NSCBC 超声速边界 bndry_wall.md 壁面边界 boundary1.md 入口/出口 boundary2.md 第二类边界 boundary_wall.md 壁面边界 wall.md 壁面处理 wall_v.md 壁面速度 初始化 文档 说明 start_init.md 流场初始化 start_read.md 重启读取 start_pdf.md PDF 初始化 start_probe.md 探针初始化 start_phase_averaging.md 相平均初始化 inprofile.md 入口分布 profile.md 剖面输入 后处理 文档 说明 statistics.md 湍流统计 output.md 输出信息 probe.md 探针输出 minmax.md 极值计算 vtk.md VTK 输出 物性与热力学 文档 说明 viscos.md 分子粘度 temperature.md 温度 enthalpy.md 焓 densty.md 密度 equilb.md 平衡 speedofsound.md 声速 compress.md 可压缩性 MPI 并行 文档 说明 pbsrhl.md MPI 通信主程序 pbconf.md MPI 配置 pbload.md 负载加载 pexch.md 并行交换 辅助工具 文档 说明 geom.md 网格几何 gradient.md 梯度计算 locate.md 网格定位 jac.md Jacobian moment.md 动量 checkmass.md 质量守恒检查 燃料模型 文档 说明 funcv_4.md 通用燃料函数 funcv_h2.md 氢气 funcv_ch4_arm2.md 甲烷 (ARM2) funcv_ch4_red19.md 甲烷 (RED19) funcv_c2h4.md 乙烯 funcv_c2h5oh.md 乙醇 funcv_c7h16.md 庚烷 funcv_ch3oh.md 甲醇 其他 文档 说明 janaf_input.md 热力学数据读取 source.md 通用源项 souru.md 动量源项 vls.md TVD 限制器 gam_tvd.md TVD 扩散系数 ignition.md 点火 courant.md CFL 计算 共 123 个文档">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/tcr-code-docs/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/temperature/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/tcr_code_progress/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "TCR 代码文档索引",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/tcr-manual\/tcr-code-docs\/"
+        },"genre": "tcr-manual","keywords": "TCR, Fortran, 源码解析","wordcount":  597 ,
+        "url": "https:\/\/wangyudong.netlify.app\/tcr-manual\/tcr-code-docs\/","datePublished": "2026-03-26T00:00:00+00:00","dateModified": "2026-03-26T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
+    <div class="nav-container">
+        
+        <a href="/" class="nav-brand">Dong</a>
+        
+        
+        <div class="nav-menu" id="nav-menu-desktop">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/posts/" class="nav-link">Blog文章</a>
+            <a href="/awards/" class="nav-link">学术成果</a>
+        </div>
+        
+        
+        <div class="nav-tools">
+            
+            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="/" class="mobile-nav-link">首页</a>
+        <a href="/posts/" class="mobile-nav-link">Blog文章</a>
+        <a href="/awards/" class="mobile-nav-link">学术成果</a>
+    </div>
+</nav>
+
+
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">TCR 代码文档索引</h1><div class="content" id="content"><p>本文档索引了 TCR 求解器源代码生成的 123 个代码文档。</p>
+<h2 id="文档分类">文档分类</h2>
+<h3 id="求解器核心">求解器核心</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/boffin/" rel="">boffin.md</a></td>
+          <td>主程序</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/config_boffin/" rel="">config_boffin.md</a></td>
+          <td>配置子程序</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/input/" rel="">input.md</a></td>
+          <td>输入参数读取</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/boffin_stop/" rel="">boffin_stop.md</a></td>
+          <td>终止程序</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="线性求解器">线性求解器</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/cgstab/" rel="">cgstab.md</a></td>
+          <td>Bi-CGSTAB 求解器</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/cgsol/" rel="">cgsol.md</a></td>
+          <td>PCG 求解器</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/linsol/" rel="">linsol.md</a></td>
+          <td>线性求解器通用接口</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="离散格式">离散格式</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/condif/" rel="">condif.md</a></td>
+          <td>对流-扩散离散</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/press/" rel="">press.md</a></td>
+          <td>压力方程构建</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/update/" rel="">update.md</a></td>
+          <td>速度压力更新</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/step/" rel="">step.md</a></td>
+          <td>时间步进</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="模块文件">模块文件</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/module_global/" rel="">module_global.md</a></td>
+          <td>全局变量</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/module_arrays/" rel="">module_arrays.md</a></td>
+          <td>主数组</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/module_chemistry/" rel="">module_chemistry.md</a></td>
+          <td>化学模块</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/module_chemkin/" rel="">module_chemkin.md</a></td>
+          <td>ChemKin 接口</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/module_exchange/" rel="">module_exchange.md</a></td>
+          <td>MPI 通信</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/module_sgs_pdf/" rel="">module_sgs_pdf.md</a></td>
+          <td>SGS/PDF 参数</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/module_digital_turbulence/" rel="">module_digital_turbulence.md</a></td>
+          <td>数字湍流</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/module_spark/" rel="">module_spark.md</a></td>
+          <td>点火模型</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="燃烧模型">燃烧模型</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/fieldpdf/" rel="">fieldpdf.md</a></td>
+          <td>随机场 PDF 方法</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/mixer/" rel="">mixer.md</a></td>
+          <td>TCR 混合模型</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/reactor/" rel="">reactor.md</a></td>
+          <td>反应计算 + MPI 负载均衡</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/react_hc/" rel="">react_hc.md</a></td>
+          <td>碳氢燃料反应求解</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/react_psr/" rel="">react_psr.md</a></td>
+          <td>PSR 反应求解</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/stochastic/" rel="">stochastic.md</a></td>
+          <td>随机过程 (Wiener)</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/source_pdf/" rel="">source_pdf.md</a></td>
+          <td>PDF 源项</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/chemdot/" rel="">chemdot.md</a></td>
+          <td>反应率计算</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="亚格子模型">亚格子模型</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/gamma_smagorinsky/" rel="">gamma_smagorinsky.md</a></td>
+          <td>Smagorinsky 模型</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/gamma_dyn_lilly/" rel="">gamma_dyn_lilly.md</a></td>
+          <td>动态 Lilly 模型</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/gamma_dyn_piomelli/" rel="">gamma_dyn_piomelli.md</a></td>
+          <td>动态 Piomelli 模型</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/gamma_vreman/" rel="">gamma_vreman.md</a></td>
+          <td>Vreman 模型</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/gamma_k/" rel="">gamma_k.md</a></td>
+          <td>湍流动能模型</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="边界条件">边界条件</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/bndry1/" rel="">bndry1.md</a></td>
+          <td>Dirichlet 边界</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/bndry2/" rel="">bndry2.md</a></td>
+          <td>Neumann 边界</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/bndry2dp/" rel="">bndry2dp.md</a></td>
+          <td>压力修正 Neumann</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/bndry3/" rel="">bndry3.md</a></td>
+          <td>速度边界</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/bndry3crn/" rel="">bndry3crn.md</a></td>
+          <td>速度角点处理</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/bndry_NSCBC/" rel="">bndry_NSCBC.md</a></td>
+          <td>NSCBC 超声速边界</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/bndry_wall/" rel="">bndry_wall.md</a></td>
+          <td>壁面边界</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/boundary1/" rel="">boundary1.md</a></td>
+          <td>入口/出口</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/boundary2/" rel="">boundary2.md</a></td>
+          <td>第二类边界</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/boundary_wall/" rel="">boundary_wall.md</a></td>
+          <td>壁面边界</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/wall/" rel="">wall.md</a></td>
+          <td>壁面处理</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/wall_v/" rel="">wall_v.md</a></td>
+          <td>壁面速度</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="初始化">初始化</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/start_init/" rel="">start_init.md</a></td>
+          <td>流场初始化</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/start_read/" rel="">start_read.md</a></td>
+          <td>重启读取</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/start_pdf/" rel="">start_pdf.md</a></td>
+          <td>PDF 初始化</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/start_probe/" rel="">start_probe.md</a></td>
+          <td>探针初始化</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/start_phase_averaging/" rel="">start_phase_averaging.md</a></td>
+          <td>相平均初始化</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/inprofile/" rel="">inprofile.md</a></td>
+          <td>入口分布</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/profile/" rel="">profile.md</a></td>
+          <td>剖面输入</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="后处理">后处理</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/statistics/" rel="">statistics.md</a></td>
+          <td>湍流统计</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/output/" rel="">output.md</a></td>
+          <td>输出信息</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/probe/" rel="">probe.md</a></td>
+          <td>探针输出</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/minmax/" rel="">minmax.md</a></td>
+          <td>极值计算</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/vtk/" rel="">vtk.md</a></td>
+          <td>VTK 输出</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="物性与热力学">物性与热力学</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/viscos/" rel="">viscos.md</a></td>
+          <td>分子粘度</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/temperature/" rel="">temperature.md</a></td>
+          <td>温度</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/enthalpy/" rel="">enthalpy.md</a></td>
+          <td>焓</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/densty/" rel="">densty.md</a></td>
+          <td>密度</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/equilb/" rel="">equilb.md</a></td>
+          <td>平衡</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/speedofsound/" rel="">speedofsound.md</a></td>
+          <td>声速</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/compress/" rel="">compress.md</a></td>
+          <td>可压缩性</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="mpi-并行">MPI 并行</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/pbsrhl/" rel="">pbsrhl.md</a></td>
+          <td>MPI 通信主程序</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/pbconf/" rel="">pbconf.md</a></td>
+          <td>MPI 配置</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/pbload/" rel="">pbload.md</a></td>
+          <td>负载加载</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/pexch/" rel="">pexch.md</a></td>
+          <td>并行交换</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="辅助工具">辅助工具</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/geom/" rel="">geom.md</a></td>
+          <td>网格几何</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/gradient/" rel="">gradient.md</a></td>
+          <td>梯度计算</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/locate/" rel="">locate.md</a></td>
+          <td>网格定位</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/jac/" rel="">jac.md</a></td>
+          <td>Jacobian</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/moment/" rel="">moment.md</a></td>
+          <td>动量</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/checkmass/" rel="">checkmass.md</a></td>
+          <td>质量守恒检查</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="燃料模型">燃料模型</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/funcv_4/" rel="">funcv_4.md</a></td>
+          <td>通用燃料函数</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/funcv_h2/" rel="">funcv_h2.md</a></td>
+          <td>氢气</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/funcv_ch4_arm2/" rel="">funcv_ch4_arm2.md</a></td>
+          <td>甲烷 (ARM2)</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/funcv_ch4_red19/" rel="">funcv_ch4_red19.md</a></td>
+          <td>甲烷 (RED19)</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/funcv_c2h4/" rel="">funcv_c2h4.md</a></td>
+          <td>乙烯</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/funcv_c2h5oh/" rel="">funcv_c2h5oh.md</a></td>
+          <td>乙醇</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/funcv_c7h16/" rel="">funcv_c7h16.md</a></td>
+          <td>庚烷</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/funcv_ch3oh/" rel="">funcv_ch3oh.md</a></td>
+          <td>甲醇</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="其他">其他</h3>
+<table>
+  <thead>
+      <tr>
+          <th>文档</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="/tcr-manual/janaf_input/" rel="">janaf_input.md</a></td>
+          <td>热力学数据读取</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/source/" rel="">source.md</a></td>
+          <td>通用源项</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/souru/" rel="">souru.md</a></td>
+          <td>动量源项</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/vls/" rel="">vls.md</a></td>
+          <td>TVD 限制器</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/gam_tvd/" rel="">gam_tvd.md</a></td>
+          <td>TVD 扩散系数</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/ignition/" rel="">ignition.md</a></td>
+          <td>点火</td>
+      </tr>
+      <tr>
+          <td><a href="/tcr-manual/courant/" rel="">courant.md</a></td>
+          <td>CFL 计算</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<p><em>共 123 个文档</em></p>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
+
+<script>
+
+(function() {
+    
+    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
+    
+    
+    if (!localStorage.getItem('feishu_webhook')) {
+        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
+    }
+})();
+</script>
+</body>
+</html>

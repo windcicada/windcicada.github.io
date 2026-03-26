@@ -122,3 +122,11 @@ PASSWORD="PASSWORD"
 $ sudo systemctl enable buaaConnect.service
 $ sudo systemctl start buaaConnect.service
 ```
+
+## 5. 启动服务
+
+```shell
+$ sudo systemctl enable buaaConnect.service
+$ sudo systemctl start buaaConnect.service
+```
+

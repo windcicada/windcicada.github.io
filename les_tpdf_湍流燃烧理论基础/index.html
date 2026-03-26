@@ -4,10 +4,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础 - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">
+        <title>湍流燃烧大涡模拟：理论基础 - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">
   <meta property="og:site_name" content="Dong">
-  <meta property="og:title" content="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础">
-  <meta property="og:description" content="写在前面：本文初步整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）小尺度混合模型的理论笔记，分享给同领域的研究者。">
+  <meta property="og:title" content="湍流燃烧大涡模拟：理论基础">
+  <meta property="og:description" content="写在前面：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -22,8 +22,8 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
-  <meta name="twitter:title" content="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础">
-  <meta name="twitter:description" content="写在前面：本文初步整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）小尺度混合模型的理论笔记，分享给同领域的研究者。">
+  <meta name="twitter:title" content="湍流燃烧大涡模拟：理论基础">
+  <meta name="twitter:description" content="写在前面：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。">
 <meta name="application-name" content="Dong">
 <meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -32,12 +32,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础",
+        "headline": "湍流燃烧大涡模拟：理论基础",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/wangyudong.netlify.app\/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80\/"
-        },"genre": "posts","keywords": "LES, 大涡模拟, TPDF, 湍流燃烧, 数值模拟","wordcount":  3507 ,
+        },"genre": "posts","keywords": "LES, 大涡模拟, TPDF, 湍流燃烧, 数值模拟","wordcount":  3470 ,
         "url": "https:\/\/wangyudong.netlify.app\/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80\/","datePublished": "2026-03-19T00:00:00+00:00","dateModified": "2026-03-19T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -82,10 +82,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">湍流燃烧大涡模拟：理论基础</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>王煜栋</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E6%9C%AF/"><i class="far fa-folder fa-fw"></i>学术</a>&nbsp;<a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/"><i class="far fa-folder fa-fw"></i>湍流燃烧</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-19">2026-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3507 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;<span id="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-19">2026-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3470 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;<span id="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="湍流燃烧大涡模拟：理论基础">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
@@ -148,7 +148,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p><strong>写在前面</strong>：本文初步整理了 LES-TPDF 湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。作为 TCR（Turbulence-Chemistry Recursive）小尺度混合模型的理论笔记，分享给同领域的研究者。</p>
+<p><strong>写在前面</strong>：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。</p>
 </blockquote>
 <hr>
 <h2 id="1-引言为什么要用-les-tpdf">1. 引言：为什么要用 LES-TPDF？</h2>
@@ -477,7 +477,7 @@
                             <a class="link-to-markdown" href="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础" data-hashtags="LES,大涡模拟,TPDF,湍流燃烧,数值模拟"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-hashtag="LES"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="大涡模拟（LES）与概率密度函数（PDF）方法：湍流燃烧模拟的理论基础"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="湍流燃烧大涡模拟：理论基础" data-hashtags="LES,大涡模拟,TPDF,湍流燃烧,数值模拟"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-hashtag="LES"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="湍流燃烧大涡模拟：理论基础" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="湍流燃烧大涡模拟：理论基础"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="湍流燃烧大涡模拟：理论基础" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="湍流燃烧大涡模拟：理论基础" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="湍流燃烧大涡模拟：理论基础" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" data-title="湍流燃烧大涡模拟：理论基础"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>cgstab - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/cgstab/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="cgstab">
+  <meta property="og:description" content="CGSTAB.F90 - Bi-CGSTAB 求解器 功能概述 CGSTAB 是 TCR 求解器中用于求解 动量方程 的 双共轭梯度稳定化 (Bi-CGSTAB) 求解器。该算法由 Van der Vorst (1990) 提出，适用于非对称线性方程组，比标准 CG 方法具有更平滑的收敛特性。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="tcr-manual">
+    <meta property="article:published_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:tag" content="TCR">
+    <meta property="article:tag" content="Fortran">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="cgstab">
+  <meta name="twitter:description" content="CGSTAB.F90 - Bi-CGSTAB 求解器 功能概述 CGSTAB 是 TCR 求解器中用于求解 动量方程 的 双共轭梯度稳定化 (Bi-CGSTAB) 求解器。该算法由 Van der Vorst (1990) 提出，适用于非对称线性方程组，比标准 CG 方法具有更平滑的收敛特性。">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/cgstab/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/checkmass/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/cgsol/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "cgstab",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/tcr-manual\/cgstab\/"
+        },"genre": "tcr-manual","keywords": "TCR, Fortran","wordcount":  779 ,
+        "url": "https:\/\/wangyudong.netlify.app\/tcr-manual\/cgstab\/","datePublished": "2026-03-26T00:00:00+00:00","dateModified": "2026-03-26T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
+    <div class="nav-container">
+        
+        <a href="/" class="nav-brand">Dong</a>
+        
+        
+        <div class="nav-menu" id="nav-menu-desktop">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/posts/" class="nav-link">Blog文章</a>
+            <a href="/awards/" class="nav-link">学术成果</a>
+        </div>
+        
+        
+        <div class="nav-tools">
+            
+            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="/" class="mobile-nav-link">首页</a>
+        <a href="/posts/" class="mobile-nav-link">Blog文章</a>
+        <a href="/awards/" class="mobile-nav-link">学术成果</a>
+    </div>
+</nav>
+
+
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">cgstab</h1><div class="content" id="content"><h1 id="cgstabf90---bi-cgstab-求解器">CGSTAB.F90 - Bi-CGSTAB 求解器</h1>
+<h2 id="功能概述">功能概述</h2>
+<p><code>CGSTAB</code> 是 TCR 求解器中用于求解 <strong>动量方程</strong> 的 <strong>双共轭梯度稳定化 (Bi-CGSTAB) 求解器</strong>。该算法由 Van der Vorst (1990) 提出，适用于非对称线性方程组，比标准 CG 方法具有更平滑的收敛特性。</p>
+<h2 id="算法参数">算法参数</h2>
+<table>
+  <thead>
+      <tr>
+          <th>参数</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>预处理器</td>
+          <td>ILU (不完全 LU 分解)</td>
+      </tr>
+      <tr>
+          <td>收敛条件</td>
+          <td><code>error &gt; tol(nv)</code></td>
+      </tr>
+      <tr>
+          <td>最大迭代</td>
+          <td><code>icycl(nv)</code></td>
+      </tr>
+      <tr>
+          <td>向量化</td>
+          <td>可选对角预处理器</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="bi-cgstab-算法">Bi-CGSTAB 算法</h2>
+<p>Bi-CGSTAB 结合了共轭梯度 (CG) 和双共轭梯度 (Bi-CG) 的优点，通过稳定化机制避免 Bi-CG 的不规则收敛。</p>
+<h3 id="核心公式">核心公式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ρ_k = r₀ · r_{k-1}
+</span></span><span class="line"><span class="cl">β_k = (ρ_k / ρ_{k-1}) * (α_{k-1} / ω_{k-1})
+</span></span><span class="line"><span class="cl">p_k = r_{k-1} + β_k * (p_{k-1} - ω_{k-1} * v_{k-1})
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">s = M^{-1} p_k          (预处理器求解)
+</span></span><span class="line"><span class="cl">v = A s                 (矩阵-向量乘)
+</span></span><span class="line"><span class="cl">α = ρ_k / (r₀ · v)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">x_k = x_{k-1} + α * s
+</span></span><span class="line"><span class="cl">r_k = r_{k-1} - α * v
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">t = M^{-1} r_k          (预处理器求解)
+</span></span><span class="line"><span class="cl">ω_k = (t · r_k) / (t · t)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">x_k = x_k + ω_k * t
+</span></span><span class="line"><span class="cl">r_k = r_k - ω_k * t
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="迭代流程">迭代流程</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">初始化: r = b - Ax, r₀ = r, p = r
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">while (error &gt; tol 且 iter &lt; max_iter)
+</span></span><span class="line"><span class="cl">    1. 计算 ρ = r₀ · r
+</span></span><span class="line"><span class="cl">    2. 计算 β
+</span></span><span class="line"><span class="cl">    3. 更新搜索方向 p = r + β*(p - ω*v)
+</span></span><span class="line"><span class="cl">    4. 预处理求解: s = M^{-1} * p
+</span></span><span class="line"><span class="cl">    5. 矩阵-向量乘: v = A * s
+</span></span><span class="line"><span class="cl">    6. 计算步长 α = ρ / (r₀ · v)
+</span></span><span class="line"><span class="cl">    7. 更新解: x = x + α * s
+</span></span><span class="line"><span class="cl">    8. 更新残差: r = r - α * v
+</span></span><span class="line"><span class="cl">    9. 预处理求解: t = M^{-1} * r
+</span></span><span class="line"><span class="cl">    10. 计算 ω = (t · r) / (t · t)
+</span></span><span class="line"><span class="cl">    11. 更新解: x = x + ω * t
+</span></span><span class="line"><span class="cl">    12. 更新残差: r = r - ω * t
+</span></span><span class="line"><span class="cl">    13. 检查收敛
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="关键变量">关键变量</h2>
+<table>
+  <thead>
+      <tr>
+          <th>变量</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>p</code></td>
+          <td>搜索方向</td>
+      </tr>
+      <tr>
+          <td><code>v</code></td>
+          <td>矩阵-向量乘积</td>
+      </tr>
+      <tr>
+          <td><code>d</code></td>
+          <td>对角预处理器</td>
+      </tr>
+      <tr>
+          <td><code>s</code></td>
+          <td>临时向量 (第一步)</td>
+      </tr>
+      <tr>
+          <td><code>r</code></td>
+          <td>当前残差</td>
+      </tr>
+      <tr>
+          <td><code>r0</code></td>
+          <td>初始残差 (参考向量)</td>
+      </tr>
+      <tr>
+          <td><code>t</code></td>
+          <td>临时向量 (第二步)</td>
+      </tr>
+      <tr>
+          <td><code>ρ</code></td>
+          <td>ρ 参数 (Bi-CG 系数)</td>
+      </tr>
+      <tr>
+          <td><code>α</code></td>
+          <td>步长 α</td>
+      </tr>
+      <tr>
+          <td><code>ω</code></td>
+          <td>步长 ω</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="ilu-预处理器">ILU 预处理器</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="n">d</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coef</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="o">-</span><span class="w"> </span><span class="n">d</span><span class="p">(</span><span class="n">ijkw</span><span class="p">)</span><span class="o">*</span><span class="n">coef</span><span class="p">(</span><span class="n">wc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="o">*</span><span class="n">coef</span><span class="p">(</span><span class="n">ec</span><span class="p">,</span><span class="n">ijkw</span><span class="p">)</span><span class="w">   </span><span class="p">&amp;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="o">-</span><span class="w"> </span><span class="n">d</span><span class="p">(</span><span class="n">ijks</span><span class="p">)</span><span class="o">*</span><span class="n">coef</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="o">*</span><span class="n">coef</span><span class="p">(</span><span class="n">nc</span><span class="p">,</span><span class="n">ijks</span><span class="p">)</span><span class="w">   </span><span class="p">&amp;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="o">-</span><span class="w"> </span><span class="n">d</span><span class="p">(</span><span class="n">ijkl</span><span class="p">)</span><span class="o">*</span><span class="n">coef</span><span class="p">(</span><span class="n">lc</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="o">*</span><span class="n">coef</span><span class="p">(</span><span class="n">rc</span><span class="p">,</span><span class="n">ijkl</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">d</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="o">/</span><span class="n">d</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="与-cgsol-的对比">与 CGSOL 的对比</h2>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>CGSTAB</th>
+          <th>CGSOL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>算法</td>
+          <td>Bi-CGSTAB + ILU</td>
+          <td>PCG + ICCG</td>
+      </tr>
+      <tr>
+          <td>矩阵要求</td>
+          <td>非对称</td>
+          <td>对称正定</td>
+      </tr>
+      <tr>
+          <td>用途</td>
+          <td>动量方程</td>
+          <td>压力方程</td>
+      </tr>
+      <tr>
+          <td>工作数组</td>
+          <td>7 个</td>
+          <td>4 个</td>
+      </tr>
+      <tr>
+          <td>收敛稳定性</td>
+          <td>平滑</td>
+          <td>依赖矩阵性质</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="性能特点">性能特点</h2>
+<ul>
+<li><strong>内存</strong>: 7 个额外工作数组</li>
+<li><strong>通信</strong>: 每次迭代多次 MPI 归约</li>
+<li><strong>适用</strong>: 速度场求解（对称/非对称矩阵）</li>
+</ul>
+<h2 id="备选方案">备选方案</h2>
+<ol>
+<li><strong>对角预处理器</strong>: 替代 ILU，简化但收敛略慢</li>
+<li><strong>L-D-U 截断展开</strong>: Van der Vorst 提出的向量化方案</li>
+</ol>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
+
+<script>
+
+(function() {
+    
+    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
+    
+    
+    if (!localStorage.getItem('feishu_webhook')) {
+        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
+    }
+})();
+</script>
+</body>
+</html>
