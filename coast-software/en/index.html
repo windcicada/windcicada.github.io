@@ -4,10 +4,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>COAST - COmbustor Adaptive Simulation Toolkit - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/coast-software/">
+        <title>COAST - COmbustor Adaptive Simulation Toolkit - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/coast-software/en/">
   <meta property="og:site_name" content="Dong">
   <meta property="og:title" content="COAST - COmbustor Adaptive Simulation Toolkit">
-  <meta property="og:description" content="概述 COAST (Chemistry Optimized Algorithmic Solver for Turbulence) 是一款面向湍流燃烧大规模并行数值模拟的专业软件，基于 LES-TPDF 方法框架，集成了高阶浸没边界方法 (IBM)、多种湍流模型、详细化学反应机理求解、欧拉-拉格朗日喷雾模拟等核心功能模块。">
+  <meta property="og:description" content="Overview COAST (Chemistry Optimized Algorithmic Solver for Turbulence) is a professional CFD software for large-scale parallel turbulent combustion simulation, based on the LES-TPDF framework.
+Features LES-TPDF coupled solver High-order Immersed Boundary Method ESF stochastic field solver TCR micro-mixing model Detailed chemical mechanisms (ARM2, Red19) MPI-based parallel computing Download ⬇️ Download COAST Runtime Package (v2026.06, Linux x86_64)
+Quick Start 1 2 3 tar -xzf coast-runtime-&lt;version&gt;-linux-x86_64.tar.gz cd coast-runtime-&lt;version&gt;-linux-x86_64 source env/coast-env.sh 📖 查看中文版 | 📖 User Manual (Chinese)">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="website">
     <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
@@ -15,12 +17,14 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
   <meta name="twitter:title" content="COAST - COmbustor Adaptive Simulation Toolkit">
-  <meta name="twitter:description" content="概述 COAST (Chemistry Optimized Algorithmic Solver for Turbulence) 是一款面向湍流燃烧大规模并行数值模拟的专业软件，基于 LES-TPDF 方法框架，集成了高阶浸没边界方法 (IBM)、多种湍流模型、详细化学反应机理求解、欧拉-拉格朗日喷雾模拟等核心功能模块。">
+  <meta name="twitter:description" content="Overview COAST (Chemistry Optimized Algorithmic Solver for Turbulence) is a professional CFD software for large-scale parallel turbulent combustion simulation, based on the LES-TPDF framework.
+Features LES-TPDF coupled solver High-order Immersed Boundary Method ESF stochastic field solver TCR micro-mixing model Detailed chemical mechanisms (ARM2, Red19) MPI-based parallel computing Download ⬇️ Download COAST Runtime Package (v2026.06, Linux x86_64)
+Quick Start 1 2 3 tar -xzf coast-runtime-&lt;version&gt;-linux-x86_64.tar.gz cd coast-runtime-&lt;version&gt;-linux-x86_64 source env/coast-env.sh 📖 查看中文版 | 📖 User Manual (Chinese)">
 <meta name="application-name" content="Dong">
 <meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/coast-software/" /><link rel="alternate" href="/coast-software/index.xml" type="application/rss+xml" title="Dong">
-    <link rel="feed" href="/coast-software/index.xml" type="application/rss+xml" title="Dong"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/coast-software/en/" /><link rel="alternate" href="/coast-software/en/index.xml" type="application/rss+xml" title="Dong">
+    <link rel="feed" href="/coast-software/en/index.xml" type="application/rss+xml" title="Dong"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 </head>
     <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
@@ -33,7 +37,7 @@
         <div class="nav-menu" id="nav-menu-desktop">
             <a href="/" class="nav-link">首页</a>
             <a href="/posts/" class="nav-link">Blog文章</a>
-            <a href="/coast-software/" class="nav-link active">COAST软件</a>
+            <a href="/coast-software/" class="nav-link">COAST软件</a>
             <a href="/awards/" class="nav-link">学术成果</a>
         </div>
         
@@ -56,120 +60,42 @@
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
         <a href="/" class="mobile-nav-link">首页</a>
         <a href="/posts/" class="mobile-nav-link">Blog文章</a>
-        <a href="/coast-software/" class="mobile-nav-link active">COAST软件</a>
+        <a href="/coast-software/" class="mobile-nav-link">COAST软件</a>
         <a href="/awards/" class="mobile-nav-link">学术成果</a>
     </div>
 </nav>
 
 
 <main class="main">
-                <div class="container"><div class="page single special"><div class="content" id="content"><h2 id="概述">概述</h2>
-<p><strong>COAST</strong> (Chemistry Optimized Algorithmic Solver for Turbulence) 是一款面向湍流燃烧大规模并行数值模拟的专业软件，基于 LES-TPDF 方法框架，集成了高阶浸没边界方法 (IBM)、多种湍流模型、详细化学反应机理求解、欧拉-拉格朗日喷雾模拟等核心功能模块。</p>
-<h2 id="特色">特色</h2>
+                <div class="container"><div class="page single special"><div class="content" id="content"><h2 id="overview">Overview</h2>
+<p><strong>COAST</strong> (Chemistry Optimized Algorithmic Solver for Turbulence) is a professional CFD software for large-scale parallel turbulent combustion simulation, based on the LES-TPDF framework.</p>
+<h2 id="features">Features</h2>
 <ul>
-<li><strong>LES-TPDF 耦合求解</strong>：大涡模拟与输运概率密度函数方法相结合，精确描述湍流-化学反应相互作用</li>
-<li><strong>高阶浸没边界方法</strong>：支持复杂几何外形的直角网格模拟，无需贴体网格</li>
-<li><strong>ESF 随机场求解器</strong>：高效求解标量联合 PDF 输运方程</li>
-<li><strong>多层分区微混合模型</strong>：TCR 模型 – 湍流-化学递归混合模型，无需经验标定参数</li>
-<li><strong>详细化学反应机理</strong>：支持 ARM2、Red19 等多种甲烷/燃料机理，支持 DVODE 刚性求解器</li>
-<li><strong>并行可扩展</strong>：基于 MPI 分布式并行，支持数百至数千核心高效运行</li>
+<li><strong>LES-TPDF coupled solver</strong></li>
+<li><strong>High-order Immersed Boundary Method</strong></li>
+<li><strong>ESF stochastic field solver</strong></li>
+<li><strong>TCR micro-mixing model</strong></li>
+<li><strong>Detailed chemical mechanisms</strong> (ARM2, Red19)</li>
+<li><strong>MPI-based parallel computing</strong></li>
 </ul>
-<h2 id="软件下载">软件下载</h2>
-<p><a href="/downloads/coast-runtime.tar.gz" rel="">⬇️ 下载 COAST 便携运行包 (v2026.06, Linux x86_64)</a></p>
-<blockquote>
-<p>封装版约 6.8 MB，适用于 Linux x86_64 服务器。解压后包含求解器、coastctl 工具、UI、模板算例及完整文档。</p>
-</blockquote>
-<h2 id="系统要求">系统要求</h2>
-<ul>
-<li>Linux x86_64 服务器或工作站</li>
-<li>Python 3 (coastctl / assistant 工具)</li>
-<li>MPICH / OpenMPI (<code>mpirun</code>)</li>
-<li>推荐 64+ 核心 / 128 GB+ 内存用于生产计算</li>
-</ul>
-<h2 id="快速入门">快速入门</h2>
+<h2 id="download">Download</h2>
+<p><a href="/downloads/coast-runtime.tar.gz" rel="">⬇️ Download COAST Runtime Package (v2026.06, Linux x86_64)</a></p>
+<h2 id="quick-start">Quick Start</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 解压</span>
-</span></span><span class="line"><span class="cl">tar -xzf coast-runtime-&lt;version&gt;-linux-x86_64.tar.gz
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tar -xzf coast-runtime-&lt;version&gt;-linux-x86_64.tar.gz
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> coast-runtime-&lt;version&gt;-linux-x86_64
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 加载环境</span>
 </span></span><span class="line"><span class="cl"><span class="nb">source</span> env/coast-env.sh
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 检查工具</span>
-</span></span><span class="line"><span class="cl">bin/coastctl doctor --case-dir EXEC_TEMPLATE --json
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 创建算例</span>
-</span></span><span class="line"><span class="cl">cp -a EXEC_TEMPLATE EXEC.demo
-</span></span><span class="line"><span class="cl">bin/coastctl <span class="k">case</span> validate --case-dir EXEC.demo --json
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 启动运行前检查</span>
-</span></span><span class="line"><span class="cl">bin/coastctl run --case-dir EXEC.demo --ranks <span class="m">128</span> --preflight --write --json
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 启动短测</span>
-</span></span><span class="line"><span class="cl">bin/coastctl run --case-dir EXEC.demo --ranks <span class="m">128</span> --execute --preflight --write --json
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 监控运行</span>
-</span></span><span class="line"><span class="cl">bin/coastctl monitor --case-dir EXEC.demo --json
 </span></span></code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p><strong>注意</strong>：以上 rank 数 (128) 仅为示例，实际应以算例 Decomp/Restart 分块数为准。</p>
-</blockquote>
-<h2 id="用户手册">用户手册</h2>
-<p>完整的 COAST 用户手册包含以下章节：</p>
-<ul>
-<li>封装版环境配置</li>
-<li>算例创建与修改</li>
-<li>边界条件设置</li>
-<li>运行计算（短测/正式/续算）</li>
-<li>查看和导出结果</li>
-<li>常见问题排查</li>
-</ul>
-<p><a href="../coast-software/manual/" rel="">📖 阅读 COAST 用户手册</a></p>
-<h2 id="相关链接">相关链接</h2>
-<ul>
-<li><a href="../awards/" rel="">学术成果</a> — COAST 相关论文与软著</li>
-<li><a href="../posts/les-tpdf-%e6%b9%8d%e6%b5%81%e7%87%83%e7%83%a7%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80/" rel="">LES-TPDF 湍流燃烧理论基础</a> — 方法背景</li>
-<li><a href="../posts/tcr_micro_mixing_model/" rel="">TCR 微混合模型</a> — 核心创新模型</li>
-</ul>
-<hr>
-<p><a href="/coast-software/en/" rel="">English Version →</a></p>
-<p><em>COAST 由北京航空航天大学湍流燃烧团队开发维护。</em></p>
-</div><div class="related-posts">
-                <h2 class="single-title"></h2>
-                <div class="blog-list"><a href="/coast-software/manual/" class="blog-item">
-                            <span class="blog-title">COAST 用户手册</span>
-                            <span class="blog-date">2026-07-02</span>
-                        </a><a href="/coast-software/en/" class="blog-item">
-                            <span class="blog-title">COAST - COmbustor Adaptive Simulation Toolkit</span>
-                            <span class="blog-date">2026-07-02</span>
-                        </a></div>
-            </div><div id="comments"><div id="valine" class="comment"></div><noscript>
+</div><hr>
+<p><a href="/coast-software/" rel="">📖 查看中文版</a> | <a href="/coast-software/manual/" rel="">📖 User Manual (Chinese)</a></p>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
