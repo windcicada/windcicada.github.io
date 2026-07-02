@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>COAST - 湍流-化学混合模拟软件 on Dong</title>
+    <title>COAST - COmbustor Adaptive Simulation Toolkit on Dong</title>
     <link>https://wangyudong.netlify.app/coast-software/</link>
-    <description>Recent content in COAST - 湍流-化学混合模拟软件 on Dong</description>
+    <description>Recent content in COAST - COmbustor Adaptive Simulation Toolkit on Dong</description>
     <generator>Hugo</generator>
     <language>en</language>
     <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
@@ -11,11 +11,11 @@
     <lastBuildDate>Thu, 02 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://wangyudong.netlify.app/coast-software/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>COAST 用户手册</title>
+      <title>COAST User Manual</title>
       <link>https://wangyudong.netlify.app/coast-software/manual/</link>
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
       <guid>https://wangyudong.netlify.app/coast-software/manual/</guid>
-      <description>&lt;p&gt;﻿# 鏈蒋浠?涓枃鐢ㄦ埛鎵嬪唽&lt;/p&gt;&#xA;&lt;p&gt;鏈墜鍐岄潰鍚戞病鏈夌紪绋嬪拰浠跨湡鍩虹鐨勬湰杞欢浣跨敤鑰呫€傚墠鍗婇儴鍒嗕富瑕佽灏佽鐗堜究鎼虹▼搴忓浣曢€氳繃 SSH 鍛戒护琛屽畨瑁呫€佷慨鏀圭畻渚嬨€佽繍琛岃绠楀拰鏌ョ湅缁撴灉锛涘悗鍗婇儴鍒嗕粙缁嶉潪灏佽鐗堝畬鏁村伐浣滃尯銆佺綉鏍?閲嶅惎鍔?灞€閮ㄥ姞瀵嗘柟娉曚互鍙婂紑鍙戠淮鎶ゆ祦绋嬨€傚浘褰㈣緟鍔╃晫闈㈡槸鍗曠嫭鐨勮緟鍔╄鏂斤紝涓€鑸笉浣滀负涓荤嚎鎿嶄綔鏂瑰紡銆?&#xA;鏈枃浠剁敱 &lt;code&gt;docs/manual_sections/&lt;/code&gt; 涓嬬殑绔犺妭鑽夌鏁村悎鐢熸垚锛涘鏋滃悗缁澶у箙淇敼鏌愪竴绔狅紝寤鸿鍏堜慨鏀瑰搴旂珷鑺傝崏绋匡紝鍐嶉噸鏂版暣鍚堛€?&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;coast-中文用户手册&#34;&gt;COAST 中文用户手册&lt;/h1&gt;&#xA;&lt;p&gt;本手册面向没有编程和仿真基础的COAST使用者。前半部分主要讲封装版便携程序如何通过 SSH 命令行安装、修改算例、运行计算和查看结果；后半部分介绍非封装版完整工作区、网格/重启动/局部加密方法以及开发维护流程。图形辅助界面是单独的辅助设施，一般不作为主线操作方式。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
