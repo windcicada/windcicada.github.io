@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>LES-BOFFIN 反应进度变量与燃烧模式诊断方法 - Dong</title><meta name="Description" content="详细介绍基于反应进度变量的燃烧诊断方法，包括 TCR κ_c 模型的计算方法"><meta property="og:url" content="https://wangyudong.netlify.app/les_progress_variable/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="LES-BOFFIN 反应进度变量与燃烧模式诊断方法">
+  <meta property="og:description" content="详细介绍基于反应进度变量的燃烧诊断方法，包括 TCR κ_c 模型的计算方法">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-23T00:00:00+00:00">
+    <meta property="article:tag" content="LES">
+    <meta property="article:tag" content="TCR">
+    <meta property="article:tag" content="湍流燃烧">
+    <meta property="article:tag" content="Progress Variable">
+    <meta property="article:tag" content="Karlovitz">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="LES-BOFFIN 反应进度变量与燃烧模式诊断方法">
+  <meta name="twitter:description" content="详细介绍基于反应进度变量的燃烧诊断方法，包括 TCR κ_c 模型的计算方法">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/les_progress_variable/" /><link rel="prev" href="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" /><link rel="next" href="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LES-BOFFIN 反应进度变量与燃烧模式诊断方法",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/les_progress_variable\/"
+        },"genre": "posts","keywords": "LES, TCR, 湍流燃烧, Progress Variable, Karlovitz","wordcount":  1677 ,
+        "url": "https:\/\/wangyudong.netlify.app\/les_progress_variable\/","datePublished": "2026-03-23T00:00:00+00:00","dateModified": "2026-03-23T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "王煜栋"
+            },"description": "详细介绍基于反应进度变量的燃烧诊断方法，包括 TCR κ_c 模型的计算方法"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
+    <div class="nav-container">
+        
+        <a href="/" class="nav-brand">Dong</a>
+        
+        
+        <div class="nav-menu" id="nav-menu-desktop">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/posts/" class="nav-link active">Blog文章</a>
+            <a href="/awards/" class="nav-link">学术成果</a>
+        </div>
+        
+        
+        <div class="nav-tools">
+            
+            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="/" class="mobile-nav-link">首页</a>
+        <a href="/posts/" class="mobile-nav-link active">Blog文章</a>
+        <a href="/awards/" class="mobile-nav-link">学术成果</a>
+    </div>
+</nav>
+
+
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">LES-BOFFIN 反应进度变量与燃烧模式诊断方法</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>王煜栋</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E4%BB%BF%E7%9C%9F/"><i class="far fa-folder fa-fw"></i>湍流燃烧仿真</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-23">2026-03-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1677 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;<span id="/les_progress_variable/" class="leancloud_visitors" data-flag-title="LES-BOFFIN 反应进度变量与燃烧模式诊断方法">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-研究背景">1. 研究背景</a></li>
+    <li><a href="#2-反应进度变量定义">2. 反应进度变量定义</a>
+      <ul>
+        <li><a href="#21-ch-燃烧的进度变量">2.1 C₃H₈ 燃烧的进度变量</a></li>
+        <li><a href="#22-瞬时值与滤波值">2.2 瞬时值与滤波值</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-反应进度变量变化率">3. 反应进度变量变化率</a>
+      <ul>
+        <li><a href="#31-滤波反应进度变化率">3.1 滤波反应进度变化率</a></li>
+        <li><a href="#32-psr-参考反应进度变化率">3.2 PSR 参考反应进度变化率</a></li>
+        <li><a href="#33-计算代码实现">3.3 计算代码实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-tcr-κ_c-模型">4. TCR κ_c 模型</a>
+      <ul>
+        <li><a href="#41-理论背景">4.1 理论背景</a></li>
+        <li><a href="#42-数值稳定性处理">4.2 数值稳定性处理</a></li>
+        <li><a href="#43-κ_c-的物理意义">4.3 κ_c 的物理意义</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-局部燃烧模式分类">5. 局部燃烧模式分类</a>
+      <ul>
+        <li><a href="#51-分类判据">5.1 分类判据</a></li>
+        <li><a href="#52-关键参数计算">5.2 关键参数计算</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-标量-pdf-方差">6. 标量 PDF 方差</a>
+      <ul>
+        <li><a href="#61-从随机场样本计算">6.1 从随机场样本计算</a></li>
+        <li><a href="#62-计算流程">6.2 计算流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-vtk-输出变量汇总">7. VTK 输出变量汇总</a></li>
+    <li><a href="#8-代码实现要点">8. 代码实现要点</a>
+      <ul>
+        <li><a href="#81-组分索引的动态查找">8.1 组分索引的动态查找</a></li>
+        <li><a href="#82-rdot-与-prev_rdot-的区别">8.2 rdot 与 prev_rdot 的区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#9-后续分析建议">9. 后续分析建议</a></li>
+    <li><a href="#参考文献">参考文献</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="les-boffin-反应进度变量与燃烧模式诊断方法">LES-BOFFIN 反应进度变量与燃烧模式诊断方法</h1>
+<h2 id="1-研究背景">1. 研究背景</h2>
+<p>在大涡模拟（LES）与概率密度函数（PDF）方法结合的湍流燃烧模拟中，准确诊断燃烧状态和理解湍流-化学相互作用是重要课题。传统方法难以直接刻画反应进程和燃烧模式之间的耦合关系。</p>
+<p>本文详细介绍基于**反应进度变量（Progress Variable）**的燃烧诊断方法，包括 TCR（湍流-化学递归）模型中 κ_c 的计算方法。</p>
+<h2 id="2-反应进度变量定义">2. 反应进度变量定义</h2>
+<h3 id="21-ch-燃烧的进度变量">2.1 C₃H₈ 燃烧的进度变量</h3>
+<p>对于丙烷（C₃H₈）空气燃烧，基于元素守恒的反应进度变量定义为：</p>
+<p>$$c = \frac{X_{prod}}{X_{prod} + X_{react}}$$</p>
+<p>其中：</p>
+<ul>
+<li><strong>产物摩尔分数</strong>：$X_{prod} = 3X_{CO_2} + 4X_{H_2O} + X_{CO}$</li>
+<li><strong>反应物摩尔分数</strong>：$X_{react} = X_{C_3H_8} + 0.2X_{O_2}$</li>
+</ul>
+<p>化学方程式：$C_3H_8 + 5O_2 \rightarrow 3CO_2 + 4H_2O$</p>
+<p><strong>物理意义</strong>：$c=0$ 表示纯反应物，$c=1$ 表示完全燃烧产物。</p>
+<h3 id="22-瞬时值与滤波值">2.2 瞬时值与滤波值</h3>
+<ul>
+<li><strong>瞬时值</strong> (<code>Progress_variable_instantaneous</code>)：从随机场样本 <code>fsc(isp,ijk)</code> 计算</li>
+<li><strong>滤波值</strong> (<code>Progress_variable_filtered</code>)：从时间平均的物种浓度 <code>fschem</code> 计算</li>
+</ul>
+<h2 id="3-反应进度变量变化率">3. 反应进度变量变化率</h2>
+<h3 id="31-滤波反应进度变化率">3.1 滤波反应进度变化率</h3>
+<p>从 ESF（欧拉随机场）方法的滤波反应率计算：</p>
+<p>$$\dot{c}<em>{filtered} = \dot{r}</em>{prod} - \dot{r}_{react}$$</p>
+<p>其中 $\dot{r}$ 来自 <code>rdot(isp,ijk)</code>，是所有随机场样本的平均反应率。</p>
+<h3 id="32-psr-参考反应进度变化率">3.2 PSR 参考反应进度变化率</h3>
+<p>从 TCR 模型的 PSR 参考反应率计算：</p>
+<p>$$\dot{c}<em>{PSR} = \dot{r}</em>{prod}^{PSR} - \dot{r}_{react}^{PSR}$$</p>
+<p>其中 $\dot{r}^{PSR}$ 来自 <code>prev_rdot(isp,ijk)</code>，是代入过滤均值计算的 PSR 反应率。</p>
+<h3 id="33-计算代码实现">3.3 计算代码实现</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="c">! 从 rdot 计算滤波 c_dot
+</span></span></span><span class="line"><span class="cl"><span class="n">rdot_prod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="n">rdot</span><span class="p">(</span><span class="n">jCO2</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">4.0</span><span class="o">*</span><span class="n">rdot</span><span class="p">(</span><span class="n">jH2O</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rdot</span><span class="p">(</span><span class="n">jCO</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">rdot_react</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rdot</span><span class="p">(</span><span class="n">jC3H8</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.2</span><span class="o">*</span><span class="n">rdot</span><span class="p">(</span><span class="n">jO2</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">progress_c_dot_filtered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rdot_prod</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">rdot_react</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">! 从 prev_rdot 计算 PSR c_dot
+</span></span></span><span class="line"><span class="cl"><span class="n">rdot_prod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="n">prev_rdot</span><span class="p">(</span><span class="n">jCO2</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">4.0</span><span class="o">*</span><span class="n">prev_rdot</span><span class="p">(</span><span class="n">jH2O</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prev_rdot</span><span class="p">(</span><span class="n">jCO</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">rdot_react</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prev_rdot</span><span class="p">(</span><span class="n">jC3H8</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.2</span><span class="o">*</span><span class="n">prev_rdot</span><span class="p">(</span><span class="n">jO2</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">progress_c_dot_psr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rdot_prod</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">rdot_react</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-tcr-κ_c-模型">4. TCR κ_c 模型</h2>
+<h3 id="41-理论背景">4.1 理论背景</h3>
+<p>TCR 模型通过 κ_c 表征控制体积内的湍流-化学平衡状态：</p>
+<p>$$\kappa_c = \frac{1 + \sqrt{1 - 4\eta(1-\eta)\omega_{ratio}}}{2(1-\eta)}$$</p>
+<p>其中：</p>
+<ul>
+<li>$\eta$ = <code>arr_eta</code>：反应物体积分数</li>
+<li>$\omega_{ratio} = \omega_{c,filtered} / \omega_{c,PSR}$：滤波与 PSR 反应进度变化率之比</li>
+</ul>
+<h3 id="42-数值稳定性处理">4.2 数值稳定性处理</h3>
+<p>为保证数值计算稳定性，实现时加入以下保护措施：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="c">! 分母非零检查
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">omega_c_psr</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">small</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">eta</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">small</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">eta</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">small</span><span class="p">))</span><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">omega_ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omega_c_filtered</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">omega_c_psr</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">term</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">4.0</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="n">omega_ratio</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">term</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w">  </span><span class="c">! 确保 sqrt 参数非负
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sqrt_term</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">term</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">kappa_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sqrt_term</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">eta</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">kappa_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">kappa_c</span><span class="p">))</span><span class="w">  </span><span class="c">! 限制在 [0,1]
+</span></span></span><span class="line"><span class="cl"><span class="k">else</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">kappa_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w">  </span><span class="c">! 默认值
+</span></span></span><span class="line"><span class="cl"><span class="k">endif</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="43-κ_c-的物理意义">4.3 κ_c 的物理意义</h3>
+<ul>
+<li>κ_c → 1：湍流-化学平衡（化学动力学主导）</li>
+<li>κ_c → 0：远离平衡（混合受限或局部熄火）</li>
+</ul>
+<h2 id="5-局部燃烧模式分类">5. 局部燃烧模式分类</h2>
+<h3 id="51-分类判据">5.1 分类判据</h3>
+<p>基于湍流强度与层流火焰速度比 $u&rsquo;/S_L$ 和 Karlovitz 数 Ka：</p>
+<table>
+  <thead>
+      <tr>
+          <th>标志值</th>
+          <th>模式名称</th>
+          <th>英文</th>
+          <th>判据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>0</strong></td>
+          <td>无燃烧</td>
+          <td>No Combustion</td>
+          <td>|$\dot{c}$| &lt; 10⁻⁸</td>
+      </tr>
+      <tr>
+          <td><strong>1</strong></td>
+          <td>褶皱火焰面</td>
+          <td>Wrinkled Flamelet</td>
+          <td>$\lg(u&rsquo;/S_L) &lt; 0$</td>
+      </tr>
+      <tr>
+          <td><strong>2</strong></td>
+          <td>波状火焰面</td>
+          <td>Corrugated Flamelet</td>
+          <td>$\lg(u&rsquo;/S_L) \geq 0$ 且 Ka &lt; 1</td>
+      </tr>
+      <tr>
+          <td><strong>3</strong></td>
+          <td>薄反应区</td>
+          <td>Thin Reaction Zone</td>
+          <td>1 ≤ Ka &lt; 100</td>
+      </tr>
+      <tr>
+          <td><strong>4</strong></td>
+          <td>破碎反应区</td>
+          <td>Broken Reaction Zone</td>
+          <td>Ka ≥ 100</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="52-关键参数计算">5.2 关键参数计算</h3>
+<p><strong>湍流脉动速度</strong>：
+$$u&rsquo; = \sqrt{\frac{2k}{3}}$$</p>
+<p><strong>湍流积分尺度</strong>：
+$$l_t = \frac{k^{3/2}}{\varepsilon}$$</p>
+<p><strong>热火焰厚度</strong>：
+$$\delta = \frac{\mu}{\rho S_L}$$</p>
+<p><strong>Karlovitz 数</strong>：
+$$Ka = \left(\frac{u&rsquo;}{S_L}\right)^2 \cdot \frac{\delta}{l_t}$$</p>
+<p>其中 $S_L = 0.40$ m/s（丙烷/空气化学计量比层流火焰速度）。</p>
+<h2 id="6-标量-pdf-方差">6. 标量 PDF 方差</h2>
+<h3 id="61-从随机场样本计算">6.1 从随机场样本计算</h3>
+<p>从 ESF 方法的 $N$ 个随机场样本计算标量方差：</p>
+<p>$$\text{var}(\phi) = \frac{1}{N}\sum_{i=1}^{N} (\xi_i - \bar{\xi})^2$$</p>
+<p>其中：</p>
+<ul>
+<li>$\xi_i$：第 $i$ 个随机场样本</li>
+<li>$\bar{\xi} = \frac{1}{N}\sum \xi_i$：网格平均</li>
+</ul>
+<h3 id="62-计算流程">6.2 计算流程</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="c">! 第一步：计算均值
+</span></span></span><span class="line"><span class="cl"><span class="k">do</span><span class="w"> </span><span class="n">ifld</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nfield</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="n">ijk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lower</span><span class="p">,</span><span class="w"> </span><span class="n">upper</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">field_buffer</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">field_buffer</span><span class="p">(</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">ijk</span><span class="o">+</span><span class="n">nfo</span><span class="p">(</span><span class="n">nv</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">field_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">field_buffer</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">real</span><span class="p">(</span><span class="n">nfield</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">! 第二步：计算方差
+</span></span></span><span class="line"><span class="cl"><span class="k">do</span><span class="w"> </span><span class="n">ifld</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nfield</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="n">ijk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lower</span><span class="p">,</span><span class="w"> </span><span class="n">upper</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">scalar_pdf_var</span><span class="p">(</span><span class="n">isp</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scalar_pdf_var</span><span class="p">(</span><span class="n">isp</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">&amp;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">ijk</span><span class="o">+</span><span class="n">nfo</span><span class="p">(</span><span class="n">nv</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">field_buffer</span><span class="p">(</span><span class="n">ijk</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">scalar_pdf_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scalar_pdf_var</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">real</span><span class="p">(</span><span class="n">nfield</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7-vtk-输出变量汇总">7. VTK 输出变量汇总</h2>
+<table>
+  <thead>
+      <tr>
+          <th>VTK 变量名</th>
+          <th>含义</th>
+          <th>单位/范围</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Progress_variable_filtered</code></td>
+          <td>滤波反应进度变量</td>
+          <td>[0, 1]</td>
+      </tr>
+      <tr>
+          <td><code>Progress_variable_instantaneous</code></td>
+          <td>瞬时反应进度变量</td>
+          <td>[0, 1]</td>
+      </tr>
+      <tr>
+          <td><code>Progress_variable_c_dot_filtered</code></td>
+          <td>滤波进度变化率</td>
+          <td>mol/(m³·s)</td>
+      </tr>
+      <tr>
+          <td><code>Progress_variable_c_dot_PSR</code></td>
+          <td>PSR 参考进度变化率</td>
+          <td>mol/(m³·s)</td>
+      </tr>
+      <tr>
+          <td><code>kappa_c</code></td>
+          <td>TCR κ_c 值</td>
+          <td>[0, 1]</td>
+      </tr>
+      <tr>
+          <td><code>u_prime_over_S_L</code></td>
+          <td>湍流/层流火焰速度比</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td><code>l_t_over_delta</code></td>
+          <td>湍流尺度/火焰厚度比</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td><code>Karlovitz_number</code></td>
+          <td>Karlovitz 数</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td><code>Combustion_mode_flag</code></td>
+          <td>燃烧模式标志</td>
+          <td>0-4</td>
+      </tr>
+      <tr>
+          <td><code>{species}_pdf_var</code></td>
+          <td>物种 PDF 方差</td>
+          <td>-</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="8-代码实现要点">8. 代码实现要点</h2>
+<h3 id="81-组分索引的动态查找">8.1 组分索引的动态查找</h3>
+<p>为保证代码通用性，使用组分名称动态查找索引：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="n">jC3H8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">jCO2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">jH2O</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">jCO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">jO2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">do</span><span class="w"> </span><span class="n">isp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nsp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">names</span><span class="p">(</span><span class="n">isp</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;C3H8&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">jC3H8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">names</span><span class="p">(</span><span class="n">isp</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;CO2&#39;</span><span class="p">)</span><span class="w">   </span><span class="n">jCO2</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">isp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">names</span><span class="p">(</span><span class="n">isp</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;H2O&#39;</span><span class="p">)</span><span class="w">   </span><span class="n">jH2O</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">isp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">names</span><span class="p">(</span><span class="n">isp</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;CO&#39;</span><span class="p">)</span><span class="w">    </span><span class="n">jCO</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">isp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">names</span><span class="p">(</span><span class="n">isp</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;O2&#39;</span><span class="p">)</span><span class="w">    </span><span class="n">jO2</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">isp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">enddo</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="82-rdot-与-prev_rdot-的区别">8.2 rdot 与 prev_rdot 的区别</h3>
+<table>
+  <thead>
+      <tr>
+          <th>变量</th>
+          <th>模块</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>rdot(isp,ijk)</code></td>
+          <td><code>sgs_pdf</code></td>
+          <td>ESF 滤波反应率</td>
+      </tr>
+      <tr>
+          <td><code>prev_rdot(isp,ijk)</code></td>
+          <td><code>chemistry</code></td>
+          <td>TCR PSR 参考反应率</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="9-后续分析建议">9. 后续分析建议</h2>
+<ol>
+<li><strong>进度变量分布</strong>：分析 <code>Progress_variable_filtered</code> 在火焰不同区域的分布特征</li>
+<li><strong>燃烧模式统计</strong>：统计各燃烧模式在火焰区域的占比，分析湍流-燃烧相互作用</li>
+<li><strong>TCR κ_c 验证</strong>：对比 <code>kappa_c</code> 与原有 <code>kappa(nsc,:)</code> 的差异，验证模型正确性</li>
+<li><strong>PDF 方差验证</strong>：对比 <code>{species}_pdf_var</code> 与传统湍流模型计算的方差</li>
+<li><strong>熄火分析</strong>：利用 <code>Combustion_mode_flag=0</code> 标识的区域分析局部熄火条件</li>
+</ol>
+<hr>
+<h2 id="参考文献">参考文献</h2>
+<ol>
+<li>Pitsch, H. (2005). <strong>Large-eddy simulation of turbulent combustion</strong>. Annual Review of Fluid Mechanics.</li>
+<li>Wang, Y. (2026). <strong>TCR Micro-Mixing Model Documentation</strong>. LES-BOFFIN.</li>
+</ol>
+<hr>
+<p><em>如有问题或建议，欢迎联系讨论。</em></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/les_progress_variable/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/les_progress_variable/" data-title="LES-BOFFIN 反应进度变量与燃烧模式诊断方法" data-hashtags="LES,TCR,湍流燃烧,Progress Variable,Karlovitz"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/les_progress_variable/" data-hashtag="LES"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/les_progress_variable/" data-title="LES-BOFFIN 反应进度变量与燃烧模式诊断方法" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/les_progress_variable/" data-title="LES-BOFFIN 反应进度变量与燃烧模式诊断方法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/les_progress_variable/" data-title="LES-BOFFIN 反应进度变量与燃烧模式诊断方法" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/les_progress_variable/" data-title="LES-BOFFIN 反应进度变量与燃烧模式诊断方法" data-description="详细介绍基于反应进度变量的燃烧诊断方法，包括 TCR κ_c 模型的计算方法"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/les_progress_variable/" data-title="LES-BOFFIN 反应进度变量与燃烧模式诊断方法" data-description="详细介绍基于反应进度变量的燃烧诊断方法，包括 TCR κ_c 模型的计算方法"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/les_progress_variable/" data-title="LES-BOFFIN 反应进度变量与燃烧模式诊断方法"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/les/">LES</a>,&nbsp;<a href="/tags/tcr/">TCR</a>,&nbsp;<a href="/tags/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/">湍流燃烧</a>,&nbsp;<a href="/tags/progress-variable/">Progress Variable</a>,&nbsp;<a href="/tags/karlovitz/">Karlovitz</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" class="prev" rel="prev" title="湍流燃烧大涡模拟：理论基础"><i class="fas fa-angle-left fa-fw"></i>湍流燃烧大涡模拟：理论基础</a>
+            <a href="/les_tpdf_numerical_procedure/" class="next" rel="next" title="湍流燃烧大涡模拟：数值方法">湍流燃烧大涡模拟：数值方法<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
+
+<script>
+
+(function() {
+    
+    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
+    
+    
+    if (!localStorage.getItem('feishu_webhook')) {
+        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
+    }
+})();
+</script>
+</body>
+</html>

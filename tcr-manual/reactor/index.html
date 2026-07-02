@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>reactor - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/reactor/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="reactor">
+  <meta property="og:description" content="reactor.F90 - 反应器子程序 源文件: 0.src.TCR.dyn728/reactor.F90 功能: TCR 反应计算与 MPI 并行负载均衡 调用关系: boffin.F90 → reactor_TCR / reactor
+1. 程序概述 reactor.F90 实现了 TCR 求解器中的化学反应计算模块，采用 并行 PSR (Partially Stirred Reactor) 方法：">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="tcr-manual">
+    <meta property="article:published_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:tag" content="TCR">
+    <meta property="article:tag" content="Fortran">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="reactor">
+  <meta name="twitter:description" content="reactor.F90 - 反应器子程序 源文件: 0.src.TCR.dyn728/reactor.F90 功能: TCR 反应计算与 MPI 并行负载均衡 调用关系: boffin.F90 → reactor_TCR / reactor
+1. 程序概述 reactor.F90 实现了 TCR 求解器中的化学反应计算模块，采用 并行 PSR (Partially Stirred Reactor) 方法：">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/reactor/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/read_prof/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/react_psr/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "reactor",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/tcr-manual\/reactor\/"
+        },"genre": "tcr-manual","keywords": "TCR, Fortran","wordcount":  1416 ,
+        "url": "https:\/\/wangyudong.netlify.app\/tcr-manual\/reactor\/","datePublished": "2026-03-26T00:00:00+00:00","dateModified": "2026-03-26T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
+    <div class="nav-container">
+        
+        <a href="/" class="nav-brand">Dong</a>
+        
+        
+        <div class="nav-menu" id="nav-menu-desktop">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/posts/" class="nav-link">Blog文章</a>
+            <a href="/awards/" class="nav-link">学术成果</a>
+        </div>
+        
+        
+        <div class="nav-tools">
+            
+            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="/" class="mobile-nav-link">首页</a>
+        <a href="/posts/" class="mobile-nav-link">Blog文章</a>
+        <a href="/awards/" class="mobile-nav-link">学术成果</a>
+    </div>
+</nav>
+
+
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">reactor</h1><div class="content" id="content"><h1 id="reactorf90---反应器子程序">reactor.F90 - 反应器子程序</h1>
+<blockquote>
+<p><strong>源文件</strong>: <code>0.src.TCR.dyn728/reactor.F90</code>
+<strong>功能</strong>: TCR 反应计算与 MPI 并行负载均衡
+<strong>调用关系</strong>: <code>boffin.F90</code> → <code>reactor_TCR</code> / <code>reactor</code></p>
+</blockquote>
+<hr>
+<h2 id="1-程序概述">1. 程序概述</h2>
+<p><code>reactor.F90</code> 实现了 TCR 求解器中的化学反应计算模块，采用 <strong>并行 PSR (Partially Stirred Reactor)</strong> 方法：</p>
+<ul>
+<li><strong>核心功能</strong>: 在分布式内存环境下并行计算化学反应</li>
+<li><strong>算法</strong>: 将反应计算负载分配到各 MPI 进程</li>
+<li><strong>适用范围</strong>: 高温 ($T &gt; 800K$) 区域才进行反应计算</li>
+</ul>
+<h3 id="11-子程序列表">1.1 子程序列表</h3>
+<table>
+  <thead>
+      <tr>
+          <th>子程序</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>reactor_TCR</code></td>
+          <td>TCR 混合模型的反应计算</td>
+      </tr>
+      <tr>
+          <td><code>reactor</code></td>
+          <td>标准 IEM/EMST 混合模型的反应计算</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="2-反应计算流程">2. 反应计算流程</h2>
+<h3 id="21-入口条件判断">2.1 入口条件判断</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">theta</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">T_reaction_limit</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">theta</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">T_upper_limit</span><span class="w"> </span><span class="p">&amp;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">yn</span><span class="p">(</span><span class="n">jfuel</span><span class="p">).</span><span class="n">ne</span><span class="p">.</span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">! 满足温度和燃料条件，执行反应计算
+</span></span></span><span class="line"><span class="cl"><span class="k">endif</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>阈值参数</strong>:</p>
+<ul>
+<li><code>T_reaction_limit = 800 K</code> - 最低反应温度</li>
+<li><code>T_upper_limit = 2800 K</code> - 温度上限（防止数值不稳定）</li>
+</ul>
+<h3 id="22-负载均衡策略">2.2 负载均衡策略</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│                    MPI 并行负载均衡                          │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│ 1. 统计各进程高温单元数 (nnchemc)                             │
+</span></span><span class="line"><span class="cl">│ 2. 计算平均负载: nm = (nt + ndoms - 1) / ndoms              │
+</span></span><span class="line"><span class="cl">│ 3. 计算传输量: ntrans(ip) = nchemc(ip) - nm                  │
+</span></span><span class="line"><span class="cl">│ 4. 正值 → 发送方，负值 → 接收方                               │
+</span></span><span class="line"><span class="cl">│ 5. 构建传输映射矩阵: ntri2j(ip,jp)                          │
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="23-数据传输格式">2.3 数据传输格式</h3>
+<p><strong>发送数据</strong> (MPI_PACK):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="c">! 单元索引、温度、压力、密度、组分、释热率
+</span></span></span><span class="line"><span class="cl"><span class="k">call</span><span class="w"> </span><span class="n">mpi_pack</span><span class="w"> </span><span class="p">(</span><span class="n">mydom</span><span class="p">,</span><span class="w">  </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mpi_integer</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">  </span><span class="c">! 源进程
+</span></span></span><span class="line"><span class="cl"><span class="k">call</span><span class="w"> </span><span class="n">mpi_pack</span><span class="w"> </span><span class="p">(</span><span class="n">ijk</span><span class="p">,</span><span class="w">    </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mpi_integer</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">  </span><span class="c">! 单元索引
+</span></span></span><span class="line"><span class="cl"><span class="k">call</span><span class="w"> </span><span class="n">mpi_pack</span><span class="w"> </span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="w">  </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mpi_double_precision</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">  </span><span class="c">! 温度
+</span></span></span><span class="line"><span class="cl"><span class="k">call</span><span class="w"> </span><span class="n">mpi_pack</span><span class="w"> </span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mpi_double_precision</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">  </span><span class="c">! 压力
+</span></span></span><span class="line"><span class="cl"><span class="k">call</span><span class="w"> </span><span class="n">mpi_pack</span><span class="w"> </span><span class="p">(</span><span class="n">den</span><span class="p">,</span><span class="w">    </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mpi_double_precision</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">  </span><span class="c">! 密度
+</span></span></span><span class="line"><span class="cl"><span class="k">call</span><span class="w"> </span><span class="n">mpi_pack</span><span class="w"> </span><span class="p">(</span><span class="n">yold</span><span class="p">,</span><span class="w">   </span><span class="n">nsp</span><span class="p">,</span><span class="w"> </span><span class="n">mpi_double_precision</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">  </span><span class="c">! 组分
+</span></span></span><span class="line"><span class="cl"><span class="k">call</span><span class="w"> </span><span class="n">mpi_pack</span><span class="w"> </span><span class="p">(</span><span class="n">hdot_fg</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mpi_double_precision</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">  </span><span class="c">! 释热率
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="3-mpi-通信机制">3. MPI 通信机制</h2>
+<h3 id="31-通信模式">3.1 通信模式</h3>
+<table>
+  <thead>
+      <tr>
+          <th>阶段</th>
+          <th>通信类型</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>负载统计</td>
+          <td><code>mpi_allgather</code></td>
+          <td>收集各进程高温单元数</td>
+      </tr>
+      <tr>
+          <td>数据发送</td>
+          <td><code>mpi_bsend</code></td>
+          <td>异步缓冲发送</td>
+      </tr>
+      <tr>
+          <td>数据接收</td>
+          <td><code>mpi_recv</code></td>
+          <td>同步接收</td>
+      </tr>
+      <tr>
+          <td>结果回传</td>
+          <td><code>mpi_bsend</code></td>
+          <td>送回计算结果</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="32-消息标签">3.2 消息标签</h3>
+<table>
+  <thead>
+      <tr>
+          <th>标签</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>666010</code></td>
+          <td>请求计算</td>
+      </tr>
+      <tr>
+          <td><code>666020</code></td>
+          <td>返回结果</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="33-负载分配算法">3.3 负载分配算法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="c">! 排序发送列表（降序）
+</span></span></span><span class="line"><span class="cl"><span class="k">do</span><span class="w"> </span><span class="n">ip</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nsends</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">do</span><span class="w"> </span><span class="n">jp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nsends</span><span class="o">-</span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i2send</span><span class="p">(</span><span class="n">jp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">i2send</span><span class="p">(</span><span class="n">jp</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c">! 交换
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">endif</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">enddo</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="4-反应计算核心">4. 反应计算核心</h2>
+<h3 id="41-调用-react_hc">4.1 调用 <code>react_hc</code></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="k">call</span><span class="w"> </span><span class="n">react_hc</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">ijk</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>输入</strong>: 时间步长 <code>dt</code>，单元索引 <code>ijk</code></li>
+<li><strong>输出</strong>: 更新后的组分 <code>yn(isp)</code>，释热率 <code>hdot_fg</code></li>
+</ul>
+<h3 id="42-结果回填">4.2 结果回填</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="k">do</span><span class="w"> </span><span class="n">isp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nsp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">nv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nf</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ifld</span><span class="o">*</span><span class="n">nsc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">isp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ijkp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nfo</span><span class="p">(</span><span class="n">nv</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ijk</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">f</span><span class="p">(</span><span class="n">ijkp</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sngl</span><span class="p">(</span><span class="n">yn</span><span class="p">(</span><span class="n">isp</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">field_hdot</span><span class="p">(</span><span class="n">ifld</span><span class="p">,</span><span class="n">ijk</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sngl</span><span class="p">(</span><span class="n">hdot_fg</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="5-错误处理">5. 错误处理</h2>
+<h3 id="51-失败检测">5.1 失败检测</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">fail</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">call</span><span class="w"> </span><span class="n">mpi_allreduce</span><span class="w"> </span><span class="p">(</span><span class="n">mpi_in_place</span><span class="p">,</span><span class="w"> </span><span class="n">fail</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mpi_logical</span><span class="p">,</span><span class="w"> </span><span class="n">mpi_lor</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">master</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="n">scrn</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;reactor: failed during reaction balancing&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">endif</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">call</span><span class="w"> </span><span class="n">boffin_stop</span><span class="p">(...)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">endif</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-调试输出">5.2 调试输出</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nsends</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="n">mout</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;reactor: error&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="n">mout</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="n">i2send</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="n">i2send</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="n">ip</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nsends</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">fail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">endif</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="6-代码结构图">6. 代码结构图</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">reactor_TCR / reactor
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl"> ├─► 温度/压力/密度提取
+</span></span><span class="line"><span class="cl"> │      tempsv(ijk), denisv(ijk), pressv(ijk)
+</span></span><span class="line"><span class="cl"> │
+</span></span><span class="line"><span class="cl"> ├─► 统计高温单元数 (ichem)
+</span></span><span class="line"><span class="cl"> │      theta &gt;= 800K &amp;&amp; theta &lt; 2800K &amp;&amp; yn(jfuel) &gt; 0
+</span></span><span class="line"><span class="cl"> │
+</span></span><span class="line"><span class="cl"> ├─► MPI_allgather 负载收集
+</span></span><span class="line"><span class="cl"> │      nnchemc → nchemc
+</span></span><span class="line"><span class="cl"> │
+</span></span><span class="line"><span class="cl"> ├─► 计算负载分配
+</span></span><span class="line"><span class="cl"> │      nm = (nt + ndoms - 1) / ndoms
+</span></span><span class="line"><span class="cl"> │      ntrans = nchemc - nm
+</span></span><span class="line"><span class="cl"> │
+</span></span><span class="line"><span class="cl"> ├─► 构建发送/接收列表
+</span></span><span class="line"><span class="cl"> │      ntri2j(ip,jp)
+</span></span><span class="line"><span class="cl"> │
+</span></span><span class="line"><span class="cl"> ├─► 发送数据到其他进程 (可选)
+</span></span><span class="line"><span class="cl"> │      mpi_bsend / mpi_pack
+</span></span><span class="line"><span class="cl"> │
+</span></span><span class="line"><span class="cl"> ├─► 接收其他进程数据 (可选)
+</span></span><span class="line"><span class="cl"> │      mpi_recv / mpi_unpack
+</span></span><span class="line"><span class="cl"> │
+</span></span><span class="line"><span class="cl"> ├─► 本地反应计算
+</span></span><span class="line"><span class="cl"> │      react_hc(dt, ijk)
+</span></span><span class="line"><span class="cl"> │
+</span></span><span class="line"><span class="cl"> ├─► 等待结果回传 (如有必要)
+</span></span><span class="line"><span class="cl"> │      mpi_recv / mpi_unpack
+</span></span><span class="line"><span class="cl"> │
+</span></span><span class="line"><span class="cl"> └─► 更新流场数据
+</span></span><span class="line"><span class="cl">        f(ijkp), field_hdot(ifld,ijk)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="7-与其他模块的接口">7. 与其他模块的接口</h2>
+<h3 id="71-输入">7.1 输入</h3>
+<table>
+  <thead>
+      <tr>
+          <th>模块</th>
+          <th>变量</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>arrays</code></td>
+          <td><code>jo, ko, nfo, f, p</code></td>
+          <td>网格索引和流场数据</td>
+      </tr>
+      <tr>
+          <td><code>chemistry</code></td>
+          <td><code>den, pressure, theta, yn, yold</code></td>
+          <td>化学状态量</td>
+      </tr>
+      <tr>
+          <td><code>sgs_pdf</code></td>
+          <td><code>field_temperature, field_density, field_hdot</code></td>
+          <td>随机场数据</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="72-输出">7.2 输出</h3>
+<table>
+  <thead>
+      <tr>
+          <th>变量</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>f(ijkp)</code></td>
+          <td>更新后的组分质量分数</td>
+      </tr>
+      <tr>
+          <td><code>field_hdot(ifld,ijk)</code></td>
+          <td>释热率写入随机场</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="8-性能考量">8. 性能考量</h2>
+<h3 id="81-通信开销">8.1 通信开销</h3>
+<ul>
+<li>每个高温单元需要 7 × 8 字节 ≈ 56 字节通信</li>
+<li>大规模问题中通信可能成为瓶颈</li>
+</ul>
+<h3 id="82-负载均衡质量">8.2 负载均衡质量</h3>
+<ul>
+<li>静态负载均衡：每个时间步重新计算</li>
+<li>依赖于火焰位置分布的动态变化</li>
+</ul>
+<h3 id="83-优化建议">8.3 优化建议</h3>
+<ol>
+<li><strong>批量通信</strong>: 合并多个单元数据减少消息数</li>
+<li><strong>异步通信</strong>: 使用 <code>mpi_isend</code>/<code>mpi_irecv</code> 重叠计算与通信</li>
+<li><strong>自适应阈值</strong>: 根据负载动态调整 <code>nm</code></li>
+</ol>
+<hr>
+<h2 id="9-关键参数">9. 关键参数</h2>
+<table>
+  <thead>
+      <tr>
+          <th>参数</th>
+          <th>默认值</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>T_reaction_limit</code></td>
+          <td>800 K</td>
+          <td>最低反应温度</td>
+      </tr>
+      <tr>
+          <td><code>T_upper_limit</code></td>
+          <td>2800 K</td>
+          <td>温度上限</td>
+      </tr>
+      <tr>
+          <td><code>tag</code> (请求)</td>
+          <td>666010</td>
+          <td>MPI 标签</td>
+      </tr>
+      <tr>
+          <td><code>tag</code> (结果)</td>
+          <td>666020</td>
+          <td>MPI 标签</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<p><em>最后更新: 2026-03-26</em></p>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
+
+<script>
+
+(function() {
+    
+    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
+    
+    
+    if (!localStorage.getItem('feishu_webhook')) {
+        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
+    }
+})();
+</script>
+</body>
+</html>

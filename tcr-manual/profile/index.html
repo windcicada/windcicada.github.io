@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>profile - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/profile/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="profile">
+  <meta property="og:description" content="profile.F90 - 数字湍流入口数据读取子程序 1. 程序概述 profile 子程序负责读取数字湍流 (Digital Turbulence) 入口边界数据，包括速度时间序列和空间分布。
+2. 调用关系 1 2 3 digital_turbulence 模块 └── profile(ip, i, iadd, m, jadd, n, kadd, io, jo, ko, imax, jmax, kmax) ← 在入口数据初始化时调用 3. 功能说明 3.1 数据读取 数据类型 文件 格式 网格信息 digit_info_{ip}.d 文本 U 速度 inflow_U_{ip}.d 二进制 V 速度 inflow_V_{ip}.d 二进制 W 速度 inflow_W_{ip}.d 二进制 3.2 插值方法 使用双线性插值将入口数据映射到计算网格：">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="tcr-manual">
+    <meta property="article:published_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-26T00:00:00+00:00">
+    <meta property="article:tag" content="TCR">
+    <meta property="article:tag" content="Fortran">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="profile">
+  <meta name="twitter:description" content="profile.F90 - 数字湍流入口数据读取子程序 1. 程序概述 profile 子程序负责读取数字湍流 (Digital Turbulence) 入口边界数据，包括速度时间序列和空间分布。
+2. 调用关系 1 2 3 digital_turbulence 模块 └── profile(ip, i, iadd, m, jadd, n, kadd, io, jo, ko, imax, jmax, kmax) ← 在入口数据初始化时调用 3. 功能说明 3.1 数据读取 数据类型 文件 格式 网格信息 digit_info_{ip}.d 文本 U 速度 inflow_U_{ip}.d 二进制 V 速度 inflow_V_{ip}.d 二进制 W 速度 inflow_W_{ip}.d 二进制 3.2 插值方法 使用双线性插值将入口数据映射到计算网格：">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/profile/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/random_diatomic/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/probe/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "profile",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/tcr-manual\/profile\/"
+        },"genre": "tcr-manual","keywords": "TCR, Fortran","wordcount":  943 ,
+        "url": "https:\/\/wangyudong.netlify.app\/tcr-manual\/profile\/","datePublished": "2026-03-26T00:00:00+00:00","dateModified": "2026-03-26T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
+    <div class="nav-container">
+        
+        <a href="/" class="nav-brand">Dong</a>
+        
+        
+        <div class="nav-menu" id="nav-menu-desktop">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/posts/" class="nav-link">Blog文章</a>
+            <a href="/awards/" class="nav-link">学术成果</a>
+        </div>
+        
+        
+        <div class="nav-tools">
+            
+            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="/" class="mobile-nav-link">首页</a>
+        <a href="/posts/" class="mobile-nav-link">Blog文章</a>
+        <a href="/awards/" class="mobile-nav-link">学术成果</a>
+    </div>
+</nav>
+
+
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">profile</h1><div class="content" id="content"><h1 id="profilef90---数字湍流入口数据读取子程序">profile.F90 - 数字湍流入口数据读取子程序</h1>
+<h2 id="1-程序概述">1. 程序概述</h2>
+<p><code>profile</code> 子程序负责读取<strong>数字湍流 (Digital Turbulence)</strong> 入口边界数据，包括速度时间序列和空间分布。</p>
+<h2 id="2-调用关系">2. 调用关系</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">digital_turbulence 模块
+</span></span><span class="line"><span class="cl">    └── profile(ip, i, iadd, m, jadd, n, kadd, io, jo, ko, imax, jmax, kmax)
+</span></span><span class="line"><span class="cl">        ← 在入口数据初始化时调用
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-功能说明">3. 功能说明</h2>
+<h3 id="31-数据读取">3.1 数据读取</h3>
+<table>
+  <thead>
+      <tr>
+          <th>数据类型</th>
+          <th>文件</th>
+          <th>格式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>网格信息</td>
+          <td><code>digit_info_{ip}.d</code></td>
+          <td>文本</td>
+      </tr>
+      <tr>
+          <td>U 速度</td>
+          <td><code>inflow_U_{ip}.d</code></td>
+          <td>二进制</td>
+      </tr>
+      <tr>
+          <td>V 速度</td>
+          <td><code>inflow_V_{ip}.d</code></td>
+          <td>二进制</td>
+      </tr>
+      <tr>
+          <td>W 速度</td>
+          <td><code>inflow_W_{ip}.d</code></td>
+          <td>二进制</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="32-插值方法">3.2 插值方法</h3>
+<p>使用<strong>双线性插值</strong>将入口数据映射到计算网格：</p>
+<p>$$u_{interp} = c_2 c_1 u_{jc,kc} + c_2 (1-c_1) u_{jc-1,kc} + c_1 (1-c_2) u_{jc,kc-1} + (1-c_1)(1-c_2) u_{jc-1,kc-1}$$</p>
+<h2 id="4-代码解析">4. 代码解析</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="k">subroutine</span><span class="w"> </span><span class="n">profile</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">iadd</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">jadd</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">kadd</span><span class="p">,</span><span class="w"> </span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="n">jo</span><span class="p">,</span><span class="w"> </span><span class="n">ko</span><span class="p">,</span><span class="w"> </span><span class="n">imax</span><span class="p">,</span><span class="w"> </span><span class="n">jmax</span><span class="p">,</span><span class="w"> </span><span class="n">kmax</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="n">global</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">nvu</span><span class="p">,</span><span class="w"> </span><span class="n">nvv</span><span class="p">,</span><span class="w"> </span><span class="n">nvw</span><span class="p">,</span><span class="w"> </span><span class="n">infile</span><span class="p">,</span><span class="w"> </span><span class="n">mout</span><span class="p">,</span><span class="w"> </span><span class="n">scrn</span><span class="p">,</span><span class="w"> </span><span class="n">lin</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="n">digital_turbulence</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">inflowdata</span><span class="p">,</span><span class="w"> </span><span class="n">indy</span><span class="p">,</span><span class="w"> </span><span class="n">indz</span><span class="p">,</span><span class="w"> </span><span class="n">u_turb</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                 </span><span class="n">Y_digit</span><span class="p">,</span><span class="w"> </span><span class="n">z_digit</span><span class="p">,</span><span class="w"> </span><span class="n">Ntsteps</span><span class="p">,</span><span class="w"> </span><span class="n">mt</span><span class="p">,</span><span class="w"> </span><span class="n">Lt</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                 </span><span class="n">Convection_velocity</span><span class="p">,</span><span class="w"> </span><span class="n">inflow</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="n">arrays</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="n">exchange</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="n">extras</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">implicit</span><span class="w"> </span><span class="k">none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">ijk</span><span class="p">,</span><span class="w"> </span><span class="n">ijks</span><span class="p">,</span><span class="w"> </span><span class="n">ip</span><span class="p">,</span><span class="w"> </span><span class="n">imax</span><span class="p">,</span><span class="w"> </span><span class="n">jmax</span><span class="p">,</span><span class="w"> </span><span class="n">kmax</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">jc</span><span class="p">,</span><span class="w"> </span><span class="n">kc</span><span class="p">,</span><span class="w"> </span><span class="n">nt</span><span class="p">,</span><span class="w"> </span><span class="n">nv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">imax</span><span class="p">),</span><span class="w"> </span><span class="n">jo</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">jmax</span><span class="p">),</span><span class="w"> </span><span class="n">ko</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">kmax</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iadd</span><span class="p">,</span><span class="w"> </span><span class="n">jadd</span><span class="p">,</span><span class="w"> </span><span class="n">kadd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="n">uturb</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">! ========== 1. 读取网格信息 ==========
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(2a,i1.1,1a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">path</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;/digit_inflow/digit_info_&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ip</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;.d&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">open</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">lin</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;old&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">read</span><span class="p">(</span><span class="n">lin</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">indy</span><span class="p">,</span><span class="w"> </span><span class="n">indz</span><span class="p">,</span><span class="w"> </span><span class="n">Ntsteps</span><span class="p">(</span><span class="n">ip</span><span class="p">),</span><span class="w"> </span><span class="n">mt</span><span class="p">,</span><span class="w"> </span><span class="n">Lt</span><span class="p">(</span><span class="n">ip</span><span class="p">),</span><span class="w"> </span><span class="n">Convection_velocity</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">master</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">scrn</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">inflow</span><span class="p">(</span><span class="n">ip</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;boundary : average velocity=&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Convection_velocity</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">endif</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">! 分配数组
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">inflowdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">u_turb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">indy</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">indz</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">y_digit</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">indy</span><span class="p">),</span><span class="w"> </span><span class="n">z_digit</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">indz</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">! 读取 y, z 坐标
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">do</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">indy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="n">lin</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">y_digit</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">do</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">indz</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="n">lin</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">z_digit</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">close</span><span class="p">(</span><span class="n">lin</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">! ========== 2. 打开速度数据文件 ==========
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(2a,i1.1,a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">path</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;/digit_inflow/inflow_U_&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ip</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;.d&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">open</span><span class="p">(</span><span class="mi">46</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span><span class="w"> </span><span class="n">form</span><span class="o">=</span><span class="s1">&#39;unformatted&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">! ... V, W 文件类似 ...
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">! ========== 3. 读取时间序列并进行插值 ==========
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">do</span><span class="w"> </span><span class="n">nt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Ntsteps</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="mi">46</span><span class="p">)</span><span class="w"> </span><span class="p">((</span><span class="n">u_turb</span><span class="p">(</span><span class="n">nvu</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">),</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">indy</span><span class="p">),</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">indz</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span><span class="w"> </span><span class="p">((</span><span class="n">u_turb</span><span class="p">(</span><span class="n">nvv</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">),</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">indy</span><span class="p">),</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">indz</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span><span class="w"> </span><span class="p">((</span><span class="n">u_turb</span><span class="p">(</span><span class="n">nvw</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">),</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">indy</span><span class="p">),</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">indz</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">! 双线性插值
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">call</span><span class="w"> </span><span class="n">normal</span><span class="p">(...)</span><span class="w">  </span><span class="c">! 计算插值系数 c1, c2
+</span></span></span><span class="line"><span class="cl"><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">! ... 插值计算 ...
+</span></span></span><span class="line"><span class="cl"><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">! 根据边界方向赋值
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="n">inflowdata</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span><span class="w"> </span><span class="n">nt</span><span class="p">,</span><span class="w"> </span><span class="n">nvu</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uturb</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">real</span><span class="p">(</span><span class="nb">sign</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">iadd</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">! ...
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">endif</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">enddo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">close</span><span class="p">(</span><span class="mi">46</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">close</span><span class="p">(</span><span class="mi">47</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">close</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">u_turb</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">y_digit</span><span class="p">,</span><span class="w"> </span><span class="n">z_digit</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">end</span><span class="w"> </span><span class="k">subroutine</span><span class="w"> </span><span class="n">profile</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-关键变量">5. 关键变量</h2>
+<h3 id="51-输入参数">5.1 输入参数</h3>
+<table>
+  <thead>
+      <tr>
+          <th>参数</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>ip</code></td>
+          <td>入口面编号 (1-4)</td>
+      </tr>
+      <tr>
+          <td><code>i, j, k</code></td>
+          <td>网格索引</td>
+      </tr>
+      <tr>
+          <td><code>iadd, jadd, kadd</code></td>
+          <td>方向偏移</td>
+      </tr>
+      <tr>
+          <td><code>io, jo, ko</code></td>
+          <td>网格偏移数组</td>
+      </tr>
+      <tr>
+          <td><code>imax, jmax, kmax</code></td>
+          <td>网格尺寸</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="52-内部变量">5.2 内部变量</h3>
+<table>
+  <thead>
+      <tr>
+          <th>变量</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>indy, indz</code></td>
+          <td>入口数据网格尺寸</td>
+      </tr>
+      <tr>
+          <td><code>Ntsteps(ip)</code></td>
+          <td>时间步数</td>
+      </tr>
+      <tr>
+          <td><code>Lt(ip)</code></td>
+          <td>对流时间长度</td>
+      </tr>
+      <tr>
+          <td><code>Convection_velocity(ip)</code></td>
+          <td>对流速度</td>
+      </tr>
+      <tr>
+          <td><code>c1, c2</code></td>
+          <td>插值系数</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="53-输出数组">5.3 输出数组</h3>
+<table>
+  <thead>
+      <tr>
+          <th>变量</th>
+          <th>维度</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>inflowdata(ip, nt, nv, j, k)</code></td>
+          <td>5D</td>
+          <td>入口速度数据</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="6-插值坐标计算">6. 插值坐标计算</h2>
+<p>通过 <code>normal</code> 子程序确定插值位置：</p>
+<ul>
+<li><strong>c1</strong>: 在 y 方向的相对位置</li>
+<li><strong>c2</strong>: 在 z 方向的相对位置</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fortran" data-lang="fortran"><span class="line"><span class="cl"><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">ijks</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y_digit</span><span class="p">(</span><span class="n">jc</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">y_digit</span><span class="p">(</span><span class="n">jc</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y_digit</span><span class="p">(</span><span class="n">jc</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">ijks</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">z_digit</span><span class="p">(</span><span class="n">kc</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">z_digit</span><span class="p">(</span><span class="n">kc</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">z_digit</span><span class="p">(</span><span class="n">kc</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7-物理背景">7. 物理背景</h2>
+<h3 id="71-数字湍流方法">7.1 数字湍流方法</h3>
+<p>数字湍流 (Digital Turbulence) 是一种入口湍流生成方法：</p>
+<ol>
+<li>通过 DNS/LES 预计算得到湍流数据</li>
+<li>在入口边界注入时序速度数据</li>
+<li>保持湍流结构的时空相关性</li>
+</ol>
+<h3 id="72-对流时间">7.2 对流时间</h3>
+<p>$$t_{convection} = \frac{L_t}{U_{convection}}$$</p>
+<p>确保入口数据覆盖足够的对流时间尺度。</p>
+<h2 id="8-注意事项">8. 注意事项</h2>
+<ol>
+<li><strong>边界方向</strong>：根据法向 <code>nx, ny, nz</code> 确定入口面</li>
+<li><strong>索引范围</strong>：循环从 2 开始，避开第一层边界</li>
+<li><strong>内存管理</strong>：使用后释放临时数组</li>
+</ol>
+<h2 id="9-相关文件">9. 相关文件</h2>
+<table>
+  <thead>
+      <tr>
+          <th>文件</th>
+          <th>关系</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>normal.F90</code></td>
+          <td>坐标计算子程序</td>
+      </tr>
+      <tr>
+          <td><code>module_digital_turbulence.F90</code></td>
+          <td>数字湍流模块</td>
+      </tr>
+      <tr>
+          <td><code>openinflow.F90</code></td>
+          <td>入口边界处理</td>
+      </tr>
+      <tr>
+          <td><code>start_init.F90</code></td>
+          <td>初始化入口数据</td>
+      </tr>
+  </tbody>
+</table>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
+
+<script>
+
+(function() {
+    
+    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
+    
+    
+    if (!localStorage.getItem('feishu_webhook')) {
+        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
+    }
+})();
+</script>
+</body>
+</html>

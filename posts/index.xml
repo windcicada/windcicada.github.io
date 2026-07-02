@@ -1,0 +1,251 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Blog文章 - Dong</title>
+        <link>https://wangyudong.netlify.app/posts/</link>
+        <description>All Blog文章 | Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 26 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://wangyudong.netlify.app/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>湍流燃烧大涡模拟：代码实现</title>
+    <link>https://wangyudong.netlify.app/tcr-solver-manual/</link>
+    <pubDate>Thu, 26 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tcr-solver-manual/</guid>
+    <description><![CDATA[<blockquote>
+<p>详细介绍亚音速可压缩燃烧模拟软件 CSTCSP/AECSC/BOFFIN 的架构和全部函数，由该软件的 123 个代码文档整理得到。</p>
+</blockquote>
+<h2 id="1-程序概述">1. 程序概述</h2>
+<p><strong>TCR (Turbulent Combustion Research)</strong> 是基于 LES 的湍流燃烧求解器，采用随机场 (Stochastic Field) PDF 方法模拟湍流燃烧过程。</p>]]></description>
+</item><item>
+    <title>湍流燃烧大涡模拟：数值方法</title>
+    <link>https://wangyudong.netlify.app/les_tpdf_numerical_procedure/</link>
+    <pubDate>Wed, 25 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/les_tpdf_numerical_procedure/</guid>
+    <description><![CDATA[<blockquote>
+<p><strong>写在前面</strong>：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。</p>]]></description>
+</item><item>
+    <title>LES-BOFFIN 反应进度变量与燃烧模式诊断方法</title>
+    <link>https://wangyudong.netlify.app/les_progress_variable/</link>
+    <pubDate>Mon, 23 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/les_progress_variable/</guid>
+    <description><![CDATA[<h1 id="les-boffin-反应进度变量与燃烧模式诊断方法">LES-BOFFIN 反应进度变量与燃烧模式诊断方法</h1>
+<h2 id="1-研究背景">1. 研究背景</h2>
+<p>在大涡模拟（LES）与概率密度函数（PDF）方法结合的湍流燃烧模拟中，准确诊断燃烧状态和理解湍流-化学相互作用是重要课题。传统方法难以直接刻画反应进程和燃烧模式之间的耦合关系。</p>
+<p>本文详细介绍基于**反应进度变量（Progress Variable）**的燃烧诊断方法，包括 TCR（湍流-化学递归）模型中 κ_c 的计算方法。</p>]]></description>
+</item><item>
+    <title>湍流燃烧大涡模拟：理论基础</title>
+    <link>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Thu, 19 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[<blockquote>
+<p><strong>写在前面</strong>：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。</p>]]></description>
+</item><item>
+    <title>TCR小尺度混合模型：湍流-化学递归闭合方法</title>
+    <link>https://wangyudong.netlify.app/tcr_micro_mixing_model/</link>
+    <pubDate>Sun, 16 Mar 2025 15:45:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tcr_micro_mixing_model/</guid>
+    <description><![CDATA[<h2 id="1-研究背景与挑战">1. 研究背景与挑战</h2>
+<p>湍流燃烧是现代航空推进和能源系统的核心现象<a href="https://doi.org/10.1016/j.paerosci.2011.03.001" target="_blank" rel="noopener noreffer">[1]</a>。即使在未来的低碳能源体系中，航空、航运等领域仍将大量使用燃料燃烧技术。准确预测湍流燃烧过程对于发动机设计、污染物排放控制以及燃烧稳定性分析具有重要意义。</p>]]></description>
+</item><item>
+    <title>Ascend C算子 学习笔记</title>
+    <link>https://wangyudong.netlify.app/huaweishengteng/</link>
+    <pubDate>Thu, 11 Jul 2024 10:50:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/huaweishengteng/</guid>
+    <description><![CDATA[<p></p>
+<h1 id="ascend及算子开发知识整理">Ascend及算子开发知识整理</h1>
+<h2 id="昇腾计算产业生态">昇腾计算产业生态</h2>
+<h4 id="昇腾计算软硬件体系">昇腾计算软硬件体系:</h4>
+<ul>
+<li><strong>应用层</strong>: 包括ModelArts、HiAI Service、Mindx等平台。</li>
+<li><strong>框架层</strong>: 包括MindSpore、TensorFlow、PyTorch等。</li>
+<li><strong>计算架构层</strong>: 异算计算架构CANN和NPU驱动。</li>
+<li><strong>硬件层</strong>: 系列硬件和昇腾系列处理器。</li>
+</ul>
+<h4 id="合作伙伴">合作伙伴:</h4>
+<ul>
+<li><strong>IHV（独立硬件供应商）</strong></li>
+<li><strong>高校</strong>: 教学科研、算子众筹。</li>
+<li><strong>开发者</strong>: 算子贡献、开源贡献。</li>
+<li><strong>ISV（独立软件供应商）</strong></li>
+<li><strong>OEM/ODM</strong>: 产品销售、开源开放。</li>
+</ul>
+<h4 id="行业应用">行业应用:</h4>
+<p>​	广泛应用于医疗、运营商、能源、交通、互联网、制造、金融、机器人等领域。</p>]]></description>
+</item><item>
+    <title>学术成果</title>
+    <link>https://wangyudong.netlify.app/awards/</link>
+    <pubDate>Mon, 01 Jul 2024 12:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/awards/</guid>
+    <description><![CDATA[<h2 id="期刊会议论文">期刊&amp;会议论文</h2>
+<p>[1] <strong>Yudong W</strong>, Fang W, Jiawei Z, et al. <a href="../pdf/IBM_POF.pdf" rel="">An improved immersed boundary method with local flow pattern reconstruction and its validation</a>[J]. Physics of Fluids, 2024, 36(4).</p>
+<p>[2] <strong>王煜栋</strong>,王方,金捷.<a href="../pdf/IBM_The.pdf" rel="">多连通域曲线坐标系浸没边界方法及其检验</a>[J/OL].工程力学:1-13[2022-10-31].DOI:10.6052/j.issn.1000-4750.2022.03.0247.</p>
+<p>[3] <strong>王煜栋</strong>,王方,甘甜,金捷.<a href="../pdf/IBM_WP11.pdf" rel="">基于曲线坐标系浸没边界方法的折流燃烧室模拟</a>[J/OL].推进技术:1-22[2022-10-31].DOI:10.13675/j.cnki.tjjs.2207026.</p>
+<p>[4] <strong>王煜栋</strong>,王方,周佳伟,金捷.<a href="../pdf/AECSC_IBM.pdf" rel="">AECSC-IBM航空发动机燃烧室数值模拟软件研发与检验</a>[J].航空动力学报,2022,37(10):2310-2323.DOI:10.13224/j.cnki.jasp.20220216.</p>
+<p>[5] Fang Wang,<strong>Yu-dong Wang</strong>,Xiang Gao,Yu-long Ye,Rui Liu,Gao Han,Jie Jin.<a href="../pdf/JAHS_Slinger.pdf" rel="">Exploration on Nonaxisymmetric Flow Phenomenon in a Slinger Injector</a>[J].Journal of the American Helicopter Society,2022,67(3):142-152.</p>]]></description>
+</item><item>
+    <title>北航自动网络认证</title>
+    <link>https://wangyudong.netlify.app/gw_buaa/</link>
+    <pubDate>Thu, 01 Dec 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/gw_buaa/</guid>
+    <description><![CDATA[<h1 id="北航自动网络认证">北航自动网络认证</h1>
+<h2 id="windows"><a href="../images/GW_WINDOWS.zip" rel="">WINDOWS</a></h2>
+<h3 id="主文件-gw_buaapy">主文件 gw_buaa.py</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># @file gw_buaa.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># @author Dong</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># @date 2022-01-25</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># @email wangyudong@buaa.edu.cn</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># @brief This is a python script to login the buaa network.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        &#34;pip install selenium&#34; is required.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#         chromedriver.exe(https://chromedriver.chromium.org/downloads) is required.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        &#34;pip install urllib&#34; maybe required.</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib.request</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib.error</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span> 
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">logged_in</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://www.baidu.com/&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">logged_in</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">opt</span><span class="o">=</span><span class="n">webdriver</span><span class="o">.</span><span class="n">ChromeOptions</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">#opt.add_argument(&#39;--headless&#39;)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">driver</span><span class="o">=</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="s1">&#39;C:\Program Files\Google\Chrome\Application\chromedriver.exe&#39;</span><span class="p">,</span><span class="n">chrome_options</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://gw.buaa.edu.cn:801/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s1">&#39;sy2004511&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s1">&#39;Password&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用前配置">使用前配置</h3>
+<ol>
+<li>安装python及命令行pip安装selenium(<code>pip install selenium</code>)等。</li>
+<li>根据Chrome浏览器版本下载<a href="https://chromedriver.chromium.org/downloads" target="_blank" rel="noopener noreffer">chromedriver.exe</a>。</li>
+<li>修改gw_buaa.py中第25行的<code>C:\Program Files\Google\Chrome\Application\chromedriver.exe</code>路径为存放前一步下载的chromedriver.exe的路径。</li>
+<li>修改gw_buaa.py中第27行的用户名<code>sy2004511</code>。</li>
+<li>修改gw_buaa.py中第28行的密码<code>Password</code>。</li>
+<li>在源文件目录命令行运行<code>python gw_buaa.md</code>，或双击gw_buaa.bat脚本运行。</li>
+</ol>
+<h2 id="linux"><a href="../images/GW_LINUX.zip" rel="">LINUX</a></h2>
+<h3 id="1-新建system-service">1. 新建system service</h3>
+<p>建立文件<code>/usr/lib/systemd/system/buaaConnect.service</code></p>]]></description>
+</item><item>
+    <title>个人网站搭建</title>
+    <link>https://wangyudong.netlify.app/firstsum/</link>
+    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/firstsum/</guid>
+    <description><![CDATA[<h1 id="网站搭建笔记">网站搭建笔记</h1>
+<h2 id="使用hugo搭建网站">使用<a href="https://gohugo.io/" target="_blank" rel="noopener noreffer">HUGO</a>搭建网站</h2>
+<h4 id="1使用chocolatey安装hugo">1.使用<a href="https://chocolatey.org/install" target="_blank" rel="noopener noreffer">chocolatey</a>安装HUGO</h4>
+<p><strong>HUGO</strong></p>
+<p><code>choco install hugo -confirm</code></p>
+<p><strong>HUGO-Extended</strong></p>
+<p><code>choco install hugo-extended –confirm</code></p>]]></description>
+</item><item>
+    <title>Tecplot后处理函数式</title>
+    <link>https://wangyudong.netlify.app/tecplotana/</link>
+    <pubDate>Mon, 10 Oct 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tecplotana/</guid>
+    <description><![CDATA[<p>#Plot Equations</p>
+<h2 id="tecplot">Tecplot</h2>
+<div class="details admonition tip">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>对于 Visit导出数据<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I,J,K。</div>
+        </div>
+    </div>
+<h3 id="q准则">Q准则</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{Q}=-1/2*((ddx(v4))**2+(ddy(v5))**2+(ddz(v6))**2)-ddy(v4)*ddx(v5)-ddz(v4)*ddx(v6)-ddz(v5)*ddy(v6)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="liutex">Liutex</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{B2}=1/2*((ddy(v4)-ddx(v5))**2+(ddz(v4)-ddx(v6))**2+(ddz(v5)-ddy(v6))**2)
+</span></span><span class="line"><span class="cl">{A2}=(ddx(v4))**2+1/2*(ddy(v6)+ddz(v5))**2+(ddy(v5))**2+1/2*(ddz(v4)+ddx(v6))**2+(ddz(v6))**2+1/2*(ddx(v5)+ddy(v4))**2
+</span></span><span class="line"><span class="cl">{Liutex}={B2}/({A2}+{B2})
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="visit">Visit</h2>
+<h3 id="tke">TKE</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">TKE=0.5*(VAR_U-MEAN_U^2+VAR_V-MEAN_V^2+VAR_W-MEAN_W^2)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="uuuc2">u’u’/Uc^2</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">u_var</span><span class="o">=</span><span class="p">(</span><span class="n">VAR_U</span><span class="o">-</span><span class="n">MEAN_U</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">Uc</span><span class="o">^</span><span class="mi">2</span><span class="p">(</span><span class="mf">8.390755</span> <span class="k">for</span> <span class="n">Circular</span> <span class="mf">2.89668</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">u_var</span><span class="o">=</span><span class="p">(</span><span class="n">VAR_U</span><span class="o">-</span><span class="n">MEAN_U</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">8.390755</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item></channel>
+</rss>

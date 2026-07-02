@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - Tag - Dong</title>
+        <link>https://wangyudong.netlify.app/tags/</link>
+        <description>Tags - Tag - Dong</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 11 Jul 2024 10:50:00 &#43;0800</lastBuildDate><atom:link href="https://wangyudong.netlify.app/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Website</title>
+    <link>https://wangyudong.netlify.app/tags/website/</link>
+    <pubDate>Thu, 11 Jul 2024 10:50:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/website/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Achievements</title>
+    <link>https://wangyudong.netlify.app/tags/achievements/</link>
+    <pubDate>Mon, 01 Jul 2024 12:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/achievements/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>AECSC</title>
+    <link>https://wangyudong.netlify.app/tags/aecsc/</link>
+    <pubDate>Thu, 01 Dec 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/aecsc/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Boffin</title>
+    <link>https://wangyudong.netlify.app/tags/boffin/</link>
+    <pubDate>Thu, 01 Dec 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/boffin/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>LES</title>
+    <link>https://wangyudong.netlify.app/tags/les/</link>
+    <pubDate>Thu, 01 Dec 2022 10:50:51 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/les/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Apache</title>
+    <link>https://wangyudong.netlify.app/tags/apache/</link>
+    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/apache/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Git</title>
+    <link>https://wangyudong.netlify.app/tags/git/</link>
+    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/git/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Hugo</title>
+    <link>https://wangyudong.netlify.app/tags/hugo/</link>
+    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/hugo/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Loveit</title>
+    <link>https://wangyudong.netlify.app/tags/loveit/</link>
+    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/loveit/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Netlify</title>
+    <link>https://wangyudong.netlify.app/tags/netlify/</link>
+    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/tags/netlify/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>
