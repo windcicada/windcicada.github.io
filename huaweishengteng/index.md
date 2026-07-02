@@ -1,5 +1,3 @@
-# 
-
 # Ascend C算子 学习笔记
 
 ![Ascend](../images/Ascend/Ascend.png)
@@ -253,8 +251,6 @@ graph TD;
 ### Sinh算子功能
 
 ```
-cpp
-复制代码
 sinh(x) = (exp(x) - exp(-x)) / 2.0
 ```
 
@@ -1167,5 +1163,4 @@ bash run.sh
     }
 ]
 ```
-
 
