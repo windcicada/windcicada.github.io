@@ -4,9 +4,30 @@
         <link>https://wangyudong.netlify.app/</link>
         <description>Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Thu, 02 Jul 2026 14:00:00 &#43;0800</lastBuildDate>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Fri, 03 Jul 2026 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://wangyudong.netlify.app/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation</title>
+    <link>https://wangyudong.netlify.app/shear-layer-combustion-dns/</link>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/shear-layer-combustion-dns/</guid>
+    <description><![CDATA[<h2 id="overview">Overview</h2>
+<p>This article presents an open-source <strong>2-D compressible shear-layer DNS solver</strong> designed for studying turbulence-chemistry interactions and validating the <strong>Turbulence-Chemistry Recursive (TCR)</strong> micro-mixing model.</p>
+<p>The code is available on GitHub:</p>
+<blockquote>
+<p><strong><a href="https://github.com/windcicada/shearlayer-combustion-DNS" target="_blank" rel="noopener noreffer">github.com/windcicada/shearlayer-combustion-DNS</a></strong></p>
+</blockquote>
+<hr>
+<h2 id="1-physical-background">1. Physical Background</h2>
+<h3 id="the-temporal-shear-layer">The Temporal Shear Layer</h3>
+<p>The temporally-developing shear layer is a canonical configuration for turbulence-chemistry interaction studies. Two streams with different velocities mix through Kelvin–Helmholtz instability, generating a turbulent mixing layer that grows in time.</p>
+<figure><a class="lightgallery" href="./dns_velocity_context.png" title="./dns_velocity_context.png" data-thumbnail="./dns_velocity_context.png" data-sub-html="<h2>DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.</h2>">
+        
+    </a><figcaption class="image-caption">DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.</figcaption>
+    </figure>
+<p>The key advantage of this configuration for TCR validation:</p>]]></description>
+</item><item>
     <title>湍流燃烧大涡模拟：代码实现</title>
     <link>https://wangyudong.netlify.app/tcr-solver-manual/</link>
     <pubDate>Thu, 26 Mar 2026 00:00:00 &#43;0000</pubDate>
@@ -189,65 +210,5 @@
 <p><code>choco install hugo -confirm</code></p>
 <p><strong>HUGO-Extended</strong></p>
 <p><code>choco install hugo-extended –confirm</code></p>]]></description>
-</item><item>
-    <title>Tecplot后处理函数式</title>
-    <link>https://wangyudong.netlify.app/tecplotana/</link>
-    <pubDate>Mon, 10 Oct 2022 10:50:51 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://wangyudong.netlify.app/tecplotana/</guid>
-    <description><![CDATA[<p>#Plot Equations</p>
-<h2 id="tecplot">Tecplot</h2>
-<div class="details admonition tip">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-lightbulb fa-fw"></i>对于 Visit导出数据<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">若要使用Visit导出的三维数据求ddx,ddy,ddz，则必须先在Visit中对场切块，否则导出的坐标格式为I,J,K。</div>
-        </div>
-    </div>
-<h3 id="q准则">Q准则</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{Q}=-1/2*((ddx(v4))**2+(ddy(v5))**2+(ddz(v6))**2)-ddy(v4)*ddx(v5)-ddz(v4)*ddx(v6)-ddz(v5)*ddy(v6)
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="liutex">Liutex</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{B2}=1/2*((ddy(v4)-ddx(v5))**2+(ddz(v4)-ddx(v6))**2+(ddz(v5)-ddy(v6))**2)
-</span></span><span class="line"><span class="cl">{A2}=(ddx(v4))**2+1/2*(ddy(v6)+ddz(v5))**2+(ddy(v5))**2+1/2*(ddz(v4)+ddx(v6))**2+(ddz(v6))**2+1/2*(ddx(v5)+ddy(v4))**2
-</span></span><span class="line"><span class="cl">{Liutex}={B2}/({A2}+{B2})
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="visit">Visit</h2>
-<h3 id="tke">TKE</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">TKE=0.5*(VAR_U-MEAN_U^2+VAR_V-MEAN_V^2+VAR_W-MEAN_W^2)
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="uuuc2">u’u’/Uc^2</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">u_var</span><span class="o">=</span><span class="p">(</span><span class="n">VAR_U</span><span class="o">-</span><span class="n">MEAN_U</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">Uc</span><span class="o">^</span><span class="mi">2</span><span class="p">(</span><span class="mf">8.390755</span> <span class="k">for</span> <span class="n">Circular</span> <span class="mf">2.89668</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">u_var</span><span class="o">=</span><span class="p">(</span><span class="n">VAR_U</span><span class="o">-</span><span class="n">MEAN_U</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">8.390755</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div>]]></description>
 </item></channel>
 </rss>

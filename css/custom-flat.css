@@ -76,6 +76,49 @@ body[theme="dark"] .navbar {
     gap: 8px;
 }
 
+/* 语言切换 */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 8px;
+}
+
+.lang-link {
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.lang-link:hover {
+    color: var(--accent-color);
+    background: rgba(52, 152, 219, 0.1);
+}
+
+.lang-link.active {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.lang-sep {
+    color: var(--border-color);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .lang-switcher {
+        margin-right: 4px;
+    }
+    .lang-link {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+}
+
 .nav-btn {
     width: 44px;
     height: 44px;
