@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/shear-layer-combustion-dns/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation">
+  <meta property="og:description" content="Overview This article presents an open-source 2-D compressible shear-layer DNS solver designed for studying turbulence-chemistry interactions and validating the Turbulence-Chemistry Recursive (TCR) micro-mixing model.
+The code is available on GitHub:
+github.com/windcicada/shearlayer-combustion-DNS
+1. Physical Background The Temporal Shear Layer The temporally-developing shear layer is a canonical configuration for turbulence-chemistry interaction studies. Two streams with different velocities mix through Kelvin–Helmholtz instability, generating a turbulent mixing layer that grows in time.
+DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.The key advantage of this configuration for TCR validation:">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-03T00:00:00+00:00">
+    <meta property="article:tag" content="DNS">
+    <meta property="article:tag" content="Turbulent Combustion">
+    <meta property="article:tag" content="TCR">
+    <meta property="article:tag" content="Shear Layer">
+    <meta property="article:tag" content="CFD">
+    <meta property="article:tag" content="Micro-Mixing">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation">
+  <meta name="twitter:description" content="Overview This article presents an open-source 2-D compressible shear-layer DNS solver designed for studying turbulence-chemistry interactions and validating the Turbulence-Chemistry Recursive (TCR) micro-mixing model.
+The code is available on GitHub:
+github.com/windcicada/shearlayer-combustion-DNS
+1. Physical Background The Temporal Shear Layer The temporally-developing shear layer is a canonical configuration for turbulence-chemistry interaction studies. Two streams with different velocities mix through Kelvin–Helmholtz instability, generating a turbulent mixing layer that grows in time.
+DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.The key advantage of this configuration for TCR validation:">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/shear-layer-combustion-dns/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-solver-manual/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/shear-layer-combustion-dns\/"
+        },"genre": "posts","keywords": "DNS, turbulent combustion, TCR, shear layer, CFD, micro-mixing","wordcount":  1276 ,
+        "url": "https:\/\/wangyudong.netlify.app\/shear-layer-combustion-dns\/","datePublished": "2026-07-03T00:00:00+00:00","dateModified": "2026-07-03T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
+    <div class="nav-container">
+        
+        <a href="/" class="nav-brand">Dong</a>
+        
+        
+        <div class="nav-menu" id="nav-menu-desktop">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/posts/" class="nav-link active">Blog文章</a>
+            <a href="/coast-software/" class="nav-link">COAST软件</a>
+            <a href="/awards/" class="nav-link">学术成果</a>
+        </div>
+        
+        
+        <div class="nav-tools">
+            
+            <div class="lang-switcher" id="lang-switcher">
+                <a href="/coast-software/" class="lang-link" data-lang="zh-cn">中文</a>
+                <span class="lang-sep">|</span>
+                <a href="/coast-software/en/" class="lang-link" data-lang="en">EN</a>
+            </div>
+            
+            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="/" class="mobile-nav-link">首页</a>
+        <a href="/posts/" class="mobile-nav-link active">Blog文章</a>
+        <a href="/coast-software/" class="mobile-nav-link">COAST软件</a>
+        <a href="/awards/" class="mobile-nav-link">学术成果</a>
+    </div>
+</nav>
+
+
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/research/"><i class="far fa-folder fa-fw"></i>Research</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-07-03">2026-07-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1276 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;<span id="/shear-layer-combustion-dns/" class="leancloud_visitors" data-flag-title="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#1-physical-background">1. Physical Background</a>
+      <ul>
+        <li><a href="#the-temporal-shear-layer">The Temporal Shear Layer</a></li>
+        <li><a href="#the-tcr-micro-mixing-model">The TCR Micro-Mixing Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-governing-equations">2. Governing Equations</a>
+      <ul>
+        <li><a href="#compressible-navier-stokes-2-d">Compressible Navier-Stokes (2-D)</a></li>
+        <li><a href="#inviscid-flux-rusanov-with-weno">Inviscid Flux: Rusanov with WENO</a></li>
+        <li><a href="#viscous-fluxes">Viscous Fluxes</a></li>
+        <li><a href="#reaction-model">Reaction Model</a></li>
+        <li><a href="#shear-layer-initial-condition">Shear Layer Initial Condition</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-code-structure">3. Code Structure</a>
+      <ul>
+        <li><a href="#key-design-choices">Key Design Choices</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-how-to-run">4. How to Run</a>
+      <ul>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#workstation-smoke-test">Workstation Smoke Test</a></li>
+        <li><a href="#mom-reproduction">MOM Reproduction</a></li>
+        <li><a href="#grid-convergence">Grid Convergence</a></li>
+        <li><a href="#dnstpdf-prior-validation">DNS–TPDF Prior Validation</a></li>
+        <li><a href="#ho-reacting-case">H₂/O₂ Reacting Case</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-sample-results">5. Sample Results</a>
+      <ul>
+        <li><a href="#dns-velocity-field">DNS Velocity Field</a></li>
+        <li><a href="#dns-four-panel-context">DNS Four-Panel Context</a></li>
+        <li><a href="#esf-tpdf-prior-profiles">ESF-TPDF Prior Profiles</a></li>
+        <li><a href="#reaction-rate-scatter">Reaction Rate Scatter</a></li>
+        <li><a href="#tcr-diagnostics">TCR Diagnostics</a></li>
+        <li><a href="#physics-constrained-optimization">Physics-Constrained Optimization</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-references">6. References</a></li>
+    <li><a href="#repository">Repository</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="overview">Overview</h2>
+<p>This article presents an open-source <strong>2-D compressible shear-layer DNS solver</strong> designed for studying turbulence-chemistry interactions and validating the <strong>Turbulence-Chemistry Recursive (TCR)</strong> micro-mixing model.</p>
+<p>The code is available on GitHub:</p>
+<blockquote>
+<p><strong><a href="https://github.com/windcicada/shearlayer-combustion-DNS" target="_blank" rel="noopener noreffer">github.com/windcicada/shearlayer-combustion-DNS</a></strong></p>
+</blockquote>
+<hr>
+<h2 id="1-physical-background">1. Physical Background</h2>
+<h3 id="the-temporal-shear-layer">The Temporal Shear Layer</h3>
+<p>The temporally-developing shear layer is a canonical configuration for turbulence-chemistry interaction studies. Two streams with different velocities mix through Kelvin–Helmholtz instability, generating a turbulent mixing layer that grows in time.</p>
+<figure><a class="lightgallery" href="./dns_velocity_context.png" title="./dns_velocity_context.png" data-thumbnail="./dns_velocity_context.png" data-sub-html="<h2>DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="./dns_velocity_context.png"
+            data-srcset="./dns_velocity_context.png, ./dns_velocity_context.png 1.5x, ./dns_velocity_context.png 2x"
+            data-sizes="auto"
+            alt="./dns_velocity_context.png" width="100%" />
+    </a><figcaption class="image-caption">DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.</figcaption>
+    </figure>
+<p>The key advantage of this configuration for TCR validation:</p>
+<ul>
+<li><strong>Well-defined inlet conditions</strong> — no inflow turbulence generation</li>
+<li><strong>Self-similar growth</strong> — the mixing layer width grows as $\delta(t) \propto t$</li>
+<li><strong>Strong scalar mixing</strong> — passive and reactive scalars mix through the evolving turbulence field</li>
+<li><strong>Controllable chemistry</strong> — simple Arrhenius-type reaction models link directly to DNS resolution</li>
+</ul>
+<h3 id="the-tcr-micro-mixing-model">The TCR Micro-Mixing Model</h3>
+<p>The <strong>TCR (Turbulence-Chemistry Recursive)</strong> model addresses a fundamental issue in transported PDF methods: traditional models (IEM, EMST) require empirical calibration for the mixing frequency. TCR eliminates this by using a recursive multi-layer partitioned reactor concept:</p>
+<p>$$\kappa = \frac{\tilde{\omega}_c}{\omega_c(\tilde{\phi})}$$</p>
+<p>where:</p>
+<ul>
+<li>$\kappa$ = PSR volume fraction (mixing mode parameter)</li>
+<li>$\tilde{\omega}_c$ = DNS-averaged chemical source term</li>
+<li>$\omega_c(\tilde{\phi})$ = chemical source term evaluated at the mean composition</li>
+</ul>
+<p>The DNS provides the ground truth to evaluate this closure and its sensitivity to local mixing conditions.</p>
+<hr>
+<h2 id="2-governing-equations">2. Governing Equations</h2>
+<h3 id="compressible-navier-stokes-2-d">Compressible Navier-Stokes (2-D)</h3>
+<p>The solver evolves the 2-D compressible Navier-Stokes equations in conservative form:</p>
+<p>$$
+\frac{\partial \mathbf{U}}{\partial t}</p>
+<ul>
+<li>\frac{\partial \mathbf{F}_x}{\partial x}</li>
+<li>\frac{\partial \mathbf{F}<em>y}{\partial y}
+= \mathbf{S}</em>{\text{visc}} + \mathbf{S}_{\text{reac}}
+$$</li>
+</ul>
+<p>The conservative state vector is:</p>
+<p>$$\mathbf{U} = [\rho,; \rho u,; \rho v,; \rho E,; \rho Z,; \rho Y,; \rho Z^2]^T$$</p>
+<p>where:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Symbol</th>
+          <th>Meaning</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$\rho$</td>
+          <td>Density</td>
+      </tr>
+      <tr>
+          <td>$u, v$</td>
+          <td>Streamwise and cross-stream velocity</td>
+      </tr>
+      <tr>
+          <td>$E$</td>
+          <td>Total energy per unit mass</td>
+      </tr>
+      <tr>
+          <td>$Z$</td>
+          <td>Mixture fraction (passive scalar)</td>
+      </tr>
+      <tr>
+          <td>$Y$</td>
+          <td>Reaction progress variable</td>
+      </tr>
+      <tr>
+          <td>$Z^2$</td>
+          <td>Mixture fraction variance</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="inviscid-flux-rusanov-with-weno">Inviscid Flux: Rusanov with WENO</h3>
+<p>The inviscid fluxes are computed using the Rusanov (local Lax–Friedrichs) scheme:</p>
+<p>$$\mathbf{F} = \frac{1}{2}\left[ \mathbf{F}(\mathbf{U}^-) + \mathbf{F}(\mathbf{U}^+) - \lambda_{\max}(\mathbf{U}^+ - \mathbf{U}^-) \right]$$</p>
+<p>where $\mathbf{U}^\pm$ are the reconstructed left and right states using <strong>5th-order WENO</strong> (Jiang-Shu or Z variants).</p>
+<h3 id="viscous-fluxes">Viscous Fluxes</h3>
+<p>Second-order central differences for viscous momentum and energy fluxes, coupled with Sutherland&rsquo;s law for molecular viscosity:</p>
+<p>$$\mu(T) = \mu_0 \left( \frac{T}{T_0} \right)^{3/2} \frac{T_0 + S}{T + S}$$</p>
+<h3 id="reaction-model">Reaction Model</h3>
+<p>The H₂/O₂ chemistry uses a simplified Arrhenius mechanism:</p>
+<p>$$\dot{\omega}<em>Y = k_r \left[ Y</em>{\text{H}<em>2}^a Y</em>{\text{O}<em>2}^b - \frac{Y}{k</em>{\text{eq}}} \right] \exp\left(-\frac{E_a}{RT}\right)$$</p>
+<p>where $Y_{\text{H}<em>2}$ and $Y</em>{\text{O}_2}$ are derived from $Z$ and $Y$ using the mixture fraction definition.</p>
+<h3 id="shear-layer-initial-condition">Shear Layer Initial Condition</h3>
+<p>The velocity profile is a hyperbolic tangent:</p>
+<p>$$u(y) = u_1 + \frac{u_2 - u_1}{2} \left[ 1 + \tanh\left( \frac{y}{2\delta_\omega} \right) \right]$$</p>
+<p>with localized sinusoidal or random perturbations to seed KH instability:</p>
+<p>$$v&rsquo;(x, y, t=0) = A_0 \sin\left( \frac{2\pi x}{\lambda} \right) \exp\left( -\frac{y^2}{2\sigma^2} \right)$$</p>
+<hr>
+<h2 id="3-code-structure">3. Code Structure</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">shear_layer_dns</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">shearlayer_dns</span><span class="o">/</span>              <span class="c1"># Core Python package</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">config</span><span class="o">.</span><span class="n">py</span>                <span class="c1"># CaseConfig — all parameters in one place</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">solver</span><span class="o">.</span><span class="n">py</span>                <span class="c1"># Main time-stepping loop + CFL</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">└──</span> <span class="n">state</span><span class="o">.</span><span class="n">py</span>                 <span class="c1"># State vector manipulation</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">flux</span><span class="o">.</span><span class="n">py</span>                  <span class="c1"># Rusanov numerical flux</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">weno</span><span class="o">.</span><span class="n">py</span>                  <span class="c1"># 5th-order WENO (JS / Z)</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">grid</span><span class="o">.</span><span class="n">py</span>                  <span class="c1"># Mesh utilities</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">boundary</span><span class="o">.</span><span class="n">py</span>              <span class="c1"># BCs (non-reflecting, wall, periodic)</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">initial</span><span class="o">.</span><span class="n">py</span>               <span class="c1"># Initial profiles + perturbations</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">operators</span><span class="o">.</span><span class="n">py</span>             <span class="c1"># FD operators</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">filtering</span><span class="o">.</span><span class="n">py</span>             <span class="c1"># Spatial filters</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">│</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">eos</span><span class="o">.</span><span class="n">py</span>                   <span class="c1"># Calorically perfect gas</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">reaction</span><span class="o">.</span><span class="n">py</span>              <span class="c1"># H₂/O₂ chemistry</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">transport</span><span class="o">.</span><span class="n">py</span>             <span class="c1"># Effective transport</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">viscous</span><span class="o">.</span><span class="n">py</span>               <span class="c1"># Sutherland viscosity</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">viscous_flux</span><span class="o">.</span><span class="n">py</span>          <span class="c1"># Viscous flux divergence</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">source_terms</span><span class="o">.</span><span class="n">py</span>          <span class="c1"># Source term assembly</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">smagorinsky</span><span class="o">.</span><span class="n">py</span>           <span class="c1"># SGS model</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">│</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">theory</span><span class="o">.</span><span class="n">py</span>                <span class="c1"># Analytic reference (diffusion, reaction)</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">ms_tcr_physo</span><span class="o">.</span><span class="n">py</span>          <span class="c1"># Multi-scale TCR physics-constrained opt.</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">tcr_cd_diagnostics</span><span class="o">.</span><span class="n">py</span>    <span class="c1"># TCR C_D diagnostics</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">tcr_cd_kappa_sensitivity</span><span class="o">.</span><span class="n">py</span>  <span class="c1"># κ sensitivity analysis</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">esf_tpdf_prior</span><span class="o">.</span><span class="n">py</span>        <span class="c1"># ESF-TPDF prior analysis</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">scale_constrained_prior</span><span class="o">.</span><span class="n">py</span>   <span class="c1"># Scale-constrained mixing prior</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">│</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">diagnostics</span><span class="o">.</span><span class="n">py</span>           <span class="c1"># Run-time statistics</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">plotting</span><span class="o">.</span><span class="n">py</span>              <span class="c1"># Visualization</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">│</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">run_local_shape</span><span class="o">.</span><span class="n">py</span>       <span class="c1"># Quick workstation test (WENO + RK3)</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">run_local_debug</span><span class="o">.</span><span class="n">py</span>       <span class="c1"># Debug entrypoint</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">run_mom_parallel</span><span class="o">.</span><span class="n">py</span>      <span class="c1"># MPI parallel runs</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">run_mom_reproduction</span><span class="o">.</span><span class="n">py</span>  <span class="c1"># MOM reproduction</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">run_dns_tpdf_validation</span><span class="o">.</span><span class="n">py</span>  <span class="c1"># DNS ↔ TPDF comparison</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">run_grid_convergence</span><span class="o">.</span><span class="n">py</span>  <span class="c1"># Grid convergence study</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">run_parallel_h2o2_cases</span><span class="o">.</span><span class="n">py</span>  <span class="c1"># H₂/O₂ reacting cases</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">run_shape_scan</span><span class="o">.</span><span class="n">py</span>        <span class="c1"># Shape parameter scan</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">└──</span> <span class="n">run_mom_perturbation_scan</span><span class="o">.</span><span class="n">py</span> <span class="c1"># Perturbation sensitivity</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">└──</span> <span class="n">tests</span><span class="o">/</span>                   <span class="c1"># Pytest suite</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>       <span class="err">├──</span> <span class="n">test_solver_smoke</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>       <span class="err">├──</span> <span class="n">test_esf_tpdf_prior</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>       <span class="err">├──</span> <span class="n">test_tcr_cd_diagnostics</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>       <span class="err">└──</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="key-design-choices">Key Design Choices</h3>
+<ul>
+<li><strong>Pure NumPy</strong> — no external CFD libraries, maximally portable</li>
+<li><strong>Dataclass config</strong> — <code>CaseConfig</code> is an immutable frozen dataclass with full input validation</li>
+<li><strong>Smoke test first</strong> — <code>run_local_shape.py</code> runs a workstation-friendly test in seconds</li>
+<li><strong>Modular diagnostics</strong> — each diagnostic (TCR, ESF-TPDF, grid convergence) is a separate module</li>
+<li><strong>MPI optional</strong> — <code>run_mom_parallel.py</code> uses MPI4Py for distributed runs</li>
+</ul>
+<hr>
+<h2 id="4-how-to-run">4. How to Run</h2>
+<h3 id="requirements">Requirements</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install numpy matplotlib
+</span></span><span class="line"><span class="cl"><span class="c1"># Optional (for parallel runs):</span>
+</span></span><span class="line"><span class="cl">pip install mpi4py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="workstation-smoke-test">Workstation Smoke Test</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/windcicada/shearlayer-combustion-DNS.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> shearlayer-combustion-DNS
+</span></span><span class="line"><span class="cl">python -m shearlayer_dns.run_local_shape
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This runs a small 150×40 domain (lx = 150, t = 1.0) with WENO + RK3 and a sinusoidal perturbation. Expected runtime: a few seconds to a minute.</p>
+<h3 id="mom-reproduction">MOM Reproduction</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python -m shearlayer_dns.run_mom_reproduction <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --nx <span class="m">300</span> --ny <span class="m">80</span> --lx 100.0 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --t-end <span class="m">400</span> --cfl 0.5 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --flux weno --integrator rk3 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --perturbation-amplitude 0.02 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --perturbation-wavelength 30.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="grid-convergence">Grid Convergence</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python -m shearlayer_dns.run_grid_convergence
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dnstpdf-prior-validation">DNS–TPDF Prior Validation</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python -m shearlayer_dns.run_dns_tpdf_validation
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ho-reacting-case">H₂/O₂ Reacting Case</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python -m shearlayer_dns.run_parallel_h2o2_cases
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="5-sample-results">5. Sample Results</h2>
+<h3 id="dns-velocity-field">DNS Velocity Field</h3>
+<figure><a class="lightgallery" href="./dns_velocity_context.png" title="./dns_velocity_context.png" data-thumbnail="./dns_velocity_context.png" data-sub-html="<h2>2-D temporally-developing shear layer at Re = 600. Vorticity contours show characteristic KH roll-up and pairing.</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="./dns_velocity_context.png"
+            data-srcset="./dns_velocity_context.png, ./dns_velocity_context.png 1.5x, ./dns_velocity_context.png 2x"
+            data-sizes="auto"
+            alt="./dns_velocity_context.png" width="100%" />
+    </a><figcaption class="image-caption">2-D temporally-developing shear layer at Re = 600. Vorticity contours show characteristic KH roll-up and pairing.</figcaption>
+    </figure>
+<h3 id="dns-four-panel-context">DNS Four-Panel Context</h3>
+<figure><a class="lightgallery" href="./dns_context_four_panel.png" title="./dns_context_four_panel.png" data-thumbnail="./dns_context_four_panel.png" data-sub-html="<h2>Multi-field diagnostic panel: density, vorticity, mixture fraction, and reaction rate at t = 100.</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="./dns_context_four_panel.png"
+            data-srcset="./dns_context_four_panel.png, ./dns_context_four_panel.png 1.5x, ./dns_context_four_panel.png 2x"
+            data-sizes="auto"
+            alt="./dns_context_four_panel.png" width="100%" />
+    </a><figcaption class="image-caption">Multi-field diagnostic panel: density, vorticity, mixture fraction, and reaction rate at t = 100.</figcaption>
+    </figure>
+<h3 id="esf-tpdf-prior-profiles">ESF-TPDF Prior Profiles</h3>
+<figure><a class="lightgallery" href="./esf_tpdf_profiles.png" title="./esf_tpdf_profiles.png" data-thumbnail="./esf_tpdf_profiles.png" data-sub-html="<h2>Conditional mean profiles from DNS prior analysis. Comparison of IEM, TCR, and DNS at different mixture fraction thresholds.</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="./esf_tpdf_profiles.png"
+            data-srcset="./esf_tpdf_profiles.png, ./esf_tpdf_profiles.png 1.5x, ./esf_tpdf_profiles.png 2x"
+            data-sizes="auto"
+            alt="./esf_tpdf_profiles.png" width="100%" />
+    </a><figcaption class="image-caption">Conditional mean profiles from DNS prior analysis. Comparison of IEM, TCR, and DNS at different mixture fraction thresholds.</figcaption>
+    </figure>
+<h3 id="reaction-rate-scatter">Reaction Rate Scatter</h3>
+<figure><a class="lightgallery" href="./reaction_rate_scatter.png" title="./reaction_rate_scatter.png" data-thumbnail="./reaction_rate_scatter.png" data-sub-html="<h2>Scatter plot of instantaneous reaction rate vs mixture fraction. Red line shows DNS reference; blue markers show TPDF model predictions.</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="./reaction_rate_scatter.png"
+            data-srcset="./reaction_rate_scatter.png, ./reaction_rate_scatter.png 1.5x, ./reaction_rate_scatter.png 2x"
+            data-sizes="auto"
+            alt="./reaction_rate_scatter.png" width="100%" />
+    </a><figcaption class="image-caption">Scatter plot of instantaneous reaction rate vs mixture fraction. Red line shows DNS reference; blue markers show TPDF model predictions.</figcaption>
+    </figure>
+<h3 id="tcr-diagnostics">TCR Diagnostics</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Diagnostic</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>C_D analysis</strong></td>
+          <td>Rate-ratio diagnostics quantifying the deviation of TCR closure from DNS ground truth</td>
+      </tr>
+      <tr>
+          <td><strong>κ sensitivity</strong></td>
+          <td>Parametric sweep of κ on mixing model accuracy</td>
+      </tr>
+      <tr>
+          <td><strong>Scale-constrained prior</strong></td>
+          <td>Effect of block-averaging scale on observed mixing behavior</td>
+      </tr>
+  </tbody>
+</table>
+<figure><a class="lightgallery" href="./tcr_r_c_map.png" title="./tcr_r_c_map.png" data-thumbnail="./tcr_r_c_map.png" data-sub-html="<h2>Spatial map of the TCR rate-ratio parameter r_c. Red = flamelet-like (r_c &lt; 1), blue = well-mixed (r_c ≈ 1).</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="./tcr_r_c_map.png"
+            data-srcset="./tcr_r_c_map.png, ./tcr_r_c_map.png 1.5x, ./tcr_r_c_map.png 2x"
+            data-sizes="auto"
+            alt="./tcr_r_c_map.png" width="100%" />
+    </a><figcaption class="image-caption">Spatial map of the TCR rate-ratio parameter r_c. Red = flamelet-like (r_c &lt; 1), blue = well-mixed (r_c ≈ 1).</figcaption>
+    </figure>
+<figure><a class="lightgallery" href="./cd_lambda_scan.png" title="./cd_lambda_scan.png" data-thumbnail="./cd_lambda_scan.png" data-sub-html="<h2>C_D sensitivity to the mixing-dissipation coupling parameter λ. The optimal λ minimizes the gap between TCR and DNS.</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="./cd_lambda_scan.png"
+            data-srcset="./cd_lambda_scan.png, ./cd_lambda_scan.png 1.5x, ./cd_lambda_scan.png 2x"
+            data-sizes="auto"
+            alt="./cd_lambda_scan.png" width="100%" />
+    </a><figcaption class="image-caption">C_D sensitivity to the mixing-dissipation coupling parameter λ. The optimal λ minimizes the gap between TCR and DNS.</figcaption>
+    </figure>
+<h3 id="physics-constrained-optimization">Physics-Constrained Optimization</h3>
+<figure><a class="lightgallery" href="./tcr_oracle_a_fields.png" title="./tcr_oracle_a_fields.png" data-thumbnail="./tcr_oracle_a_fields.png" data-sub-html="<h2>PhySO-optimized TCR coefficient a* across the shear layer. The optimizer discovers local mixing corrections that best match DNS reference data.</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="./tcr_oracle_a_fields.png"
+            data-srcset="./tcr_oracle_a_fields.png, ./tcr_oracle_a_fields.png 1.5x, ./tcr_oracle_a_fields.png 2x"
+            data-sizes="auto"
+            alt="./tcr_oracle_a_fields.png" width="100%" />
+    </a><figcaption class="image-caption">PhySO-optimized TCR coefficient a* across the shear layer. The optimizer discovers local mixing corrections that best match DNS reference data.</figcaption>
+    </figure>
+<hr>
+<h2 id="6-references">6. References</h2>
+<ol>
+<li>Wang, Y. &amp; Wang, F. (2026). TCR: A Turbulence-Chemistry Recursive Micro-Mixing Model for LES-TPDF. <em>Under review.</em></li>
+<li>Dopazo, C. (1975). Probability density function approach for a turbulent axisymmetric heated jet. <em>Phys. Fluids</em>, 18(4), 397–404.</li>
+<li>Pope, S. B. (1985). PDF methods for turbulent reactive flows. <em>Prog. Energy Combust. Sci.</em>, 11(2), 119–192.</li>
+<li>Jiang, G.-S. &amp; Shu, C.-W. (1996). Efficient implementation of weighted ENO schemes. <em>J. Comput. Phys.</em>, 126(1), 202–228.</li>
+<li>Rusanov, V. V. (1961). Calculation of interaction of non-steady shock waves with obstacles. <em>J. Comput. Math. Phys. USSR</em>, 1, 267–279.</li>
+</ol>
+<hr>
+<h2 id="repository">Repository</h2>
+<p><strong>GitHub</strong>: <a href="https://github.com/windcicada/shearlayer-combustion-DNS" target="_blank" rel="noopener noreffer">github.com/windcicada/shearlayer-combustion-DNS</a></p>
+<p>If you use this code in your research, please cite:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bibtex" data-lang="bibtex"><span class="line"><span class="cl"><span class="nc">@software</span><span class="p">{</span><span class="nl">wang_shearlayer_dns_2026</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="na">author</span> <span class="p">=</span> <span class="s">{Wang, Yudong}</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="na">title</span> <span class="p">=</span> <span class="s">{ShearLayer-Combustion DNS: A Compressible Shear-Layer DNS for TCR Model Validation}</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="na">year</span> <span class="p">=</span> <span class="s">{2026}</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="na">url</span> <span class="p">=</span> <span class="s">{https://github.com/windcicada/shearlayer-combustion-DNS}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>License: <strong>MIT</strong></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-07-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/shear-layer-combustion-dns/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/shear-layer-combustion-dns/" data-title="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation" data-hashtags="DNS,turbulent combustion,TCR,shear layer,CFD,micro-mixing"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/shear-layer-combustion-dns/" data-hashtag="DNS"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/shear-layer-combustion-dns/" data-title="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/shear-layer-combustion-dns/" data-title="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/shear-layer-combustion-dns/" data-title="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/shear-layer-combustion-dns/" data-title="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/shear-layer-combustion-dns/" data-title="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/shear-layer-combustion-dns/" data-title="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/dns/">DNS</a>,&nbsp;<a href="/tags/turbulent-combustion/">Turbulent Combustion</a>,&nbsp;<a href="/tags/tcr/">TCR</a>,&nbsp;<a href="/tags/shear-layer/">Shear Layer</a>,&nbsp;<a href="/tags/cfd/">CFD</a>,&nbsp;<a href="/tags/micro-mixing/">Micro-Mixing</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/tcr-solver-manual/" class="prev" rel="prev" title="湍流燃烧大涡模拟：代码实现"><i class="fas fa-angle-left fa-fw"></i>湍流燃烧大涡模拟：代码实现</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
+
+<script>
+
+(function() {
+    
+    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
+    
+    
+    if (!localStorage.getItem('feishu_webhook')) {
+        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
+    }
+})();
+</script>
+</body>
+</html>

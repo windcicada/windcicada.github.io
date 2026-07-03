@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>COAST - COmbustor Adaptive Simulation Toolkit on Dong</title>
+    <link>https://wangyudong.netlify.app/coast-software/en/</link>
+    <description>Recent content in COAST - COmbustor Adaptive Simulation Toolkit on Dong</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
+    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
+    <lastBuildDate>Thu, 02 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://wangyudong.netlify.app/coast-software/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>COAST User Manual</title>
+      <link>https://wangyudong.netlify.app/coast-software/en/manual_en/</link>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <guid>https://wangyudong.netlify.app/coast-software/en/manual_en/</guid>
+      <description>&lt;h1 id=&#34;combustor-adaptive-simulation-toolkit&#34;&gt;COmbustor Adaptive Simulation Toolkit&lt;/h1&gt;&#xA;&lt;h1 id=&#34;combustor-adaptive-simulation-toolkit-user-manual&#34;&gt;Combustor Adaptive Simulation Toolkit User Manual&lt;/h1&gt;&#xA;&lt;p&gt;&lt;em&gt;This manual was translated using AI based on the Chinese version, some expressions may not be accurate.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;This manual introduces the use of COmbustor Adaptive Simulation Toolkit (COAST). The first half mainly talks about how to install, modify calculation examples, run calculations and view results through the SSH command line of the packaged version of the portable program; the second half introduces the unpackaged version of the complete workspace, mesh/restart/local refinement methods, and development and maintenance processes. The graphical auxiliary interface is a separate auxiliary facility and is generally not used as the main line of operation.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
