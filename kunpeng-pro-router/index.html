@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录 - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/kunpeng-pro-router/">
+  <meta property="og:site_name" content="Dong">
+  <meta property="og:title" content="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录">
+  <meta property="og:description" content="配套部署脚本已开源至 windcicada/OrangePi_Kunpeng_Router。 仓库只保存可公开的脚本和简要说明；这篇文章是完整部署教程，包含硬件约定、执行顺序、 验收方法和失联恢复步骤。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-15T21:00:00+08:00">
+    <meta property="article:modified_time" content="2026-07-15T21:00:00+08:00">
+    <meta property="article:tag" content="Orange Pi">
+    <meta property="article:tag" content="Kunpeng Pro">
+    <meta property="article:tag" content="OpenWrt">
+    <meta property="article:tag" content="Mihomo">
+    <meta property="article:tag" content="软路由">
+    <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
+  <meta name="twitter:title" content="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录">
+  <meta name="twitter:description" content="配套部署脚本已开源至 windcicada/OrangePi_Kunpeng_Router。 仓库只保存可公开的脚本和简要说明；这篇文章是完整部署教程，包含硬件约定、执行顺序、 验收方法和失联恢复步骤。">
+<meta name="application-name" content="Dong">
+<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/kunpeng-pro-router/" /><link rel="prev" href="https://wangyudong.netlify.app/shear-layer-combustion-dns/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/wangyudong.netlify.app\/kunpeng-pro-router\/"
+        },"genre": "posts","keywords": "Orange Pi, Kunpeng Pro, OpenWrt, Mihomo, 软路由","wordcount":  5788 ,
+        "url": "https:\/\/wangyudong.netlify.app\/kunpeng-pro-router\/","datePublished": "2026-07-15T21:00:00+08:00","dateModified": "2026-07-15T21:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Dong"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
+    <div class="nav-container">
+        
+        <a href="/" class="nav-brand">Dong</a>
+        
+        
+        <div class="nav-menu" id="nav-menu-desktop">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/posts/" class="nav-link active">Blog文章</a>
+            <a href="/software/" class="nav-link">软件下载</a>
+            <a href="/awards/" class="nav-link">学术成果</a>
+        </div>
+        
+        
+        <div class="nav-tools">
+            
+            <div class="lang-switcher" id="lang-switcher">
+                <a href="/software/" class="lang-link" data-lang="zh-cn">中文</a>
+                <span class="lang-sep">|</span>
+                <a href="/coast-software/en/" class="lang-link" data-lang="en">EN</a>
+            </div>
+            
+            <button class="nav-btn mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="/" class="mobile-nav-link">首页</a>
+        <a href="/posts/" class="mobile-nav-link active">Blog文章</a>
+        <a href="/software/" class="mobile-nav-link">软件下载</a>
+        <a href="/awards/" class="mobile-nav-link">学术成果</a>
+    </div>
+</nav>
+
+
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/"><i class="far fa-folder fa-fw"></i>工作日志</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-07-15">2026-07-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;5788 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;12 minutes&nbsp;<span id="/kunpeng-pro-router/" class="leancloud_visitors" data-flag-title="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-最终效果">1. 最终效果</a></li>
+    <li><a href="#2-拓扑与接口约定">2. 拓扑与接口约定</a></li>
+    <li><a href="#3-已验证环境">3. 已验证环境</a></li>
+    <li><a href="#4-硬件和救援条件">4. 硬件和救援条件</a></li>
+    <li><a href="#5-获取镜像并写入-emmc">5. 获取镜像并写入 eMMC</a></li>
+    <li><a href="#6-恢复-intel-i226-v-驱动">6. 恢复 Intel I226-V 驱动</a>
+      <ul>
+        <li><a href="#板载-hns3-的特殊依赖">板载 HNS3 的特殊依赖</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-创建宿主双桥">7. 创建宿主双桥</a></li>
+    <li><a href="#8-创建-openwrt-kvm-虚拟机">8. 创建 OpenWrt KVM 虚拟机</a></li>
+    <li><a href="#9-配置-openwrt-landhcppppoe-和自动上游切换">9. 配置 OpenWrt LAN、DHCP、PPPoE 和自动上游切换</a>
+      <ul>
+        <li><a href="#关键防火墙修复必须把-pppoe-放进-wan-zone">关键防火墙修复：必须把 PPPoE 放进 WAN zone</a></li>
+      </ul>
+    </li>
+    <li><a href="#10-安装-boostnetmihomo">10. 安装 BoostNet/Mihomo</a>
+      <ul>
+        <li><a href="#国内直连国外代理的验收">国内直连、国外代理的验收</a></li>
+      </ul>
+    </li>
+    <li><a href="#11-小米路由器切换为有线中继ap">11. 小米路由器切换为有线中继/AP</a></li>
+    <li><a href="#12-自启和稳定性验收">12. 自启和稳定性验收</a></li>
+    <li><a href="#13-tailscale-和公网访问建议">13. Tailscale 和公网访问建议</a></li>
+    <li><a href="#14-dns证书故障注意事项">14. DNS/证书故障注意事项</a></li>
+    <li><a href="#15-备份升级和回滚">15. 备份、升级和回滚</a>
+      <ul>
+        <li><a href="#备份">备份</a></li>
+        <li><a href="#升级">升级</a></li>
+        <li><a href="#网络失联恢复">网络失联恢复</a></li>
+        <li><a href="#igc-回滚">IGC 回滚</a></li>
+      </ul>
+    </li>
+    <li><a href="#16-禁止事项">16. 禁止事项</a></li>
+    <li><a href="#17-发布前脱敏">17. 发布前脱敏</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>配套部署脚本已开源至
+<a href="https://github.com/windcicada/OrangePi_Kunpeng_Router" target="_blank" rel="noopener noreffer">windcicada/OrangePi_Kunpeng_Router</a>。
+仓库只保存可公开的脚本和简要说明；这篇文章是完整部署教程，包含硬件约定、执行顺序、
+验收方法和失联恢复步骤。</p>
+<blockquote>
+<p>本文记录一套已经在 Orange Pi Kunpeng Pro 上完成家庭 PPPoE、NAT、DHCP、DNS、
+BoostNet/Mihomo 规则代理和重启恢复验收的实现。文中的账号、密码、订阅、物理
+MAC、公网地址和 API 密钥均使用占位符；请勿把设备上的真实配置直接提交到 Git。</p>
+</blockquote>
+<h2 id="1-最终效果">1. 最终效果</h2>
+<p>这套方案不把 OpenWrt 直接刷进 Kunpeng Pro，而是保留厂商 openEuler 作为宿主，
+再用 ARM64 KVM 虚拟机运行 OpenWrt。这样可以同时保留板级驱动和 OpenWrt 的 LuCI、
+UCI、firewall4、Mihomo 插件生态。</p>
+<p>完成后：</p>
+<ul>
+<li>光猫桥接，OpenWrt VM 负责 PPPoE、NAT、DHCP 和 DNS。</li>
+<li>国内站点按 Mihomo 规则直连，国外站点按订阅规则走代理。</li>
+<li>Intel I226-V 网卡作为 WAN；Kunpeng Pro 板载 HNS3 网口作为 LAN。</li>
+<li>小米路由器改为有线中继/AP，只负责 Wi-Fi 和交换，不再拨号、NAT 或发 DHCP。</li>
+<li>openEuler 宿主保留 <code>192.168.50.2</code> 救援地址；OpenWrt LuCI 为
+<code>http://192.168.50.1/</code>。</li>
+<li>宿主断电重启后，双桥、libvirt 网络、OpenWrt VM、WAN 选择器和代理服务自动恢复。</li>
+<li>Tailscale 不运行在 Kunpeng Pro 上；有需要的电脑和手机直接运行 Tailscale。</li>
+</ul>
+<h2 id="2-拓扑与接口约定">2. 拓扑与接口约定</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flowchart LR
+</span></span><span class="line"><span class="cl">    ONT[&#34;光猫（桥接）&#34;] --&gt; PHYWAN[&#34;Intel I226-V&lt;br/&gt;宿主 eth0&#34;]
+</span></span><span class="line"><span class="cl">    PHYWAN --&gt; BWAN[&#34;openEuler br-wan&lt;br/&gt;无宿主 IP&#34;]
+</span></span><span class="line"><span class="cl">    BWAN --&gt; VMWAN[&#34;OpenWrt VM eth1&lt;br/&gt;DHCP / PPPoE&#34;]
+</span></span><span class="line"><span class="cl">    VMWAN --&gt; ROUTER[&#34;OpenWrt&lt;br/&gt;NAT / DHCP / DNS / Mihomo&#34;]
+</span></span><span class="line"><span class="cl">    ROUTER --&gt; VMLAN[&#34;OpenWrt VM eth0&lt;br/&gt;192.168.50.1/24&#34;]
+</span></span><span class="line"><span class="cl">    VMLAN --&gt; BLAN[&#34;openEuler br-lan&lt;br/&gt;192.168.50.2/24&#34;]
+</span></span><span class="line"><span class="cl">    BLAN --&gt; PHYLAN[&#34;板载 HNS3&lt;br/&gt;宿主 eth1&#34;]
+</span></span><span class="line"><span class="cl">    PHYLAN --&gt; AP[&#34;有线中继/AP&#34;]
+</span></span><span class="line"><span class="cl">    AP --&gt; CLIENTS[&#34;家庭终端&lt;br/&gt;192.168.50.100-249&#34;]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+  <thead>
+      <tr>
+          <th>层级</th>
+          <th>接口</th>
+          <th>角色</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>openEuler 宿主</td>
+          <td><code>eth0</code> / <code>igc</code></td>
+          <td>Intel I226-V，物理 WAN</td>
+      </tr>
+      <tr>
+          <td>openEuler 宿主</td>
+          <td><code>eth1</code> / <code>hns3-platform</code></td>
+          <td>板载口，物理 LAN</td>
+      </tr>
+      <tr>
+          <td>openEuler 宿主</td>
+          <td><code>br-wan</code></td>
+          <td>WAN 二层桥；不配置宿主 IPv4</td>
+      </tr>
+      <tr>
+          <td>openEuler 宿主</td>
+          <td><code>br-lan</code></td>
+          <td>LAN 二层桥；宿主救援地址 <code>192.168.50.2/24</code></td>
+      </tr>
+      <tr>
+          <td>OpenWrt VM</td>
+          <td><code>eth0</code></td>
+          <td>虚拟 LAN，MAC <code>52:54:00:50:00:01</code></td>
+      </tr>
+      <tr>
+          <td>OpenWrt VM</td>
+          <td><code>eth1</code></td>
+          <td>虚拟 WAN，MAC <code>52:54:00:50:00:02</code></td>
+      </tr>
+      <tr>
+          <td>OpenWrt</td>
+          <td><code>br-lan</code></td>
+          <td>LAN 网关 <code>192.168.50.1/24</code></td>
+      </tr>
+      <tr>
+          <td>OpenWrt</td>
+          <td><code>wan</code></td>
+          <td>DHCP 候选上游，默认由 <code>wan-mode</code> 控制</td>
+      </tr>
+      <tr>
+          <td>OpenWrt</td>
+          <td><code>wanpppoe</code></td>
+          <td>PPPoE 候选上游，默认由 <code>wan-mode</code> 控制</td>
+      </tr>
+  </tbody>
+</table>
+<p>宿主和虚拟机都可能出现 <code>eth0</code>/<code>eth1</code>，二者不是同一设备。不要根据网口名称猜测
+物理端口；首次部署必须同时核对驱动、MAC 和拔插链路。</p>
+<h2 id="3-已验证环境">3. 已验证环境</h2>
+<table>
+  <thead>
+      <tr>
+          <th>组件</th>
+          <th>已验证版本/状态</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Kunpeng Pro 宿主</td>
+          <td>openEuler 22.03 LTS-SP4，内核 <code>5.10.0+</code></td>
+      </tr>
+      <tr>
+          <td>OpenWrt</td>
+          <td>25.12.1，<code>armsr/armv8</code>，ext4 combined EFI</td>
+      </tr>
+      <tr>
+          <td>虚拟化</td>
+          <td>KVM/QEMU/libvirt，VM 2 vCPU、1 GiB RAM、4 GiB raw 磁盘</td>
+      </tr>
+      <tr>
+          <td>Intel 网卡</td>
+          <td>I226-V，PCI ID <code>8086:125c</code>，自建 <code>igc.ko</code></td>
+      </tr>
+      <tr>
+          <td>代理</td>
+          <td>BoostNet 3.1.4、Mihomo Meta 1.19.28 ARM64</td>
+      </tr>
+      <tr>
+          <td>LAN</td>
+          <td><code>192.168.50.0/24</code>，DHCP <code>192.168.50.100-249</code></td>
+      </tr>
+      <tr>
+          <td>PPPoE</td>
+          <td>MTU 1480、IPv4、默认路由和对端 DNS启用</td>
+      </tr>
+  </tbody>
+</table>
+<p>OpenWrt 25.12 及更新版本使用 <code>apk</code> 包管理器，不再使用 <code>opkg</code>。OpenWrt 官方也明确
+警告不要用 <code>apk upgrade</code> 对系统做盲目全量升级；系统升级应使用匹配版本的固件。</p>
+<h2 id="4-硬件和救援条件">4. 硬件和救援条件</h2>
+<p>准备：</p>
+<ul>
+<li>Kunpeng Pro、电源、散热、可启动的 TF 卡和 eMMC。</li>
+<li>M.2 M Key/B+M Key、PCIe x1 的 Intel I226-V 网卡。</li>
+<li>Micro USB 调试线，串口参数 <code>115200 8N1</code>。</li>
+<li>一台有有线网口的电脑。</li>
+<li>处于桥接模式的光猫、运营商 PPPoE 凭据。</li>
+<li>作为下游 AP 的路由器或交换机。</li>
+</ul>
+<p>所有桥接切换、写盘和首次 VM 网络配置都应在 HDMI/键盘或串口可用时执行。SSH
+断开不等于系统死机；网络切换过程中失去远程入口是正常风险。</p>
+<h2 id="5-获取镜像并写入-emmc">5. 获取镜像并写入 eMMC</h2>
+<ol>
+<li>从 <a href="https://www.orangepi.cn/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-kunpeng.html" target="_blank" rel="noopener noreffer">Orange Pi Kunpeng Pro 官方资料页</a>
+获取 Kunpeng Pro 对应的 openEuler 镜像、手册和源码。</li>
+<li>用 TF 卡启动，确认根分区确实是 <code>/dev/mmcblk1p1</code>，eMMC 是
+<code>/dev/mmcblk0</code> 且未挂载。</li>
+<li>对下载文件执行 <code>sha256sum</code> 和 <code>xz -t</code>，并记录哈希。</li>
+<li>使用 <a href="https://github.com/windcicada/OrangePi_Kunpeng_Router/blob/main/scripts/kunpeng-router/05-flash-emmc.sh" target="_blank" rel="noopener noreffer"><code>05-flash-emmc.sh</code></a>：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">IMAGE</span><span class="o">=</span>/root/Kunpeng-openEuler.img.xz <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="nv">I_UNDERSTAND</span><span class="o">=</span>YES <span class="se">\
+</span></span></span><span class="line"><span class="cl">bash ./05-flash-emmc.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该脚本会拒绝从非 TF 根系统写 eMMC，也会拒绝覆盖已挂载的目标。写入期间不得
+断电、重启或拔卡。完成后正常关机，移除 TF 卡，切换为 eMMC 启动，再验收：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">findmnt -no SOURCE /
+</span></span><span class="line"><span class="cl">lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINTS,UUID
+</span></span><span class="line"><span class="cl">systemctl is-active sshd NetworkManager
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>预期根分区是 <code>/dev/mmcblk0p1</code>。</p>
+<h2 id="6-恢复-intel-i226-v-驱动">6. 恢复 Intel I226-V 驱动</h2>
+<p>原厂内核可枚举 <code>8086:125c</code>，但当前内核配置没有提供可加载的 IGC 模块。已验证的
+做法是使用与运行内核严格匹配的完整开发树和 <code>Module.symvers</code>，只编译 IGC：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">uname -r
+</span></span><span class="line"><span class="cl">lspci -nnk -s 01:00.0
+</span></span><span class="line"><span class="cl"><span class="nb">test</span> -f /usr/src/kernels/<span class="s2">&#34;</span><span class="k">$(</span>uname -r<span class="k">)</span><span class="s2">&#34;</span>/Module.symvers
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">bash ./00-build-igc.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本的核心命令是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">make -C /usr/src/kernels/<span class="s2">&#34;</span><span class="k">$(</span>uname -r<span class="k">)</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">M</span><span class="o">=</span>drivers/net/ethernet/intel/igc <span class="nv">CONFIG_IGC</span><span class="o">=</span>m modules
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功后模块位于 <code>/lib/modules/$(uname -r)/extra/igc.ko</code>，并由
+<code>/etc/modules-load.d/igc.conf</code> 开机加载。验收：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">modinfo igc <span class="p">|</span> grep -E <span class="s1">&#39;filename|vermagic&#39;</span>
+</span></span><span class="line"><span class="cl">lspci -nnk -s 01:00.0
+</span></span><span class="line"><span class="cl">ip -br link
+</span></span><span class="line"><span class="cl">ethtool -i eth0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>vermagic</code> 必须与 <code>uname -r</code> 一致。出现 <code>Key was rejected</code>、未知符号或版本不匹配时
+立即停止；不要使用 <code>--force</code> 强行加载。</p>
+<h3 id="板载-hns3-的特殊依赖">板载 HNS3 的特殊依赖</h3>
+<p>Kunpeng Pro 板载口使用厂商 <code>hclgeplf.ko</code>，它依赖 Ascend 的 DFM、blackbox、QoS、
+DMS 等符号，不能只靠标准内核的 <code>hns3.ko</code> 独立恢复。因此：</p>
+<ul>
+<li>使用板载口时不要删除 <code>/var/davinci</code>，也不要屏蔽 <code>start-davinci.service</code>。</li>
+<li>不要在远程会话里试卸载整套 Ascend 内核模块；这台板曾因此卡住重启。</li>
+<li>某些厂商线程会使 Linux <code>load average</code> 很高，但 CPU 仍有 95% 以上空闲。判断性能
+要看 <code>top</code> 的 CPU idle、软中断、延迟和丢包，不能只看 load average。</li>
+<li>如果必须彻底移除厂商栈，应放弃板载 HNS3，改用受主线内核支持的 USB 3.0
+RTL8153/AX88179 网卡作为 LAN。</li>
+</ul>
+<h2 id="7-创建宿主双桥">7. 创建宿主双桥</h2>
+<p>先确认物理角色：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="k">for</span> i in eth0 eth1<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">printf</span> <span class="s1">&#39;%s mac=%s driver=&#39;</span> <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="k">$(</span>cat /sys/class/net/<span class="nv">$i</span>/address<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  basename <span class="s2">&#34;</span><span class="k">$(</span>readlink -f /sys/class/net/<span class="nv">$i</span>/device/driver<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  ethtool <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> <span class="p">|</span> grep -E <span class="s1">&#39;Speed|Link detected&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在已验证硬件映射后运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">WAN_IF</span><span class="o">=</span>eth0 <span class="nv">LAN_IF</span><span class="o">=</span>eth1 <span class="nv">LAN_HOST_CIDR</span><span class="o">=</span>192.168.50.2/24 <span class="se">\
+</span></span></span><span class="line"><span class="cl">bash ./10-configure-host-bridges.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本只创建/修改配置，不会自动切断现有连接。它会输出需要从串口执行的激活命令。
+激活前，应把占用 <code>eth0</code>/<code>eth1</code> 的旧 NetworkManager 配置设为不自动连接：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">nmcli connection show
+</span></span><span class="line"><span class="cl">nmcli connection modify <span class="s1">&#39;&lt;旧连接名&gt;&#39;</span> connection.autoconnect no
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后从串口依次启用 LAN、WAN：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">nmcli connection up br-lan
+</span></span><span class="line"><span class="cl">nmcli connection up br-lan-port ifname eth1
+</span></span><span class="line"><span class="cl">nmcli connection up br-wan
+</span></span><span class="line"><span class="cl">nmcli connection up br-wan-port ifname eth0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>验收：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ip -br addr show br-wan
+</span></span><span class="line"><span class="cl">ip -br addr show br-lan
+</span></span><span class="line"><span class="cl">bridge link
+</span></span><span class="line"><span class="cl">nmcli -f NAME,TYPE,DEVICE,AUTOCONNECT connection show
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正确状态是 <code>br-wan</code> 没有宿主 IPv4，<code>br-lan</code> 为 <code>192.168.50.2/24</code>，四个 bridge
+和 port 配置均自动连接。宿主默认路由不应出现在 <code>br-wan</code>。</p>
+<h2 id="8-创建-openwrt-kvm-虚拟机">8. 创建 OpenWrt KVM 虚拟机</h2>
+<p>从 <a href="https://downloads.openwrt.org/releases/25.12.1/targets/armsr/armv8/" target="_blank" rel="noopener noreffer">OpenWrt 25.12.1 armsr/armv8 官方目录</a>
+下载 <code>generic-ext4-combined-efi.img.gz</code> 并核对官方 SHA-256。本文验收版本的哈希是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">43e04e13c03b191f666a64bf4a601fa7645bc7aacaca3a580b1b6f5394c74de3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>未来发布新版本时应改用对应目录中当时的哈希，不要继续照抄旧值。</p>
+<p>确认 KVM 和固件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">test</span> -c /dev/kvm
+</span></span><span class="line"><span class="cl">ls -l /usr/share/edk2/aarch64/QEMU_EFI-pflash.raw
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now libvirtd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建 VM：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">IMAGE_GZ</span><span class="o">=</span>/root/openwrt-25.12.1-armsr-armv8-generic-ext4-combined-efi.img.gz <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="nv">IMAGE_SHA256</span><span class="o">=</span>43e04e13c03b191f666a64bf4a601fa7645bc7aacaca3a580b1b6f5394c74de3 <span class="se">\
+</span></span></span><span class="line"><span class="cl">bash ./20-create-openwrt-vm.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本会：</p>
+<ol>
+<li>将 ext4 EFI 镜像解压为 raw 磁盘并扩到 4 GiB。</li>
+<li>创建 <code>openwrt-lan -&gt; br-lan</code> 和 <code>openwrt-wan -&gt; br-wan</code> 两个纯桥接 libvirt 网络。</li>
+<li>创建 2 vCPU、1 GiB RAM、virtio 磁盘/网卡、AArch64 UEFI 的 VM。</li>
+<li>为 LAN/WAN 固定虚拟 MAC，设置 VM 和两个虚拟网络自动启动。</li>
+<li>打开串口控制台；退出控制台按 <code>Ctrl+]</code>。</li>
+</ol>
+<p>libvirt 使用现有 Linux bridge 的方式可参阅其
+<a href="https://libvirt.org/formatnetwork.html" target="_blank" rel="noopener noreffer">Network XML 官方文档</a>。</p>
+<h2 id="9-配置-openwrt-landhcppppoe-和自动上游切换">9. 配置 OpenWrt LAN、DHCP、PPPoE 和自动上游切换</h2>
+<p>把这些文件复制到 OpenWrt 的同一目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">30-configure-openwrt.sh
+</span></span><span class="line"><span class="cl">wan-mode
+</span></span><span class="line"><span class="cl">wan-mode.init
+</span></span><span class="line"><span class="cl">wanmode.uci
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从 OpenWrt 串口执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sh ./30-configure-openwrt.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本会在终端中静默读取 PPPoE 密码，不把凭据写入脚本或命令行历史；如果已有值，
+直接回车即可保留。首次网络 reload 后，管理地址会从 OpenWrt 默认地址变成
+<code>192.168.50.1</code>。</p>
+<p><code>wan-mode</code> 的逻辑是：</p>
+<ol>
+<li><code>auto</code> 模式先启动 DHCP WAN。</li>
+<li>DHCP 获得地址、默认路由且直连健康检查通过时，保持 DHCP。</li>
+<li>DHCP 不健康时停止 DHCP，启动 PPPoE。</li>
+<li>PPPoE 健康后保持连接；链路失效时重新选择。</li>
+<li>失败重试使用 30、60、120、300 秒退避，避免高频拨号。</li>
+</ol>
+<p>命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">wan-mode status
+</span></span><span class="line"><span class="cl">wan-mode dhcp
+</span></span><span class="line"><span class="cl">wan-mode pppoe
+</span></span><span class="line"><span class="cl">wan-mode auto
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>家庭长期使用保持 <code>auto</code> 即可。若不需要办公室/校园 DHCP 兼容，也可以固定执行
+<code>wan-mode pppoe</code>。示例配置默认关闭校园认证；只有部署者另行提供
+<code>/usr/sbin/wan-campus-auth</code> 并明确开启后才会调用。</p>
+<h3 id="关键防火墙修复必须把-pppoe-放进-wan-zone">关键防火墙修复：必须把 PPPoE 放进 WAN zone</h3>
+<p>这是整个部署中最容易遗漏、影响又最大的配置。OpenWrt 的防火墙 zone 按“逻辑
+network 接口”分组，不是只按物理 <code>eth1</code> 分组。实际三层出口是
+<code>pppoe-wanpppoe</code>，所以 WAN zone 必须包含 <code>wanpppoe</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">uci show firewall <span class="p">|</span> grep -E <span class="s2">&#34;name=&#39;wan&#39;|network=.*wanpppoe&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>期望的配置语义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">WAN zone networks: wan wan6 wanpppoe
+</span></span><span class="line"><span class="cl">WAN input: REJECT
+</span></span><span class="line"><span class="cl">WAN output: ACCEPT
+</span></span><span class="line"><span class="cl">WAN forward: DROP
+</span></span><span class="line"><span class="cl">WAN masquerading: enabled
+</span></span><span class="line"><span class="cl">WAN MTU fix: enabled
+</span></span><span class="line"><span class="cl">LAN -&gt; WAN forwarding: enabled
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>遗漏 <code>wanpppoe</code> 时，TCP 代理可能看似正常，但普通 UDP 转发会被 firewall4 丢弃；
+Tailscale 会从直连退化到 DERP 中继，延迟和断线显著增加。修复后的实测结果是
+<code>tailscale netcheck</code> 从 <code>UDP: false</code> 变成 <code>UDP: true</code>，远端链路恢复直连。</p>
+<p>OpenWrt 官方说明 zone 的 <code>network</code> 字段就是该 zone 包含的接口列表，WAN
+masquerade 和 MSS clamping 也在 zone 级别生效。参阅
+<a href="https://openwrt.org/docs/guide-user/firewall/firewall_configuration" target="_blank" rel="noopener noreffer">OpenWrt firewall 配置文档</a>。</p>
+<p>不要执行 <code>uci show network.wanpppoe</code>，它会把账号和密码打印出来。只检查字段是否
+存在：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">test</span> -n <span class="s2">&#34;</span><span class="k">$(</span>uci -q get network.wanpppoe.username<span class="k">)</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="nv">username_present</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl"><span class="nb">test</span> -n <span class="s2">&#34;</span><span class="k">$(</span>uci -q get network.wanpppoe.password<span class="k">)</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="nv">password_present</span><span class="o">=</span>yes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="10-安装-boostnetmihomo">10. 安装 BoostNet/Mihomo</h2>
+<p>BoostNet 是 OpenWrt/LuCI 插件，不应安装在 openEuler 宿主。OpenWrt 25.12 使用
+<code>.apk</code> 包；旧 <code>.ipk</code> 不适用于本方案。</p>
+<p>从服务商提供的压缩包中取得：</p>
+<ul>
+<li><code>luci-app-BoostNet_*.apk</code></li>
+<li>服务商发布的 <code>*.rsa.pub</code> 包签名公钥</li>
+</ul>
+<p>不要在开源仓库中重新分发服务商 APK、签名密钥、订阅内容或账号。安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">PLUGIN_APK</span><span class="o">=</span>/tmp/luci-app-BoostNet_VERSION.apk <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="nv">SIGNING_KEY</span><span class="o">=</span>/tmp/netflow-signing.rsa.pub <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="nv">PLUGIN_SHA256</span><span class="o">=</span><span class="s1">&#39;&lt;你自己核对的 SHA-256&gt;&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">sh ./40-install-boostnet.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本先把服务商公钥放入 <code>/etc/apk/keys/</code>，再正常执行 <code>apk add</code>；不会使用
+<code>--allow-untrusted</code> 绕过校验。OpenWrt 的 <code>apk</code> 用法参阅
+<a href="https://openwrt.org/docs/guide-user/additional-software/apk" target="_blank" rel="noopener noreffer">官方 apk 文档</a>。</p>
+<p>在 LuCI 中完成账号/订阅后，采用以下起始设置：</p>
+<table>
+  <thead>
+      <tr>
+          <th>选项</th>
+          <th>建议值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>代理模式</td>
+          <td><code>rule</code></td>
+      </tr>
+      <tr>
+          <td>运行模式</td>
+          <td><code>redir-host</code></td>
+      </tr>
+      <tr>
+          <td>局域网代理</td>
+          <td>开启</td>
+      </tr>
+      <tr>
+          <td>TUN</td>
+          <td>关闭</td>
+      </tr>
+      <tr>
+          <td>IPv6 代理</td>
+          <td>关闭，完成泄漏测试后再评估</td>
+      </tr>
+      <tr>
+          <td>国内绕过</td>
+          <td>开启</td>
+      </tr>
+      <tr>
+          <td>dnsmasq 联动</td>
+          <td>开启</td>
+      </tr>
+  </tbody>
+</table>
+<p>服务商控制台教程入口：<a href="https://999.boostnet4.com/console/knowledge" target="_blank" rel="noopener noreffer">https://999.boostnet4.com/console/knowledge</a>。</p>
+<p><code>redir-host</code> 模式下，Netflow 主要重定向 TCP 和 DNS；普通 UDP 依赖 OpenWrt 本身
+正确转发，所以前一节的 PPPoE zone 修复不可省略。</p>
+<h3 id="国内直连国外代理的验收">国内直连、国外代理的验收</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/etc/init.d/netflow status
+</span></span><span class="line"><span class="cl">nft list tables
+</span></span><span class="line"><span class="cl">nslookup www.baidu.com 192.168.50.1
+</span></span><span class="line"><span class="cl">curl -4 --noproxy <span class="s1">&#39;*&#39;</span> -o /dev/null -sS -w <span class="s1">&#39;%{http_code}\n&#39;</span> http://www.baidu.com/
+</span></span><span class="line"><span class="cl">curl -4 --proxy http://127.0.0.1:7890 -o /dev/null -sS <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -w <span class="s1">&#39;%{http_code}\n&#39;</span> https://www.youtube.com/generate_204
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>预期 Netflow 为 <code>running</code>，nftables 只有正常的 <code>table inet fw4</code> 和插件的
+<code>table ip netflow</code>，百度返回 2xx，YouTube generate_204 返回 204。最终还应从 LAN
+电脑和手机各测试一次国内、国外、Apple 登录和常用 UDP 应用。</p>
+<p>日本节点优先应优先在订阅生成的 <code>url-test</code>/<code>fallback</code> 组或 BoostNet 页面中配置。
+不同订阅的策略组名称和 Mihomo API 结构并不相同，因此本仓库没有硬编码一个通用
+“日本自动选择脚本”。当前已验证部署具备订阅自动更新，但不能声称已经实现通用的
+日本节点自动回切。</p>
+<h2 id="11-小米路由器切换为有线中继ap">11. 小米路由器切换为有线中继/AP</h2>
+<p>必须先让电脑直连 Kunpeng LAN 并确认 PPPoE、DHCP、DNS、代理全部正常，再调整小米：</p>
+<ol>
+<li>Kunpeng 板载 LAN 接小米任一自动 WAN/LAN 口。</li>
+<li>先让小米使用 DHCP，确认它从 OpenWrt 获得 <code>192.168.50.x</code> 并能联网。</li>
+<li>再切换为“有线中继/AP”。</li>
+<li>终端应直接从 OpenWrt 获得地址，默认网关和 DNS 都是 <code>192.168.50.1</code>。</li>
+<li>在 OpenWrt 的 DHCP 租约中找到小米，必要时固定为 <code>192.168.50.3</code>。</li>
+</ol>
+<p>小米不再 PPPoE、不再 NAT、不再发 DHCP。不要同时让 OpenWrt 和小米在同一 LAN 上
+发 DHCP。</p>
+<h2 id="12-自启和稳定性验收">12. 自启和稳定性验收</h2>
+<p>宿主机：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bash ./90-verify-host.sh
+</span></span><span class="line"><span class="cl">systemctl is-enabled NetworkManager libvirtd
+</span></span><span class="line"><span class="cl">virsh net-list --all
+</span></span><span class="line"><span class="cl">virsh dominfo openwrt-router <span class="p">|</span> grep -E <span class="s1">&#39;State|Autostart&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OpenWrt：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sh ./91-verify-openwrt.sh
+</span></span><span class="line"><span class="cl">/etc/init.d/wan-mode enabled
+</span></span><span class="line"><span class="cl">/etc/init.d/netflow enabled
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>做一次受控重启，重启后等待 1–2 分钟，再确认：</p>
+<ul>
+<li><code>br-lan</code>、<code>br-wan</code> 和两个物理 port 都自动连接。</li>
+<li><code>openwrt-lan</code>、<code>openwrt-wan</code> 和 <code>openwrt-router</code> 自动启动。</li>
+<li><code>wan-mode status</code> 最终为 <code>active_mode=pppoe</code>、<code>last_result=ok</code>。</li>
+<li>LAN 终端能获取地址，国内直连、国外代理、UDP 均正常。</li>
+</ul>
+<p>这台板上 vendor D-state 线程可能抬高 load average。只要 CPU 大部分时间空闲、没有
+持续 softirq 满核、丢包或明显延迟，2 vCPU/1 GiB 的 OpenWrt VM 对当前用途有足够
+余量。</p>
+<h2 id="13-tailscale-和公网访问建议">13. Tailscale 和公网访问建议</h2>
+<p>最终方案永久关闭 Kunpeng Pro 宿主上的 Tailscale，避免额外转发、路由冲突和性能
+损耗：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">systemctl disable --now tailscaled
+</span></span><span class="line"><span class="cl">systemctl is-enabled tailscaled
+</span></span><span class="line"><span class="cl">systemctl is-active tailscaled
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>电脑和手机需要访问 tailnet 时直接运行 Tailscale。经过本软路由的客户端要获得
+Tailscale 直连，重点是：</p>
+<ul>
+<li>OpenWrt 的 <code>wanpppoe</code> 已加入 WAN zone。</li>
+<li>UDP 没有被旧 TProxy/自定义 nftables 规则截获。</li>
+<li><code>tailscale netcheck</code> 显示 UDP 可用；<code>tailscale ping</code> 优先出现 <code>direct</code>。</li>
+</ul>
+<p>不要从 WAN 直接开放 LuCI、SSH、Mihomo API、后端端口或摄像头端口。需要远程维护
+时，使用终端自己的 Tailscale、独立的 WireGuard 入口或受控跳板机。</p>
+<h2 id="14-dns证书故障注意事项">14. DNS/证书故障注意事项</h2>
+<p>在 Fake-IP/DNS 联动仍生效时直接杀掉 Mihomo，客户端可能继续使用缓存的 Fake-IP，
+从而收到与目标域名无关的证书，例如 <code>unifi.local</code>。这通常是代理服务和 DNS 状态
+不一致，不应简单理解为设备一定被入侵，但必须停止访问并排查。</p>
+<p>安全恢复顺序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/etc/init.d/netflow restart
+</span></span><span class="line"><span class="cl">/etc/init.d/dnsmasq restart
+</span></span><span class="line"><span class="cl">nft list tables
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在客户端刷新 DNS 缓存、关闭并重新打开应用。若证书告警仍然存在，不要点击
+继续访问；检查系统时间、DNS 服务器、Mihomo 规则、路由器劫持和上游网络。</p>
+<p>不要恢复历史遗留的 <code>/etc/mihomo/tproxy.sh</code> 或额外 <code>table inet mihomo</code>；它们会与
+Netflow 当前 nftables 规则冲突。</p>
+<h2 id="15-备份升级和回滚">15. 备份、升级和回滚</h2>
+<h3 id="备份">备份</h3>
+<p>OpenWrt：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sysupgrade -b /tmp/openwrt-config-<span class="k">$(</span>date +%Y%m%d<span class="k">)</span>.tar.gz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>宿主：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">virsh dumpxml openwrt-router &gt; /root/openwrt-router.xml
+</span></span><span class="line"><span class="cl">virsh net-dumpxml openwrt-lan &gt; /root/openwrt-lan.xml
+</span></span><span class="line"><span class="cl">virsh net-dumpxml openwrt-wan &gt; /root/openwrt-wan.xml
+</span></span><span class="line"><span class="cl">nmcli connection show &gt; /root/network-connections.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OpenWrt 备份可能含 PPPoE 密码和插件凭据，只能加密离线保存，不能公开。</p>
+<h3 id="升级">升级</h3>
+<ul>
+<li>不执行 <code>apk upgrade</code> 全量升级 OpenWrt。</li>
+<li>升级前备份，使用同 target 的新固件，并确认自定义插件与新版本兼容。</li>
+<li>宿主内核变更后，旧 <code>igc.ko</code> 可能失配，必须用新内核的源码树和
+<code>Module.symvers</code> 重建。</li>
+</ul>
+<h3 id="网络失联恢复">网络失联恢复</h3>
+<ol>
+<li>接入串口 <code>115200 8N1</code>，登录 openEuler。</li>
+<li>检查 <code>ip -br addr</code>、<code>nmcli device status</code>、<code>bridge link</code>。</li>
+<li>检查 <code>virsh domstate openwrt-router</code>；必要时 <code>virsh start openwrt-router</code>。</li>
+<li>用 <code>virsh console openwrt-router</code> 进入 OpenWrt；退出按 <code>Ctrl+]</code>。</li>
+<li>先恢复 <code>br-lan=192.168.50.2/24</code> 和 OpenWrt <code>192.168.50.1</code>，再处理 WAN。</li>
+</ol>
+<h3 id="igc-回滚">IGC 回滚</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rm -f /etc/modules-load.d/igc.conf
+</span></span><span class="line"><span class="cl">rm -f /lib/modules/<span class="s2">&#34;</span><span class="k">$(</span>uname -r<span class="k">)</span><span class="s2">&#34;</span>/extra/igc.ko
+</span></span><span class="line"><span class="cl">depmod -a
+</span></span><span class="line"><span class="cl">reboot
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果 I226-V 无法稳定工作，使用受 Linux ARM64 支持的 USB 3.0 网卡替代，不要强制
+加载失配模块。</p>
+<h2 id="16-禁止事项">16. 禁止事项</h2>
+<ul>
+<li>不把 PPPoE 密码、订阅 URL、BoostNet 账号/token、Mihomo secret 写进 Git。</li>
+<li>不公开 <code>/etc/config/netflow</code>、真实 Mihomo 配置或完整 OpenWrt sysupgrade 备份。</li>
+<li>不把 <code>br-wan</code> 配成宿主管理口，不从 WAN 开放 LuCI/SSH。</li>
+<li>不交换已确认的物理 WAN/LAN 角色，不把两个物理口加入同一个 bridge。</li>
+<li>不强制加载 vermagic 不匹配或签名失败的内核模块。</li>
+<li>不在使用板载 HNS3 时移除厂商 Ascend 驱动依赖。</li>
+<li>不恢复旧 TProxy 脚本，不叠加第二套透明代理 nftables 表。</li>
+<li>不在缺少串口救援时执行桥接切换、驱动卸载或远程重启测试。</li>
+<li>不用 load average 单一指标判断板子是否过载。</li>
+</ul>
+<h2 id="17-发布前脱敏">17. 发布前脱敏</h2>
+<p>只发布本目录和 <code>scripts/kunpeng-router/</code> 中列出的文件。不要把本机工作目录整体推送。
+发布前执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rg -n -i <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="s1">&#39;password|passwd|token|secret|subscription|username|authorized_keys|100\\.[0-9]+\\.|ENC:&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  docs/kunpeng-router scripts/kunpeng-router
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>逐项确认命中只来自说明文字、变量名或占位符，没有真实值。还应人工检查公网 IP、
+手机号、邮箱、物理 MAC、SSH 指纹、服务商订阅域名和家庭 DDNS。</p>
+<p>相关脚本采用 MIT License；教程正文可由发布网站按其内容许可处理。官方参考：</p>
+<ul>
+<li><a href="https://www.orangepi.cn/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-kunpeng.html" target="_blank" rel="noopener noreffer">Orange Pi Kunpeng Pro 官方资料</a></li>
+<li><a href="https://downloads.openwrt.org/releases/25.12.1/targets/armsr/armv8/" target="_blank" rel="noopener noreffer">OpenWrt 25.12.1 armsr/armv8 下载目录</a></li>
+<li><a href="https://openwrt.org/docs/guide-user/additional-software/apk" target="_blank" rel="noopener noreffer">OpenWrt apk 包管理器</a></li>
+<li><a href="https://openwrt.org/docs/guide-user/firewall/firewall_configuration" target="_blank" rel="noopener noreffer">OpenWrt firewall 配置</a></li>
+<li><a href="https://libvirt.org/formatnetwork.html" target="_blank" rel="noopener noreffer">libvirt Network XML</a></li>
+</ul>
+<p>本文配套脚本和精简项目说明见
+<a href="https://github.com/windcicada/OrangePi_Kunpeng_Router" target="_blank" rel="noopener noreffer">OrangePi_Kunpeng_Router GitHub 仓库</a>。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-07-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/kunpeng-pro-router/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://wangyudong.netlify.app/kunpeng-pro-router/" data-title="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录" data-hashtags="Orange Pi,Kunpeng Pro,OpenWrt,Mihomo,软路由"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://wangyudong.netlify.app/kunpeng-pro-router/" data-hashtag="Orange Pi"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://wangyudong.netlify.app/kunpeng-pro-router/" data-title="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://wangyudong.netlify.app/kunpeng-pro-router/" data-title="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://wangyudong.netlify.app/kunpeng-pro-router/" data-title="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录" data-ralateuid="6086629393"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://wangyudong.netlify.app/kunpeng-pro-router/" data-title="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://wangyudong.netlify.app/kunpeng-pro-router/" data-title="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://wangyudong.netlify.app/kunpeng-pro-router/" data-title="Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/orange-pi/">Orange Pi</a>,&nbsp;<a href="/tags/kunpeng-pro/">Kunpeng Pro</a>,&nbsp;<a href="/tags/openwrt/">OpenWrt</a>,&nbsp;<a href="/tags/mihomo/">Mihomo</a>,&nbsp;<a href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/shear-layer-combustion-dns/" class="prev" rel="prev" title="ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation"><i class="fas fa-angle-left fa-fw"></i>ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="css/custom-flat.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"ndzXwOy58BYrhDPC7eTav7HP-gzGzoHsz","appKey":"SL9ydCelSxirpnPfFitBbCuB","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" charset="utf-8"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            
+            
+            
+            
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json'
+        },
+        display: {
+            superSample: 1,     
+            width: 120,         
+            height: 300,        
+            position: 'left',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: false,         
+            scale: 0.3,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/custom.js"></script><script type="text/javascript" src="/js/katex-render.js"></script><script src="/js/toc-comment.js"></script>
+
+<script>
+
+(function() {
+    
+    const FEISHU_WEBHOOK_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/8eb4e05c-8c02-43e9-a13c-c28d19beab3b';
+    
+    
+    if (!localStorage.getItem('feishu_webhook')) {
+        localStorage.setItem('feishu_webhook', FEISHU_WEBHOOK_URL);
+    }
+})();
+</script>
+</body>
+</html>

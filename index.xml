@@ -4,9 +4,19 @@
         <link>https://wangyudong.netlify.app/</link>
         <description>Dong</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Fri, 03 Jul 2026 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Wed, 15 Jul 2026 21:00:00 &#43;0800</lastBuildDate>
             <atom:link href="https://wangyudong.netlify.app/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录</title>
+    <link>https://wangyudong.netlify.app/kunpeng-pro-router/</link>
+    <pubDate>Wed, 15 Jul 2026 21:00:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://wangyudong.netlify.app/kunpeng-pro-router/</guid>
+    <description><![CDATA[<p>配套部署脚本已开源至
+<a href="https://github.com/windcicada/OrangePi_Kunpeng_Router" target="_blank" rel="noopener noreffer">windcicada/OrangePi_Kunpeng_Router</a>。
+仓库只保存可公开的脚本和简要说明；这篇文章是完整部署教程，包含硬件约定、执行顺序、
+验收方法和失联恢复步骤。</p>]]></description>
+</item><item>
     <title>ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation</title>
     <link>https://wangyudong.netlify.app/shear-layer-combustion-dns/</link>
     <pubDate>Fri, 03 Jul 2026 00:00:00 &#43;0000</pubDate>
@@ -197,18 +207,5 @@
 <h2 id="linux"><a href="../images/GW_LINUX.zip" rel="">LINUX</a></h2>
 <h3 id="1-新建system-service">1. 新建system service</h3>
 <p>建立文件<code>/usr/lib/systemd/system/buaaConnect.service</code></p>]]></description>
-</item><item>
-    <title>个人网站搭建</title>
-    <link>https://wangyudong.netlify.app/firstsum/</link>
-    <pubDate>Wed, 26 Oct 2022 14:50:15 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://wangyudong.netlify.app/firstsum/</guid>
-    <description><![CDATA[<h1 id="网站搭建笔记">网站搭建笔记</h1>
-<h2 id="使用hugo搭建网站">使用<a href="https://gohugo.io/" target="_blank" rel="noopener noreffer">HUGO</a>搭建网站</h2>
-<h4 id="1使用chocolatey安装hugo">1.使用<a href="https://chocolatey.org/install" target="_blank" rel="noopener noreffer">chocolatey</a>安装HUGO</h4>
-<p><strong>HUGO</strong></p>
-<p><code>choco install hugo -confirm</code></p>
-<p><strong>HUGO-Extended</strong></p>
-<p><code>choco install hugo-extended –confirm</code></p>]]></description>
 </item></channel>
 </rss>
