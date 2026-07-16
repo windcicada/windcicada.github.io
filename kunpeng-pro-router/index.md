@@ -1,4 +1,4 @@
-# Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录
+# Orange Pi Kunpeng Pro 双网口 OpenWrt 软路由配置实录
 
 
 配套部署脚本已开源至
@@ -6,26 +6,24 @@
 仓库只保存可公开的脚本和简要说明；这篇文章是完整部署教程，包含硬件约定、执行顺序、
 验收方法和失联恢复步骤。
 
-> 本文记录一套已经在 Orange Pi Kunpeng Pro 上完成家庭 PPPoE、NAT、DHCP、DNS、
-> BoostNet/Mihomo 规则代理和重启恢复验收的实现。文中的账号、密码、订阅、物理
-> MAC、公网地址和 API 密钥均使用占位符；请勿把设备上的真实配置直接提交到 Git。
+> 本文记录一套已经在 Orange Pi Kunpeng Pro 上完成家庭 PPPoE、NAT、DHCP、DNS
+> 和重启恢复验收的软路由配置。文中的账号、密码、物理 MAC 和公网地址均使用
+> 占位符；请勿把设备上的真实配置直接提交到 Git。
 
 ## 1. 最终效果
 
 这套方案不把 OpenWrt 直接刷进 Kunpeng Pro，而是保留厂商 openEuler 作为宿主，
-再用 ARM64 KVM 虚拟机运行 OpenWrt。这样可以同时保留板级驱动和 OpenWrt 的 LuCI、
-UCI、firewall4、Mihomo 插件生态。
+再用 ARM64 KVM 虚拟机运行 OpenWrt。这样可以同时保留板级驱动，以及 OpenWrt 的
+LuCI、UCI 和 firewall4 配置能力。
 
 完成后：
 
 - 光猫桥接，OpenWrt VM 负责 PPPoE、NAT、DHCP 和 DNS。
-- 国内站点按 Mihomo 规则直连，国外站点按订阅规则走代理。
 - Intel I226-V 网卡作为 WAN；Kunpeng Pro 板载 HNS3 网口作为 LAN。
 - 小米路由器改为有线中继/AP，只负责 Wi-Fi 和交换，不再拨号、NAT 或发 DHCP。
 - openEuler 宿主保留 `192.168.50.2` 救援地址；OpenWrt LuCI 为
   `http://192.168.50.1/`。
-- 宿主断电重启后，双桥、libvirt 网络、OpenWrt VM、WAN 选择器和代理服务自动恢复。
-- Tailscale 不运行在 Kunpeng Pro 上；有需要的电脑和手机直接运行 Tailscale。
+- 宿主断电重启后，双桥、libvirt 网络、OpenWrt VM 和 WAN 选择器自动恢复。
 
 ## 2. 拓扑与接口约定
 
@@ -34,7 +32,7 @@ flowchart LR
     ONT["光猫（桥接）"] --> PHYWAN["Intel I226-V<br/>宿主 eth0"]
     PHYWAN --> BWAN["openEuler br-wan<br/>无宿主 IP"]
     BWAN --> VMWAN["OpenWrt VM eth1<br/>DHCP / PPPoE"]
-    VMWAN --> ROUTER["OpenWrt<br/>NAT / DHCP / DNS / Mihomo"]
+    VMWAN --> ROUTER["OpenWrt<br/>NAT / DHCP / DNS"]
     ROUTER --> VMLAN["OpenWrt VM eth0<br/>192.168.50.1/24"]
     VMLAN --> BLAN["openEuler br-lan<br/>192.168.50.2/24"]
     BLAN --> PHYLAN["板载 HNS3<br/>宿主 eth1"]
@@ -65,7 +63,6 @@ flowchart LR
 | OpenWrt | 25.12.1，`armsr/armv8`，ext4 combined EFI |
 | 虚拟化 | KVM/QEMU/libvirt，VM 2 vCPU、1 GiB RAM、4 GiB raw 磁盘 |
 | Intel 网卡 | I226-V，PCI ID `8086:125c`，自建 `igc.ko` |
-| 代理 | BoostNet 3.1.4、Mihomo Meta 1.19.28 ARM64 |
 | LAN | `192.168.50.0/24`，DHCP `192.168.50.100-249` |
 | PPPoE | MTU 1480、IPv4、默认路由和对端 DNS启用 |
 
@@ -307,9 +304,8 @@ WAN MTU fix: enabled
 LAN -> WAN forwarding: enabled
 ```
 
-遗漏 `wanpppoe` 时，TCP 代理可能看似正常，但普通 UDP 转发会被 firewall4 丢弃；
-Tailscale 会从直连退化到 DERP 中继，延迟和断线显著增加。修复后的实测结果是
-`tailscale netcheck` 从 `UDP: false` 变成 `UDP: true`，远端链路恢复直连。
+遗漏 `wanpppoe` 时，普通 UDP 转发可能被 firewall4 丢弃，部分依赖 UDP 的应用会出现
+高延迟或连接不稳定。修复后应重新检查 WAN zone、NAT、MSS 修正和 UDP 连通性。
 
 OpenWrt 官方说明 zone 的 `network` 字段就是该 zone 包含的接口列表，WAN
 masquerade 和 MSS clamping 也在 zone 级别生效。参阅
@@ -323,69 +319,9 @@ test -n "$(uci -q get network.wanpppoe.username)" && echo username_present=yes
 test -n "$(uci -q get network.wanpppoe.password)" && echo password_present=yes
 ```
 
-## 10. 安装 BoostNet/Mihomo
+## 10. 小米路由器切换为有线中继/AP
 
-BoostNet 是 OpenWrt/LuCI 插件，不应安装在 openEuler 宿主。OpenWrt 25.12 使用
-`.apk` 包；旧 `.ipk` 不适用于本方案。
-
-从服务商提供的压缩包中取得：
-
-- `luci-app-BoostNet_*.apk`
-- 服务商发布的 `*.rsa.pub` 包签名公钥
-
-不要在开源仓库中重新分发服务商 APK、签名密钥、订阅内容或账号。安装：
-
-```sh
-PLUGIN_APK=/tmp/luci-app-BoostNet_VERSION.apk \
-SIGNING_KEY=/tmp/netflow-signing.rsa.pub \
-PLUGIN_SHA256='<你自己核对的 SHA-256>' \
-sh ./40-install-boostnet.sh
-```
-
-脚本先把服务商公钥放入 `/etc/apk/keys/`，再正常执行 `apk add`；不会使用
-`--allow-untrusted` 绕过校验。OpenWrt 的 `apk` 用法参阅
-[官方 apk 文档](https://openwrt.org/docs/guide-user/additional-software/apk)。
-
-在 LuCI 中完成账号/订阅后，采用以下起始设置：
-
-| 选项 | 建议值 |
-| --- | --- |
-| 代理模式 | `rule` |
-| 运行模式 | `redir-host` |
-| 局域网代理 | 开启 |
-| TUN | 关闭 |
-| IPv6 代理 | 关闭，完成泄漏测试后再评估 |
-| 国内绕过 | 开启 |
-| dnsmasq 联动 | 开启 |
-
-服务商控制台教程入口：<https://999.boostnet4.com/console/knowledge>。
-
-`redir-host` 模式下，Netflow 主要重定向 TCP 和 DNS；普通 UDP 依赖 OpenWrt 本身
-正确转发，所以前一节的 PPPoE zone 修复不可省略。
-
-### 国内直连、国外代理的验收
-
-```sh
-/etc/init.d/netflow status
-nft list tables
-nslookup www.baidu.com 192.168.50.1
-curl -4 --noproxy '*' -o /dev/null -sS -w '%{http_code}\n' http://www.baidu.com/
-curl -4 --proxy http://127.0.0.1:7890 -o /dev/null -sS \
-  -w '%{http_code}\n' https://www.youtube.com/generate_204
-```
-
-预期 Netflow 为 `running`，nftables 只有正常的 `table inet fw4` 和插件的
-`table ip netflow`，百度返回 2xx，YouTube generate_204 返回 204。最终还应从 LAN
-电脑和手机各测试一次国内、国外、Apple 登录和常用 UDP 应用。
-
-日本节点优先应优先在订阅生成的 `url-test`/`fallback` 组或 BoostNet 页面中配置。
-不同订阅的策略组名称和 Mihomo API 结构并不相同，因此本仓库没有硬编码一个通用
-“日本自动选择脚本”。当前已验证部署具备订阅自动更新，但不能声称已经实现通用的
-日本节点自动回切。
-
-## 11. 小米路由器切换为有线中继/AP
-
-必须先让电脑直连 Kunpeng LAN 并确认 PPPoE、DHCP、DNS、代理全部正常，再调整小米：
+必须先让电脑直连 Kunpeng LAN，并确认 PPPoE、DHCP 和 DNS 全部正常，再调整小米：
 
 1. Kunpeng 板载 LAN 接小米任一自动 WAN/LAN 口。
 2. 先让小米使用 DHCP，确认它从 OpenWrt 获得 `192.168.50.x` 并能联网。
@@ -396,7 +332,7 @@ curl -4 --proxy http://127.0.0.1:7890 -o /dev/null -sS \
 小米不再 PPPoE、不再 NAT、不再发 DHCP。不要同时让 OpenWrt 和小米在同一 LAN 上
 发 DHCP。
 
-## 12. 自启和稳定性验收
+## 11. 自启和稳定性验收
 
 宿主机：
 
@@ -412,7 +348,6 @@ OpenWrt：
 ```sh
 sh ./91-verify-openwrt.sh
 /etc/init.d/wan-mode enabled
-/etc/init.d/netflow enabled
 ```
 
 做一次受控重启，重启后等待 1–2 分钟，再确认：
@@ -420,54 +355,13 @@ sh ./91-verify-openwrt.sh
 - `br-lan`、`br-wan` 和两个物理 port 都自动连接。
 - `openwrt-lan`、`openwrt-wan` 和 `openwrt-router` 自动启动。
 - `wan-mode status` 最终为 `active_mode=pppoe`、`last_result=ok`。
-- LAN 终端能获取地址，国内直连、国外代理、UDP 均正常。
+- LAN 终端能获取地址，DHCP、DNS 和普通 UDP 转发均正常。
 
 这台板上 vendor D-state 线程可能抬高 load average。只要 CPU 大部分时间空闲、没有
 持续 softirq 满核、丢包或明显延迟，2 vCPU/1 GiB 的 OpenWrt VM 对当前用途有足够
 余量。
 
-## 13. Tailscale 和公网访问建议
-
-最终方案永久关闭 Kunpeng Pro 宿主上的 Tailscale，避免额外转发、路由冲突和性能
-损耗：
-
-```sh
-systemctl disable --now tailscaled
-systemctl is-enabled tailscaled
-systemctl is-active tailscaled
-```
-
-电脑和手机需要访问 tailnet 时直接运行 Tailscale。经过本软路由的客户端要获得
-Tailscale 直连，重点是：
-
-- OpenWrt 的 `wanpppoe` 已加入 WAN zone。
-- UDP 没有被旧 TProxy/自定义 nftables 规则截获。
-- `tailscale netcheck` 显示 UDP 可用；`tailscale ping` 优先出现 `direct`。
-
-不要从 WAN 直接开放 LuCI、SSH、Mihomo API、后端端口或摄像头端口。需要远程维护
-时，使用终端自己的 Tailscale、独立的 WireGuard 入口或受控跳板机。
-
-## 14. DNS/证书故障注意事项
-
-在 Fake-IP/DNS 联动仍生效时直接杀掉 Mihomo，客户端可能继续使用缓存的 Fake-IP，
-从而收到与目标域名无关的证书，例如 `unifi.local`。这通常是代理服务和 DNS 状态
-不一致，不应简单理解为设备一定被入侵，但必须停止访问并排查。
-
-安全恢复顺序：
-
-```sh
-/etc/init.d/netflow restart
-/etc/init.d/dnsmasq restart
-nft list tables
-```
-
-然后在客户端刷新 DNS 缓存、关闭并重新打开应用。若证书告警仍然存在，不要点击
-继续访问；检查系统时间、DNS 服务器、Mihomo 规则、路由器劫持和上游网络。
-
-不要恢复历史遗留的 `/etc/mihomo/tproxy.sh` 或额外 `table inet mihomo`；它们会与
-Netflow 当前 nftables 规则冲突。
-
-## 15. 备份、升级和回滚
+## 12. 备份、升级和回滚
 
 ### 备份
 
@@ -486,12 +380,12 @@ virsh net-dumpxml openwrt-wan > /root/openwrt-wan.xml
 nmcli connection show > /root/network-connections.txt
 ```
 
-OpenWrt 备份可能含 PPPoE 密码和插件凭据，只能加密离线保存，不能公开。
+OpenWrt 备份可能含 PPPoE 密码和本机网络配置，只能加密离线保存，不能公开。
 
 ### 升级
 
 - 不执行 `apk upgrade` 全量升级 OpenWrt。
-- 升级前备份，使用同 target 的新固件，并确认自定义插件与新版本兼容。
+- 升级前备份，使用同 target 的新固件，并确认自定义软件包与新版本兼容。
 - 宿主内核变更后，旧 `igc.ko` 可能失配，必须用新内核的源码树和
   `Module.symvers` 重建。
 
@@ -515,31 +409,30 @@ reboot
 如果 I226-V 无法稳定工作，使用受 Linux ARM64 支持的 USB 3.0 网卡替代，不要强制
 加载失配模块。
 
-## 16. 禁止事项
+## 13. 禁止事项
 
-- 不把 PPPoE 密码、订阅 URL、BoostNet 账号/token、Mihomo secret 写进 Git。
-- 不公开 `/etc/config/netflow`、真实 Mihomo 配置或完整 OpenWrt sysupgrade 备份。
+- 不把 PPPoE 账号、密码或设备导出的真实网络配置写进 Git。
+- 不公开 `/etc/config/network`、`/etc/config/firewall` 或完整 OpenWrt sysupgrade 备份。
 - 不把 `br-wan` 配成宿主管理口，不从 WAN 开放 LuCI/SSH。
 - 不交换已确认的物理 WAN/LAN 角色，不把两个物理口加入同一个 bridge。
 - 不强制加载 vermagic 不匹配或签名失败的内核模块。
 - 不在使用板载 HNS3 时移除厂商 Ascend 驱动依赖。
-- 不恢复旧 TProxy 脚本，不叠加第二套透明代理 nftables 表。
 - 不在缺少串口救援时执行桥接切换、驱动卸载或远程重启测试。
 - 不用 load average 单一指标判断板子是否过载。
 
-## 17. 发布前脱敏
+## 14. 发布前脱敏
 
 只发布本目录和 `scripts/kunpeng-router/` 中列出的文件。不要把本机工作目录整体推送。
 发布前执行：
 
 ```sh
 rg -n -i \
-  'password|passwd|token|secret|subscription|username|authorized_keys|100\\.[0-9]+\\.|ENC:' \
+  'password|passwd|username|authorized_keys|100\\.[0-9]+\\.|ENC:' \
   docs/kunpeng-router scripts/kunpeng-router
 ```
 
 逐项确认命中只来自说明文字、变量名或占位符，没有真实值。还应人工检查公网 IP、
-手机号、邮箱、物理 MAC、SSH 指纹、服务商订阅域名和家庭 DDNS。
+手机号、邮箱、物理 MAC、SSH 指纹和家庭 DDNS。
 
 相关脚本采用 MIT License；教程正文可由发布网站按其内容许可处理。官方参考：
 

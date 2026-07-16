@@ -7,7 +7,7 @@
             <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster><lastBuildDate>Wed, 15 Jul 2026 21:00:00 &#43;0800</lastBuildDate>
             <atom:link href="https://wangyudong.netlify.app/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Orange Pi Kunpeng Pro 双网口 OpenWrt/Mihomo 软路由部署实录</title>
+    <title>Orange Pi Kunpeng Pro 双网口 OpenWrt 软路由配置实录</title>
     <link>https://wangyudong.netlify.app/kunpeng-pro-router/</link>
     <pubDate>Wed, 15 Jul 2026 21:00:00 &#43;0800</pubDate>
     <author>Author</author>
@@ -33,7 +33,7 @@
 <h3 id="the-temporal-shear-layer">The Temporal Shear Layer</h3>
 <p>The temporally-developing shear layer is a canonical configuration for turbulence-chemistry interaction studies. Two streams with different velocities mix through Kelvin–Helmholtz instability, generating a turbulent mixing layer that grows in time.</p>
 <figure><a class="lightgallery" href="./dns_velocity_context.png" title="./dns_velocity_context.png" data-thumbnail="./dns_velocity_context.png" data-sub-html="<h2>DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.</h2>">
-        
+
     </a><figcaption class="image-caption">DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.</figcaption>
     </figure>
 <p>The key advantage of this configuration for TCR validation:</p>]]></description>
@@ -174,7 +174,7 @@
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib.request</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib.error</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span> 
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">logged_in</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
