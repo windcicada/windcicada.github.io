@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>TCR 代码文档索引 - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/tcr-code-docs/">
-  <meta property="og:site_name" content="Dong">
+        <title>TCR 代码文档索引 - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/tcr-code-docs/">
+  <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="TCR 代码文档索引">
   <meta property="og:description" content="本文档索引了 TCR 求解器源代码生成的 123 个代码文档。
 文档分类 求解器核心 文档 说明 boffin.md 主程序 config_boffin.md 配置子程序 input.md 输入参数读取 boffin_stop.md 终止程序 线性求解器 文档 说明 cgstab.md Bi-CGSTAB 求解器 cgsol.md PCG 求解器 linsol.md 线性求解器通用接口 离散格式 文档 说明 condif.md 对流-扩散离散 press.md 压力方程构建 update.md 速度压力更新 step.md 时间步进 模块文件 文档 说明 module_global.md 全局变量 module_arrays.md 主数组 module_chemistry.md 化学模块 module_chemkin.md ChemKin 接口 module_exchange.md MPI 通信 module_sgs_pdf.md SGS/PDF 参数 module_digital_turbulence.md 数字湍流 module_spark.md 点火模型 燃烧模型 文档 说明 fieldpdf.md 随机场 PDF 方法 mixer.md TCR 混合模型 reactor.md 反应计算 &#43; MPI 负载均衡 react_hc.md 碳氢燃料反应求解 react_psr.md PSR 反应求解 stochastic.md 随机过程 (Wiener) source_pdf.md PDF 源项 chemdot.md 反应率计算 亚格子模型 文档 说明 gamma_smagorinsky.md Smagorinsky 模型 gamma_dyn_lilly.md 动态 Lilly 模型 gamma_dyn_piomelli.md 动态 Piomelli 模型 gamma_vreman.md Vreman 模型 gamma_k.md 湍流动能模型 边界条件 文档 说明 bndry1.md Dirichlet 边界 bndry2.md Neumann 边界 bndry2dp.md 压力修正 Neumann bndry3.md 速度边界 bndry3crn.md 速度角点处理 bndry_NSCBC.md NSCBC 超声速边界 bndry_wall.md 壁面边界 boundary1.md 入口/出口 boundary2.md 第二类边界 boundary_wall.md 壁面边界 wall.md 壁面处理 wall_v.md 壁面速度 初始化 文档 说明 start_init.md 流场初始化 start_read.md 重启读取 start_pdf.md PDF 初始化 start_probe.md 探针初始化 start_phase_averaging.md 相平均初始化 inprofile.md 入口分布 profile.md 剖面输入 后处理 文档 说明 statistics.md 湍流统计 output.md 输出信息 probe.md 探针输出 minmax.md 极值计算 vtk.md VTK 输出 物性与热力学 文档 说明 viscos.md 分子粘度 temperature.md 温度 enthalpy.md 焓 densty.md 密度 equilb.md 平衡 speedofsound.md 声速 compress.md 可压缩性 MPI 并行 文档 说明 pbsrhl.md MPI 通信主程序 pbconf.md MPI 配置 pbload.md 负载加载 pexch.md 并行交换 辅助工具 文档 说明 geom.md 网格几何 gradient.md 梯度计算 locate.md 网格定位 jac.md Jacobian moment.md 动量 checkmass.md 质量守恒检查 燃料模型 文档 说明 funcv_4.md 通用燃料函数 funcv_h2.md 氢气 funcv_ch4_arm2.md 甲烷 (ARM2) funcv_ch4_red19.md 甲烷 (RED19) funcv_c2h4.md 乙烯 funcv_c2h5oh.md 乙醇 funcv_c7h16.md 庚烷 funcv_ch3oh.md 甲醇 其他 文档 说明 janaf_input.md 热力学数据读取 source.md 通用源项 souru.md 动量源项 vls.md TVD 限制器 gam_tvd.md TVD 扩散系数 ignition.md 点火 courant.md CFL 计算 共 123 个文档">
@@ -24,8 +24,8 @@
   <meta name="twitter:title" content="TCR 代码文档索引">
   <meta name="twitter:description" content="本文档索引了 TCR 求解器源代码生成的 123 个代码文档。
 文档分类 求解器核心 文档 说明 boffin.md 主程序 config_boffin.md 配置子程序 input.md 输入参数读取 boffin_stop.md 终止程序 线性求解器 文档 说明 cgstab.md Bi-CGSTAB 求解器 cgsol.md PCG 求解器 linsol.md 线性求解器通用接口 离散格式 文档 说明 condif.md 对流-扩散离散 press.md 压力方程构建 update.md 速度压力更新 step.md 时间步进 模块文件 文档 说明 module_global.md 全局变量 module_arrays.md 主数组 module_chemistry.md 化学模块 module_chemkin.md ChemKin 接口 module_exchange.md MPI 通信 module_sgs_pdf.md SGS/PDF 参数 module_digital_turbulence.md 数字湍流 module_spark.md 点火模型 燃烧模型 文档 说明 fieldpdf.md 随机场 PDF 方法 mixer.md TCR 混合模型 reactor.md 反应计算 &#43; MPI 负载均衡 react_hc.md 碳氢燃料反应求解 react_psr.md PSR 反应求解 stochastic.md 随机过程 (Wiener) source_pdf.md PDF 源项 chemdot.md 反应率计算 亚格子模型 文档 说明 gamma_smagorinsky.md Smagorinsky 模型 gamma_dyn_lilly.md 动态 Lilly 模型 gamma_dyn_piomelli.md 动态 Piomelli 模型 gamma_vreman.md Vreman 模型 gamma_k.md 湍流动能模型 边界条件 文档 说明 bndry1.md Dirichlet 边界 bndry2.md Neumann 边界 bndry2dp.md 压力修正 Neumann bndry3.md 速度边界 bndry3crn.md 速度角点处理 bndry_NSCBC.md NSCBC 超声速边界 bndry_wall.md 壁面边界 boundary1.md 入口/出口 boundary2.md 第二类边界 boundary_wall.md 壁面边界 wall.md 壁面处理 wall_v.md 壁面速度 初始化 文档 说明 start_init.md 流场初始化 start_read.md 重启读取 start_pdf.md PDF 初始化 start_probe.md 探针初始化 start_phase_averaging.md 相平均初始化 inprofile.md 入口分布 profile.md 剖面输入 后处理 文档 说明 statistics.md 湍流统计 output.md 输出信息 probe.md 探针输出 minmax.md 极值计算 vtk.md VTK 输出 物性与热力学 文档 说明 viscos.md 分子粘度 temperature.md 温度 enthalpy.md 焓 densty.md 密度 equilb.md 平衡 speedofsound.md 声速 compress.md 可压缩性 MPI 并行 文档 说明 pbsrhl.md MPI 通信主程序 pbconf.md MPI 配置 pbload.md 负载加载 pexch.md 并行交换 辅助工具 文档 说明 geom.md 网格几何 gradient.md 梯度计算 locate.md 网格定位 jac.md Jacobian moment.md 动量 checkmass.md 质量守恒检查 燃料模型 文档 说明 funcv_4.md 通用燃料函数 funcv_h2.md 氢气 funcv_ch4_arm2.md 甲烷 (ARM2) funcv_ch4_red19.md 甲烷 (RED19) funcv_c2h4.md 乙烯 funcv_c2h5oh.md 乙醇 funcv_c7h16.md 庚烷 funcv_ch3oh.md 甲醇 其他 文档 说明 janaf_input.md 热力学数据读取 source.md 通用源项 souru.md 动量源项 vls.md TVD 限制器 gam_tvd.md TVD 扩散系数 ignition.md 点火 courant.md CFL 计算 共 123 个文档">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="王煜栋 (WANG YUDONG)">
+<meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/tcr-code-docs/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/temperature/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/tcr_code_progress/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 <script type="application/ld+json">
@@ -42,7 +42,7 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Dong"
+                "name": "王煜栋 (WANG YUDONG)"
             },"description": ""
     }
     </script></head>
@@ -51,7 +51,7 @@
         <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
     <div class="nav-container">
         
-        <a href="/" class="nav-brand">Dong</a>
+        <a href="/" class="nav-brand">王煜栋 (WANG YUDONG)</a>
         
         
         <div class="nav-menu" id="nav-menu-desktop">
@@ -601,7 +601,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王煜栋 (WANG YUDONG)</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div>
         </div>
     </footer></div>

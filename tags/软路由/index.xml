@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>软路由 on Dong</title>
+    <title>软路由 on 王煜栋 (WANG YUDONG)</title>
     <link>https://wangyudong.netlify.app/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</link>
-    <description>Recent content in 软路由 on Dong</description>
+    <description>Recent content in 软路由 on 王煜栋 (WANG YUDONG)</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
+    <managingEditor>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</managingEditor>
+    <webMaster>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</webMaster>
     <lastBuildDate>Wed, 15 Jul 2026 21:00:00 +0800</lastBuildDate>
     <atom:link href="https://wangyudong.netlify.app/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Orange Pi Kunpeng Pro 双网口 OpenWrt 软路由配置实录</title>
       <link>https://wangyudong.netlify.app/kunpeng-pro-router/</link>
-      <pubDate>Wed, 15 Jul 2026 21:00:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <pubDate>Wed, 15 Jul 2026 21:00:00 +0800</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/kunpeng-pro-router/</guid>
       <description>&lt;p&gt;配套部署脚本已开源至&#xA;&lt;a href=&#34;https://github.com/windcicada/OrangePi_Kunpeng_Router&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;windcicada/OrangePi_Kunpeng_Router&lt;/a&gt;。&#xA;仓库只保存可公开的脚本和简要说明；这篇文章是完整部署教程，包含硬件约定、执行顺序、&#xA;验收方法和失联恢复步骤。&lt;/p&gt;</description>
     </item>

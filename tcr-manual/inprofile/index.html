@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>inprofile - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/inprofile/">
-  <meta property="og:site_name" content="Dong">
+        <title>inprofile - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/inprofile/">
+  <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="inprofile">
   <meta property="og:description" content="inprofile.F90 - 入口/出口边界条件设置 源文件: 0.src.TCR.dyn728/inprofile.F90 功能: 设置入口和出口边界条件参数
 1. 程序概述 设置流场初始化和边界条件，包括：
@@ -25,8 +25,8 @@
   <meta name="twitter:description" content="inprofile.F90 - 入口/出口边界条件设置 源文件: 0.src.TCR.dyn728/inprofile.F90 功能: 设置入口和出口边界条件参数
 1. 程序概述 设置流场初始化和边界条件，包括：
 入口边界 (inlet) 出口边界 (outlet) 燃料/空气流股参数 2. 主要变量 2.1 边界计数 1 2 nip = 4 ! 入口边界数量 nop = 1 ! 出口边界数量 2.2 物种索引 变量 物种 jco2 CO₂ jh2 H₂ jh2o H₂O jo2 O₂ jn2 N₂ jc3h8 C₃H₈ 3. 数组分配 3.1 入口/出口数组 1 2 3 4 5 6 7 8 allocate(area_in(nip), inflow_header(nip), area_out(nop), outflow_header(nop)) ! 可压缩流动 if (compressible) then allocate(averaged_inflow(nip,5), averaged_outflow(nop,5), array(5)) else allocate(averaged_inflow(nip,4), averaged_outflow(nop,4), array(4)) endif 3.2 平均流动数组 索引 内容 (不可压缩) 内容 (可压缩) 1 U U 2 V V 3 W W 4 - T 5 - P 4. 边界条件类型 4.1 入口边界 类型 说明 空气入口 空气流股参数 燃料入口 燃料流股参数 伴流入口 伴流空气参数 4.2 出口边界 类型 说明 零梯度出口 压力出口 5. 关键参数 5.1 速度参数 1 2 real :: v_air, v_fuel ! 空气/燃料速度 real :: u_max ! 最大速度 5.2 密度参数 1 real :: den_air, den_fuel ! 空气/燃料密度 5.3 几何参数 1 2 3 real :: radius ! 喷嘴半径 real :: diameter_jet ! 喷嘴直径 real :: area_air, area_fuel ! 入口面积 6. 物种赋值 根据物种名称自动识别索引：">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="王煜栋 (WANG YUDONG)">
+<meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/inprofile/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/input/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/init_random_seed/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 <script type="application/ld+json">
@@ -43,7 +43,7 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Dong"
+                "name": "王煜栋 (WANG YUDONG)"
             },"description": ""
     }
     </script></head>
@@ -52,7 +52,7 @@
         <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
     <div class="nav-container">
         
-        <a href="/" class="nav-brand">Dong</a>
+        <a href="/" class="nav-brand">王煜栋 (WANG YUDONG)</a>
         
         
         <div class="nav-menu" id="nav-menu-desktop">
@@ -320,7 +320,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王煜栋 (WANG YUDONG)</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div>
         </div>
     </footer></div>

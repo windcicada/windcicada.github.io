@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>vtk - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/vtk/">
-  <meta property="og:site_name" content="Dong">
+        <title>vtk - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/vtk/">
+  <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="vtk">
   <meta property="og:description" content="vtk.F90 功能概述 VTK 可视化输出子程序。将计算结果输出为 VTK Legacy 格式，用于 ParaView/VisIt 可视化。
 编译选项 输出格式 1 2 #define VTKBINARY ! 二进制格式（默认） #undef VTKBINARY ! ASCII 格式 节点扩展 1 #define NODE_EXTEND 1 ! 包含边界单元 调试输出 (MEGAVTK) 1 2 #define MEGAVTK ! 输出所有变量（调试用） #undef MEGAVTK ! 正常输出（默认） 特定变量 1 2 3 4 5 #define sgs_fluxes ! SGS 标量通量 #undef sgs_fluxes #define formation_rates ! 反应率、kappa、坐标（默认开启） #undef formation_rates 主要子程序 子程序 功能 vtk_open 打开 VTK 文件 vtk_scalar 输出标量 vtk_vector 输出矢量 vtk_close 关闭文件 输出变量 基本流场 Velocity：速度矢量 (U,V,W) Density：密度 ρ Pressure：压力 p Temperature：温度 T TCR 相关 Damkohler：Da 数 kappa_{species}：PSR 体积分数 RRmix_Oxygen：积分混合时间尺度 RRmix_Radical：Kolmogorov 混合时间尺度 统计量 {species}_mean, {species}_rms Mean_U, Var_U 等 输出文件 块数据 1 solution.{istep:08d}.domain.{mydom:03d}.vtk 平面数据 1 solution.{istep:06d}.plane{LABEL}.{mydom:03d}.vtk 主文件 1 solution.visit 依赖模块 arrays：流场数据 chemistry：化学数据 global：全局变量 sgs_pdf：PDF 数据 重要更新 (2026-03-23) VTK 输出已扩展包含王煜栋添加的反应进度变量：">
@@ -23,8 +23,8 @@
   <meta name="twitter:title" content="vtk">
   <meta name="twitter:description" content="vtk.F90 功能概述 VTK 可视化输出子程序。将计算结果输出为 VTK Legacy 格式，用于 ParaView/VisIt 可视化。
 编译选项 输出格式 1 2 #define VTKBINARY ! 二进制格式（默认） #undef VTKBINARY ! ASCII 格式 节点扩展 1 #define NODE_EXTEND 1 ! 包含边界单元 调试输出 (MEGAVTK) 1 2 #define MEGAVTK ! 输出所有变量（调试用） #undef MEGAVTK ! 正常输出（默认） 特定变量 1 2 3 4 5 #define sgs_fluxes ! SGS 标量通量 #undef sgs_fluxes #define formation_rates ! 反应率、kappa、坐标（默认开启） #undef formation_rates 主要子程序 子程序 功能 vtk_open 打开 VTK 文件 vtk_scalar 输出标量 vtk_vector 输出矢量 vtk_close 关闭文件 输出变量 基本流场 Velocity：速度矢量 (U,V,W) Density：密度 ρ Pressure：压力 p Temperature：温度 T TCR 相关 Damkohler：Da 数 kappa_{species}：PSR 体积分数 RRmix_Oxygen：积分混合时间尺度 RRmix_Radical：Kolmogorov 混合时间尺度 统计量 {species}_mean, {species}_rms Mean_U, Var_U 等 输出文件 块数据 1 solution.{istep:08d}.domain.{mydom:03d}.vtk 平面数据 1 solution.{istep:06d}.plane{LABEL}.{mydom:03d}.vtk 主文件 1 solution.visit 依赖模块 arrays：流场数据 chemistry：化学数据 global：全局变量 sgs_pdf：PDF 数据 重要更新 (2026-03-23) VTK 输出已扩展包含王煜栋添加的反应进度变量：">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="王煜栋 (WANG YUDONG)">
+<meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/vtk/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/wall/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/vls/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 <script type="application/ld+json">
@@ -41,7 +41,7 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Dong"
+                "name": "王煜栋 (WANG YUDONG)"
             },"description": ""
     }
     </script></head>
@@ -50,7 +50,7 @@
         <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
     <div class="nav-container">
         
-        <a href="/" class="nav-brand">Dong</a>
+        <a href="/" class="nav-brand">王煜栋 (WANG YUDONG)</a>
         
         
         <div class="nav-menu" id="nav-menu-desktop">
@@ -234,7 +234,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王煜栋 (WANG YUDONG)</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div>
         </div>
     </footer></div>

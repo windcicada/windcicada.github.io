@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>source pdf - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/source_pdf/">
-  <meta property="og:site_name" content="Dong">
+        <title>source pdf - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/source_pdf/">
+  <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="source pdf">
   <meta property="og:description" content="source_pdf.F90 - PDF 源项计算 源文件: 0.src.TCR.dyn728/source_pdf.F90 功能: 计算随机场方程中的源项 包含: 随机源项、可压缩项、火花源、热辐射
 1. 概述 source_pdf 子程序计算随机场方程中的各种源项：
@@ -25,8 +25,8 @@
   <meta name="twitter:description" content="source_pdf.F90 - PDF 源项计算 源文件: 0.src.TCR.dyn728/source_pdf.F90 功能: 计算随机场方程中的源项 包含: 随机源项、可压缩项、火花源、热辐射
 1. 概述 source_pdf 子程序计算随机场方程中的各种源项：
 随机源项: Wiener 过程贡献 可压缩源项: dp/dt &#43; u·∇p 火花源项: 点火能量输入 热辐射源项: CO/CO2/H2O/CH4 辐射损失 2. 算法流程 1 2 3 4 5 6 7 8 9 10 11 12 13 14 source_pdf() │ ├─► 随机源项 (ifld &gt; 0 且 nfield &gt; 1) │ └─► coef(bpc,ijk) &#43;= stochastic_source(ijk,nv) │ ├─► 可压缩源项 (compressible 且 isp == nsc) │ └─► coef(bpc,ijk) &#43;= dpdt &#43; u*dpdx &#43; v*dpdy &#43; w*dpdz │ ├─► 火花源项 (spark_ed 且 isp == nsc) │ └─► coef(bpc,ijk) &#43;= spark(qdot, ...) │ └─► 热辐射源项 (isp == nsc 且 radiate) └─► coef(bpc,ijk) -= qdot_rad └─► field_qdot_rad(ifld,ijk) = qdot_rad 3. 源项详解 3.1 随机源项 1 2 3 if (ifld &gt; 0 .and. nfield &gt; 1) then coef(bpc,ijk) = coef(bpc,ijk) &#43; stochastic_source(ijk,nv) endif 来自 stochastic.F90 的计算结果。">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="王煜栋 (WANG YUDONG)">
+<meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/source_pdf/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/souru/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/source/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 <script type="application/ld+json">
@@ -43,7 +43,7 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Dong"
+                "name": "王煜栋 (WANG YUDONG)"
             },"description": ""
     }
     </script></head>
@@ -52,7 +52,7 @@
         <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
     <div class="nav-container">
         
-        <a href="/" class="nav-brand">Dong</a>
+        <a href="/" class="nav-brand">王煜栋 (WANG YUDONG)</a>
         
         
         <div class="nav-menu" id="nav-menu-desktop">
@@ -276,7 +276,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王煜栋 (WANG YUDONG)</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div>
         </div>
     </footer></div>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DNS on Dong</title>
+    <title>DNS on 王煜栋 (WANG YUDONG)</title>
     <link>https://wangyudong.netlify.app/tags/dns/</link>
-    <description>Recent content in DNS on Dong</description>
+    <description>Recent content in DNS on 王煜栋 (WANG YUDONG)</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
+    <managingEditor>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</managingEditor>
+    <webMaster>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</webMaster>
     <lastBuildDate>Fri, 03 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://wangyudong.netlify.app/tags/dns/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ShearLayer-Combustion DNS: A Compressible 2-D Shear Layer DNS Solver for TCR Model Validation</title>
       <link>https://wangyudong.netlify.app/shear-layer-combustion-dns/</link>
-      <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/shear-layer-combustion-dns/</guid>
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;This article presents an open-source &lt;strong&gt;2-D compressible shear-layer DNS solver&lt;/strong&gt; designed for studying turbulence-chemistry interactions and validating the &lt;strong&gt;Turbulence-Chemistry Recursive (TCR)&lt;/strong&gt; micro-mixing model.&lt;/p&gt;&#xA;&lt;p&gt;The code is available on GitHub:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/windcicada/shearlayer-combustion-DNS&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;github.com/windcicada/shearlayer-combustion-DNS&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-physical-background&#34;&gt;1. Physical Background&lt;/h2&gt;&#xA;&lt;h3 id=&#34;the-temporal-shear-layer&#34;&gt;The Temporal Shear Layer&lt;/h3&gt;&#xA;&lt;p&gt;The temporally-developing shear layer is a canonical configuration for turbulence-chemistry interaction studies. Two streams with different velocities mix through Kelvin–Helmholtz instability, generating a turbulent mixing layer that grows in time.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;a class=&#34;lightgallery&#34; href=&#34;./dns_velocity_context.png&#34; title=&#34;./dns_velocity_context.png&#34; data-thumbnail=&#34;./dns_velocity_context.png&#34; data-sub-html=&#34;&lt;h2&gt;DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.&lt;/h2&gt;&#34;&gt;&#xD;&#xA;        &lt;img&#xD;&#xA;            class=&#34;lazyload&#34;&#xD;&#xA;            src=&#34;https://wangyudong.netlify.app/svg/loading.min.svg&#34;&#xD;&#xA;            data-src=&#34;./dns_velocity_context.png&#34;&#xD;&#xA;            data-srcset=&#34;./dns_velocity_context.png, ./dns_velocity_context.png 1.5x, ./dns_velocity_context.png 2x&#34;&#xD;&#xA;            data-sizes=&#34;auto&#34;&#xD;&#xA;            alt=&#34;./dns_velocity_context.png&#34; width=&#34;100%&#34; /&gt;&#xD;&#xA;    &lt;/a&gt;&lt;figcaption class=&#34;image-caption&#34;&gt;DNS velocity field with vorticity overlay at t = 100, showing shear-layer roll-up and vortex pairing.&lt;/figcaption&gt;&#xD;&#xA;    &lt;/figure&gt;&#xA;&lt;p&gt;The key advantage of this configuration for TCR validation:&lt;/p&gt;</description>
     </item>

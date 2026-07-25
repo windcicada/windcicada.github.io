@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>input - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/input/">
-  <meta property="og:site_name" content="Dong">
+        <title>input - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/input/">
+  <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="input">
   <meta property="og:description" content="input.F90 — 输入文件读取 功能概述 读取 input.d 配置文件和网格文件，初始化求解器参数。
 输入文件结构 (input.d) 路径配置 1 2 3 geodir - 网格文件目录 resdir - 结果输出目录 statdir - 统计输出目录 文件格式 1 2 3 4 5 form - 网格文件格式 (T=formatted, F=unformatted) read_restart / write_restart - 重启读写标志 lstep - 最大时间步数 stepsave - 重启文件保存频率 stepplot - VTK 输出频率 湍流模型参数 1 2 3 4 5 sgs_viscosity - SGS 模型选择 dyn_restart_stress- 动态模型重启 cs0 - Smagorinsky 常数 turbstat / turbread - 湍流统计开关 digit_turb - 数字湍流选项 求解器参数 1 2 3 4 niter - 迭代次数上限 tlast - 物理终止时间 nskip - 统计跳过步数 cflmin/cflmax/cfl_ok - CFL 数限制 燃烧参数 1 2 3 4 5 6 fuel - 燃料类型 reaction_mechanism - 反应机理 co2_content/h2_content - 燃料 CO2/H2 含量 burn - 燃烧开关 chemkin_format - ChemKin 格式标志 solver - 化学求解器 (vode/...) PDF 方法参数 1 2 3 4 pdf - PDF 传输开关 nfield - 随机场数量 read_pdf/write_pdf - PDF 重启读写 noise_reduction - 噪声削减 输出选项 1 2 3 4 5 6 species_output - 质量分数/摩尔分数输出 radiate - 辐射换热开关 ignite - 点火开关 phase_averaging - 相平均开关 compressible - 可压缩效应开关 sigma/length - 有效边界参数 网格文件读取 文件路径 1 geofile = path/Decomp/grid_vv.mydom 格式判断 Formatted: 文本格式，可读 Unformatted: 二进制格式，更紧凑 网格数据 数据 维度 说明 xv, yv, zv (lp1&#43;1)*(mp1&#43;1)*(np1&#43;1) 顶点坐标 ibn, ibs mp1*np1 入口/出口边界 ibe, ibw np1*lp1 东/西边界 ibr, ibl lp1*mp1 上/下边界 fnth, fsth 3mp1np1 入口速度边界值 fest, fwst 3np1lp1 东/西速度边界值 frht, flft 3lp1mp1 上/下速度边界值 边界条件数组索引 1 2 3 4 5 6 ibn(j,k) - i=lp1 面 (North/出口) ibs(j,k) - i=1 面 (South/入口) ibe(k,i) - j=mp1 面 (East) ibw(k,i) - j=1 面 (West) ibr(i,j) - k=np1 面 (Right/Top) ibl(i,j) - k=1 面 (Left/Bottom) VTK 输出变量设置 当 pdf = .true. 时自动开启以下变量：">
@@ -23,8 +23,8 @@
   <meta name="twitter:title" content="input">
   <meta name="twitter:description" content="input.F90 — 输入文件读取 功能概述 读取 input.d 配置文件和网格文件，初始化求解器参数。
 输入文件结构 (input.d) 路径配置 1 2 3 geodir - 网格文件目录 resdir - 结果输出目录 statdir - 统计输出目录 文件格式 1 2 3 4 5 form - 网格文件格式 (T=formatted, F=unformatted) read_restart / write_restart - 重启读写标志 lstep - 最大时间步数 stepsave - 重启文件保存频率 stepplot - VTK 输出频率 湍流模型参数 1 2 3 4 5 sgs_viscosity - SGS 模型选择 dyn_restart_stress- 动态模型重启 cs0 - Smagorinsky 常数 turbstat / turbread - 湍流统计开关 digit_turb - 数字湍流选项 求解器参数 1 2 3 4 niter - 迭代次数上限 tlast - 物理终止时间 nskip - 统计跳过步数 cflmin/cflmax/cfl_ok - CFL 数限制 燃烧参数 1 2 3 4 5 6 fuel - 燃料类型 reaction_mechanism - 反应机理 co2_content/h2_content - 燃料 CO2/H2 含量 burn - 燃烧开关 chemkin_format - ChemKin 格式标志 solver - 化学求解器 (vode/...) PDF 方法参数 1 2 3 4 pdf - PDF 传输开关 nfield - 随机场数量 read_pdf/write_pdf - PDF 重启读写 noise_reduction - 噪声削减 输出选项 1 2 3 4 5 6 species_output - 质量分数/摩尔分数输出 radiate - 辐射换热开关 ignite - 点火开关 phase_averaging - 相平均开关 compressible - 可压缩效应开关 sigma/length - 有效边界参数 网格文件读取 文件路径 1 geofile = path/Decomp/grid_vv.mydom 格式判断 Formatted: 文本格式，可读 Unformatted: 二进制格式，更紧凑 网格数据 数据 维度 说明 xv, yv, zv (lp1&#43;1)*(mp1&#43;1)*(np1&#43;1) 顶点坐标 ibn, ibs mp1*np1 入口/出口边界 ibe, ibw np1*lp1 东/西边界 ibr, ibl lp1*mp1 上/下边界 fnth, fsth 3mp1np1 入口速度边界值 fest, fwst 3np1lp1 东/西速度边界值 frht, flft 3lp1mp1 上/下速度边界值 边界条件数组索引 1 2 3 4 5 6 ibn(j,k) - i=lp1 面 (North/出口) ibs(j,k) - i=1 面 (South/入口) ibe(k,i) - j=mp1 面 (East) ibw(k,i) - j=1 面 (West) ibr(i,j) - k=np1 面 (Right/Top) ibl(i,j) - k=1 面 (Left/Bottom) VTK 输出变量设置 当 pdf = .true. 时自动开启以下变量：">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="王煜栋 (WANG YUDONG)">
+<meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/input/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/jac/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/inprofile/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 <script type="application/ld+json">
@@ -41,7 +41,7 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Dong"
+                "name": "王煜栋 (WANG YUDONG)"
             },"description": ""
     }
     </script></head>
@@ -50,7 +50,7 @@
         <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
     <div class="nav-container">
         
-        <a href="/" class="nav-brand">Dong</a>
+        <a href="/" class="nav-brand">王煜栋 (WANG YUDONG)</a>
         
         
         <div class="nav-menu" id="nav-menu-desktop">
@@ -428,7 +428,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王煜栋 (WANG YUDONG)</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div>
         </div>
     </footer></div>

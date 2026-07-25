@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>module chemkin - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/module_chemkin/">
-  <meta property="og:site_name" content="Dong">
+        <title>module chemkin - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/module_chemkin/">
+  <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="module chemkin">
   <meta property="og:description" content="module_chemkin.F90 功能概述 Chemkin 接口模块。定义 CHEMKIN 子程序所需的工作数组和参数，用于外部化学动力学求解器接口。
 模块变量 数组参数 参数 大小 说明 linkmc 35 CHEMKIN 链接参数 kdim 60 物种维度 leniwk 11562 整数工作区大小 lenwrk 12417 实数工作区大小 lencwk 124 字符工作区大小 lenimc 10000 接口整数区 lenrmc 70000 接口实数区 分配数组 1 2 3 4 5 double precision, allocatable :: rckwrk(:) ! CHEMKIN 实数工作区 double precision, allocatable :: rmcwrk(:) ! 接口实数工作区 double precision, allocatable :: atomicweight(:) ! 原子量 integer, allocatable :: ickwrk(:) ! CHEMKIN 整数工作区 integer, allocatable :: imcwrk(:) ! 接口整数工作区 标量变量 1 2 3 4 integer :: lencck !CHEMKIN 长度 integer :: nspecies !物种数 integer :: ncmc !接口数 character(len=16) :: cckwrk(124) !字符工作区 用途 与 CHEMKIN 软件接口 读取外部反应机理文件 提供化学动力学计算工作区 状态 当前为占位模块，未完全激活">
@@ -23,8 +23,8 @@
   <meta name="twitter:title" content="module chemkin">
   <meta name="twitter:description" content="module_chemkin.F90 功能概述 Chemkin 接口模块。定义 CHEMKIN 子程序所需的工作数组和参数，用于外部化学动力学求解器接口。
 模块变量 数组参数 参数 大小 说明 linkmc 35 CHEMKIN 链接参数 kdim 60 物种维度 leniwk 11562 整数工作区大小 lenwrk 12417 实数工作区大小 lencwk 124 字符工作区大小 lenimc 10000 接口整数区 lenrmc 70000 接口实数区 分配数组 1 2 3 4 5 double precision, allocatable :: rckwrk(:) ! CHEMKIN 实数工作区 double precision, allocatable :: rmcwrk(:) ! 接口实数工作区 double precision, allocatable :: atomicweight(:) ! 原子量 integer, allocatable :: ickwrk(:) ! CHEMKIN 整数工作区 integer, allocatable :: imcwrk(:) ! 接口整数工作区 标量变量 1 2 3 4 integer :: lencck !CHEMKIN 长度 integer :: nspecies !物种数 integer :: ncmc !接口数 character(len=16) :: cckwrk(124) !字符工作区 用途 与 CHEMKIN 软件接口 读取外部反应机理文件 提供化学动力学计算工作区 状态 当前为占位模块，未完全激活">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="王煜栋 (WANG YUDONG)">
+<meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/module_chemkin/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/module_digital_turbulence/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/module_chemistry/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 <script type="application/ld+json">
@@ -41,7 +41,7 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Dong"
+                "name": "王煜栋 (WANG YUDONG)"
             },"description": ""
     }
     </script></head>
@@ -50,7 +50,7 @@
         <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
     <div class="nav-container">
         
-        <a href="/" class="nav-brand">Dong</a>
+        <a href="/" class="nav-brand">王煜栋 (WANG YUDONG)</a>
         
         
         <div class="nav-menu" id="nav-menu-desktop">
@@ -183,7 +183,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王煜栋 (WANG YUDONG)</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div>
         </div>
     </footer></div>

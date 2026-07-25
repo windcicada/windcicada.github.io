@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Karlovitz on Dong</title>
+    <title>Karlovitz on 王煜栋 (WANG YUDONG)</title>
     <link>https://wangyudong.netlify.app/tags/karlovitz/</link>
-    <description>Recent content in Karlovitz on Dong</description>
+    <description>Recent content in Karlovitz on 王煜栋 (WANG YUDONG)</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
+    <managingEditor>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</managingEditor>
+    <webMaster>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</webMaster>
     <lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://wangyudong.netlify.app/tags/karlovitz/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LES-BOFFIN 反应进度变量与燃烧模式诊断方法</title>
       <link>https://wangyudong.netlify.app/les_progress_variable/</link>
-      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/les_progress_variable/</guid>
       <description>&lt;h1 id=&#34;les-boffin-反应进度变量与燃烧模式诊断方法&#34;&gt;LES-BOFFIN 反应进度变量与燃烧模式诊断方法&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-研究背景&#34;&gt;1. 研究背景&lt;/h2&gt;&#xA;&lt;p&gt;在大涡模拟（LES）与概率密度函数（PDF）方法结合的湍流燃烧模拟中，准确诊断燃烧状态和理解湍流-化学相互作用是重要课题。传统方法难以直接刻画反应进程和燃烧模式之间的耦合关系。&lt;/p&gt;&#xA;&lt;p&gt;本文详细介绍基于**反应进度变量（Progress Variable）**的燃烧诊断方法，包括 TCR（湍流-化学递归）模型中 κ_c 的计算方法。&lt;/p&gt;</description>
     </item>

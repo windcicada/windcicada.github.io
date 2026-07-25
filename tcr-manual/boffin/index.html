@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>boffin - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/boffin/">
-  <meta property="og:site_name" content="Dong">
+        <title>boffin - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/boffin/">
+  <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="boffin">
   <meta property="og:description" content="boffin.F90 功能概述 TCR求解器主程序，整合所有模块实现LES-TPDF湍流燃烧模拟。主程序负责初始化、时间步循环、求解器调用和输出控制。
 程序结构 1. 初始化阶段 1 2 3 4 5 6 7 8 call input ! 读取输入参数 call janaf_input ! 读取热力学数据 call geom ! 计算网格几何 call inprofile ! 用户自定义初始/入口条件 call start_init ! 初始化流场 (若非重启) call start_probe ! 初始化探针 call start_pdf ! 初始化PDF方法 call start_phase_averaging ! 相平均初始化 2. 时间步循环 1 2 3 4 5 6 7 8 9 10 11 do while (istep &lt; istep_end .and. time &lt; time_end) ! 1. 保存旧时刻数据 ! 2. 入口边界条件 ! 3. 亚格子模型 (gamma_*) ! 4. CFL计算和时间步调整 ! 5. PDF/燃烧计算 (fieldpdf, reactor) ! 6. 动量方程求解 (condif → cgstab) ! 7. 压力修正 (press → cgsol → update) ! 8. 后处理 (statistics, probe, minmax) ! 9. VTK/输出 end do 关键变量 指针关联 1 2 3 4 5 u =&gt; f(nvu) ! X方向速度 v =&gt; f(nvv) ! Y方向速度 w =&gt; f(nvw) ! Z方向速度 dp=&gt; f(nvdp) ! 压力修正 vx =&gt; fbar(nvu) ! 滤波速度X 核心控制变量 变量 说明 istep 当前时间步 time 物理时间 cfl CFL数 pdf PDF方法开关 ignite 点火开关 调用关系图 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 boffin ├── input (参数输入) ├── janaf_input (热力学) ├── geom (几何) ├── inprofile (初始/入口) ├── start_init/read (初始化) ├── fieldpdf (PDF方法) ├── reactor_* (化学反应) ├── condif (对流扩散) ├── cgstab (动量求解) ├── press (压力方程) ├── update (速度更新) ├── statistics (统计) ├── probe (探针) └── vtk/output (输出) 编译选项 1 #undef constant_time_step ! 固定时间步长（默认关闭） 依赖模块 arrays：主数组 chemistry：化学反应 digital_turbulence：数字湍流 exchange：MPI通信 global：全局变量 sgs_pdf：SGS和PDF模型 spark_module：点火模型">
@@ -23,8 +23,8 @@
   <meta name="twitter:title" content="boffin">
   <meta name="twitter:description" content="boffin.F90 功能概述 TCR求解器主程序，整合所有模块实现LES-TPDF湍流燃烧模拟。主程序负责初始化、时间步循环、求解器调用和输出控制。
 程序结构 1. 初始化阶段 1 2 3 4 5 6 7 8 call input ! 读取输入参数 call janaf_input ! 读取热力学数据 call geom ! 计算网格几何 call inprofile ! 用户自定义初始/入口条件 call start_init ! 初始化流场 (若非重启) call start_probe ! 初始化探针 call start_pdf ! 初始化PDF方法 call start_phase_averaging ! 相平均初始化 2. 时间步循环 1 2 3 4 5 6 7 8 9 10 11 do while (istep &lt; istep_end .and. time &lt; time_end) ! 1. 保存旧时刻数据 ! 2. 入口边界条件 ! 3. 亚格子模型 (gamma_*) ! 4. CFL计算和时间步调整 ! 5. PDF/燃烧计算 (fieldpdf, reactor) ! 6. 动量方程求解 (condif → cgstab) ! 7. 压力修正 (press → cgsol → update) ! 8. 后处理 (statistics, probe, minmax) ! 9. VTK/输出 end do 关键变量 指针关联 1 2 3 4 5 u =&gt; f(nvu) ! X方向速度 v =&gt; f(nvv) ! Y方向速度 w =&gt; f(nvw) ! Z方向速度 dp=&gt; f(nvdp) ! 压力修正 vx =&gt; fbar(nvu) ! 滤波速度X 核心控制变量 变量 说明 istep 当前时间步 time 物理时间 cfl CFL数 pdf PDF方法开关 ignite 点火开关 调用关系图 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 boffin ├── input (参数输入) ├── janaf_input (热力学) ├── geom (几何) ├── inprofile (初始/入口) ├── start_init/read (初始化) ├── fieldpdf (PDF方法) ├── reactor_* (化学反应) ├── condif (对流扩散) ├── cgstab (动量求解) ├── press (压力方程) ├── update (速度更新) ├── statistics (统计) ├── probe (探针) └── vtk/output (输出) 编译选项 1 #undef constant_time_step ! 固定时间步长（默认关闭） 依赖模块 arrays：主数组 chemistry：化学反应 digital_turbulence：数字湍流 exchange：MPI通信 global：全局变量 sgs_pdf：SGS和PDF模型 spark_module：点火模型">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="王煜栋 (WANG YUDONG)">
+<meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/boffin/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/boffin_stop/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/bndry3crn/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 <script type="application/ld+json">
@@ -41,7 +41,7 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Dong"
+                "name": "王煜栋 (WANG YUDONG)"
             },"description": ""
     }
     </script></head>
@@ -50,7 +50,7 @@
         <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
     <div class="nav-container">
         
-        <a href="/" class="nav-brand">Dong</a>
+        <a href="/" class="nav-brand">王煜栋 (WANG YUDONG)</a>
         
         
         <div class="nav-menu" id="nav-menu-desktop">
@@ -251,7 +251,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王煜栋 (WANG YUDONG)</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div>
         </div>
     </footer></div>

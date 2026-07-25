@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>output - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/output/">
-  <meta property="og:site_name" content="Dong">
+        <title>output - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-manual/output/">
+  <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="output">
   <meta property="og:description" content="output.F90 - 求解器输出子程序 1. 程序概述 output 子程序负责在每个时间步结束时输出计算结果的统计信息和性能指标，包括燃料流量、守恒残差、极值统计等。
 2. 调用关系 1 2 boffin.F90 (主循环) └── output() ← 每个时间步结束时调用 3. 功能说明 3.1 主要输出内容 类别 内容 时间信息 迭代步数 istep、物理时间 tim、时间步长 dt 粘度 分子粘度极值 (vmax/vmin)、SGS 粘度极值 (gamax/gamin) 压力修正 dsum/dmax 残差 (压力修正方程收敛) 当量比 Equivalence ratio (psi)、混合分数 (ff) 质量流量 入口/出口空气流量 (floin/flout)、燃料流量 (fuin/fuout) 数值判据 扩散数 (diffnum)、对流数 (cou)、Peclet 数 (pec) 变量极值 所有求解变量的 max/min 及位置 热损失 辐射散热 (radiative_heat_loss)、释热率 (heat_release_rate)、壁面热损失 (wall_heat_loss) 3.2 燃料流量计算 1 2 3 4 5 6 ! 从入口和出口面计算燃料质量流量 if (ibs(j,k) == -1 .or. ibs(j,k) == -10 .or. ibs(j,k) == -12) then fuin = fuin &#43; gi(ijk) * fsc(jfuel0, ijks) ! 入口 elseif (ibs(j,k) == -2 .or. ibs(j,k) == -60 .or. ibs(j,k) == -62) then fuout = fuout - gi(ijk) * fsc(jfuel0, ijks) ! 出口 endif 3.3 当量比计算 $$\psi = \nu \cdot \frac{f_f}{f_{air}} \cdot \frac{w_{air}}{w_{fuel}}$$">
@@ -23,8 +23,8 @@
   <meta name="twitter:title" content="output">
   <meta name="twitter:description" content="output.F90 - 求解器输出子程序 1. 程序概述 output 子程序负责在每个时间步结束时输出计算结果的统计信息和性能指标，包括燃料流量、守恒残差、极值统计等。
 2. 调用关系 1 2 boffin.F90 (主循环) └── output() ← 每个时间步结束时调用 3. 功能说明 3.1 主要输出内容 类别 内容 时间信息 迭代步数 istep、物理时间 tim、时间步长 dt 粘度 分子粘度极值 (vmax/vmin)、SGS 粘度极值 (gamax/gamin) 压力修正 dsum/dmax 残差 (压力修正方程收敛) 当量比 Equivalence ratio (psi)、混合分数 (ff) 质量流量 入口/出口空气流量 (floin/flout)、燃料流量 (fuin/fuout) 数值判据 扩散数 (diffnum)、对流数 (cou)、Peclet 数 (pec) 变量极值 所有求解变量的 max/min 及位置 热损失 辐射散热 (radiative_heat_loss)、释热率 (heat_release_rate)、壁面热损失 (wall_heat_loss) 3.2 燃料流量计算 1 2 3 4 5 6 ! 从入口和出口面计算燃料质量流量 if (ibs(j,k) == -1 .or. ibs(j,k) == -10 .or. ibs(j,k) == -12) then fuin = fuin &#43; gi(ijk) * fsc(jfuel0, ijks) ! 入口 elseif (ibs(j,k) == -2 .or. ibs(j,k) == -60 .or. ibs(j,k) == -62) then fuout = fuout - gi(ijk) * fsc(jfuel0, ijks) ! 出口 endif 3.3 当量比计算 $$\psi = \nu \cdot \frac{f_f}{f_{air}} \cdot \frac{w_{air}}{w_{fuel}}$$">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="王煜栋 (WANG YUDONG)">
+<meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/tcr-manual/output/" /><link rel="prev" href="https://wangyudong.netlify.app/tcr-manual/output_dong/" /><link rel="next" href="https://wangyudong.netlify.app/tcr-manual/outij/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 <script type="application/ld+json">
@@ -41,7 +41,7 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Dong"
+                "name": "王煜栋 (WANG YUDONG)"
             },"description": ""
     }
     </script></head>
@@ -50,7 +50,7 @@
         <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
     <div class="nav-container">
         
-        <a href="/" class="nav-brand">Dong</a>
+        <a href="/" class="nav-brand">王煜栋 (WANG YUDONG)</a>
         
         
         <div class="nav-menu" id="nav-menu-desktop">
@@ -449,7 +449,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王煜栋 (WANG YUDONG)</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div>
         </div>
     </footer></div>

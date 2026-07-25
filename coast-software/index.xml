@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>COAST - COmbustor Adaptive Simulation Toolkit on Dong</title>
+    <title>COAST - COmbustor Adaptive Simulation Toolkit on 王煜栋 (WANG YUDONG)</title>
     <link>https://wangyudong.netlify.app/coast-software/</link>
-    <description>Recent content in COAST - COmbustor Adaptive Simulation Toolkit on Dong</description>
+    <description>Recent content in COAST - COmbustor Adaptive Simulation Toolkit on 王煜栋 (WANG YUDONG)</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
+    <managingEditor>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</managingEditor>
+    <webMaster>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</webMaster>
     <lastBuildDate>Thu, 02 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://wangyudong.netlify.app/coast-software/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>COAST 用户手册</title>
       <link>https://wangyudong.netlify.app/coast-software/manual/</link>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/coast-software/manual/</guid>
       <description>&lt;h1 id=&#34;combustor-adaptive-simulation-toolkit&#34;&gt;COmbustor Adaptive Simulation Toolkit&lt;/h1&gt;&#xA;&lt;h1 id=&#34;燃烧室自适应仿真工具中文用户手册&#34;&gt;燃烧室自适应仿真工具中文用户手册&lt;/h1&gt;&#xA;&lt;p&gt;本手册介绍COmbustor Adaptive Simulation Toolkit(COAST)使用。前半部分主要讲封装版便携程序如何通过 SSH 命令行安装、修改算例、运行计算和查看结果；后半部分介绍非封装版完整工作区、网格/重启动/局部加密方法以及开发维护流程。图形辅助界面是单独的辅助设施，一般不作为主线操作方式。&lt;/p&gt;</description>
     </item>

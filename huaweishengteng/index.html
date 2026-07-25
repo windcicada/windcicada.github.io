@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Ascend C算子 学习笔记 - Dong</title><meta name="Description" content="Dong"><meta property="og:url" content="https://wangyudong.netlify.app/huaweishengteng/">
-  <meta property="og:site_name" content="Dong">
+        <title>Ascend C算子 学习笔记 - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/huaweishengteng/">
+  <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="Ascend C算子 学习笔记">
   <meta property="og:description" content="Ascend及算子开发知识整理 昇腾计算产业生态 昇腾计算软硬件体系: 应用层: 包括ModelArts、HiAI Service、Mindx等平台。 框架层: 包括MindSpore、TensorFlow、PyTorch等。 计算架构层: 异算计算架构CANN和NPU驱动。 硬件层: 系列硬件和昇腾系列处理器。 合作伙伴: IHV（独立硬件供应商） 高校: 教学科研、算子众筹。 开发者: 算子贡献、开源贡献。 ISV（独立软件供应商） OEM/ODM: 产品销售、开源开放。 行业应用: ​	广泛应用于医疗、运营商、能源、交通、互联网、制造、金融、机器人等领域。">
   <meta property="og:locale" content="en">
@@ -20,8 +20,8 @@
   <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
   <meta name="twitter:title" content="Ascend C算子 学习笔记">
   <meta name="twitter:description" content="Ascend及算子开发知识整理 昇腾计算产业生态 昇腾计算软硬件体系: 应用层: 包括ModelArts、HiAI Service、Mindx等平台。 框架层: 包括MindSpore、TensorFlow、PyTorch等。 计算架构层: 异算计算架构CANN和NPU驱动。 硬件层: 系列硬件和昇腾系列处理器。 合作伙伴: IHV（独立硬件供应商） 高校: 教学科研、算子众筹。 开发者: 算子贡献、开源贡献。 ISV（独立软件供应商） OEM/ODM: 产品销售、开源开放。 行业应用: ​	广泛应用于医疗、运营商、能源、交通、互联网、制造、金融、机器人等领域。">
-<meta name="application-name" content="Dong">
-<meta name="apple-mobile-web-app-title" content="Dong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="王煜栋 (WANG YUDONG)">
+<meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://wangyudong.netlify.app/huaweishengteng/" /><link rel="prev" href="https://wangyudong.netlify.app/awards/" /><link rel="next" href="https://wangyudong.netlify.app/tcr_micro_mixing_model/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/css/custom-flat.css"><link rel="stylesheet" href="/css/toc-comment.css">
 <script type="application/ld+json">
@@ -38,7 +38,7 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Dong"
+                "name": "王煜栋 (WANG YUDONG)"
             },"description": ""
     }
     </script></head>
@@ -47,7 +47,7 @@
         <div id="mask"></div><div class="wrapper"><!DOCTYPE html><nav class="navbar" id="navbar">
     <div class="nav-container">
         
-        <a href="/" class="nav-brand">Dong</a>
+        <a href="/" class="nav-brand">王煜栋 (WANG YUDONG)</a>
         
         
         <div class="nav-menu" id="nav-menu-desktop">
@@ -87,7 +87,7 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Ascend C算子 学习笔记</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Dong</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/"><i class="far fa-folder fa-fw"></i>工作日志</a></span></div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>王煜栋 (WANG YUDONG)</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/"><i class="far fa-folder fa-fw"></i>工作日志</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-07-11">2024-07-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;6818 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;14 minutes&nbsp;<span id="/huaweishengteng/" class="leancloud_visitors" data-flag-title="Ascend C算子 学习笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
@@ -2333,7 +2333,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Dong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        <div class="footer-container"><script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=0e1633&w=424&t=tt&d=o_3r5JGQyri9esND225b2wSMsyUgYerHhwL58eRwQG0&co=0b4975&cmo=3acc3a&cmn=ff5353&ct=cdd4d9'></script><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王煜栋 (WANG YUDONG)</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div>
         </div>
     </footer></div>

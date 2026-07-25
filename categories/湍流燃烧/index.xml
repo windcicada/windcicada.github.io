@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>湍流燃烧 on Dong</title>
+    <title>湍流燃烧 on 王煜栋 (WANG YUDONG)</title>
     <link>https://wangyudong.netlify.app/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/</link>
-    <description>Recent content in 湍流燃烧 on Dong</description>
+    <description>Recent content in 湍流燃烧 on 王煜栋 (WANG YUDONG)</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <managingEditor>wangyudong@buaa.edu.cn (Dong)</managingEditor>
-    <webMaster>wangyudong@buaa.edu.cn (Dong)</webMaster>
+    <managingEditor>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</managingEditor>
+    <webMaster>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</webMaster>
     <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://wangyudong.netlify.app/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>湍流燃烧大涡模拟：数值方法</title>
       <link>https://wangyudong.netlify.app/les_tpdf_numerical_procedure/</link>
-      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/les_tpdf_numerical_procedure/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;写在前面&lt;/strong&gt;：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。&lt;/p&gt;</description>
     </item>
     <item>
       <title>湍流燃烧大涡模拟：理论基础</title>
       <link>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (Dong)</author>
+      <pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;写在前面&lt;/strong&gt;：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。&lt;/p&gt;</description>
     </item>
