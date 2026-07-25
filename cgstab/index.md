@@ -1,3 +1,5 @@
+# 
+
 # 稳定双共轭梯度法
 
 
@@ -160,5 +162,6 @@ $F(ijkp)+=\omega\cross S(ijk)$
 $R(ijk)-=\omega\cross T(ijk)$
 
 ---
+
 
 

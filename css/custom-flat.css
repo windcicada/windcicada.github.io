@@ -41,7 +41,7 @@ body[theme="dark"] .navbar {
     color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -0.5px;
-}\n
+}
 .nav-brand:hover {
     color: var(--accent-color);
 }
@@ -74,49 +74,6 @@ body[theme="dark"] .navbar {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-/* 语言切换 */
-.lang-switcher {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-right: 8px;
-}
-
-.lang-link {
-    padding: 4px 10px;
-    border-radius: 4px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: var(--transition);
-}
-
-.lang-link:hover {
-    color: var(--accent-color);
-    background: rgba(52, 152, 219, 0.1);
-}
-
-.lang-link.active {
-    color: var(--accent-color);
-    font-weight: 600;
-}
-
-.lang-sep {
-    color: var(--border-color);
-    font-size: 0.85rem;
-}
-
-@media (max-width: 768px) {
-    .lang-switcher {
-        margin-right: 4px;
-    }
-    .lang-link {
-        padding: 4px 8px;
-        font-size: 0.8rem;
-    }
 }
 
 .nav-btn {
@@ -438,7 +395,17 @@ body::after,
     margin: 40px 0 24px;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--accent-color);
-    display: inline-block;
+    display: inline-flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+}
+
+.section-title-en {
+    color: var(--text-secondary);
+    font-size: 0.62em;
+    font-weight: 500;
+    letter-spacing: 0.01em;
 }
 
 /* 论文卡片网格 */
@@ -665,6 +632,29 @@ body::after,
 .software-authors {
     font-size: 0.9rem;
     color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.software-kind {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0.55rem 0.3rem 0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    line-height: 1.25;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.software-kind-download {
+    color: #1769aa;
+    background: rgba(52, 152, 219, 0.12);
+}
+
+.software-kind-open {
+    color: #1b7f4b;
+    background: rgba(39, 174, 96, 0.12);
 }
 
 .software-info {
