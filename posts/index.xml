@@ -113,11 +113,9 @@
     <author>Author</author>
     <guid>https://wangyudong.netlify.app/awards/</guid>
     <description><![CDATA[<h2 id="期刊会议论文">期刊&amp;会议论文</h2>
-<p>[1] <strong>Yudong W</strong>, Fang W, Jiawei Z, et al. <a href="../pdf/IBM_POF.pdf" rel="">An improved immersed boundary method with local flow pattern reconstruction and its validation</a>[J]. Physics of Fluids, 2024, 36(4).</p>
-<p>[2] <strong>王煜栋</strong>,王方,金捷.<a href="../pdf/IBM_The.pdf" rel="">多连通域曲线坐标系浸没边界方法及其检验</a>[J/OL].工程力学:1-13[2022-10-31].DOI:10.6052/j.issn.1000-4750.2022.03.0247.</p>
-<p>[3] <strong>王煜栋</strong>,王方,甘甜,金捷.<a href="../pdf/IBM_WP11.pdf" rel="">基于曲线坐标系浸没边界方法的折流燃烧室模拟</a>[J/OL].推进技术:1-22[2022-10-31].DOI:10.13675/j.cnki.tjjs.2207026.</p>
-<p>[4] <strong>王煜栋</strong>,王方,周佳伟,金捷.<a href="../pdf/AECSC_IBM.pdf" rel="">AECSC-IBM航空发动机燃烧室数值模拟软件研发与检验</a>[J].航空动力学报,2022,37(10):2310-2323.DOI:10.13224/j.cnki.jasp.20220216.</p>
-<p>[5] Fang Wang,<strong>Yu-dong Wang</strong>,Xiang Gao,Yu-long Ye,Rui Liu,Gao Han,Jie Jin.<a href="../pdf/JAHS_Slinger.pdf" rel="">Exploration on Nonaxisymmetric Flow Phenomenon in a Slinger Injector</a>[J].Journal of the American Helicopter Society,2022,67(3):142-152.</p>]]></description>
+<p>[1] <strong>Wang Y</strong>, Wang F, Jin J, Wei D. <a href="https://www.sciencedirect.com/science/article/abs/pii/S1540748926001264" target="_blank" rel="noopener noreffer">Recursive micro-mixing modeling incorporating a multi-layer partitioned approach</a>[J]. Proceedings of the Combustion Institute, 2026, 42: 106128.</p>
+<p>[2] <strong>Yudong W</strong>, Fang W, Sinan L E I, et al. <a href="../pdf/TCR_mixing_model_CJA.pdf" rel="">A turbulence-chemistry recursive mixing model for TPDF simulations and its appraisal</a>[J]. Chinese Journal of Aeronautics, 2026.</p>
+<p>[3] Fang Wang*, Yuhan Gao, Shuo Shen, <strong>Yudong Wang</strong>, Li Dou, Jie Jin. <a href="../pdf/GaoYuhan_Vgutt.pdf" rel="">Influence of Reaction Mechanisms based the Turbulence and Heat Release Interaction in a Combustor Stabilized with a V-Shaped Stabilizer</a>[J]. Aerospace Science and Technology, 2026: 111920.</p>]]></description>
 </item><item>
     <title>北航自动网络认证</title>
     <link>https://wangyudong.netlify.app/gw_buaa/</link>
