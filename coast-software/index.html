@@ -4,18 +4,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>COAST - COmbustor Adaptive Simulation Toolkit - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/coast-software/">
+        <title>COAST v1｜软件下载与使用指南 - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/coast-software/">
   <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
-  <meta property="og:title" content="COAST - COmbustor Adaptive Simulation Toolkit">
-  <meta property="og:description" content="概述 COAST (Chemistry Optimized Algorithmic Solver for Turbulence) 是一款面向湍流燃烧大规模并行数值模拟的专业软件，基于 LES-TPDF 方法框架，集成了高阶浸没边界方法 (IBM)、多种湍流模型、详细化学反应机理求解、欧拉-拉格朗日喷雾模拟等核心功能模块。">
+  <meta property="og:title" content="COAST v1｜软件下载与使用指南">
+  <meta property="og:description" content="COAST v1 / 下载与快速开始 COAST v1 面向 Linux x86_64 高性能计算集群，使用 OpenMPI 与 Slurm 进行并行计算。本次发布提供的是无源码的目标机链接包，以及两个可直接用于验证环境的示例数据包；请先完成完整性校验、目标机链接和验证，再提交正式作业。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="website">
     <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
-  <meta name="twitter:title" content="COAST - COmbustor Adaptive Simulation Toolkit">
-  <meta name="twitter:description" content="概述 COAST (Chemistry Optimized Algorithmic Solver for Turbulence) 是一款面向湍流燃烧大规模并行数值模拟的专业软件，基于 LES-TPDF 方法框架，集成了高阶浸没边界方法 (IBM)、多种湍流模型、详细化学反应机理求解、欧拉-拉格朗日喷雾模拟等核心功能模块。">
+  <meta name="twitter:title" content="COAST v1｜软件下载与使用指南">
+  <meta name="twitter:description" content="COAST v1 / 下载与快速开始 COAST v1 面向 Linux x86_64 高性能计算集群，使用 OpenMPI 与 Slurm 进行并行计算。本次发布提供的是无源码的目标机链接包，以及两个可直接用于验证环境的示例数据包；请先完成完整性校验、目标机链接和验证，再提交正式作业。">
 <meta name="application-name" content="王煜栋 (WANG YUDONG)">
 <meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -55,111 +55,125 @@
     </div>
 </nav>
 <main class="main">
-                <div class="container"><div class="page single special"><div class="content" id="content"><h2 id="概述">概述</h2>
-<p><strong>COAST</strong> (Chemistry Optimized Algorithmic Solver for Turbulence) 是一款面向湍流燃烧大规模并行数值模拟的专业软件，基于 LES-TPDF 方法框架，集成了高阶浸没边界方法 (IBM)、多种湍流模型、详细化学反应机理求解、欧拉-拉格朗日喷雾模拟等核心功能模块。</p>
-<h2 id="特色">特色</h2>
-<ul>
-<li><strong>LES-TPDF 耦合求解</strong>：大涡模拟与输运概率密度函数方法相结合，精确描述湍流-化学反应相互作用</li>
-<li><strong>高阶浸没边界方法</strong>：支持复杂几何外形的直角网格模拟，无需贴体网格</li>
-<li><strong>ESF 随机场求解器</strong>：高效求解标量联合 PDF 输运方程</li>
-<li><strong>多层分区微混合模型</strong>：TCR 模型 – 湍流-化学递归混合模型，无需经验标定参数</li>
-<li><strong>详细化学反应机理</strong>：支持 ARM2、Red19 等多种甲烷/燃料机理，支持 DVODE 刚性求解器</li>
-<li><strong>并行可扩展</strong>：基于 MPI 分布式并行，支持数百至数千核心高效运行</li>
-</ul>
-<h2 id="软件下载">软件下载</h2>
-<p><a href="https://bhpan.buaa.edu.cn/link/AA6F0240CDBEB34268B0428866AD7476B7" target="_blank" rel="noopener noreffer">⬇️ 前往北航网盘下载 COAST 便携运行包 (v2026.06, Linux x86_64)</a></p>
+                <div class="container"><div class="page single special"><div class="content" id="content"><h2 id="coast-v1--下载与快速开始">COAST v1 / 下载与快速开始</h2>
+<p><strong>COAST v1</strong> 面向 Linux x86_64 高性能计算集群，使用 OpenMPI 与 Slurm 进行并行计算。本次发布提供的是无源码的目标机链接包，以及两个可直接用于验证环境的示例数据包；请先完成完整性校验、目标机链接和验证，再提交正式作业。</p>
+<p><a href="https://bhpan.buaa.edu.cn/link/AA6F0240CDBEB34268B0428866AD7476B7" target="_blank" rel="noopener noreffer">⬇️ 前往北航网盘下载 COAST v1</a></p>
 <blockquote>
-<p>安装包由北航网盘提供，适用于 Linux x86_64 服务器。解压后包含求解器、coastctl 工具、UI、模板算例及完整文档。</p>
+<p><strong>English users:</strong> see the <a href="/coast-software/en/" rel="">English download page</a> and the <a href="/coast-software/en/manual_en/" rel="">English Quick Guide</a>.</p>
 </blockquote>
-<h2 id="系统要求">系统要求</h2>
-<ul>
-<li>Linux x86_64 服务器或工作站</li>
-<li>Python 3 (coastctl / assistant 工具)</li>
-<li>MPICH / OpenMPI (<code>mpirun</code>)</li>
-<li>推荐 64+ 核心 / 128 GB+ 内存用于生产计算</li>
-</ul>
-<h2 id="快速入门">快速入门</h2>
+<h2 id="发布包内容">发布包内容</h2>
+<table>
+  <thead>
+      <tr>
+          <th>文件</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>COAST.v1-SourceFile.tar.gz</code></td>
+          <td>无源码目标机链接包；在目标超算完成链接后生成 <code>aecsc</code>。</td>
+      </tr>
+      <tr>
+          <td><code>COAST.v1-FlameD-ExampleData.tar.gz</code></td>
+          <td>FlameD 示例输入数据，固定使用 192 个 MPI 进程。</td>
+      </tr>
+      <tr>
+          <td><code>COAST.v1-GTMC-ExampleData.tar.gz</code></td>
+          <td>GTMC 示例输入数据，固定使用 128 个 MPI 进程。</td>
+      </tr>
+      <tr>
+          <td><code>COAST.v1-USER_MANUAL.pdf</code></td>
+          <td>完整发布说明。</td>
+      </tr>
+  </tbody>
+</table>
+<p>每个压缩包均应与同名 <code>.sha256</code> 文件一并下载。请完整保留并解压数据包，勿单独复制 <code>case.json</code>、<code>Restart/</code> 或 <code>boundary_conditions.d</code> 中的文件。</p>
+<h2 id="四步开始使用">四步开始使用</h2>
+<h3 id="1-校验并解压">1. 校验并解压</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 解压</span>
-</span></span><span class="line"><span class="cl">tar -xzf coast-runtime-&lt;version&gt;-linux-x86_64.tar.gz
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> coast-runtime-&lt;version&gt;-linux-x86_64
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sha256sum -c COAST.v1-SourceFile.tar.gz.sha256
+</span></span><span class="line"><span class="cl">sha256sum -c COAST.v1-FlameD-ExampleData.tar.gz.sha256
+</span></span><span class="line"><span class="cl">sha256sum -c COAST.v1-GTMC-ExampleData.tar.gz.sha256
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 加载环境</span>
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> env/coast-env.sh
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 检查工具</span>
-</span></span><span class="line"><span class="cl">bin/coastctl doctor --case-dir EXEC_TEMPLATE --json
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 创建算例</span>
-</span></span><span class="line"><span class="cl">cp -a EXEC_TEMPLATE EXEC.demo
-</span></span><span class="line"><span class="cl">bin/coastctl <span class="k">case</span> validate --case-dir EXEC.demo --json
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 启动运行前检查</span>
-</span></span><span class="line"><span class="cl">bin/coastctl run --case-dir EXEC.demo --ranks <span class="m">128</span> --preflight --write --json
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 启动短测</span>
-</span></span><span class="line"><span class="cl">bin/coastctl run --case-dir EXEC.demo --ranks <span class="m">128</span> --execute --preflight --write --json
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 监控运行</span>
-</span></span><span class="line"><span class="cl">bin/coastctl monitor --case-dir EXEC.demo --json
+</span></span><span class="line"><span class="cl">tar -xzf COAST.v1-SourceFile.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzf COAST.v1-FlameD-ExampleData.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzf COAST.v1-GTMC-ExampleData.tar.gz
 </span></span></code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p><strong>注意</strong>：以上 rank 数 (128) 仅为示例，实际应以算例 Decomp/Restart 分块数为准。</p>
-</blockquote>
-<h2 id="用户手册">用户手册</h2>
-<p>完整的 COAST 用户手册包含以下章节：</p>
-<ul>
-<li>封装版环境配置</li>
-<li>算例创建与修改</li>
-<li>边界条件设置</li>
-<li>运行计算（短测/正式/续算）</li>
-<li>查看和导出结果</li>
-<li>常见问题排查</li>
-</ul>
-<p><a href="../coast-software/manual/" rel="">📖 阅读 COAST 用户手册</a></p>
-<h2 id="相关链接">相关链接</h2>
-<ul>
-<li><a href="../awards/" rel="">学术成果</a> — COAST 相关论文与软著</li>
-<li><a href="/les_tpdf_%e6%b9%8d%e6%b5%81%e7%87%83%e7%83%a7%e7%90%86%e8%ae%ba%e5%9f%ba%e7%a1%80/" rel="">LES-TPDF 湍流燃烧理论基础</a> — 方法背景</li>
-<li><a href="/tcr_micro_mixing_model/" rel="">TCR 微混合模型</a> — 核心创新模型</li>
-</ul>
+</div><p><code>.sha256</code> 文件位于压缩包外部，必须和对应 <code>.tar.gz</code> 放在同一目录。</p>
+<h3 id="2-在目标集群完成链接">2. 在目标集群完成链接</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> AECSC-D.1-SourceFile-Link
+</span></span><span class="line"><span class="cl">module purge
+</span></span><span class="line"><span class="cl">module load gcc/7.3.0
+</span></span><span class="line"><span class="cl">module load mpi/openmpi/4.1.1-gcc7.3.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">./scripts/target_link.sh
+</span></span><span class="line"><span class="cl">./scripts/target_verify.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只有两个脚本均成功退出后才可运行。当前解压目录即安装根目录；请不要混入旧版本的 <code>lib/</code>、<code>registry/</code>、<code>Fuels/</code>、<code>schema/</code> 或 <code>scripts/</code>。</p>
+<h3 id="3-先进行配置验证">3. 先进行配置验证</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">PROJECT</span><span class="o">=</span>/path/to/project
+</span></span><span class="line"><span class="cl"><span class="nv">INSTALL</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$PROJECT</span><span class="s2">/AECSC-D.1-SourceFile-Link&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GTMC</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$PROJECT</span><span class="s2">/AECSC-D.1-GTMC-ExampleData&#34;</span>
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$PROJECT</span><span class="s2">/runs/gtmc&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="nv">$INSTALL</span><span class="s2">/bin/aecsc&#34;</span> <span class="s2">&#34;</span><span class="nv">$GTMC</span><span class="s2">/case.json&#34;</span> --print-resolved &gt; <span class="s2">&#34;</span><span class="nv">$PROJECT</span><span class="s2">/runs/gtmc/case.resolved.json&#34;</span>
+</span></span><span class="line"><span class="cl">mpirun -np <span class="m">128</span> <span class="s2">&#34;</span><span class="nv">$INSTALL</span><span class="s2">/bin/aecsc&#34;</span> <span class="s2">&#34;</span><span class="nv">$GTMC</span><span class="s2">/case.json&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --validate --output <span class="s2">&#34;</span><span class="nv">$PROJECT</span><span class="s2">/runs/gtmc&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>--validate</code> 只检查配置、路径和 MPI 进程数，不会推进时间步。FlameD 示例应使用 192 个 MPI 进程。</p>
+<h3 id="4-运行与结果管理">4. 运行与结果管理</h3>
+<p>在集群作业环境中加载与目标机链接相同的模块，并设置 <code>LD_LIBRARY_PATH</code> 与 <code>PATH</code>。提交作业时始终使用 <code>&quot;$INSTALL/bin/aecsc&quot;</code> 的绝对路径，输出目录应放在示例输入根目录之外。</p>
+<h2 id="使用边界">使用边界</h2>
+<p>可修改 <code>case.json</code> 中与研究目标有关的参数，或在个人工作目录中新建 JSON 文件。请保持发布的 <code>boundary_conditions.d</code>、<code>Restart/</code>、<code>Decomp/</code>、<code>mesh_identity.*</code> 以及安装根的 <code>lib/</code>、<code>registry/</code>、<code>Fuels/</code>、<code>schema/</code>、<code>scripts/</code> 不变。</p>
+<p><a href="/coast-software/manual/" rel="">📖 阅读中文使用指南</a><br>
+<a href="/coast-software/en/manual_en/" rel="">📖 Read the English Quick Guide</a></p>
 <hr>
-<p><a href="/coast-software/en/" rel="">English Version →</a></p>
-<p><em>COAST 由北京航空航天大学湍流燃烧团队开发维护。</em></p>
+<p>COAST 由北京航空航天大学湍流燃烧团队开发维护。</p>
 </div><div class="related-posts">
                 <h2 class="single-title"></h2>
                 <div class="blog-list"><a href="/coast-software/manual/" class="blog-item">
-                            <span class="blog-title">COAST 用户手册</span>
-                            <span class="blog-date">2026-07-02</span>
+                            <span class="blog-title">COAST v1 用户指南</span>
+                            <span class="blog-date">2026-07-27</span>
                         </a><a href="/coast-software/en/" class="blog-item">
-                            <span class="blog-title">COAST - COmbustor Adaptive Simulation Toolkit</span>
-                            <span class="blog-date">2026-07-02</span>
+                            <span class="blog-title">COAST v1 | Download &amp; Quick Start</span>
+                            <span class="blog-date">2026-07-27</span>
                         </a></div>
             </div><div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

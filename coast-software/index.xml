@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>COAST - COmbustor Adaptive Simulation Toolkit on 王煜栋 (WANG YUDONG)</title>
+    <title>COAST v1｜软件下载与使用指南 on 王煜栋 (WANG YUDONG)</title>
     <link>https://wangyudong.netlify.app/coast-software/</link>
-    <description>Recent content in COAST - COmbustor Adaptive Simulation Toolkit on 王煜栋 (WANG YUDONG)</description>
+    <description>Recent content in COAST v1｜软件下载与使用指南 on 王煜栋 (WANG YUDONG)</description>
     <generator>Hugo</generator>
     <language>en</language>
     <managingEditor>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</managingEditor>
     <webMaster>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</webMaster>
-    <lastBuildDate>Thu, 02 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://wangyudong.netlify.app/coast-software/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>COAST 用户手册</title>
+      <title>COAST v1 用户指南</title>
       <link>https://wangyudong.netlify.app/coast-software/manual/</link>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/coast-software/manual/</guid>
-      <description>&lt;h1 id=&#34;combustor-adaptive-simulation-toolkit&#34;&gt;COmbustor Adaptive Simulation Toolkit&lt;/h1&gt;&#xA;&lt;h1 id=&#34;燃烧室自适应仿真工具中文用户手册&#34;&gt;燃烧室自适应仿真工具中文用户手册&lt;/h1&gt;&#xA;&lt;p&gt;本手册介绍COmbustor Adaptive Simulation Toolkit(COAST)使用。前半部分主要讲封装版便携程序如何通过 SSH 命令行安装、修改算例、运行计算和查看结果；后半部分介绍非封装版完整工作区、网格/重启动/局部加密方法以及开发维护流程。图形辅助界面是单独的辅助设施，一般不作为主线操作方式。&lt;/p&gt;</description>
+      <description>&lt;p&gt;COAST v1 为 Linux x86_64 高性能计算集群提供目标机链接包和独立示例数据。本页是对发布手册的简明说明；请以下载包内的 &lt;code&gt;COAST.v1-USER_MANUAL.pdf&lt;/code&gt; 为准。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-下载前确认&#34;&gt;1. 下载前确认&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;使用 Linux x86_64 集群环境；并行运行依赖 OpenMPI / Slurm。&lt;/li&gt;&#xA;&lt;li&gt;同时下载三个 &lt;code&gt;.tar.gz&lt;/code&gt; 文件及各自的 &lt;code&gt;.sha256&lt;/code&gt; 文件。&lt;/li&gt;&#xA;&lt;li&gt;示例数据必须完整解压；不要拆分复制 &lt;code&gt;case.json&lt;/code&gt;、&lt;code&gt;Restart/&lt;/code&gt; 或 &lt;code&gt;boundary_conditions.d&lt;/code&gt;。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;解压后顶层目录可能仍使用 &lt;code&gt;AECSC-D.1-*&lt;/code&gt; 名称。这是为兼容目标机链接脚本和数据资产而保留的名称，请不要重命名目录或内部文件。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -4,20 +4,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>COAST - COmbustor Adaptive Simulation Toolkit - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/coast-software/en/">
+        <title>COAST v1 | Download &amp; Quick Start - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/coast-software/en/">
   <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
-  <meta property="og:title" content="COAST - COmbustor Adaptive Simulation Toolkit">
-  <meta property="og:description" content="Overview COAST (Chemistry Optimized Algorithmic Solver for Turbulence) is a professional CFD software for large-scale parallel turbulent combustion simulation, based on the LES-TPDF framework.
-Features LES-TPDF coupled solver High-order Immersed Boundary Method ESF stochastic field solver TCR micro-mixing model Detailed chemical mechanisms (ARM2, Red19) MPI-based parallel computing Download ⬇️ Download COAST Runtime Package via BUAA Cloud Drive (v2026.06, Linux x86_64)">
+  <meta property="og:title" content="COAST v1 | Download & Quick Start">
+  <meta property="og:description" content="COAST v1 — Download for HPC Users COAST v1 is distributed for Linux x86_64 HPC clusters using OpenMPI and Slurm. The release includes a target-system linking package without source code and two standalone example-data packages. Please verify, link, and validate the installation before submitting a production job.
+⬇️ Download COAST v1 from BUAA Cloud Drive
+中文下载页 / Chinese page →">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="website">
     <meta property="og:image" content="https://wangyudong.netlify.app/images/avatar.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
-  <meta name="twitter:title" content="COAST - COmbustor Adaptive Simulation Toolkit">
-  <meta name="twitter:description" content="Overview COAST (Chemistry Optimized Algorithmic Solver for Turbulence) is a professional CFD software for large-scale parallel turbulent combustion simulation, based on the LES-TPDF framework.
-Features LES-TPDF coupled solver High-order Immersed Boundary Method ESF stochastic field solver TCR micro-mixing model Detailed chemical mechanisms (ARM2, Red19) MPI-based parallel computing Download ⬇️ Download COAST Runtime Package via BUAA Cloud Drive (v2026.06, Linux x86_64)">
+  <meta name="twitter:title" content="COAST v1 | Download & Quick Start">
+  <meta name="twitter:description" content="COAST v1 — Download for HPC Users COAST v1 is distributed for Linux x86_64 HPC clusters using OpenMPI and Slurm. The release includes a target-system linking package without source code and two standalone example-data packages. Please verify, link, and validate the installation before submitting a production job.
+⬇️ Download COAST v1 from BUAA Cloud Drive
+中文下载页 / Chinese page →">
 <meta name="application-name" content="王煜栋 (WANG YUDONG)">
 <meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -57,39 +59,74 @@ Features LES-TPDF coupled solver High-order Immersed Boundary Method ESF stochas
     </div>
 </nav>
 <main class="main">
-                <div class="container"><div class="page single special"><div class="content" id="content"><h2 id="overview">Overview</h2>
-<p><strong>COAST</strong> (Chemistry Optimized Algorithmic Solver for Turbulence) is a professional CFD software for large-scale parallel turbulent combustion simulation, based on the LES-TPDF framework.</p>
-<h2 id="features">Features</h2>
-<ul>
-<li><strong>LES-TPDF coupled solver</strong></li>
-<li><strong>High-order Immersed Boundary Method</strong></li>
-<li><strong>ESF stochastic field solver</strong></li>
-<li><strong>TCR micro-mixing model</strong></li>
-<li><strong>Detailed chemical mechanisms</strong> (ARM2, Red19)</li>
-<li><strong>MPI-based parallel computing</strong></li>
-</ul>
-<h2 id="download">Download</h2>
-<p><a href="https://bhpan.buaa.edu.cn/link/AA6F0240CDBEB34268B0428866AD7476B7" target="_blank" rel="noopener noreffer">⬇️ Download COAST Runtime Package via BUAA Cloud Drive (v2026.06, Linux x86_64)</a></p>
-<h2 id="quick-start">Quick Start</h2>
+                <div class="container"><div class="page single special"><div class="content" id="content"><h2 id="coast-v1--download-for-hpc-users">COAST v1 — Download for HPC Users</h2>
+<p><strong>COAST v1</strong> is distributed for Linux x86_64 HPC clusters using OpenMPI and Slurm. The release includes a target-system linking package without source code and two standalone example-data packages. Please verify, link, and validate the installation before submitting a production job.</p>
+<p><a href="https://bhpan.buaa.edu.cn/link/AA6F0240CDBEB34268B0428866AD7476B7" target="_blank" rel="noopener noreffer">⬇️ Download COAST v1 from BUAA Cloud Drive</a></p>
+<p><a href="/coast-software/" rel="">中文下载页 / Chinese page →</a></p>
+<h2 id="release-files">Release files</h2>
+<table>
+  <thead>
+      <tr>
+          <th>File</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>COAST.v1-SourceFile.tar.gz</code></td>
+          <td>Target-system linking package; it creates <code>aecsc</code> on the destination cluster.</td>
+      </tr>
+      <tr>
+          <td><code>COAST.v1-FlameD-ExampleData.tar.gz</code></td>
+          <td>FlameD example input; fixed at 192 MPI ranks.</td>
+      </tr>
+      <tr>
+          <td><code>COAST.v1-GTMC-ExampleData.tar.gz</code></td>
+          <td>GTMC example input; fixed at 128 MPI ranks.</td>
+      </tr>
+      <tr>
+          <td><code>COAST.v1-USER_MANUAL.pdf</code></td>
+          <td>Full release manual.</td>
+      </tr>
+  </tbody>
+</table>
+<p>Download each archive together with its matching external <code>.sha256</code> file. Keep each example package intact: do not copy <code>case.json</code>, <code>Restart/</code>, or <code>boundary_conditions.d</code> separately.</p>
+<h2 id="quick-start">Quick start</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tar -xzf coast-runtime-&lt;version&gt;-linux-x86_64.tar.gz
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> coast-runtime-&lt;version&gt;-linux-x86_64
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> env/coast-env.sh
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sha256sum -c COAST.v1-SourceFile.tar.gz.sha256
+</span></span><span class="line"><span class="cl">tar -xzf COAST.v1-SourceFile.tar.gz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> AECSC-D.1-SourceFile-Link
+</span></span><span class="line"><span class="cl">module purge
+</span></span><span class="line"><span class="cl">module load gcc/7.3.0
+</span></span><span class="line"><span class="cl">module load mpi/openmpi/4.1.1-gcc7.3.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">./scripts/target_link.sh
+</span></span><span class="line"><span class="cl">./scripts/target_verify.sh
 </span></span></code></pre></td></tr></table>
 </div>
-</div><hr>
-<p><a href="/coast-software/" rel="">📖 查看中文版</a> | <a href="/coast-software/manual/" rel="">📖 User Manual (Chinese)</a></p>
+</div><p>Both scripts must finish successfully. The unpacked directory is then the installation root; do not mix it with libraries or assets from older packages.</p>
+<p>Next, run <code>--validate</code> with the exact rank count required by the example before a production run. Use the absolute path to <code>bin/aecsc</code> in your Slurm job script and keep outputs outside the read-only input roots.</p>
+<p><a href="/coast-software/en/manual_en/" rel="">📖 Read the English Quick Guide</a><br>
+<a href="/coast-software/manual/" rel="">📖 阅读中文使用指南</a></p>
 </div><div class="related-posts">
                 <h2 class="single-title"></h2>
                 <div class="blog-list"><a href="/coast-software/en/manual_en/" class="blog-item">
-                            <span class="blog-title">COAST User Manual</span>
-                            <span class="blog-date">2026-07-02</span>
+                            <span class="blog-title">COAST v1 Quick Guide</span>
+                            <span class="blog-date">2026-07-27</span>
                         </a></div>
             </div><div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
