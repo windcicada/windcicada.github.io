@@ -682,6 +682,11 @@ body::after,
     background: rgba(39, 174, 96, 0.12);
 }
 
+.software-kind-development {
+    color: #a34200;
+    background: rgba(243, 156, 18, 0.16);
+}
+
 .software-info {
     font-size: 0.85rem;
     color: #7f8c8d;
