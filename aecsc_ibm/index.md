@@ -1,5 +1,3 @@
-# 
-
 # AECSC-IBM UserGuide
 
 
@@ -183,4 +181,3 @@ true     	! spark: true or false
 2               !spark_type，1为原ED模型，2为IBM稳定点火模型（2容易点着火）
 
 ```
-
