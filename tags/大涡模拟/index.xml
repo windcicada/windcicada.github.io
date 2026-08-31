@@ -15,7 +15,7 @@
       <link>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;写在前面&lt;/strong&gt;：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;系列导读&lt;/strong&gt;：本文介绍大涡模拟（LES）与输运概率密度函数（TPDF）方法的理论基础，重点说明过滤控制方程、化学源项闭合、欧拉随机场表示和微观混合闭合之间的关系。后续文章依次讨论&lt;a href=&#34;https://wangyudong.netlify.app/les_tpdf_numerical_procedure/&#34; rel=&#34;&#34;&gt;数值方法&lt;/a&gt;和&lt;a href=&#34;https://wangyudong.netlify.app/tcr-solver-manual/&#34; rel=&#34;&#34;&gt;代码实现&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

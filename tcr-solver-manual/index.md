@@ -1,11 +1,11 @@
 # 湍流燃烧大涡模拟：代码实现
 
 
-> 详细介绍亚音速可压缩燃烧模拟软件 CSTCSP/AECSC/BOFFIN 的架构和全部函数，由该软件的 123 个代码文档整理得到。
+> **系列导读**：本文记录 CSTCSP/AECSC/BOFFIN 代码快照中的主要模块及其调用关系，由 123 篇函数级文档归纳而成。阅读本篇前可先查看[理论基础](/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/)和[数值方法](/les_tpdf_numerical_procedure/)。代码文档反映特定软件快照，不替代当前 TCR 数学表述或正式发布手册。
 
 ## 1. 程序概述
 
-**TCR (Turbulent Combustion Research)** 是基于 LES 的湍流燃烧求解器，采用随机场 (Stochastic Field) PDF 方法模拟湍流燃烧过程。
+CSTCSP/AECSC/BOFFIN 是基于大涡模拟（LES）的湍流燃烧计算程序，并采用欧拉随机场方法表示输运概率密度函数（TPDF）。Turbulence–Chemistry Recursive（TCR）模型是其中可选的微观混合闭合，不是该流场求解器的名称。
 
 ### 主要特性
 
@@ -13,7 +13,7 @@
 |------|------|
 | 数值方法 | 单元中心有限体积法 |
 | 湍流模型 | LES + 多种亚格子模型 (Smagorinsky, 动态模型, Vreman) |
-| 燃烧模型 | 随机场 PDF 方法 + TCR 微混合模型 |
+| 燃烧模型 | 欧拉随机场 TPDF 方法 + IEM/TCR 微观混合闭合 |
 | 求解器 | 压力基 SIMPLE-like 算法 |
 | 并行 | MPI 分布式内存并行 |
 
@@ -164,29 +164,31 @@ boffin (主程序)
 
 详细见 [fieldpdf.md](/tcr-manual/fieldpdf/)
 
-**核心原理**: 基于 N. S. B. Ito 型随机微分方程求解标量场方程
+**方程作用**：欧拉随机场方法使用一组连续随机标量场表示联合组分分布。化学源项在每个随机场状态上计算，条件分子输运由微观混合闭合表示。
 
 $$\phi(\mathbf{x}, t) = \phi_0(\mathbf{x}) + \int_0^t \left[ S + \nabla \cdot (\Gamma \nabla \phi) \right] dt + \text{Wiener process}$$
 
 **关键参数**:
 | 参数 | 说明 |
 |------|------|
-| `nfield` | 随机场数量 (默认 8-16) |
+| `nfield` | 输入文件配置的随机场数量 |
 | `nsc` | 输运标量数量 |
 | `nsp` | 化学物种数 |
-| `pdf_kappa` | TCR 模式标志 |
+| `pdf_kappa` | TCR 微观混合闭合的配置标志 |
 
 #### 3.2.2 小尺度混合模型: MIXER
 
 详细见 [mixer.md](/tcr-manual/mixer/)
 
-**TCR 混合模型公式**:
+**代码快照中的混合频率表达式**：
 
 $$\beta = 0.5 \cdot f_{mixer} \cdot C_{\phi}$$
 
-其中:
+其中：
 - $f_{mixer} = \frac{\Gamma_{SGS} + \nu}{\Delta_{TCR}^{2/3}}$
-- $C_{\phi}$ 根据组分类型动态计算
+- $C_{\phi}$ 根据代码配置和标量类型确定
+
+该表达式描述现有代码快照中的源项系数。当前 TCR 理论把混合状态参数 $\kappa$ 与其关联的变换变量 $s_\kappa$ 区分开：$\kappa$ 由可接受根关系恢复，而 $s_\kappa$ 的输运方程用于保留分支延续信息。两者不应写成直接输运的固定几何体积分数。
 
 #### 3.2.3 反应计算: REACTOR
 
@@ -265,7 +267,7 @@ $$\beta = 0.5 \cdot f_{mixer} \cdot C_{\phi}$$
 **TCR 特征数组**:
 | 数组 | 说明 |
 |------|------|
-| `kappa(isp,ijk)` | PSR 体积分数 κ |
+| `kappa(isp,ijk)` | TCR 混合状态参数 $\kappa$ 的代码存储 |
 | `tim_flow(:)` | 流动时间尺度 |
 | `temp_i(:)` | 积分尺度混合时间 |
 | `temp_k(:)` | Kolmogorov 尺度混合时间 |
@@ -314,7 +316,7 @@ $$\beta = 0.5 \cdot f_{mixer} \cdot C_{\phi}$$
 
 ## 7. 代码文档索引
 
-以下是目前已整理的代码文档（共 123 篇）:
+以下索引列出当前已整理的代码文档（共 123 篇）。模块名称和路径对应本文所依据的软件快照：
 
 ### 求解器模块
 
@@ -384,5 +386,9 @@ $$\beta = 0.5 \cdot f_{mixer} \cdot C_{\phi}$$
 
 ---
 
-*手册生成日期: 2026-03-26*
+---
+
+**系列导航：** [理论基础](/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/) · [数值方法](/les_tpdf_numerical_procedure/)
+
+*手册初次整理日期：2026-03-26*
 

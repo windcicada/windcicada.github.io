@@ -7,7 +7,8 @@
         <title>湍流燃烧大涡模拟：数值方法 - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/les_tpdf_numerical_procedure/">
   <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="湍流燃烧大涡模拟：数值方法">
-  <meta property="og:description" content="写在前面：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。">
+  <meta property="og:description" content="系列导读：本文承接理论基础，说明 LES-TPDF 流场方程的坐标变换、有限体积离散、压力–速度耦合和线性方程求解。本文讨论数值方法层级；具体程序模块见代码实现。
+1. 坐标变换 1.1 从物理空间到计算空间 对于采用贴体结构网格的复杂几何流场，坐标变换将物理空间 $(x_1, x_2, x_3)$ 映射到计算空间 $(\xi_1, \xi_2, \xi_3)$。计算空间中的规则索引便于构造统一离散模板，但网格正交性、Jacobian 质量和边界拓扑仍会影响离散误差。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -22,7 +23,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
   <meta name="twitter:title" content="湍流燃烧大涡模拟：数值方法">
-  <meta name="twitter:description" content="写在前面：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。">
+  <meta name="twitter:description" content="系列导读：本文承接理论基础，说明 LES-TPDF 流场方程的坐标变换、有限体积离散、压力–速度耦合和线性方程求解。本文讨论数值方法层级；具体程序模块见代码实现。
+1. 坐标变换 1.1 从物理空间到计算空间 对于采用贴体结构网格的复杂几何流场，坐标变换将物理空间 $(x_1, x_2, x_3)$ 映射到计算空间 $(\xi_1, \xi_2, \xi_3)$。计算空间中的规则索引便于构造统一离散模板，但网格正交性、Jacobian 质量和边界拓扑仍会影响离散误差。">
 <meta name="application-name" content="王煜栋 (WANG YUDONG)">
 <meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,7 +38,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/wangyudong.netlify.app\/les_tpdf_numerical_procedure\/"
-        },"genre": "posts","keywords": "LES, TPDF, 数值方法, 有限体积法","wordcount":  2541 ,
+        },"genre": "posts","keywords": "LES, TPDF, 数值方法, 有限体积法","wordcount":  2669 ,
         "url": "https:\/\/wangyudong.netlify.app\/les_tpdf_numerical_procedure\/","datePublished": "2026-03-25T00:00:00+00:00","dateModified": "2026-03-25T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "王煜栋"},"author": {
@@ -83,7 +85,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">湍流燃烧大涡模拟：数值方法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>王煜栋</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E6%9C%AF/"><i class="far fa-folder fa-fw"></i>学术</a>&nbsp;<a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/"><i class="far fa-folder fa-fw"></i>湍流燃烧</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-25">2026-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2541 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-25">2026-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2669 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;<span id="/les_tpdf_numerical_procedure/" class="leancloud_visitors" data-flag-title="湍流燃烧大涡模拟：数值方法">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -122,7 +124,7 @@
         <li><a href="#41-simple-型算法">4.1 SIMPLE 型算法</a></li>
         <li><a href="#42-两级近似分解">4.2 两级近似分解</a></li>
         <li><a href="#43-压力修正方程poisson-方程">4.3 压力修正方程（Poisson 方程）</a></li>
-        <li><a href="#44-rhie-chow-压力平滑">4.4 Rhie-Chow 压力平滑</a></li>
+        <li><a href="#44-rhiechow-面通量插值">4.4 Rhie–Chow 面通量插值</a></li>
         <li><a href="#45-求解算法流程">4.5 求解算法流程</a></li>
         <li><a href="#46-求解器选择">4.6 求解器选择</a></li>
       </ul>
@@ -132,12 +134,12 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p><strong>写在前面</strong>：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。</p>
+<p><strong>系列导读</strong>：本文承接<a href="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" rel="">理论基础</a>，说明 LES-TPDF 流场方程的坐标变换、有限体积离散、压力–速度耦合和线性方程求解。本文讨论数值方法层级；具体程序模块见<a href="/tcr-solver-manual/" rel="">代码实现</a>。</p>
 </blockquote>
 <hr>
 <h2 id="1-坐标变换">1. 坐标变换</h2>
 <h3 id="11-从物理空间到计算空间">1.1 从物理空间到计算空间</h3>
-<p>对于复杂几何外形的流场，采用 Thompson 提出的坐标变换方法，将物理空间 $(x_1, x_2, x_3)$ 映射到矩形计算空间 $(\xi_1, \xi_2, \xi_3)$。这一变换的核心优势在于：无论物理边界如何复杂，计算空间中均可采用标准的矩形网格离散格式。</p>
+<p>对于采用贴体结构网格的复杂几何流场，坐标变换将物理空间 $(x_1, x_2, x_3)$ 映射到计算空间 $(\xi_1, \xi_2, \xi_3)$。计算空间中的规则索引便于构造统一离散模板，但网格正交性、Jacobian 质量和边界拓扑仍会影响离散误差。</p>
 <p><strong>Jacobian 矩阵</strong>定义为：</p>
 <p>$$J_{ij} = \frac{\partial x_i}{\partial \xi_j}$$</p>
 <p>其行列式 $|J|$ 满足：</p>
@@ -161,7 +163,7 @@
 <hr>
 <h2 id="2-输运方程的离散化">2. 输运方程的离散化</h2>
 <h3 id="21-控制体积法">2.1 控制体积法</h3>
-<p>采用<strong>控制体积法</strong>（有限体积法）进行空间离散。该方法的核心优势在于自动满足<strong>守恒性</strong>——离散格式与原始偏微分方程满足相同的守恒定律。</p>
+<p>空间离散采用控制体积法（有限体积法）。每个控制体的面通量以成对形式进入相邻单元，因此离散方程在通量一致时保持局部守恒。</p>
 <p>网格布局采用<strong>同位存储</strong>（Colocated Arrangement）：所有原始变量（速度、压力、标量）均存储在单元中心，假设在控制体积内均匀分布。相邻节点间采用线性插值确定单元面上的值。</p>
 <h3 id="22-对流项离散">2.2 对流项离散</h3>
 <p>以 $u$-动量方程为例，对流项的离散形式为：</p>
@@ -184,7 +186,7 @@
 <hr>
 <h2 id="3-标量输运方程的-tvd-格式">3. 标量输运方程的 TVD 格式</h2>
 <h3 id="31-godunov-定理与-tvd-原则">3.1 Godunov 定理与 TVD 原则</h3>
-<p>中心差分格式在求解标量输运方程时会产生负值的非物理振荡。<strong>Godunov 定理</strong>指出：线性二阶格式（中心或迎风）无法同时满足二阶精度和单调性——即必然产生振荡。</p>
+<p>中心差分格式在对流占优且分辨率不足时可能产生非物理振荡。Godunov 定理表明，线性单调格式不能同时具有高于一阶的精度；TVD 方法因此使用非线性通量限制器，在光滑区与强梯度区之间调整离散模板。</p>
 <p>为克服这一问题，引入<strong>总变差递减</strong>（TVD）原则。标量守恒律的总变差定义为：</p>
 <p>$$\mathrm{TV}(\phi) = \sum_i |\phi_{i+1} - \phi_i|$$</p>
 <p>TVD 格式满足 $\text{TV}(\phi^{n+1}) \le \text{TV}(\phi^n)$，确保不产生新的极值。</p>
@@ -219,10 +221,10 @@
 <h3 id="43-压力修正方程poisson-方程">4.3 压力修正方程（Poisson 方程）</h3>
 <p>将速度表达式代入连续方程，得到压力增量的 <strong>Poisson 型方程</strong>：</p>
 <p>$$A_{1i}\rho u_i\big|<em>{n} - A</em>{1i}\rho u_i\big|<em>{s} = A</em>{1i}\frac{\delta t}{R+1} \left( \frac{A_{ki}}{|J|} \frac{\partial \Delta p^m}{\partial \xi_k} \right)<em>{n} - A</em>{1i}\frac{\delta t}{R+1} \left( \frac{A_{ki}}{|J|} \frac{\partial \Delta p^m}{\partial \xi_k} \right)_{s}$$</p>
-<h3 id="44-rhie-chow-压力平滑">4.4 Rhie-Chow 压力平滑</h3>
-<p>同位存储格式下，压力场与速度场可能产生棋盘格式的振荡。<strong>Rhie-Chow 压力平滑</strong>通过在压力修正方程中添加三阶导数项来消除这一耦合问题：</p>
+<h3 id="44-rhiechow-面通量插值">4.4 Rhie–Chow 面通量插值</h3>
+<p>同位存储格式下，若单元面质量通量仅由线性插值得到，压力与速度可能出现棋盘格解耦。Rhie–Chow 方法在面速度或面质量通量插值中加入与离散动量方程一致的压力修正；在均匀网格的截断误差分析中，该修正可表现为高阶压力耗散项。下式给出本文代码采用的紧凑形式：</p>
 <p>$$A_{1i}u_i\big|<em>{n} - A</em>{1i}u_i\big|<em>{s} + A</em>{1i}\frac{\delta t}{R+1} \left( \frac{A_{ki}}{|J|} \frac{\partial^3 p^{m-1}}{\partial \xi_k^3} \right)<em>{n} - A</em>{1i}\frac{\delta t}{R+1} \left( \frac{A_{ki}}{|J|} \frac{\partial^3 p^{m-1}}{\partial \xi_k^3} \right)_{s} = \mathrm{RHS}$$</p>
-<p>该格式采用 $1\Delta$ 紧凑模板计算压力梯度，确保压力场与质量通量的强耦合。</p>
+<p>该格式采用 $1\Delta$ 紧凑模板计算压力梯度，用于抑制压力–速度解耦。其有效性仍取决于面通量构造、边界处理和网格质量。</p>
 <h3 id="45-求解算法流程">4.5 求解算法流程</h3>
 <ol>
 <li>由 $n$ 时刻流场 ($\mathbf{u}^n, \mathbf{v}^n, \mathbf{w}^n, \mathbf{p}^n, \rho^n$)，求解 $\mathbf{u}^<em>, \mathbf{v}^</em>, \mathbf{w}^*$</li>
@@ -258,14 +260,15 @@
 <p>$$\lVert \mathbf{\Delta P}^{n+1} \rVert^{\#} = \frac{1}{t^{\#}} \left( \frac{1}{N}\sum_N \rho_{ijk}^2 \right)^{1/2}$$</p>
 <hr>
 <h2 id="5-总结">5. 总结</h2>
-<p>本文详细介绍了 LES-TPDF 湍流燃烧求解器的数值实现方法：</p>
+<p>本文给出了 LES-TPDF 流场求解所采用的主要数值方法：</p>
 <ol>
-<li><strong>坐标变换</strong>：通过 Jacobian 矩阵实现物理空间到计算空间的映射，简化复杂边界处理</li>
-<li><strong>空间离散</strong>：控制体积法自动满足守恒性，对流项采用 van Leer TVD 格式防止非物理振荡</li>
-<li><strong>时间离散</strong>：三点向后格式保证二阶精度，灵活的时间步长适应燃烧初期的大密度变化</li>
-<li><strong>压力-速度耦合</strong>：SIMPLE 型算法结合两级近似分解确保二阶时间精度，Rhie-Chow 光滑消除同位存储的棋盘格振荡</li>
+<li><strong>坐标变换</strong>：Jacobian 和余因子度量把物理空间通量映射到计算空间</li>
+<li><strong>空间离散</strong>：控制体积法保持通量守恒，van Leer TVD 限制器在对流占优区域控制非物理振荡</li>
+<li><strong>时间离散</strong>：三点向后格式用于非定常推进，其阶数取决于时间步定义和启动处理</li>
+<li><strong>压力–速度耦合</strong>：SIMPLE 型压力修正、两级近似分解和 Rhie–Chow 面通量插值共同维持质量守恒并抑制棋盘格解耦</li>
 </ol>
-<p>这些数值方法共同构成了一个稳定、高效、可信的 LES-TPDF 湍流燃烧求解器框架。</p>
+<p>这些方法描述了流场与标量输运的离散路径。化学积分、随机场统计收敛、微观混合闭合和边界条件仍需结合具体算例分别验证。</p>
+<p><strong>系列导航：</strong> <a href="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" rel="">理论基础</a> · <a href="/tcr-solver-manual/" rel="">代码实现</a></p>
 <hr>
 <h2 id="参考文献">参考文献</h2>
 <ol>

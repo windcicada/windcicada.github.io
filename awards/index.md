@@ -7,7 +7,7 @@
 
 [2] **Yudong W**, Fang W, Sinan L E I, et al. [A turbulence-chemistry recursive mixing model for TPDF simulations and its appraisal](../pdf/TCR_mixing_model_CJA.pdf)[J]. Chinese Journal of Aeronautics, 2026.
 
-[3] Fang Wang*, Yuhan Gao, Shuo Shen, **Yudong Wang**, Li Dou, Jie Jin. [Influence of Reaction Mechanisms based the Turbulence and Heat Release Interaction in a Combustor Stabilized with a V-Shaped Stabilizer](../pdf/GaoYuhan_Vgutt.pdf)[J]. Aerospace Science and Technology, 2026: 111920.
+[3] **Wang YD**, Wang F, Lei SN, Jin J, Wei DS, Feng F, Liao P. [Dual-modification transported probability density function framework for hydrogen combustion simulation: Resolving differential diffusion effects](../pdf/DiffDiff_POF.pdf)[J]. Physics of Fluids, 2025, 37(4): 045165. DOI:10.1063/5.0265866.
 
 [4] **Yudong W**, Fang W, Jiawei Z, et al. [An improved immersed boundary method with local flow pattern reconstruction and its validation](../pdf/IBM_POF.pdf)[J]. Physics of Fluids, 2024, 36(4).
 

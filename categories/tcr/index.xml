@@ -897,7 +897,7 @@
       <link>https://wangyudong.netlify.app/tcr-solver-manual/</link>
       <pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/tcr-solver-manual/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;详细介绍亚音速可压缩燃烧模拟软件 CSTCSP/AECSC/BOFFIN 的架构和全部函数，由该软件的 123 个代码文档整理得到。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;1-程序概述&#34;&gt;1. 程序概述&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;TCR (Turbulent Combustion Research)&lt;/strong&gt; 是基于 LES 的湍流燃烧求解器，采用随机场 (Stochastic Field) PDF 方法模拟湍流燃烧过程。&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;系列导读&lt;/strong&gt;：本文记录 CSTCSP/AECSC/BOFFIN 代码快照中的主要模块及其调用关系，由 123 篇函数级文档归纳而成。阅读本篇前可先查看&lt;a href=&#34;https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/&#34; rel=&#34;&#34;&gt;理论基础&lt;/a&gt;和&lt;a href=&#34;https://wangyudong.netlify.app/les_tpdf_numerical_procedure/&#34; rel=&#34;&#34;&gt;数值方法&lt;/a&gt;。代码文档反映特定软件快照，不替代当前 TCR 数学表述或正式发布手册。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;1-程序概述&#34;&gt;1. 程序概述&lt;/h2&gt;&#xA;&lt;p&gt;CSTCSP/AECSC/BOFFIN 是基于大涡模拟（LES）的湍流燃烧计算程序，并采用欧拉随机场方法表示输运概率密度函数（TPDF）。Turbulence–Chemistry Recursive（TCR）模型是其中可选的微观混合闭合，不是该流场求解器的名称。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

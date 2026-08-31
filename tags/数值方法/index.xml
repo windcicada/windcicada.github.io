@@ -15,7 +15,7 @@
       <link>https://wangyudong.netlify.app/les_tpdf_numerical_procedure/</link>
       <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate><author>wangyudong@buaa.edu.cn (王煜栋 (WANG YUDONG))</author>
       <guid>https://wangyudong.netlify.app/les_tpdf_numerical_procedure/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;写在前面&lt;/strong&gt;：本文详细介绍 LES-TPDF 湍流燃烧求解器的数值实现方法，包括坐标变换、方程离散化、压力-速度耦合求解等核心算法。作为理论博客（《LES-TPDF 概率密度函数方法详解》）的后续实践篇。&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;系列导读&lt;/strong&gt;：本文承接&lt;a href=&#34;https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/&#34; rel=&#34;&#34;&gt;理论基础&lt;/a&gt;，说明 LES-TPDF 流场方程的坐标变换、有限体积离散、压力–速度耦合和线性方程求解。本文讨论数值方法层级；具体程序模块见&lt;a href=&#34;https://wangyudong.netlify.app/tcr-solver-manual/&#34; rel=&#34;&#34;&gt;代码实现&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-坐标变换&#34;&gt;1. 坐标变换&lt;/h2&gt;&#xA;&lt;h3 id=&#34;11-从物理空间到计算空间&#34;&gt;1.1 从物理空间到计算空间&lt;/h3&gt;&#xA;&lt;p&gt;对于采用贴体结构网格的复杂几何流场，坐标变换将物理空间 $(x_1, x_2, x_3)$ 映射到计算空间 $(\xi_1, \xi_2, \xi_3)$。计算空间中的规则索引便于构造统一离散模板，但网格正交性、Jacobian 质量和边界拓扑仍会影响离散误差。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -7,7 +7,7 @@
         <title>湍流燃烧大涡模拟：理论基础 - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">
   <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="湍流燃烧大涡模拟：理论基础">
-  <meta property="og:description" content="写在前面：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。">
+  <meta property="og:description" content="系列导读：本文介绍大涡模拟（LES）与输运概率密度函数（TPDF）方法的理论基础，重点说明过滤控制方程、化学源项闭合、欧拉随机场表示和微观混合闭合之间的关系。后续文章依次讨论数值方法和代码实现。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
   <meta name="twitter:title" content="湍流燃烧大涡模拟：理论基础">
-  <meta name="twitter:description" content="写在前面：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。">
+  <meta name="twitter:description" content="系列导读：本文介绍大涡模拟（LES）与输运概率密度函数（TPDF）方法的理论基础，重点说明过滤控制方程、化学源项闭合、欧拉随机场表示和微观混合闭合之间的关系。后续文章依次讨论数值方法和代码实现。">
 <meta name="application-name" content="王煜栋 (WANG YUDONG)">
 <meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/wangyudong.netlify.app\/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80\/"
-        },"genre": "posts","keywords": "LES, 大涡模拟, TPDF, 湍流燃烧, 数值模拟","wordcount":  3470 ,
+        },"genre": "posts","keywords": "LES, 大涡模拟, TPDF, 湍流燃烧, 数值模拟","wordcount":  3885 ,
         "url": "https:\/\/wangyudong.netlify.app\/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80\/","datePublished": "2026-03-19T00:00:00+00:00","dateModified": "2026-03-19T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "王煜栋"},"author": {
@@ -84,8 +84,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">湍流燃烧大涡模拟：理论基础</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>王煜栋</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AD%A6%E6%9C%AF/"><i class="far fa-folder fa-fw"></i>学术</a>&nbsp;<a href="/categories/%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7/"><i class="far fa-folder fa-fw"></i>湍流燃烧</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-19">2026-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3470 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;<span id="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="湍流燃烧大涡模拟：理论基础">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-19">2026-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3885 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;<span id="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="湍流燃烧大涡模拟：理论基础">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
@@ -136,11 +136,11 @@
         <li><a href="#63-火焰面模型">6.3 火焰面模型</a></li>
       </ul>
     </li>
-    <li><a href="#7-tcr-小尺度混合模型超越-iem">7. TCR 小尺度混合模型：超越 IEM</a>
+    <li><a href="#7-tcr-微观混合模型">7. TCR 微观混合模型</a>
       <ul>
-        <li><a href="#71-iem-的根本局限">7.1 IEM 的根本局限</a></li>
-        <li><a href="#72-tcr-的核心创新">7.2 TCR 的核心创新</a></li>
-        <li><a href="#73-tcr-的物理意义">7.3 TCR 的物理意义</a></li>
+        <li><a href="#71-iem-闭合的建模边界">7.1 IEM 闭合的建模边界</a></li>
+        <li><a href="#72-tcr-模型的层级">7.2 TCR 模型的层级</a></li>
+        <li><a href="#73-分支历史与当前证据边界">7.3 分支历史与当前证据边界</a></li>
       </ul>
     </li>
     <li><a href="#8-总结">8. 总结</a></li>
@@ -148,14 +148,14 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p><strong>写在前面</strong>：本文初步整理了大涡模拟(LES)与输运概率密度函数(TPDF)湍流燃烧方法的完整理论体系，包含从控制方程到数值求解的全流程公式推导。</p>
+<p><strong>系列导读</strong>：本文介绍大涡模拟（LES）与输运概率密度函数（TPDF）方法的理论基础，重点说明过滤控制方程、化学源项闭合、欧拉随机场表示和微观混合闭合之间的关系。后续文章依次讨论<a href="/les_tpdf_numerical_procedure/" rel="">数值方法</a>和<a href="/tcr-solver-manual/" rel="">代码实现</a>。</p>
 </blockquote>
 <hr>
 <h2 id="1-引言为什么要用-les-tpdf">1. 引言：为什么要用 LES-TPDF？</h2>
 <p>湍流燃烧是燃烧室、燃气轮机等设备中的核心物理过程。其难点在于：<strong>湍流与化学反应之间的双向耦合</strong>——湍流影响混合速率，化学反应改变密度和温度进而影响流动。</p>
-<p>传统的 RANS 方法通过时间平均丢失了瞬态信息；而直接数值模拟（DNS）虽然精确，但计算量随 Reynolds 数呈 $Re^{9/4}$ 增长，几乎不可能用于实际工程。</p>
-<p><strong>大涡模拟（LES）</strong> 过滤掉小尺度湍流，直接模拟大尺度结构，用亚网格模型模化小尺度效应。这是一种介于 DNS 和 RANS 之间的方法，兼顾精度与效率。</p>
-<p>当 LES 遇到燃烧时，化学反应发生在亚网格尺度上，标量的不均匀分布直接影响反应速率。<strong>输运概率密度函数（TPDF）模型</strong>正是为解决这一问题提出，通过求解输运方程获得描述标量在亚网格上的概率密度函数（PDF），从而封闭平均化学反应速率。</p>
+<p>雷诺平均 Navier–Stokes（RANS）方法以统计平均量描述流动，不能直接保留全部瞬态大尺度结构。直接数值模拟（DNS）解析控制方程所覆盖的全部湍流尺度，但其计算成本随 Reynolds 数快速增长，通常难以用于工程尺度燃烧室。</p>
+<p>大涡模拟（LES）解析主要含能尺度，并通过亚网格尺度（SGS）模型表示未解析尺度对过滤变量的作用。LES 的适用性取决于网格分辨率、SGS 闭合和边界条件，不能仅由其位于 DNS 与 RANS 之间来判断。</p>
+<p>在反应流中，未解析的组分和温度涨落会影响过滤化学反应速率。输运概率密度函数（TPDF）方法演化联合组分分布，使非线性化学源项在样本空间中保持闭合；条件分子输运仍需微观混合模型封闭。</p>
 <hr>
 <h2 id="2-控制方程组">2. 控制方程组</h2>
 <h3 id="21-连续方程与动量方程">2.1 连续方程与动量方程</h3>
@@ -271,7 +271,7 @@
 <p>$$C_S^2 = \frac{\langle \mathcal{L}<em>{ij} \mathcal{M}</em>{ij} \rangle}{\langle \mathcal{M}<em>{ij} \mathcal{M}</em>{ij} \rangle} \tag{31}$$</p>
 <p>其中 $\mathcal{M}<em>{ij} = \hat{\bar{\rho}} \hat{\Delta}^2 |\widehat{\tilde{S}}| \widehat{\tilde{S}}</em>{ij} - \bar{\rho} \tilde{\Delta}^2 |\tilde{S}| \tilde{S}_{ij}$。</p>
 <blockquote>
-<p><strong>动态模型的优势</strong>：$C_S$ 随时间和空间自适应——近壁面自动减小，剪切层中自动增大。</p>
+<p><strong>适用边界</strong>：动态过程根据解析尺度信息计算模型系数，但其表现仍受测试滤波、局部平均方式、网格质量和数值离散影响。</p>
 </blockquote>
 <hr>
 <h2 id="4-概率密度函数pdf方法">4. 概率密度函数（PDF）方法</h2>
@@ -318,7 +318,7 @@
   </tbody>
 </table>
 <blockquote>
-<p><strong>关键洞察</strong>：方程 (42) 中化学反应源项是自然封闭的！因为 $\dot{\phi}_\alpha$ 在样本空间中是一个确定函数。</p>
+<p><strong>闭合关系</strong>：在样本空间中，化学反应速率是组分状态的确定函数，因此化学源项保持闭合；条件扩散和微观混合仍需建模。</p>
 </blockquote>
 <h3 id="44-过滤密度函数fdf">4.4 过滤密度函数（FDF）</h3>
 <p>对细粒度 PDF 进行 Favre 滤波，得到<strong>亚网格过滤密度函数</strong>：</p>
@@ -400,67 +400,34 @@
 </ul>
 <p>$$\rho = \check{\rho}(\xi), \quad T = \check{T}(\xi), \quad Y_\alpha = \check{Y}_\alpha(\xi) \tag{63p}$$</p>
 <blockquote>
-<p><strong>注意</strong>：虽然火焰面模型在 RANS 中广泛应用，但 LES-FDF 方法更具普适性，无需依赖火焰面假设。</p>
+<p><strong>适用范围</strong>：火焰面模型与 LES-FDF/TPDF 方法采用不同的闭合路径。后者不要求预先把全部热化学状态限制在给定火焰面流形上，但仍依赖微观混合、亚网格输运和数值离散模型。</p>
 </blockquote>
 <hr>
-<h2 id="7-tcr-小尺度混合模型超越-iem">7. TCR 小尺度混合模型：超越 IEM</h2>
-<blockquote>
-<p>详见 memory/TCR-knowledge.md（王煜栋，2026）</p>
-</blockquote>
-<h3 id="71-iem-的根本局限">7.1 IEM 的根本局限</h3>
-<p>IEM 模型假设&quot;所有随机粒子以相同速率向均值混合&quot;，这导致：</p>
-<ol>
-<li><strong>无法描述混合的局部性</strong>：真实湍流中，不同位置的混合速率不同</li>
-<li><strong>无法复现火焰面行为</strong>：火焰面要求薄反应区 + 高混合频率，IEM 无法同时满足</li>
-</ol>
-<h3 id="72-tcr-的核心创新">7.2 TCR 的核心创新</h3>
-<p><strong>多层分区反应器（PSR）结构</strong>：</p>
-<ul>
-<li>将亚网格分成多个 PSR，每个 PSR 独立混合</li>
-<li>通过 $\kappa$（PSR 体积分数）描述混合均匀程度</li>
-</ul>
-<p><strong>关键公式</strong>：</p>
-<p>$$\kappa = \frac{1 \pm \sqrt{1 - 4\eta(1-\eta)\cdot \omega_c^{\text{filtered}}/\omega_c(\tilde{\phi})}}{2(1-\eta)} \tag{69}$$</p>
-<p>$$\mathcal{M}<em>\alpha^n = -\kappa^{1/3} \frac{\bar{\rho}}{2\tau</em>{\text{SGS}}} (\xi_\alpha^n - \tilde{\phi}_\alpha) \tag{70}$$</p>
-<p>$$\tau_{\text{SGS}}^{\text{TCR}} = \frac{\bar{\rho}(\Delta^{\text{TCR}})^2}{C_\phi \Gamma}, \quad \Delta^{\text{TCR}} = \kappa^{1/3} \Delta \tag{71}$$</p>
-<h3 id="73-tcr-的物理意义">7.3 TCR 的物理意义</h3>
-<table>
-  <thead>
-      <tr>
-          <th>$\kappa$ 值</th>
-          <th>物理含义</th>
-          <th>适用场景</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>$\kappa \to 1$</td>
-          <td>湍流主导，完全混合</td>
-          <td>均匀混合</td>
-      </tr>
-      <tr>
-          <td>$\kappa \to 0$</td>
-          <td>火焰面模式，薄反应区</td>
-          <td>火焰面前缘</td>
-      </tr>
-  </tbody>
-</table>
-<p><strong>关键洞见</strong>：$\kappa$ 对混合模式的影响强于对时间尺度的影响——使得火焰面模式下混合频率和标量方差同时增加，这是 IEM 无法复现的行为。</p>
+<h2 id="7-tcr-微观混合模型">7. TCR 微观混合模型</h2>
+<h3 id="71-iem-闭合的建模边界">7.1 IEM 闭合的建模边界</h3>
+<p>Interaction by Exchange with the Mean（IEM）模型使每个随机场以同一局部时间尺度向 Favre 均值松弛。该闭合保持均值守恒并控制标量方差衰减，但交换对象和松弛速率不能由局部湍流–化学反应状态自动确定。</p>
+<h3 id="72-tcr-模型的层级">7.2 TCR 模型的层级</h3>
+<p>Turbulence–Chemistry Recursive（TCR）模型属于 TPDF/欧拉随机场方程中的微观混合闭合，而不是独立的流场求解器。TCR 关系使用反应速率比 $R$ 和有效反应物分数 $\eta$ 确定候选根，并在满足物理约束后恢复混合状态参数 $\kappa$。因此，$\kappa$ 是由可接受根关系恢复的闭合状态，不是直接输运的守恒标量，也不应等同于反应器分区的固定几何体积分数。</p>
+<p>代数约化可能给出唯一可接受根、数学重根或多个可接受分支。唯一可接受根允许从当前 $(\eta,R)$ 状态直接恢复 $\kappa$；当存在多个可接受分支时，仅依赖瞬时状态不足以保持分支历史。</p>
+<h3 id="73-分支历史与当前证据边界">7.3 分支历史与当前证据边界</h3>
+<p>当前 TCR 表述以与混合状态参数 $\kappa$ 关联的变换变量 $s_\kappa$ 为历史变量。$s_\kappa$ 的输运方程提供分支延续信息，随后通过可接受性判断和直接代数恢复得到 $\kappa$。点态 DNS 候选根统计只能说明给定状态下根的可用性；这些统计本身不验证连续的 $s_\kappa$ 输运或跨越折叠点的分支延续。</p>
+<p>本节说明 TCR 模型、数学表述和数值算法的层级。具体离散步骤见<a href="/les_tpdf_numerical_procedure/" rel="">数值方法</a>，现有软件快照中的模块对应关系见<a href="/tcr-solver-manual/" rel="">代码实现</a>。</p>
 <hr>
 <h2 id="8-总结">8. 总结</h2>
-<p>LES-TPDF 方法是湍流燃烧数值模拟的强大框架：</p>
+<p>LES-TPDF 方法把解析尺度流动、亚网格输运、联合组分分布和微观混合闭合组织在同一计算框架中：</p>
 <ol>
 <li><strong>LES</strong> 提供瞬态的空间分辨能力，捕捉大尺度湍流结构</li>
-<li><strong>PDF 方法</strong> 封闭非线性化学反应源项，无需经验假设</li>
+<li><strong>TPDF 方法</strong> 使非线性化学反应源项在样本空间中保持闭合</li>
 <li><strong>欧拉随机场</strong> 将 PDF 方程转化为可解的随机微分方程</li>
-<li><strong>TCR 模型</strong> 在此基础上进一步改进混合建模</li>
+<li><strong>TCR 模型</strong> 根据局部湍流–化学反应状态恢复混合状态参数，并更新微观混合闭合</li>
 </ol>
-<p>这套方法体系正在发展完善，TCR 模型作为该框架下的创新尝试，为湍流燃烧的精确模拟提供了新的可能。</p>
+<p>化学源项闭合并不意味着整个 TPDF 方程无须建模。亚网格输运、条件分子扩散、微观混合以及数值误差仍共同限定计算结果的适用范围。</p>
+<p><strong>系列下一篇：</strong> <a href="/les_tpdf_numerical_procedure/" rel="">湍流燃烧大涡模拟：数值方法</a></p>
 <hr>
 <h2 id="参考文献">参考文献</h2>
 <ol>
 <li>王煜栋. 基于LES-TPDF两相湍流燃烧模型的浸没边界方法研究[D]. 北京航空航天大学, 2023.</li>
-<li>Wang, Y., et al. An improved immersed boundary method with local flow pattern reconstruction and its validation[J]. <em>Physics of Fluids</em>, 2026.</li>
+<li>Wang, Y., et al. An improved immersed boundary method with local flow pattern reconstruction and its validation[J]. <em>Physics of Fluids</em>, 2024, 36(4).</li>
 <li>Pope, S. B. Turbulent Flows[M]. Cambridge University Press, 2000.</li>
 <li>Valiño, L. Field Monte Carlo formulation for calculating the probability density function of a reactive scalar in turbulent flow[J]. <em>Physics of Fluids</em>, 1998.</li>
 </ol>

@@ -7,8 +7,8 @@
         <title>湍流燃烧大涡模拟：代码实现 - 王煜栋 (WANG YUDONG)</title><meta name="Description" content="王煜栋 (WANG YUDONG)"><meta property="og:url" content="https://wangyudong.netlify.app/tcr-solver-manual/">
   <meta property="og:site_name" content="王煜栋 (WANG YUDONG)">
   <meta property="og:title" content="湍流燃烧大涡模拟：代码实现">
-  <meta property="og:description" content="详细介绍亚音速可压缩燃烧模拟软件 CSTCSP/AECSC/BOFFIN 的架构和全部函数，由该软件的 123 个代码文档整理得到。
-1. 程序概述 TCR (Turbulent Combustion Research) 是基于 LES 的湍流燃烧求解器，采用随机场 (Stochastic Field) PDF 方法模拟湍流燃烧过程。">
+  <meta property="og:description" content="系列导读：本文记录 CSTCSP/AECSC/BOFFIN 代码快照中的主要模块及其调用关系，由 123 篇函数级文档归纳而成。阅读本篇前可先查看理论基础和数值方法。代码文档反映特定软件快照，不替代当前 TCR 数学表述或正式发布手册。
+1. 程序概述 CSTCSP/AECSC/BOFFIN 是基于大涡模拟（LES）的湍流燃烧计算程序，并采用欧拉随机场方法表示输运概率密度函数（TPDF）。Turbulence–Chemistry Recursive（TCR）模型是其中可选的微观混合闭合，不是该流场求解器的名称。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -23,8 +23,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://wangyudong.netlify.app/images/avatar.png">
   <meta name="twitter:title" content="湍流燃烧大涡模拟：代码实现">
-  <meta name="twitter:description" content="详细介绍亚音速可压缩燃烧模拟软件 CSTCSP/AECSC/BOFFIN 的架构和全部函数，由该软件的 123 个代码文档整理得到。
-1. 程序概述 TCR (Turbulent Combustion Research) 是基于 LES 的湍流燃烧求解器，采用随机场 (Stochastic Field) PDF 方法模拟湍流燃烧过程。">
+  <meta name="twitter:description" content="系列导读：本文记录 CSTCSP/AECSC/BOFFIN 代码快照中的主要模块及其调用关系，由 123 篇函数级文档归纳而成。阅读本篇前可先查看理论基础和数值方法。代码文档反映特定软件快照，不替代当前 TCR 数学表述或正式发布手册。
+1. 程序概述 CSTCSP/AECSC/BOFFIN 是基于大涡模拟（LES）的湍流燃烧计算程序，并采用欧拉随机场方法表示输运概率密度函数（TPDF）。Turbulence–Chemistry Recursive（TCR）模型是其中可选的微观混合闭合，不是该流场求解器的名称。">
 <meta name="application-name" content="王煜栋 (WANG YUDONG)">
 <meta name="apple-mobile-web-app-title" content="王煜栋 (WANG YUDONG)"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -38,12 +38,12 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/wangyudong.netlify.app\/tcr-solver-manual\/"
-        },"genre": "posts","keywords": "TCR, LES, 湍流燃烧, Fortran","wordcount":  2605 ,
+        },"genre": "posts","keywords": "TCR, LES, 湍流燃烧, Fortran","wordcount":  2946 ,
         "url": "https:\/\/wangyudong.netlify.app\/tcr-solver-manual\/","datePublished": "2026-03-26T00:00:00+00:00","dateModified": "2026-03-26T00:00:00+00:00","publisher": {
             "@type": "Organization",
-            "name": "王煜栋 (WANG YUDONG)"},"author": {
+            "name": "王煜栋"},"author": {
                 "@type": "Person",
-                "name": "王煜栋 (WANG YUDONG)"
+                "name": "王煜栋"
             },"description": ""
     }
     </script></head>
@@ -84,8 +84,8 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">湍流燃烧大涡模拟：代码实现</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>王煜栋 (WANG YUDONG)</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tcr/"><i class="far fa-folder fa-fw"></i>TCR</a>&nbsp;<a href="/categories/%E4%BB%A3%E7%A0%81%E6%96%87%E6%A1%A3/"><i class="far fa-folder fa-fw"></i>代码文档</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-26">2026-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2605 words&nbsp;
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>王煜栋</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tcr/"><i class="far fa-folder fa-fw"></i>TCR</a>&nbsp;<a href="/categories/%E4%BB%A3%E7%A0%81%E6%96%87%E6%A1%A3/"><i class="far fa-folder fa-fw"></i>代码文档</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2026-03-26">2026-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2946 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;<span id="/tcr-solver-manual/" class="leancloud_visitors" data-flag-title="湍流燃烧大涡模拟：代码实现">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -168,10 +168,10 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p>详细介绍亚音速可压缩燃烧模拟软件 CSTCSP/AECSC/BOFFIN 的架构和全部函数，由该软件的 123 个代码文档整理得到。</p>
+<p><strong>系列导读</strong>：本文记录 CSTCSP/AECSC/BOFFIN 代码快照中的主要模块及其调用关系，由 123 篇函数级文档归纳而成。阅读本篇前可先查看<a href="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" rel="">理论基础</a>和<a href="/les_tpdf_numerical_procedure/" rel="">数值方法</a>。代码文档反映特定软件快照，不替代当前 TCR 数学表述或正式发布手册。</p>
 </blockquote>
 <h2 id="1-程序概述">1. 程序概述</h2>
-<p><strong>TCR (Turbulent Combustion Research)</strong> 是基于 LES 的湍流燃烧求解器，采用随机场 (Stochastic Field) PDF 方法模拟湍流燃烧过程。</p>
+<p>CSTCSP/AECSC/BOFFIN 是基于大涡模拟（LES）的湍流燃烧计算程序，并采用欧拉随机场方法表示输运概率密度函数（TPDF）。Turbulence–Chemistry Recursive（TCR）模型是其中可选的微观混合闭合，不是该流场求解器的名称。</p>
 <h3 id="主要特性">主要特性</h3>
 <table>
   <thead>
@@ -191,7 +191,7 @@
       </tr>
       <tr>
           <td>燃烧模型</td>
-          <td>随机场 PDF 方法 + TCR 微混合模型</td>
+          <td>欧拉随机场 TPDF 方法 + IEM/TCR 微观混合闭合</td>
       </tr>
       <tr>
           <td>求解器</td>
@@ -435,7 +435,7 @@
 <h3 id="32-燃烧模型">3.2 燃烧模型</h3>
 <h4 id="321-随机场-pdf-方法-fieldpdf">3.2.1 随机场 PDF 方法: FIELDPDF</h4>
 <p>详细见 <a href="/tcr-manual/fieldpdf/" rel="">fieldpdf.md</a></p>
-<p><strong>核心原理</strong>: 基于 N. S. B. Ito 型随机微分方程求解标量场方程</p>
+<p><strong>方程作用</strong>：欧拉随机场方法使用一组连续随机标量场表示联合组分分布。化学源项在每个随机场状态上计算，条件分子输运由微观混合闭合表示。</p>
 <p>$$\phi(\mathbf{x}, t) = \phi_0(\mathbf{x}) + \int_0^t \left[ S + \nabla \cdot (\Gamma \nabla \phi) \right] dt + \text{Wiener process}$$</p>
 <p><strong>关键参数</strong>:</p>
 <table>
@@ -448,7 +448,7 @@
   <tbody>
       <tr>
           <td><code>nfield</code></td>
-          <td>随机场数量 (默认 8-16)</td>
+          <td>输入文件配置的随机场数量</td>
       </tr>
       <tr>
           <td><code>nsc</code></td>
@@ -460,19 +460,20 @@
       </tr>
       <tr>
           <td><code>pdf_kappa</code></td>
-          <td>TCR 模式标志</td>
+          <td>TCR 微观混合闭合的配置标志</td>
       </tr>
   </tbody>
 </table>
 <h4 id="322-小尺度混合模型-mixer">3.2.2 小尺度混合模型: MIXER</h4>
 <p>详细见 <a href="/tcr-manual/mixer/" rel="">mixer.md</a></p>
-<p><strong>TCR 混合模型公式</strong>:</p>
+<p><strong>代码快照中的混合频率表达式</strong>：</p>
 <p>$$\beta = 0.5 \cdot f_{mixer} \cdot C_{\phi}$$</p>
-<p>其中:</p>
+<p>其中：</p>
 <ul>
 <li>$f_{mixer} = \frac{\Gamma_{SGS} + \nu}{\Delta_{TCR}^{2/3}}$</li>
-<li>$C_{\phi}$ 根据组分类型动态计算</li>
+<li>$C_{\phi}$ 根据代码配置和标量类型确定</li>
 </ul>
+<p>该表达式描述现有代码快照中的源项系数。当前 TCR 理论把混合状态参数 $\kappa$ 与其关联的变换变量 $s_\kappa$ 区分开：$\kappa$ 由可接受根关系恢复，而 $s_\kappa$ 的输运方程用于保留分支延续信息。两者不应写成直接输运的固定几何体积分数。</p>
 <h4 id="323-反应计算-reactor">3.2.3 反应计算: REACTOR</h4>
 <p>详细见 <a href="/tcr-manual/reactor/" rel="">reactor.md</a></p>
 <ul>
@@ -662,7 +663,7 @@
   <tbody>
       <tr>
           <td><code>kappa(isp,ijk)</code></td>
-          <td>PSR 体积分数 κ</td>
+          <td>TCR 混合状态参数 $\kappa$ 的代码存储</td>
       </tr>
       <tr>
           <td><code>tim_flow(:)</code></td>
@@ -756,7 +757,7 @@
 </div>
 </div><hr>
 <h2 id="7-代码文档索引">7. 代码文档索引</h2>
-<p>以下是目前已整理的代码文档（共 123 篇）:</p>
+<p>以下索引列出当前已整理的代码文档（共 123 篇）。模块名称和路径对应本文所依据的软件快照：</p>
 <h3 id="求解器模块">求解器模块</h3>
 <ul>
 <li><a href="/tcr-manual/boffin/" rel="">boffin.md</a> - 主程序</li>
@@ -841,7 +842,9 @@
   </tbody>
 </table>
 <hr>
-<p><em>手册生成日期: 2026-03-26</em></p>
+<hr>
+<p><strong>系列导航：</strong> <a href="/les_tpdf_%E6%B9%8D%E6%B5%81%E7%87%83%E7%83%A7%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" rel="">理论基础</a> · <a href="/les_tpdf_numerical_procedure/" rel="">数值方法</a></p>
+<p><em>手册初次整理日期：2026-03-26</em></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
